@@ -10,12 +10,13 @@ export class NavbarComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  public auth:boolean  = this.authService.isAuthenticated();
 
 
   ngOnInit(): void {
   }
 
-  
-  
+
+
 
 }
