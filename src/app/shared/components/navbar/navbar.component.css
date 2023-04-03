@@ -1,0 +1,32 @@
+
+.relative:hover .hidden {
+    display: block;
+    border-color: black;
+    
+}
+
+:hover .menu-hov {
+    display: block;
+    background-color: aqua;
+}
+
+
+
+.sobrepuesto{
+    border: 0.5px solid #000000;
+    z-index: 100;
+    margin-top: 25px;
+}
+
+.right-0.left-auto {
+    right: auto;
+    left: 0;
+  }
+  
+  @media (min-width: 1024px) {
+    .right-0.left-auto:hover .sobrepuesto {
+      right: auto;
+      left: 0;
+    }
+  }
+  
