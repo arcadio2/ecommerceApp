@@ -1,0 +1,112 @@
+<div class=" flex items-center justify-center bg-white"> <!--items-center h-screen-->
+    <div class="bg-white border-2 border-black rounded-lg w-10/12 max-w-md p-8 border-b-0">
+      <h1 class="text-3xl font-bold mb-8 text-center">Registrarse</h1>
+      <form class="mb-8" (ngSubmit)="register()" [formGroup]="registerForm">
+        <div class="mb-6">
+          <label class="block text-black-700 font-bold mb-2" for="nombre">
+            Nombre
+          </label>
+          <input formControlName="nombre" name="nombre"
+            class="border-b border-black w-full 
+            text-black-700 leading-tight focus:outline-none focus:border-black-500" 
+            id="nombre" type="text">
+            <div  [hidden]="registerForm.controls['nombre'].valid || !registerForm.controls['nombre'].touched"
+              class="mt-1 text-black-600 text-bold text-xs">
+              <p>El nombre es requerido</p>
+            </div>
+            <div *ngIf="errores?.nombre" class="mt-1 text-black-600 text-bold text-xs">
+              {{errores.nombre}}
+            </div>
+        </div>
+        <div class="mb-6">
+            <label class="block text-black-700 font-bold mb-2" for="nombre">
+              Apellido
+            </label>
+            <input formControlName="apellido" name="apellido"
+              class="border-b border-black 
+                w-full text-black-700 leading-tight focus:outline-none focus:border-black-500"
+                 id="apellido" type="text">
+                <div  [hidden]="registerForm.controls['apellido'].valid || !registerForm.controls['apellido'].touched"
+                class="mt-1 text-black-600 text-bold text-xs">
+                <p>El apellido es requerido</p>
+                </div>
+                <div *ngIf="errores?.apellido" class="mt-1 text-black-600 text-bold text-xs">
+                  {{errores.apellido}}
+                </div>
+                 
+        </div>
+        <div class="mb-6">
+            <label class="block text-black-700 font-bold mb-2" for="username">
+              Nombre de usuario
+            </label>
+            <input formControlName="username" name="username"
+              class="border-b border-black w-full text-black-700 
+                leading-tight focus:outline-none focus:border-black-500" 
+                id="username" type="text">
+                <div  [hidden]="registerForm.controls['username'].valid || !registerForm.controls['username'].touched"
+                class="mt-1 text-black-600 text-bold text-xs">
+                <p>El nombre de usuario es requerido</p>
+                </div>
+                <div *ngIf="errores?.username" class="mt-1 text-black-600 text-bold text-xs">
+                  {{errores.username}}
+                </div>
+        </div>
+        <div class="mb-6">
+            <label class="block text-black-700 font-bold mb-2" for="email">
+              Correo
+            </label>
+            <input formControlName="email" name="email"
+              class="border-b border-black w-full text-black-700 
+              leading-tight focus:outline-none focus:border-black-500" 
+              id="email" type="text">
+              <div  [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].touched"
+              class="mt-1 text-black-600 text-bold text-xs">
+              <p>El email es requerido</p>
+              </div>
+              <div *ngIf="errores?.email" class="mt-1 text-black-600 text-bold text-xs">
+                {{errores.email}}
+              </div>
+        </div>
+        <div class="mb-6">
+          <label class="block text-black-700 font-bold mb-2" for="password">
+            Contraseña
+          </label>
+          <input formControlName="password" name="password"
+            class="border-b border-black w-full  text-black-700 
+            leading-tight focus:outline-none focus:border-black-500" 
+            id="password" type="password">
+            <div  [hidden]="registerForm.controls['password'].valid || !registerForm.controls['password'].touched"
+            class="mt-1 text-black-600 text-bold text-xs">
+            <p>La contraseña es requerida</p>
+            </div>
+            <div *ngIf="errores?.password" class="mt-1 text-black-600 text-bold text-xs">
+              {{errores.apellido}}
+            </div>
+        </div>
+        
+        <div class="mb-4 flex items-center p-3">
+            <div class="mr-1">
+                He leído y entiendo la  
+            </div>
+            <a routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</a>
+          
+        </div>
+
+
+        <div class="flex items-center justify-center ">
+          <button type="submit"
+            class="bg-black hover:bg-black-900 text-white font-bold  rounded focus:outline-none focus:shadow-outline" >
+            Registrarse
+          </button>
+        </div>
+        
+        <div class="mb-4 flex items-center justify-center mt-4">
+            <label class="text-black-200 mr-4" for="remember-me">
+                ¿Ya tienes cuenta?
+            </label>
+            <a routerLink="/auth" class="text-black underline font-bold">Iniciar sesión</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  

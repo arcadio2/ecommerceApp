@@ -12,6 +12,7 @@ export class AuthService {
   private url_base:string = environment.urlBase+'api/';
   private _usuario!: User | null;
   private _token!: string | null;
+  private _isAuth!: boolean; 
 
 
   constructor(private http:HttpClient, private router: Router) { }
@@ -28,6 +29,14 @@ export class AuthService {
       
     }
     return new User();
+  }
+
+  public get isAuth(){
+    this._isAuth = this.isAuthenticated();
+    return this._isAuth; 
+  }
+  public set isAuth(isAuth:boolean){
+    this._isAuth = isAuth; 
   }
 
   public get token(): string | null {
@@ -89,6 +98,8 @@ export class AuthService {
     this._usuario.email = payload.email;
     this._usuario.username = payload.user_name;
     this._usuario.roles = payload.authorities;
+    
+
     sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 

@@ -42,7 +42,7 @@
                     </span>
 
                     <span class="hidden sm:block">
-                        <a href="/search"
+                        <a 
                             class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                             <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -55,7 +55,7 @@
                     </span>
 
                     <span class="relative ">
-                        <a href="/account" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                        <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                           </svg>
@@ -64,14 +64,14 @@
 
                         <div *ngIf="!auth;" class="absolute top-10 left-0 w-48 bg-white rounded-lg shadow-lg px-4 py-2 sobrepuesto right-1 left-auto hidden">
                           <a routerLink="/auth" class="block hover:text-gray-600 py-2">Iniciar sesión</a>
-                          <a href="/orders" class="block hover:text-gray-600 py-2">Registrarse</a>
+                          <a  routerLink="/auth/registro" class="block hover:text-gray-600 py-2">Registrarse</a>
 
                         </div>
 
                         <div *ngIf="auth;" class="absolute top-10 left-0 w-48 bg-white rounded-lg shadow-lg px-4 py-2 sobrepuesto right-1 left-auto hidden">
                           <a href="/profile" class="block hover:text-gray-600 py-2">Mi perfil</a>
                           <a href="/orders" class="block hover:text-gray-600 py-2">Mis pedidos</a>
-                          <a href="/logout" class="block hover:text-gray-600 py-2">Cerrar sesión</a>
+                          <a (click)="logout()" routerLink="/auth/logout" class="block hover:text-gray-600 py-2">Cerrar sesión</a>
                         </div>
                     </span>
 
