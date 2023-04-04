@@ -4,6 +4,7 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,13 @@ export class AuthService {
   private url_base:string = environment.urlBase+'api/';
   private _usuario!: User | null;
   private _token!: string | null;
-  private _isAuth!: boolean; 
+  public _isAuth = new BehaviorSubject<boolean>(false);
+  //private _isAuth!: boolean; 
 
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http:HttpClient, private router: Router) { 
+    this._isAuth.next(this.isAuthenticated());
+  }
 
   public get usuario(): User {
     if (this._usuario != null) {
@@ -31,13 +35,13 @@ export class AuthService {
     return new User();
   }
 
-  public get isAuth(){
+/*   public get isAuth(){
     this._isAuth = this.isAuthenticated();
     return this._isAuth; 
   }
   public set isAuth(isAuth:boolean){
     this._isAuth = isAuth; 
-  }
+  } */
 
   public get token(): string | null {
     if (this._token != null) {

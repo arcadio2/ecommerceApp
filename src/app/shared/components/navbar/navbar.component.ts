@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
 
@@ -7,18 +7,24 @@ import { User } from 'src/app/models/user.model';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnChanges{
 
   constructor(private authService: AuthService) { }
 
   @Input() user!:User;
 
-  public auth:boolean  = this.authService.isAuth;
+  public auth!:boolean;
 
 
   ngOnInit(): void {
     //this.auth = this.user?.email ? true : false;
+    this.authService._isAuth.subscribe(v =>{
+      this.auth=v;
+    })
     console.log(this.auth)
+  }
+  ngOnChanges() {
+    console.log("xd")
   }
   
 

@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
           this.usuario = this.authService.usuario;
           this.router.navigateByUrl('/user');
           this.toast.success("Haz iniciado sesión con éxito")
-          this.authService.isAuth = true; 
+          this.authService._isAuth.next(true); 
           
           
         },err=>{
