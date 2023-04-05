@@ -4,14 +4,28 @@ import { IndexauthComponent } from './pages/indexauth/indexauth.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { LoggedGuard } from './guards/logged.guard';
 
 const routes: Routes = [
   {
     path: '',component:IndexauthComponent,
     children:[
-      {path:'login',component:LoginComponent},
-      {path:'registro',component:RegisterComponent},
-      {path:'logout',component:LogoutComponent},
+      {
+        path:'login',
+        component:LoginComponent,
+        canActivate:[LoggedGuard],
+        canLoad:[LoggedGuard]
+      },
+      {
+        path:'registro',
+        component:RegisterComponent,
+        canActivate:[LoggedGuard],
+        canLoad:[LoggedGuard]
+      },
+      {
+        path:'logout',
+        component:LogoutComponent
+      },
   
       {path:'**',redirectTo:'login'}
     ]

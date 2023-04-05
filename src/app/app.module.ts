@@ -9,6 +9,7 @@ import { HomeComponent } from './shared/pages/home/home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { InterceptorService } from './config/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PerfilComponent } from './logged/pages/perfil/perfil.component';
 
 
 @NgModule({
