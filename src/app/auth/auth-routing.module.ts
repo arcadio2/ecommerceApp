@@ -5,13 +5,14 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { LoggedGuard } from './guards/logged.guard';
+import {ForgottenPasswordComponent} from "./pages/forgotten-password/forgotten-password.component";
 
 const routes: Routes = [
   {
     path: '',component:IndexauthComponent,
     children:[
       {
-        path:'login',
+        path:'iniciar-sesion',
         component:LoginComponent,
         canActivate:[LoggedGuard],
         canLoad:[LoggedGuard]
@@ -23,10 +24,16 @@ const routes: Routes = [
         canLoad:[LoggedGuard]
       },
       {
+        path:'restablecer-contraseña',
+        component: ForgottenPasswordComponent,
+        canActivate: [LoggedGuard],
+        canLoad: [LoggedGuard]
+      },
+      {
         path:'logout',
         component:LogoutComponent
       },
-  
+
       {path:'**',redirectTo:'login'}
     ]
   }

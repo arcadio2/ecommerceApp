@@ -1,14 +1,15 @@
 <div class=" flex items-center justify-center bg-white"> <!--items-center h-screen-->
-    <div class="bg-white border-2 border-black rounded-lg w-10/12 max-w-md p-8 border-b-0">
+  <div class="flex-col justify-center w-[30%] mt-16 ">
+    <div class="bg-white border-2 border-black p-8">
       <h1 class="text-3xl font-bold mb-8 text-center">Registrarse</h1>
-      <form class="mb-8" (ngSubmit)="register()" [formGroup]="registerForm">
+      <form class="w-full" (ngSubmit)="register()" [formGroup]="registerForm">
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="nombre">
             Nombre
           </label>
           <input formControlName="nombre" name="nombre"
-            class="border-b border-black w-full 
-            text-black-700 leading-tight focus:outline-none focus:border-black-500" 
+            class="border-b border-black w-full
+            text-black-700 leading-tight focus:outline-none focus:border-black-500"
             id="nombre" type="text">
             <div  [hidden]="registerForm.controls['nombre'].valid || !registerForm.controls['nombre'].touched"
               class="mt-1 text-black-600 text-bold text-xs">
@@ -23,7 +24,7 @@
               Apellido
             </label>
             <input formControlName="apellido" name="apellido"
-              class="border-b border-black 
+              class="border-b border-black
                 w-full text-black-700 leading-tight focus:outline-none focus:border-black-500"
                  id="apellido" type="text">
                 <div  [hidden]="registerForm.controls['apellido'].valid || !registerForm.controls['apellido'].touched"
@@ -33,15 +34,15 @@
                 <div *ngIf="errores?.apellido" class="mt-1 text-black-600 text-bold text-xs">
                   {{errores.apellido}}
                 </div>
-                 
+
         </div>
         <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="username">
               Nombre de usuario
             </label>
             <input formControlName="username" name="username"
-              class="border-b border-black w-full text-black-700 
-                leading-tight focus:outline-none focus:border-black-500" 
+              class="border-b border-black w-full text-black-700
+                leading-tight focus:outline-none focus:border-black-500"
                 id="username" type="text">
                 <div  [hidden]="registerForm.controls['username'].valid || !registerForm.controls['username'].touched"
                 class="mt-1 text-black-600 text-bold text-xs">
@@ -56,8 +57,8 @@
               Correo
             </label>
             <input formControlName="email" name="email"
-              class="border-b border-black w-full text-black-700 
-              leading-tight focus:outline-none focus:border-black-500" 
+              class="border-b border-black w-full text-black-700
+              leading-tight focus:outline-none focus:border-black-500"
               id="email" type="text">
               <div  [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].touched"
               class="mt-1 text-black-600 text-bold text-xs">
@@ -72,8 +73,8 @@
             Contraseña
           </label>
           <input formControlName="password" name="password"
-            class="border-b border-black w-full  text-black-700 
-            leading-tight focus:outline-none focus:border-black-500" 
+            class="border-b border-black w-full  text-black-700
+            leading-tight focus:outline-none focus:border-black-500"
             id="password" type="password">
             <div  [hidden]="registerForm.controls['password'].valid || !registerForm.controls['password'].touched"
             class="mt-1 text-black-600 text-bold text-xs">
@@ -83,30 +84,36 @@
               {{errores.apellido}}
             </div>
         </div>
-        
+
         <div class="mb-4 flex items-center p-3">
-            <div class="mr-1">
-                He leído y entiendo la  
+          <input type="checkbox" id="remember-me" class="mr-2 leading-tight">
+            <div class="text-center text-sm w-full">
+                He leído y entiendo la <span routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</span>
             </div>
-            <a routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</a>
-          
+
         </div>
 
 
         <div class="flex items-center justify-center ">
-          <button type="submit"
-            class="bg-black hover:bg-black-900 text-white font-bold  rounded focus:outline-none focus:shadow-outline" >
+          <button
+            class="bg-gray-950 text-white font-bold rounded border-2
+              hover:bg-black
+              focus:outline-none
+              focus:ring
+              focus:ring-gray-300
+              hover: border-black
+              w-full p-3" type="submit">
             Registrarse
           </button>
         </div>
-        
-        <div class="mb-4 flex items-center justify-center mt-4">
+
+        <div class="mt-6 flex items-center justify-center">
             <label class="text-black-200 mr-4" for="remember-me">
                 ¿Ya tienes cuenta?
             </label>
-            <a routerLink="/auth" class="text-black underline font-bold">Iniciar sesión</a>
+            <a routerLink="/auth/iniciar-sesion" class="text-black underline font-bold">Iniciar sesión</a>
         </div>
       </form>
     </div>
   </div>
-  
+</div>

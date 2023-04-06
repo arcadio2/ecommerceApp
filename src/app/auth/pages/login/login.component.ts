@@ -28,26 +28,29 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.loginForm.markAllAsTouched(); 
+    this.loginForm.markAllAsTouched();
     if(this.loginForm.valid){
-      this.usuario.username = this.loginForm.get('username')?.value; 
-      this.usuario.password = this.loginForm.get('password')?.value; 
+      this.usuario.username = this.loginForm.get('username')?.value;
+      this.usuario.password = this.loginForm.get('password')?.value;
 
       this.authService.login(this.usuario).subscribe(res =>{
         this.authService.guardarUsuario(res.access_token);
         this.authService.guardarToken(res.access_token);
         this.usuario = this.authService.usuario;
         this.router.navigateByUrl('/user');
-        this.toast.success("Haz iniciado sesión con éxito"); 
-        this.authService._isAuth.next(true); 
+        this.toast.success("Haz iniciado sesión con éxito");
+        this.authService._isAuth.next(true);
       },err=>{
         if(err.status==400){
-  
+
           this.toast.error("Credenciales inválidas");
         }
       });
     }
+  }
 
+  irRestablecerContrasenia (){
+    this.router.navigate(['auth/restablecer-contraseña'])
   }
 
 }

@@ -4,7 +4,7 @@
 .container {
     height: 100vh;
   }
-  
+
   /* Estilos para la tarjeta de inicio de sesión */
   .card {
     border: 1px solid black;
@@ -13,7 +13,7 @@
     width: 28rem;
     padding: 2rem;
   }
-  
+
   /* Estilos para los inputs */
   input {
     border: none;
@@ -21,8 +21,8 @@
     padding: 0.5rem 0.25rem;
     margin-bottom: 1rem;
   }
-  
-  /* Estilos para el botón */
+
+  /*!* Estilos para el botón *!
   button {
     background-color: black;
     color: white;
@@ -35,6 +35,5 @@
     background-color: #ffffff;
     color: black;
     border: 1px solid black;
-  }
-  
-  
+  }*/
+

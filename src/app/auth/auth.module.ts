@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './pages/logout/logout.component';
+import { ForgottenPasswordComponent } from './pages/forgotten-password/forgotten-password.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { LogoutComponent } from './pages/logout/logout.component';
     IndexauthComponent,
     LoginComponent,
     RegisterComponent,
-    LogoutComponent
+    LogoutComponent,
+    ForgottenPasswordComponent
   ],
   imports: [
     CommonModule,
