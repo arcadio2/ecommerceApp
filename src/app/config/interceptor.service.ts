@@ -11,20 +11,29 @@ import { Observable } from 'rxjs';
 export class InterceptorService implements HttpInterceptor{
 
 
-  constructor(private auth:AuthService,@Inject('BASE_API_URL') private baseUrl: string) { 
+  constructor(private auth:AuthService) { 
     
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.auth.token;
+   
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    
     if(token){
-      const apiReq = req.url.includes('http') ? req : req.clone({ url: `${this.baseUrl}${req.url}`,
+      const apiReq = req.url.includes('http') ? req : req.clone({ url: `${req.url}`,
       setHeaders: {
-        authorization: `Bearer ${ token }`
+        authorization: `Bearer ${ token }`,
+        
       }}
       );
       return next.handle(apiReq);
     }else{
-      const apiReq = req.url.includes('http') ? req : req.clone({ url: `${this.baseUrl}${req.url}`});
+      const apiReq = req.url.includes('http') ? req : req.clone({ url: `${req.url}`});
       return next.handle(apiReq);
     }
   }

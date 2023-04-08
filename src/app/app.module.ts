@@ -35,7 +35,11 @@ import { PerfilComponent } from './logged/pages/perfil/perfil.component';
     HttpClientModule
   ],
   providers: [
-    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true
+    },
    /*  {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
