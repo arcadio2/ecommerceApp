@@ -34,7 +34,7 @@ const routes: Routes = [
         component:LogoutComponent
       },
 
-      {path:'**',redirectTo:'login'}
+      {path:'**',redirectTo:'iniciar-sesion'}
     ]
   }
 

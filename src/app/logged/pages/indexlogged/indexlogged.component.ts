@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-indexlogged',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexloggedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthService,private productoService:ProductosService) { }
 
   ngOnInit(): void {
+    this.productoService.getProducto("playera verde").subscribe(resp=>{
+      //console.log(resp)
+      this.productoService.addValoracion(resp.producto).subscribe(resp=>{
+        console.log(resp)
+      }); 
+      this.productoService.addComentario(resp.producto).subscribe(resp=>{
+        console.log(resp)
+      }); 
+    })
+   
   }
 
 }

@@ -97,6 +97,7 @@ export class AuthService {
     let payload = this.obtenerDatosToken(accessToken);
   
     this._usuario = new User();
+    this._usuario.id = payload.id; 
     this._usuario.nombre = payload.nombre;
     this._usuario.apellido = payload.apellido;
     this._usuario.email = payload.email;
