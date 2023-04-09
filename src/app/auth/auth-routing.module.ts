@@ -37,8 +37,6 @@ const routes: Routes = [
       {
         path: 'carrito-compras',
         component: CarritoComprasComponent,
-        canActivate:[LoggedGuard],
-        canLoad: [LoggedGuard]
       },
 
       {path:'**',redirectTo:'iniciar-sesion'}
