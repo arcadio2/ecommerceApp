@@ -6,7 +6,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { LoggedGuard } from './guards/logged.guard';
 import {RestablecerContraseniaComponent} from "./pages/restablecer-contrasenia/restablecer-contrasenia.component";
-import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
+import {CarritoComprasComponent} from "../logged/pages/carrito-compras/carrito-compras.component";
 
 const routes: Routes = [
   {
@@ -33,10 +33,6 @@ const routes: Routes = [
       {
         path:'logout',
         component:LogoutComponent
-      },
-      {
-        path: 'carrito-compras',
-        component: CarritoComprasComponent,
       },
 
       {path:'**',redirectTo:'iniciar-sesion'}

@@ -8,7 +8,6 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { RestablecerContraseniaComponent } from './pages/restablecer-contrasenia/restablecer-contrasenia.component';
-import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras.component';
 
 
 @NgModule({
@@ -18,7 +17,7 @@ import { CarritoComprasComponent } from './pages/carrito-compras/carrito-compras
     RegisterComponent,
     LogoutComponent,
     RestablecerContraseniaComponent,
-    CarritoComprasComponent
+
   ],
   imports: [
     CommonModule,
