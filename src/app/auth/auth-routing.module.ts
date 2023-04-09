@@ -5,7 +5,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { LoggedGuard } from './guards/logged.guard';
-import {ForgottenPasswordComponent} from "./pages/forgotten-password/forgotten-password.component";
+import {RestablecerContraseniaComponent} from "./pages/restablecer-contrasenia/restablecer-contrasenia.component";
+import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
 
 const routes: Routes = [
   {
@@ -25,13 +26,19 @@ const routes: Routes = [
       },
       {
         path:'restablecer-contraseña',
-        component: ForgottenPasswordComponent,
+        component: RestablecerContraseniaComponent,
         canActivate: [LoggedGuard],
         canLoad: [LoggedGuard]
       },
       {
         path:'logout',
         component:LogoutComponent
+      },
+      {
+        path: 'carrito-compras',
+        component: CarritoComprasComponent,
+        canActivate:[LoggedGuard],
+        canLoad: [LoggedGuard]
       },
 
       {path:'**',redirectTo:'iniciar-sesion'}

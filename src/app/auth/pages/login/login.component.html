@@ -19,11 +19,15 @@
               class="border-b border-black w-full  text-black-700
               leading-tight focus:outline-none focus:border-black-500" id="password" type="password">
           </div>
-          <div class="mb-4 flex items-center p-3">
-            <input type="checkbox" id="remember-me" class="mr-2 leading-tight">
-            <label class="text-black-700 font-bold mr-10" for="remember-me">
-              Recuérdame
-            </label>
+          <div class="mb-4 flex justify-between">
+            <div class="flex gap-3">
+              <div class="mb-0">
+                <input type="checkbox" id="remember-me" class="mb-0">
+              </div>
+              <label class="text-black-700 font-bold" for="remember-me">
+                Recuérdame
+              </label>
+            </div>
             <a class="text-black underline cursor-pointer" (click)="irRestablecerContrasenia()">¿Olvidaste tu contraseña?</a>
           </div>
           <div class="mt-10 flex items-center justify-center">
@@ -42,7 +46,7 @@
               <label class="text-black-200 mr-4" for="remember-me">
                   ¿No tienes cuenta?
               </label>
-              <a routerLink="/auth/registro" class="text-black underline font-bold cursor-pointer">Registrarse</a>
+              <a routerLink="/auth/registro" class="text-black underline font-bold cursor-pointer">Registrate</a>
           </div>
         </form>
       </div>
