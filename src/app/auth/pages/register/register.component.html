@@ -5,14 +5,14 @@
       <form class="w-full" (ngSubmit)="register()" [formGroup]="registerForm">
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="nombre">
-            Nombre
+            Nombre:
           </label>
           <input formControlName="nombre" name="nombre"
             class="border-b border-black w-full
             text-black-700 leading-tight focus:outline-none focus:border-black-500"
             id="nombre" type="text">
             <div  [hidden]="registerForm.controls['nombre'].valid || !registerForm.controls['nombre'].touched"
-              class="mt-1 text-black-600 text-bold text-xs">
+              class="mt-1 text-red-600 text-bold text-xs">
               <p>El nombre es requerido</p>
             </div>
             <div *ngIf="errores?.nombre" class="mt-1 text-black-600 text-bold text-xs">
@@ -28,7 +28,7 @@
                 w-full text-black-700 leading-tight focus:outline-none focus:border-black-500"
                  id="apellido" type="text">
                 <div  [hidden]="registerForm.controls['apellido'].valid || !registerForm.controls['apellido'].touched"
-                class="mt-1 text-black-600 text-bold text-xs">
+                class="mt-1 text-red-600 text-bold text-xs">
                 <p>El apellido es requerido</p>
                 </div>
                 <div *ngIf="errores?.apellido" class="mt-1 text-black-600 text-bold text-xs">
@@ -45,7 +45,7 @@
                 leading-tight focus:outline-none focus:border-black-500"
                 id="username" type="text">
                 <div  [hidden]="registerForm.controls['username'].valid || !registerForm.controls['username'].touched"
-                class="mt-1 text-black-600 text-bold text-xs">
+                class="mt-1 text-red-600 text-bold text-xs">
                 <p>El nombre de usuario es requerido</p>
                 </div>
                 <div *ngIf="errores?.username" class="mt-1 text-black-600 text-bold text-xs">
@@ -61,7 +61,7 @@
               leading-tight focus:outline-none focus:border-black-500"
               id="email" type="text">
               <div  [hidden]="registerForm.controls['email'].valid || !registerForm.controls['email'].touched"
-              class="mt-1 text-black-600 text-bold text-xs">
+              class="mt-1 text-red-600 text-bold text-xs">
               <p>El email es requerido</p>
               </div>
               <div *ngIf="errores?.email" class="mt-1 text-black-600 text-bold text-xs">
@@ -77,7 +77,7 @@
             leading-tight focus:outline-none focus:border-black-500"
             id="password" type="password">
             <div  [hidden]="registerForm.controls['password'].valid || !registerForm.controls['password'].touched"
-            class="mt-1 text-black-600 text-bold text-xs">
+            class="mt-1 text-red-600 text-bold text-xs">
             <p>La contraseña es requerida</p>
             </div>
             <div *ngIf="errores?.password" class="mt-1 text-black-600 text-bold text-xs">
@@ -111,7 +111,7 @@
             <label class="text-black-200 mr-4" for="remember-me">
                 ¿Ya tienes cuenta?
             </label>
-            <a routerLink="/auth/iniciar-sesion" class="text-black underline font-bold">Iniciar sesión</a>
+            <a routerLink="/auth/iniciar-sesion" class="text-black underline font-bold">Inicia sesión</a>
         </div>
       </form>
     </div>

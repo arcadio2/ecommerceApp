@@ -9,7 +9,7 @@ import { IndexloggedComponent } from './pages/indexlogged/indexlogged.component'
 @NgModule({
   declarations: [
     PerfilComponent,
-    IndexloggedComponent
+    IndexloggedComponent,
   ],
   imports: [
     CommonModule,
