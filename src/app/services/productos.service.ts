@@ -52,9 +52,10 @@ export class ProductosService {
     let objeto = {
       comentario:'xddddd',
       usuario:{
-        id:1
+        id:1,
+        username:'arcadio'
       }, 
-      producto:p
+      producto:p  
     }
     console.log(objeto)
     const headers = new HttpHeaders({

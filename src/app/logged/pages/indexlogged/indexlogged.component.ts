@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Producto } from 'src/app/models/producto.model';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -14,10 +15,9 @@ export class IndexloggedComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.getProducto("playera verde").subscribe(resp=>{
       //console.log(resp)
-      this.productoService.addValoracion(resp.producto).subscribe(resp=>{
-        console.log(resp)
-      }); 
-      this.productoService.addComentario(resp.producto).subscribe(resp=>{
+      let producto: Producto = resp.producto; 
+      this.productoService.addComentario(producto).subscribe(resp=>{
+        
         console.log(resp)
       }); 
     })
