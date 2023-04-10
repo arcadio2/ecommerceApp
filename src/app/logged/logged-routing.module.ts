@@ -19,13 +19,13 @@ const routes: Routes = [
         component: CarritoComprasComponent
       },
       {
+        path:'completar-perfil',
+        component: CompletarPerfilComponent
+      },
+      {
         path:'**',
         redirectTo:'perfil'
       },
-      {
-        path:'completar-perfil',
-        component: CompletarPerfilComponent
-      }
     ]
   }
 
