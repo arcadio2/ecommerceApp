@@ -1,1 +1,133 @@
-<p>perfil works!</p>
+<div class="flex flex-col gap-6">
+  <div class="flex justify-center items-center text-3xl font-bold mt-8">
+    <div>Bienvenido {{usuario.nombre}}</div>
+  </div>
+
+  <div class=" flex justify-center mt-6 w-full">
+    <div class="w-[700px] flex flex-col gap-3 pb-10">
+      <div class="text-2xl font-extrabold">
+        Tus datos:
+      </div>
+      <div>
+
+        <div class="text-lg ">
+          Datos de cuenta:
+        </div>
+
+        <div class="w-full border-2 border-black rounded-md px-3 mt-1">
+
+          <div  class="w-full border-b-2 px-6 py-3">
+            <div class="grid grid-cols-2">
+              <div class="flex text-sm">
+                Id usuario:
+              </div>
+              <div class="flex justify-center text-sm">
+                {{usuario.id}}
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full border-b-2 px-6 py-3">
+            <div class="grid grid-cols-2">
+              <div class="flex text-sm">
+                Email:
+              </div>
+              <div class="flex justify-center text-sm">
+                {{usuario.correo}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+
+        <div class="text-lg mt-6">
+          Datos del usuario:
+        </div>
+
+        <div class="w-full border-2 border-black rounded-md px-3 mt-1">
+
+          <div class="w-full border-b-2 px-6 py-3">
+            <div class="grid grid-cols-2">
+              <div class="flex text-sm">
+                Nombre:
+              </div>
+              <div class="flex justify-center text-sm">
+                {{ usuario.nombre}}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="isDatoCompletos">
+
+            <div class="w-full border-b-2 px-6 py-3">
+              <div class="grid grid-cols-2">
+                <div class="flex text-sm">
+                  Edad:
+                </div>
+                <div class="flex justify-center text-sm">
+                  {{ usuario.edad}}
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full border-b-2 px-6 py-3">
+              <div class="grid grid-cols-2">
+                <div class="flex text-sm">
+                  Sexo:
+                </div>
+                <div class="flex justify-center text-sm">
+                  {{ usuario.edad }}
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full border-b-2 px-6 py-3">
+              <div class="grid grid-cols-2">
+                <div class="flex text-sm">
+                  Altura (cm):
+                </div>
+                <div class="flex justify-center text-sm">
+                  {{ usuario.altura }}
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full border-b-2 px-6 py-3">
+              <div class="grid grid-cols-2">
+                <div class="flex text-sm">
+                  Talla camisas / playeras / blusas:
+                </div>
+                <div class="flex justify-center text-sm">
+                  {{ usuario.tallaSuperior }}
+                </div>
+              </div>
+            </div>
+
+            <div class="w-full border-b-2 px-6 py-3">
+              <div class="grid grid-cols-2">
+                <div class="flex text-sm">
+                  Talla en pantalones / jeans :
+                </div>
+                <div class="flex justify-center text-sm">
+                  {{ usuario.tallaInferior }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div *ngIf="!isDatoCompletos">
+        <div class="text-2xl text-center">
+          Añade tus datos personales para ofrecerte una mejor experiencia...
+        </div>
+        <div class="text-lg text-center mt-6 text-decoration-line: underline cursor-pointer"
+        (click)="irCompletarPerfil()">
+          Completa tu perfil aqui
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

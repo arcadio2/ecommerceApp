@@ -29,8 +29,9 @@
 
             <div class="flex items-center">
                 <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
-                    <span>
-                        <a href="/cart" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                    <button
+                      (click)="irCarritoCompras()">
+                        <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                             <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -39,9 +40,9 @@
 
                             <span class="sr-only">Cart</span>
                         </a>
-                    </span>
+                    </button>
 
-                    <span class="hidden sm:block">
+                    <button class="hidden sm:block">
                         <a
                             class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                             <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -52,9 +53,9 @@
 
                             <span class="sr-only"> Search </span>
                         </a>
-                    </span>
+                    </button>
 
-                    <span class="relative mt-1">
+                    <button class="relative mt-1">
                         <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                           <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -74,7 +75,7 @@
                           <a href="/orders" class="block hover:text-gray-600 py-2">Mis pedidos</a>
                           <a (click)="logout()" routerLink="/auth/logout" class="block hover:text-gray-600 py-2">Cerrar sesión</a>
                         </div>
-                    </span>
+                    </button>
 
 
 
