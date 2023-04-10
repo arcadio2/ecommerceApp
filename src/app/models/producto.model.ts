@@ -31,6 +31,7 @@ export interface DetalleProducto {
     stock?: number;
     talla?: Talla | null;
     id?:    number;
+    nombre_producto?:string; 
 }
 
 export interface Color {
@@ -42,3 +43,29 @@ export interface Talla {
     talla?: string;
     id?:    number;
 }
+
+export interface Bolsa {
+    detalle_producto?: DetalleProducto;
+    cantidad?:         number;
+    id?:               number;
+}
+
+
+/**
+ * 
+ * Solo para visualización 
+ * 
+ */
+export interface ProductoCarrito {
+    id?: number;
+    nombre?: string;
+    talla?: string;
+    color?: string;
+    costo?: number;
+    imagen?: string
+  }
+  
+export  interface ElementoCarrito {
+    ropa?: ProductoCarrito;
+    cantidad?: number;
+  }

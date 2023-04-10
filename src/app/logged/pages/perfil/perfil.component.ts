@@ -1,38 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { zip } from 'rxjs';
 import {Router} from "@angular/router";
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+import { Perfil, User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  usuario: Usuario  = {
-    id: '',
-    correo: "",
-    nombre: "",
 
-  }
+  usuario: User | undefined;  
+  perfil!:Perfil | undefined; 
 
-  isDatoCompletos:boolean = false
+  
+  isDatoCompletos:boolean = false;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private authService:AuthService,
+    private usuarioService:UsuarioService,
   ) {
+
   }
 
   ngOnInit(): void {
-    this.loadData()
+    this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
+      this.usuario = resp.usuario as User;  
+    })
+    this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
+ 
+      this.perfil = resp.perfil as Perfil;  
+      if(this.perfil){
+        this.isDatoCompletos = true; 
+      }
+    })
+  
   }
 
-  loadData(){
-    //this.usuario = usuarioMock1
-    this.usuario = usuarioMock2
-    const numAtributos = Object.keys(this.usuario).length
-    if (numAtributos > 3){
-      this.isDatoCompletos = true
-    }
-  }
 
   irCompletarPerfil(){
     this.router.navigate(['completar-perfil'])
@@ -40,31 +46,5 @@ export class PerfilComponent implements OnInit {
 
 }
 
-interface Usuario{
-  id: string;
-  correo: string;
-  nombre: string;
-  edad?: number;
-  sexo?: string;
-  altura?: number;
-  tallaSuperior?: string;
-  tallaInferior?: string;
-}
 
-const usuarioMock1 : Usuario = {
-  id: 'JuanGL',
-  correo: "juan_garcia@gmail.com",
-  nombre: "Juan Garcia",
-  edad: 18,
-  sexo: "Masculino",
-  altura: 170,
-  tallaSuperior: 'M',
-  tallaInferior: '32'
-}
-const usuarioMock2 : Usuario = {
-  id: 'JuanGL',
-  correo: "juan_garcia@gmail.com",
-  nombre: "Juan Garcia",
-
-}
 

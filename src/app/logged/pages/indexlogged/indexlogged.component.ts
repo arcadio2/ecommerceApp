@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Producto } from 'src/app/models/producto.model';
+import { User } from 'src/app/models/user.model';
 import { ProductosService } from 'src/app/services/productos.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-indexlogged',
@@ -10,9 +12,17 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class IndexloggedComponent implements OnInit {
 
-  constructor(private authService:AuthService,private productoService:ProductosService) { }
+  public usuario!:User; 
+
+
+  constructor(private authService:AuthService,
+    private productoService:ProductosService) { }
 
   ngOnInit(): void {
+ 
+    
+   
+    
     this.productoService.getProducto("playera verde").subscribe(resp=>{
       //console.log(resp)
       let producto: Producto = resp.producto; 
