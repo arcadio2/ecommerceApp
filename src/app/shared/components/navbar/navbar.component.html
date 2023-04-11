@@ -29,6 +29,49 @@
 
             <div class="flex items-center">
                 <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
+
+                    <button class="hidden sm:block">
+                        <a (click)="showSearchInput = true"
+                            (mouseover)="showSearchInput = true;"
+                            (mouseover)="indexProductoSeleccionado=-1"
+                            class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+
+                            <span class="sr-only"> Search </span>
+                        </a>
+                    </button>
+                   
+                  
+                    <div class="search-input-container w-full" *ngIf="showSearchInput">
+                        <input class="w-full px-4 py-2 border rounded-lg" 
+                            [(ngModel)]="textoBuscado"
+                            (keyup)="buscarProducto($event)"
+                            (keydown)="seleccionarProducto($event)"
+    
+                            type="text" placeholder="Buscar producto...">
+
+                            <div class="bg-gray-100 border border-gray-300 rounded-lg product-list
+                                shadow-lg p-4 w-full" *ngIf="textoBuscado">
+                                <ul>
+                                    <li 
+                                        class="p-2 border-b border-gray-300 
+                                        clickeable " 
+                                        (click)="redirigir()"
+                                        [ngClass]="{'selected-product': i==indexProductoSeleccionado, '':''}"
+                                        *ngFor="let producto of productos; let i=index"
+                                        (mouseover)="seleccionarMouse($event,i)"
+                                        (mousedown)="isHover=false;haveMouse=true">
+                                        {{producto.nombre}}
+                                    </li>
+                                </ul>
+                              </div>
+                              
+                    </div>
+
                     <button
                       (click)="irCarritoCompras()">
                         <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">
@@ -42,18 +85,8 @@
                         </a>
                     </button>
 
-                    <button class="hidden sm:block">
-                        <a
-                            class="block border-b-4 border-transparent p-6 hover:border-gray-600">
-                            <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-
-                            <span class="sr-only"> Search </span>
-                        </a>
-                    </button>
+                 
+                      
 
                     <button class="relative mt-1">
                         <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">

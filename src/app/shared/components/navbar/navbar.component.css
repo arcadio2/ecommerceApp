@@ -29,3 +29,30 @@
       left: 0;
     }
   }
+
+
+  .product-list {
+    position: absolute;
+    top: 100%;
+    left: 1;
+    z-index: 10;
+    
+    background-color: #fff;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .clickeable{
+    cursor: pointer;
+  }
+:hover.hover{
+  color: #fff;
+  background-color: #000000;
+}
+
+.selected-product{
+  color: #fff;
+  background-color: #000000;
+}

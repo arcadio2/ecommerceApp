@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/services/auth.service';
+import { Bolsa, DetalleProducto } from '../models/producto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +18,7 @@ export class ProductosService {
 
       
   getProducto(nombre_producto:string){
-    
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
-    })
-
-    return this.http.get<any>(this.url_base+nombre_producto,{headers:headers}); 
-
+    return this.http.get<any>(this.url_base+'producto/'+nombre_producto); 
   }
 
   addValoracion(xd:any){
@@ -66,7 +59,27 @@ export class ProductosService {
     return this.http.post<any>(this.url_base+'comentario',objeto,{headers:headers})
   }
 
+  editDetalle(detalle:DetalleProducto){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
 
+    return this.http.post<any>(this.url_base+'bolsa',detalle,{headers:headers})
+  }
+
+  editElementoCarrito(bolsa:Bolsa){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.put<any>(this.url_base+'bolsa',bolsa,{headers:headers});
+  }
+
+  getProductoByNombre(nombre:string){
+    return this.http.get<any>(this.url_base+'get/'+nombre);
+  }
 
 
 

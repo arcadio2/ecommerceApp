@@ -3,11 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './shared/pages/home/home.component';
 import { AuthGuard } from './logged/guards/auth.guard';
 import { LoggedGuard } from './auth/guards/logged.guard';
+import { ProductoComponent } from './shared/pages/producto/producto.component';
 
 const routes: Routes = [
   {
     path:'home',
     component:HomeComponent
+  },
+  {
+    path:'producto/:producto',
+    component:ProductoComponent
   },
   {
     path:'auth',

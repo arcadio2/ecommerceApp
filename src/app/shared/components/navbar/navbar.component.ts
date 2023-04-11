@@ -1,8 +1,10 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ElementRef, HostListener } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
+import { ProductosService } from 'src/app/services/productos.service';
+import { Producto } from 'src/app/models/producto.model';
 
 @Component({
   selector: 'app-navbar',
@@ -12,15 +14,24 @@ import {ToastrService} from "ngx-toastr";
 export class NavbarComponent implements OnInit, OnChanges{
 
   constructor(
+    private elementRef: ElementRef,
     private authService: AuthService,
     private router: Router,
+    private productoService:ProductosService,
     private toast:ToastrService
   ) { }
 
   @Input() user!:User;
 
   public auth!:boolean;
+  showSearchInput = false;
+  textoBuscado:string = ''; 
+  productoSeleccionado!:Producto;
+  indexProductoSeleccionado:number=-1; 
+  isHover:boolean = false; 
+  haveMouse:boolean = true; 
 
+  productos:Producto[]=[];
 
   ngOnInit(): void {
     //this.auth = this.user?.email ? true : false;
@@ -31,7 +42,8 @@ export class NavbarComponent implements OnInit, OnChanges{
 
   }
   ngOnChanges() {
-    console.log("xd")
+
+    
   }
 
 
@@ -48,10 +60,75 @@ export class NavbarComponent implements OnInit, OnChanges{
 
     }
     else{
-      this.toast.error("Inicia sesion");
+      this.toast.warning("Debes iniciar sesion");
       this.router.navigate(['auth/iniciar-sesion'])
     }
   }
 
+  buscarProducto(event:any){
+    
+    if(this.textoBuscado!=""){
+      if(event.keyCode==13){
+
+      }else{
+        this.productoService.getProductoByNombre(this.textoBuscado).subscribe(resp=>{
+          this.productos = resp; 
+        })
+      }
+      
+    }
+    
+  }
+  seleccionarProducto(evento:any) {
+
+   
+
+    if (evento.keyCode === 38) {
+      // Flecha hacia arriba
+      if(this.indexProductoSeleccionado<=0){
+        this.indexProductoSeleccionado = this.productos.length-1; 
+      }else{
+        this.indexProductoSeleccionado-=1;
+      }
+     
+      //&& this.productos.indexOf(this.productoSeleccionado) < this.productos.length - 1
+    } else if (evento.keyCode === 40 ) {
+      // Flecha hacia abajo
+      if(this.indexProductoSeleccionado<0){
+        this.indexProductoSeleccionado = 0; 
+      }
+      else if(this.indexProductoSeleccionado>=this.productos.length-1){
+        this.indexProductoSeleccionado = 0;
+      }else{
+        this.indexProductoSeleccionado+=1;
+        console.log("entra aca")
+      }
+      
+    }
+  }
+  seleccionarMouse(event:any,index:number){
+
+    this.indexProductoSeleccionado=index; 
+  }
+
+
+  redirigir(){
+    
+  }
+
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const clickedInside = this.elementRef.nativeElement.contains(target);
+    if (!clickedInside) {
+      this.showSearchInput = false;
+    }
+  }
+  
+  @HostListener('document:keydown.escape')
+  onEscapeKeyDown() {
+    this.showSearchInput = false;
+  }
 
 }

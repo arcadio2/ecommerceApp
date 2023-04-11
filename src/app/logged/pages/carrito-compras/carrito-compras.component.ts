@@ -4,6 +4,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { User } from 'src/app/models/user.model';
 import { Bolsa, DetalleProducto, ElementoCarrito, Producto, ProductoCarrito } from 'src/app/models/producto.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import {  ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class CarritoComprasComponent implements OnInit {
   constructor(
     private productoService: ProductosService,
     private usuarioService:UsuarioService,
-    private authService:AuthService
+    private authService:AuthService,
+    private toastService:ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -29,7 +31,7 @@ export class CarritoComprasComponent implements OnInit {
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
       this.bolsa = elementos_bolsa; 
       elementos_bolsa.forEach(elemento=>{
-        console.log("e",elemento.detalle_producto?.color?.color)
+      
         this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!).subscribe((resp)=>{
           
 
@@ -66,8 +68,8 @@ export class CarritoComprasComponent implements OnInit {
     let costoTotal: number = 0;
     if (this.carritoCompras != undefined){
       this.carritoCompras.forEach((elemento)=>{
-        console.log(elemento)
-        costoTotal += Number(elemento?.ropa?.costo);
+        
+        costoTotal += Number(elemento?.ropa?.costo!*elemento?.cantidad!);
       });
     }
 
@@ -75,15 +77,43 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   aumentarElemento(idxElemento: number){
-    this.carritoCompras[idxElemento].cantidad! += 1
+    if(this.carritoCompras[idxElemento].cantidad!<this.bolsa[idxElemento].detalle_producto?.stock!){
+      this.carritoCompras[idxElemento].cantidad! += 1
+
+      this.bolsa[idxElemento].cantidad = this.carritoCompras[idxElemento].cantidad!; 
+
+  
+      this.actualizarCantidad(this.bolsa[idxElemento]); 
+
+    }else{
+      this.toastService.info("No hay mas stock disponible");
+    }
+    
   }
 
   disminuirElemento(idxElemento: number) {
-    this.carritoCompras[idxElemento].cantidad! -= 1;
+    if(this.carritoCompras[idxElemento].cantidad!>1){
+      this.carritoCompras[idxElemento].cantidad! -= 1;
+      this.bolsa[idxElemento].cantidad = this.carritoCompras[idxElemento].cantidad!; 
+      this.actualizarCantidad(this.bolsa[idxElemento]); 
+      //this.actualizarCantidad(this.bolsa[idxElemento].detalle_producto!); 
+    }
+    
+  }
+
+  actualizarCantidad(detalle:DetalleProducto){
+    this.productoService.editElementoCarrito(detalle).subscribe(resp=>{
+      console.log(resp);
+      
+    })
   }
 
   eliminarProducto(idxElemento: number){
     this.carritoCompras.splice(idxElemento, 1  )
+  }
+
+  calcularCostoProducto(cantidad:number,precio:number){
+    return cantidad*precio; 
   }
 }
 
