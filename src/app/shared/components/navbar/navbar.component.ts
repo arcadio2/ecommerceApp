@@ -69,7 +69,7 @@ export class NavbarComponent implements OnInit, OnChanges{
     
     if(this.textoBuscado!=""){
       if(event.keyCode==13){
-
+        this.redirigir(this.productos[this.indexProductoSeleccionado].nombre!)
       }else{
         this.productoService.getProductoByNombre(this.textoBuscado).subscribe(resp=>{
           this.productos = resp; 
@@ -112,8 +112,8 @@ export class NavbarComponent implements OnInit, OnChanges{
   }
 
 
-  redirigir(){
-    
+  redirigir(nombreProducto:string){
+    this.router.navigate(['/producto', nombreProducto]);
   }
 
 

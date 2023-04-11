@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Producto } from 'src/app/models/producto.model';
@@ -9,7 +9,7 @@ import { ProductosService } from 'src/app/services/productos.service';
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
 })
-export class ProductoComponent implements OnInit {
+export class ProductoComponent implements OnInit, OnChanges {
 
   constructor(private route: ActivatedRoute,
               private toastService: ToastrService,
@@ -20,7 +20,20 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.route.snapshot)
-    this.nombreProducto = this.route.snapshot.paramMap.get('producto')!;
+    this.route.paramMap.subscribe(params=>{
+      this.nombreProducto = params.get('producto')!;
+      this.buscarProducto(); 
+    });
+    
+  }
+
+  ngOnChanges() {
+
+    console.log("gola")
+  }
+
+
+  buscarProducto(){
     this.productoService.getProducto(this.nombreProducto).subscribe(resp=>{
       console.log(resp);
       this.producto = resp.producto;
@@ -32,7 +45,6 @@ export class ProductoComponent implements OnInit {
      
     })
   }
-
 
 
 }

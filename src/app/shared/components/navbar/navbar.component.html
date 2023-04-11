@@ -60,7 +60,7 @@
                                     <li 
                                         class="p-2 border-b border-gray-300 
                                         clickeable " 
-                                        (click)="redirigir()"
+                                        (click)="redirigir(producto?.nombre!)"
                                         [ngClass]="{'selected-product': i==indexProductoSeleccionado, '':''}"
                                         *ngFor="let producto of productos; let i=index"
                                         (mouseover)="seleccionarMouse($event,i)"
