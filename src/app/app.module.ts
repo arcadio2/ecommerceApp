@@ -9,9 +9,9 @@ import { HomeComponent } from './shared/pages/home/home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { InterceptorService } from './config/interceptor.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PerfilComponent } from './logged/pages/perfil/perfil.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoComponent } from './shared/pages/producto/producto.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -21,25 +21,27 @@ import { ProductoComponent } from './shared/pages/producto/producto.component';
     HomeComponent,
     ProductoComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  
-    ToastrModule.forRoot(
-      {
-          positionClass: 'toast-bottom-center', timeOut: 5000,
-          preventDuplicates: true,
-          closeButton: true,
-          maxOpened: 1,
-          
-          autoDismiss: true,
-          enableHtml: true},
-    ),
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+
+        ToastrModule.forRoot(
+            {
+                positionClass: 'toast-bottom-center', timeOut: 5000,
+                preventDuplicates: true,
+                closeButton: true,
+                maxOpened: 1,
+
+                autoDismiss: true,
+                enableHtml: true
+            },
+        ),
+        HttpClientModule,
+        MatButtonModule
+    ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
