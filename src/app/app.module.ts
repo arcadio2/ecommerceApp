@@ -12,6 +12,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductoComponent } from './shared/pages/producto/producto.component';
 import {MatButtonModule} from "@angular/material/button";
+import { DetalleProductoComponent } from './shared/components/detalle-producto/detalle-producto.component';
+import { ListadoProductosComponent } from './shared/pages/listado-productos/listado-productos.component';
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {MatButtonModule} from "@angular/material/button";
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProductoComponent
+    ProductoComponent,
+    DetalleProductoComponent,
+    ListadoProductosComponent
   ],
     imports: [
         BrowserModule,

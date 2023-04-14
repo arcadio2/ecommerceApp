@@ -4,6 +4,7 @@ import { HomeComponent } from './shared/pages/home/home.component';
 import { AuthGuard } from './logged/guards/auth.guard';
 import { LoggedGuard } from './auth/guards/logged.guard';
 import { ProductoComponent } from './shared/pages/producto/producto.component';
+import { ListadoProductosComponent } from './shared/pages/listado-productos/listado-productos.component';
 
 const routes: Routes = [
   {
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path:'producto/:producto',
     component:ProductoComponent
+  },
+  {
+    path:'listado/:producto',
+    component:ListadoProductosComponent
   },
   {
     path:'auth',

@@ -116,7 +116,7 @@ export class NavbarComponent implements OnInit, OnChanges{
 
 
   redirigir(nombreProducto:string){
-    this.router.navigate(['/producto', nombreProducto]);
+    this.router.navigate(['/listado', nombreProducto]);
   }
 
 
