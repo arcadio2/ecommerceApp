@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/models/user.model';
 import {Router} from "@angular/router";
@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   ) { }
 
   @Input() user!:User;
+  @ViewChild('xd') xd!: ElementRef;
 
   public auth!:boolean;
   showSearchInput = false;
@@ -29,7 +30,9 @@ export class NavbarComponent implements OnInit, OnChanges{
   productoSeleccionado!:Producto;
   indexProductoSeleccionado:number=-1; 
   isHover:boolean = false; 
-  haveMouse:boolean = true; 
+  haveMouse:boolean = true;
+  
+  showSubMenu:boolean = false; 
 
   productos:Producto[]=[];
 
@@ -121,13 +124,22 @@ export class NavbarComponent implements OnInit, OnChanges{
   onDocumentClick(event: MouseEvent) {
     const target = event.target as HTMLElement;
     const clickedInside = this.elementRef.nativeElement.contains(target);
+    //const clickedInside = this.xd.nativeElement.contains(target)
     if (!clickedInside) {
       this.showSearchInput = false;
+      this.showSubMenu = false;
     }
+
+
+
   }
+
+
+  
   
   @HostListener('document:keydown.escape')
   onEscapeKeyDown() {
+    this.showSubMenu = false; 
     this.showSearchInput = false;
   }
 
