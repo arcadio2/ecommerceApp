@@ -9,6 +9,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CompletarPerfilComponent } from './pages/completar-perfil/completar-perfil.component';
+import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CompletarPerfilComponent } from './pages/completar-perfil/completar-per
     PerfilComponent,
     IndexloggedComponent,
     CompletarPerfilComponent,
+    InfoDetalladaComponent,
   ],
   imports: [
     CommonModule,
