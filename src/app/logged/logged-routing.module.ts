@@ -4,6 +4,7 @@ import { IndexloggedComponent } from './pages/indexlogged/indexlogged.component'
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
 import {CompletarPerfilComponent} from "./pages/completar-perfil/completar-perfil.component";
+import {InfoDetalladaComponent} from "./pages/info-detallada/info-detallada.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path:'carrito-compras',
         component: CarritoComprasComponent
+      },
+      {
+        path:'Información-detallada-producto',
+        component: InfoDetalladaComponent
       },
       {
         path:'completar-perfil',
