@@ -1,9 +1,72 @@
-<div class="">
+<main class="min-h-screen flex flex-col">
+    <section>
+        <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 
-    <div *ngFor="let producto of productos; let i=index">
-        <app-detalle-producto [producto]="producto!"></app-detalle-producto>
-    </div>
-</div>
+            <div class="mt-8 block lg:hidden">
+                <button
+                    class="flex cursor-pointer items-end gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600">
+                    <span class="text-sm font-medium"> Filters & Sorting </span>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="h-4 w-4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+
+                <div class="hidden space-y-4 lg:block">
+                    <h2 class="text-xl font-semibold text-black sm:text-4xl">
+                        Product Collection
+                    </h2>
+                    <div class="flex flex-col items-start">
+                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                            href="#">
+                            Camisas
+                        </a>
+                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                            href="#">
+                            Pantalones
+                        </a>
+                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                            href="#">
+                            Calcetines
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="lg:col-span-3 ">
+                    <div class="flex w-full items-center border-b-2 border-black mb-6 p-3">
+                        <div class="flex items-start">
+                            <h2 class="text-xl font-semibold text-black sm:text-3xl">
+                                Ver todo
+                            </h2>
+                        </div>
+                        <div class="flex flex-1 justify-end items-end">
+                            <span
+                                class="inline-block underline-offset-4 underline text-md font-semibold tracking-wide items-center">
+                                Filtrar por
+
+                            </span>
+                            <span class="material-symbols-outlined">
+                                expand_more
+                            </span>
+                        </div>
+                    </div>
+                    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" >
+                        <li *ngFor="let producto of productos; let i=index">
+                            <app-detalle-producto [producto]="producto!"></app-detalle-producto>
+                        </li>
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
 
 
 

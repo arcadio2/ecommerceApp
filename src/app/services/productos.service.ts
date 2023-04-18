@@ -85,5 +85,9 @@ export class ProductosService {
   getSimilar1(nombre:string){
     return this.http.get<any>(this.url_base+'listado/'+nombre);
   }
+
+  getCategoriaBySexo(sexo:string){
+    return this.http.get<any>(this.url_base+'categoria/'+sexo);
+  }
   
 }

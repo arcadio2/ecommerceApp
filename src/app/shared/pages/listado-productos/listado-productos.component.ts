@@ -26,8 +26,8 @@ export class ListadoProductosComponent implements OnInit {
   }
   buscarProductos(){
     this.productoService.getSimilar1(this.nombreProducto).subscribe(resp=>{
-      console.log(resp);
-      this.productos = resp;
+      console.log(resp.productos);
+      this.productos = resp.productos;
     },err=>{
       if(err.status==404){  
         this.toastService.error("No existe el proucto")

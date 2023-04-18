@@ -4,7 +4,7 @@ import { User } from 'src/app/models/user.model';
 import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import { ProductosService } from 'src/app/services/productos.service';
-import { Producto } from 'src/app/models/producto.model';
+import { Categoria, Producto } from 'src/app/models/producto.model';
 
 @Component({
   selector: 'app-navbar',
@@ -36,12 +36,23 @@ export class NavbarComponent implements OnInit, OnChanges{
 
   productos:Producto[]=[];
 
+  categoria_hombre:Categoria[] =[]; 
+  categoria_mujer:Categoria[] =[]; 
+
+
   ngOnInit(): void {
     //this.auth = this.user?.email ? true : false;
     this.authService._isAuth.subscribe(v =>{
       this.auth=v;
       this.user = this.authService.usuario;
-    })
+    }); 
+
+    this.productoService.getCategoriaBySexo("Hombre").subscribe(resp=>{
+      this.categoria_hombre = resp; 
+    }); 
+    this.productoService.getCategoriaBySexo("Mujer").subscribe(resp=>{
+      this.categoria_mujer = resp; 
+    }); 
 
   }
   ngOnChanges() {
@@ -104,7 +115,7 @@ export class NavbarComponent implements OnInit, OnChanges{
         this.indexProductoSeleccionado = 0;
       }else{
         this.indexProductoSeleccionado+=1;
-        console.log("entra aca")
+    
       }
       
     }
@@ -116,6 +127,9 @@ export class NavbarComponent implements OnInit, OnChanges{
 
 
   redirigir(nombreProducto:string){
+    this.showSearchInput = false;
+    this.showSubMenu = false;
+    this.textoBuscado ='';
     this.router.navigate(['/listado', nombreProducto]);
   }
 

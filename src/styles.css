@@ -7,6 +7,11 @@
         'opsz' 48
 }
 
+:hover.invert-color{
+    color: white; 
+    background-color: black;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
