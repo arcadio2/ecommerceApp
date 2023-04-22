@@ -163,44 +163,44 @@
 
 
 <div #xd *ngIf="showSubMenu" 
-  class="mx-auto bg-white border rounded-lg shadow-lg max-w-2xl z-10 fixed items-center justify-center "
+  class="mx-auto bg-white border rounded-lg shadow-lg max-w-4xl z-10 fixed items-center justify-center "
   style="left: 0; right: 0; margin: auto;">
 
-  <ul class="divide-x divide-gray-200 flex p-0 m-0 ">
+  <ul class="divide-x divide-black flex p-0 m-0 ">
     <li class="flex-1">
-      <a href="#" class="block px-4 py-2  hover:bg-gray-100">
+      <div href="#" class="block px-4 py-2  font-semibold text-black sm:text-sm">
         Explora
-      </a>
-      <ul class="py-2 px-4 divide-y divide-gray-200">
+      </div>
+      <ul class=" divide-black">
         <li class="py-2 px-4">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a href="#" class="block py-1 px-3 hover:text-white hover:bg-black">
             Lo más buscado
           </a>
         </li>
         <li class="py-2 px-4">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a href="#" class="block py-1 px-3 hover:text-white hover:bg-black">
             Lo más vendido
           </a>
         </li>
         <li class="py-2 px-4">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a href="#" class="block py-1 px-3 hover:text-white hover:bg-black">
             Novedades
           </a>
         </li>
       </ul>
     </li>
     <li class="flex-1">
-      <a href="#" class="block px-4 py-2 hover:bg-gray-100">
+      <div href="#" class="block px-4 py-2  font-semibold text-black sm:text-sm">
         Mujer
-      </a>
-      <ul class="py-2 px-4">
+      </div>
+      <ul class="">
         <li class="py-2 px-4">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" [queryParams]="{genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             Ver todo
           </a>
         </li>
         <li class="py-2 px-4" *ngFor="let m of categoria_mujer">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" [queryParams]="{categoria:m.tipo,genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             {{m?.tipo}}
           </a>
         </li>
@@ -211,17 +211,17 @@
       </ul>
     </li>
     <li class="flex-1">
-      <a href="#" class="block px-4 py-2  hover:bg-gray-100">
+      <div href="#" class="block px-4 py-2 font-semibold text-black sm:text-sm">
         Hombre
-      </a>
-      <ul class="py-2 px-4">
+      </div>
+      <ul class="">
         <li class="py-2 px-4">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" [queryParams]="{genero:'hombre'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             Ver todo
           </a>
         </li>
         <li class="py-2 px-4" *ngFor="let m of categoria_hombre">
-          <a href="#" class="block  hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" [queryParams]="{categoria:m.tipo,genero:'hombre'}" class="block py-1 px-3  hover:text-white hover:bg-black">
             {{m?.tipo}}
           </a>
         </li>

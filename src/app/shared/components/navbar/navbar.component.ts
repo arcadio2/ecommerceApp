@@ -130,7 +130,7 @@ export class NavbarComponent implements OnInit, OnChanges{
     this.showSearchInput = false;
     this.showSubMenu = false;
     this.textoBuscado ='';
-    this.router.navigate(['/listado', nombreProducto]);
+    this.router.navigate(['/listado'],{queryParams:{producto:nombreProducto} });
   }
 
 

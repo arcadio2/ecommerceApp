@@ -19,8 +19,10 @@ export class ListadoProductosComponent implements OnInit {
     private productoService:ProductosService) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params=>{
+    
+    this.route.queryParamMap.subscribe(params=>{
       this.nombreProducto = params.get('producto')!;
+      //console.log(this.route.snapshot.queryParamMap.get("categoria"))
       this.buscarProductos();
     });
   }
