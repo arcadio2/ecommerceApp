@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo tienda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+</style>
+
+
+
+<body class="font-['Be_Vietnam_Pro']">
+    <header aria-label="Site Header" class="sticky top-0 bg-white z-10">
+        <div
+            class="border-b-2 border-black mx-auto flex h-16 max-w-screen items-center justify-between sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4">
+                <button type="button" class="p-2 lg:hidden">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <a href="#" class="flex">
+                    <span class="sr-only">Logo</span>
+                    <span class="inline-block h-10 w-32 rounded-lg bg-gray-200"></span>
+                </a>
+            </div>
+
+            <div class="justify-center gap-8">
+
+                <nav aria-label="Site Nav"
+                    class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide">
+
+
+                    <a href="/products"
+                        class="block h-16 border-b-4 border-transparent leading-[4rem] text-black hover:italic">
+                        Productos
+                    </a>
+                </nav>
+            </div>
+
+            <div class="">
+
+                <div class="flex items-center">
+                    <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
+                        <span class="hidden sm:block">
+                            <a href="/search" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+
+                                <span class="sr-only"> Search </span>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="/cart" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg>
+
+                                <span class="sr-only">Cart</span>
+                            </a>
+                        </span>
+
+                        <span>
+                            <a href="/account" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4  " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+
+                                <span class="sr-only"> Account </span>
+                            </a>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="min-h-screen flex flex-col">
+
+        <section>
+            <div class="relative mx-auto max-w-screen">
+                <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
+                    <!-- Inicio grid de imagenes -->
+                    <div class="grid grid-cols-2 gap-4 md:grid-cols-1 col-span-7">
+                        <div class="grid grid-cols-2 gap-0.5">
+                            <a href="#" class="group block overflow-hidden">
+                                <img alt="Les Paul"
+                                    src="https://media.paulsmith.com/dam/products/w_600,c_scale/q_80/MODEL/ECOM/M1R/M1R-2173-K02013-60/M1R-2173-K02013-60/M1R-2173-K02013-60_3.jpg"
+                                    class="aspect-[5/7] w-full h-full object-cover transition duration-500 hover:scale-105 ease-out" />
+                            </a>
+                            <a href="#" class="group block overflow-hidden">
+                                <img alt="Les Paul"
+                                    src="https://media.paulsmith.com/dam/products/w_600,c_scale/q_80/MODEL/ECOM/M1R/M1R-2173-K02013-60/M1R-2173-K02013-60/M1R-2173-K02013-60_3.jpg"
+                                    class="aspect-[5/7] w-full h-full object-cover transition duration-500 hover:scale-105 ease-out" />
+                            </a>
+                            <a href="#" class="group block overflow-hidden">
+                                <img alt="Les Paul"
+                                    src="https://media.paulsmith.com/dam/products/w_600,c_scale/q_80/MODEL/ECOM/M1R/M1R-2173-K02013-60/M1R-2173-K02013-60/M1R-2173-K02013-60_3.jpg"
+                                    class="aspect-[5/7] w-full h-full object-cover transition duration-500 hover:scale-105 ease-out" />
+                            </a>
+                            <a href="#" class="group block overflow-hidden">
+                                <img alt="Les Paul"
+                                    src="https://media.paulsmith.com/dam/products/w_600,c_scale/q_80/MODEL/ECOM/M1R/M1R-2173-K02013-60/M1R-2173-K02013-60/M1R-2173-K02013-60_3.jpg"
+                                    class="aspect-[5/7] w-full h-full object-cover transition duration-500 hover:scale-105 ease-out" />
+                            </a>
+
+                        </div>
+                    </div>
+                    <!-- Fin grid de imagenes -->
+
+                    <!-- Inicio detalle del producto -->
+                    <div class="sticky top-16 col-span-5 px-6 items-center ">
+                        <div class="flex flex-col justify-center min-h-screen">
+                            <h1 class="text-xl font-bold sm:text-2xl w-11/12">
+                                Fun Product That Does Something Cool
+                            </h1>
+
+                            <div class="mt-8 flex justify-between">
+
+                                <div class="space-y-2">
+                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                                        class="inline-block mr-1 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="6.5" cy="6.5" r="6.5" fill="#edece5"></circle>
+                                    </svg>
+                                    <label class="font-semibold text-black">Gris</label>
+
+
+                                </div>
+
+                                <p class="text-lg font-bold">$119.99</p>
+
+                            </div>
+                            <div class="my-1 border-0 border-b border-black border-solid md:mr-3 xl:mb-4"></div>
+                            <!-- Inicio estrellas -->
+                            <div class="-ml-0.5 flex">
+                                <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+
+                                <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+
+                                <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+
+                                <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                    fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+
+                                <svg class="h-5 w-5 text-white stroke-1 stroke-black" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20" fill="currentColor">
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                            </div>
+                            <!-- Fin estrellas -->
+
+                            <div class="mt-4">
+                                <div class="line-clamp-2 max-w-none">
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa
+                                        veniam dicta beatae eos ex error culpa delectus rem tenetur,
+                                        architecto quam nesciunt, dolor veritatis nisi minus inventore,
+                                        rerum at recusandae?
+                                    </p>
+                                </div>
+
+                                <a class="relative text-md text-black before:absolute before:-bottom-0.5 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                    href="#">
+                                    Read More
+                                </a>
+                            </div>
+
+                            <form class="mt-8">
+                                <fieldset>
+                                    <legend class="mb-1 text-sm font-medium">Color</legend>
+
+                                    <div class="flex flex-wrap gap-1">
+                                        <div
+                                            class="flex flex-wrap w-4/12 justify-around gap-1 [&:hover_label]:opacity-75">
+                                            <div>
+                                                <input type="checkbox" id="ColorSg" class="sr-only" />
+
+                                                <label for="ColorSg"
+                                                    class="block h-6 w-6 cursor-pointer rounded-full bg-[#595759] transition hover:!opacity-100">
+                                                    <span class="sr-only"> Space Gray </span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <input type="checkbox" id="ColorS" class="sr-only" />
+
+                                                <label for="ColorS"
+                                                    class="block h-6 w-6 cursor-pointer rounded-full bg-[#d2d3d4] transition hover:!opacity-100">
+                                                    <span class="sr-only"> Silver </span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <input type="checkbox" id="ColorP" class="sr-only" />
+
+                                                <label for="ColorP"
+                                                    class="block h-6 w-6 cursor-pointer rounded-full bg-[#d89f97] transition hover:!opacity-100">
+                                                    <span class="sr-only"> Pink </span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <input type="checkbox" id="ColorG" class="sr-only" />
+
+                                                <label for="ColorG"
+                                                    class="block h-6 w-6 cursor-pointer rounded-full bg-[#afbfab] transition hover:!opacity-100">
+                                                    <span class="sr-only"> Pink </span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <input type="checkbox" id="ColorSb" class="sr-only" />
+
+                                                <label for="ColorSb"
+                                                    class="block h-6 w-6 cursor-pointer rounded-full bg-[#91a5bb] transition hover:!opacity-100">
+                                                    <span class="sr-only"> Pink </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="mt-4">
+                                    <legend class="mb-1 text-sm font-medium">Size</legend>
+
+                                    <div class="flex flex-wrap gap-1">
+                                        <label for="size_xs" class="cursor-pointer">
+                                            <input type="radio" name="size" id="size_xs" class="peer sr-only" />
+
+                                            <span
+                                                class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                XS
+                                            </span>
+                                        </label>
+
+                                        <label for="size_s" class="cursor-pointer">
+                                            <input type="radio" name="size" id="size_s" class="peer sr-only" />
+
+                                            <span
+                                                class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                S
+                                            </span>
+                                        </label>
+
+                                        <label for="size_m" class="cursor-pointer">
+                                            <input type="radio" name="size" id="size_m" class="peer sr-only" />
+
+                                            <span
+                                                class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                M
+                                            </span>
+                                        </label>
+
+                                        <label for="size_l" class="cursor-pointer">
+                                            <input type="radio" name="size" id="size_l" class="peer sr-only" />
+
+                                            <span
+                                                class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                L
+                                            </span>
+                                        </label>
+
+                                        <label for="size_xl" class="cursor-pointer">
+                                            <input type="radio" name="size" id="size_xl" class="peer sr-only" />
+
+                                            <span
+                                                class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                XL
+                                            </span>
+                                        </label>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="mt-4">
+                                    <legend class="mb-1 text-sm font-medium">Quantity</legend>
+                                    <label for="Quantity" class="sr-only"> Quantity </label>
+
+                                    <div class="flex items-center border border-gray-200 rounded max-w-max">
+                                        <button type="button"
+                                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
+                                            &minus;
+                                        </button>
+
+                                        <input type="number" id="Quantity" value="1"
+                                            class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none" />
+
+                                        <button type="button"
+                                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
+                                            &plus;
+                                        </button>
+                                    </div>
+                                </fieldset>
+                                <div class="grid grid-cols-2 mt-4 items-center justify-around w-full ">
+                                    <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                                        href="/download">
+                                        <span
+                                            class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+                                        <span class="relative text-sm font-medium text-white transition-colors ">
+                                            Comprar Ahora
+                                        </span>
+                                    </a>
+                                    <a class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                                        href="/download">
+                                        <span
+                                            class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+
+                                        <span class="relative text-sm font-medium text-black transition-colors">
+                                            Agregar al Carrito
+                                        </span>
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Fin detalle del producto -->
+                </div>
+            </div>
+        </section>
+
+
+
+    </main>
+</body>
+
+</html>
