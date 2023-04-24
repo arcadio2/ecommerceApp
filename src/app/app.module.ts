@@ -14,6 +14,10 @@ import { ProductoComponent } from './shared/pages/producto/producto.component';
 import {MatButtonModule} from "@angular/material/button";
 import { DetalleProductoComponent } from './shared/components/detalle-producto/detalle-producto.component';
 import { ListadoProductosComponent } from './shared/pages/listado-productos/listado-productos.component';
+import { DialogComponentComponent } from './shared/components/dialog-component/dialog-component.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ButtonComponent } from './shared/compinents/button/button.component';
 
 
 @NgModule({
@@ -23,7 +27,9 @@ import { ListadoProductosComponent } from './shared/pages/listado-productos/list
     HomeComponent,
     ProductoComponent,
     DetalleProductoComponent,
-    ListadoProductosComponent
+    ListadoProductosComponent,
+    DialogComponentComponent,
+    ButtonComponent
   ],
     imports: [
         BrowserModule,
@@ -44,7 +50,8 @@ import { ListadoProductosComponent } from './shared/pages/listado-productos/list
             },
         ),
         HttpClientModule,
-        MatButtonModule
+        MatButtonModule,
+        MatDialogModule
     ],
   providers: [
     {
@@ -52,6 +59,9 @@ import { ListadoProductosComponent } from './shared/pages/listado-productos/list
       useClass: InterceptorService,
       multi: true
     },
+    
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    
    /*  {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

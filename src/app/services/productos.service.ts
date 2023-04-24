@@ -77,6 +77,16 @@ export class ProductosService {
     return this.http.put<any>(this.url_base+'bolsa',bolsa,{headers:headers});
   }
 
+  deleteElementoCarrito(id:number){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    
+
+    return this.http.delete<any>(this.url_base+'bolsa/'+id,{headers:headers});
+  }
+
   getProductoByNombre(nombre:string){
     return this.http.get<any>(this.url_base+'get/'+nombre);
   }

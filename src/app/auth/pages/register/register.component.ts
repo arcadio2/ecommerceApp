@@ -65,7 +65,7 @@ export class RegisterComponent implements OnInit {
         console.log("error",err)
         if(err.status==400){
           this.toast.error(err.error.mensaje);
-          console.log("Error",err.error.errors)
+          //console.log("Error",err.error.errors)
           this.errores.nombre = err.error.errors.nombre; 
           this.errores.username = err.error.errors.username; 
           this.errores.apellido = err.error.errors.apellido; 
