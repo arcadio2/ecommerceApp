@@ -1,11 +1,11 @@
-<div class="flex justify-center "> <!--items-center h-screen-->
-  <div class="flex-col justify-center w-[500px] bg-red-600">
-      <div class="bg-white border-2 border-black p-8">
-        <div class="text-3xl font-bold mb-20 text-center">Iniciar sesión</div>
+<div class="flex justify-center"> <!--items-center h-screen-->
+  <div class="flex-col justify-center w-[500px] mt-8">
+      <div class="bg-white border-2 border-black p-8 rounded-md">
+        <div class="text-3xl font-bold mb-16 text-center">Iniciar sesión</div>
         <form class="w-full" [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="username">
-              Correo electrónico
+              Nombre de usuario:
             </label>
             <input name="username" formControlName="username"
               class="border-b border-black w-full text-black-700
@@ -13,7 +13,7 @@
           </div>
           <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="password">
-              Contraseña
+              Contraseña:
             </label>
             <input name="password" formControlName="password"
               class="border-b border-black w-full  text-black-700
@@ -42,7 +42,7 @@
               Iniciar sesión
             </button>
           </div>
-          <div class="mt-16 flex items-center justify-center p-3">
+          <div class="mt-10 flex items-center justify-center p-3">
               <label class="text-black-200 mr-4" for="remember-me">
                   ¿No tienes cuenta?
               </label>

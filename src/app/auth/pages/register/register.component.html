@@ -1,11 +1,11 @@
 <div class=" flex justify-center"> <!--items-center h-screen-->
-  <div class="flex flex-col justify-center w-[500px]">
-    <div class="bg-white border-2 border-black p-8">
+  <div class="flex flex-col justify-center w-[500px] mt-8 pb-8">
+    <div class="bg-white border-2 border-black p-8 rounded-md">
       <div class="text-3xl font-bold mb-8 text-center">Registrarse</div>
       <form class="w-full" (ngSubmit)="register()" [formGroup]="registerForm">
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="nombre">
-            Nombre:
+            * Nombre:
           </label>
           <input formControlName="nombre" name="nombre"
             class="border-b border-black w-full
@@ -21,7 +21,7 @@
         </div>
         <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="nombre">
-              Apellido
+              * Apellido:
             </label>
             <input formControlName="apellido" name="apellido"
               class="border-b border-black
@@ -38,7 +38,7 @@
         </div>
         <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="username">
-              Nombre de usuario
+              * Nombre de usuario:
             </label>
             <input formControlName="username" name="username"
               class="border-b border-black w-full text-black-700
@@ -54,7 +54,7 @@
         </div>
         <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="email">
-              Correo
+              * Correo:
             </label>
             <input formControlName="email" name="email"
               class="border-b border-black w-full text-black-700
@@ -70,7 +70,7 @@
         </div>
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="password">
-            Contraseña
+            * Contraseña:
           </label>
           <input formControlName="password" name="password"
             class="border-b border-black w-full  text-black-700
@@ -88,7 +88,7 @@
         <div class="mb-4 flex items-center p-3">
           <input type="checkbox" id="remember-me" class="mr-2 leading-tight">
             <div class="text-center text-sm w-full">
-                He leído y entiendo la <span routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</span>
+                * He leído y entiendo la <span routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</span>
             </div>
 
         </div>
