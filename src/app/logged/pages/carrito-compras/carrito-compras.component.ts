@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 import {  ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -33,37 +34,34 @@ export class CarritoComprasComponent implements OnInit {
       this.usuario = resp.usuario as User; 
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
       this.bolsa = elementos_bolsa; 
-      elementos_bolsa.forEach(elemento=>{
+      console.log("Bolsa", this.bolsa)
+      const observables = elementos_bolsa.map(elemento =>
+        this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!)
+      );
       
-        this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!).subscribe((resp)=>{
-          
-
-          const producto:Producto = resp.producto; 
-          const elemento_producto:ProductoCarrito={
-            costo:producto.precio!
-            ,nombre:producto.nombre!
-            ,color:elemento.detalle_producto?.color?.color || ''
-            ,talla:elemento.detalle_producto?.talla?.talla || ''
-          }; 
-          
-          /* elemento_producto.costo=producto.precio!; 
-          elemento_producto.nombre=producto.nombre!;
-          elemento_producto.color=elemento.detalle_producto?.color?.color || '';
-          elemento_producto.talla=elemento.detalle_producto?.talla?.talla || '';  */
-          
-          let elemento_carro:ElementoCarrito={
-            ropa:elemento_producto,
-            cantidad:elemento.cantidad
-
-          }
-        
+      forkJoin(observables).subscribe(respuestas => {
+        respuestas.forEach((resp, index) => {
+          const producto: Producto = resp.producto;
+          const elemento_producto: ProductoCarrito = {
+            costo: producto.precio!,
+            nombre: producto.nombre!,
+            color: elementos_bolsa[index].detalle_producto?.color?.color || '',
+            talla: elementos_bolsa[index].detalle_producto?.talla?.talla || '',
+          };
+      
+          const elemento_carro: ElementoCarrito = {
+            ropa: elemento_producto,
+            cantidad: elementos_bolsa[index].cantidad,
+          };
+      
           this.carritoCompras.push(elemento_carro);
-        })
-        
-
-      })
+        });
       
-    })
+        console.log('Carro', this.carritoCompras);
+      });
+      
+      
+    }); 
 
   }
 
@@ -106,6 +104,7 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   actualizarCantidad(detalle:DetalleProducto){
+    console.log(detalle)  
     this.productoService.editElementoCarrito(detalle).subscribe(resp=>{
       console.log(resp);
       
@@ -151,7 +150,37 @@ export class CarritoComprasComponent implements OnInit {
 }
 
 
+/**
+ * 
+ * elementos_bolsa.forEach(elemento=>{
+      
+        this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!).subscribe((resp)=>{
+          
 
+          const producto:Producto = resp.producto; 
+          const elemento_producto:ProductoCarrito={
+            costo:producto.precio!
+            ,nombre:producto.nombre!
+            ,color:elemento.detalle_producto?.color?.color || ''
+            ,talla:elemento.detalle_producto?.talla?.talla || ''
+          }; 
+          
+
+          
+          let elemento_carro:ElementoCarrito={
+            ropa:elemento_producto,
+            cantidad:elemento.cantidad
+
+          }
+        
+          this.carritoCompras.push(elemento_carro);
+          console.log("Carro",this.carritoCompras);
+        })
+        
+
+      });
+ * 
+ */
 
 /**
  * 
