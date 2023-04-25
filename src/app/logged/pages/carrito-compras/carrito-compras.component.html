@@ -2,8 +2,33 @@
   <div class="flex justify-center items-center text-3xl font-bold mt-8">
     <div>Tu carrito</div>
   </div>
+
+
+
   <div class=" flex justify-center">
-    <div class="w-[75%]">
+
+    <div *ngIf="carritoCompras.length===0" class="items-center justify-center">
+      <span class="text-bold mt-10 text-lg">
+        No tienes elementos en tu carrito
+      </span>
+      <div class="mt-10 items-center justify-center flex">
+        <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          [routerLink]="['/listado']" [queryParams]="{genero:'Hombre'}">
+          <span
+              class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+    
+          <span class="relative text-sm font-medium text-white transition-colors ">
+            Expolorar
+          </span>
+        </a>
+      </div>
+      
+   
+
+    </div>
+
+    <div class="w-[75%]" *ngIf="carritoCompras.length!==0">
+
 
       <!--Tarjetas de prodcuto-->
       <div *ngFor="let elemento of carritoCompras; let i = index" class="w-full p-5 py-12 border-b-2 border-black">

@@ -89,7 +89,8 @@ export class CarritoComprasComponent implements OnInit {
       this.actualizarCantidad(this.bolsa[idxElemento]); 
 
     }else{
-      this.toastService.info("No hay mas stock disponible");
+      this.toastService.clear(); 
+      this.toastService.warning("No hay mas stock disponible");
     }
     
   }

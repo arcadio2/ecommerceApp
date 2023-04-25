@@ -12,6 +12,9 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class ListadoProductosComponent implements OnInit {
 
   nombreProducto!:string; 
+  categoriaProducto!:string; 
+  generoProducto!:string; 
+
   productos:Producto[]=[];
   
   constructor(private route: ActivatedRoute,
@@ -22,12 +25,14 @@ export class ListadoProductosComponent implements OnInit {
     
     this.route.queryParamMap.subscribe(params=>{
       this.nombreProducto = params.get('producto')!;
+      this.categoriaProducto = params.get('categoria')!;
+      this.generoProducto = params.get('genero')!;
       //console.log(this.route.snapshot.queryParamMap.get("categoria"))
       this.buscarProductos();
     });
   }
   buscarProductos(){
-    this.productoService.getSimilar1(this.nombreProducto).subscribe(resp=>{
+    this.productoService.getSimilar1(this.nombreProducto,this.categoriaProducto,this.generoProducto).subscribe(resp=>{
       console.log(resp.productos);
       this.productos = resp.productos;
     },err=>{

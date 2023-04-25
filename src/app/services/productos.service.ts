@@ -92,8 +92,22 @@ export class ProductosService {
   }
 
 
-  getSimilar1(nombre:string){
-    return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
+  getSimilar1(nombre:string | undefined, categoria:string | undefined, genero:string | undefined ){
+    return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"&categoria="+categoria+"&genero="+genero);
+    if(nombre && categoria && genero){
+      return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"?categoria="+categoria+"?genero="+genero);
+    }
+    if(!nombre && categoria && genero){
+      
+    }
+    if(!nombre && !categoria && genero){
+
+    }
+    if(nombre && !categoria && !genero){
+      return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
+    }
+    
+  
   }
 
   getCategoriaBySexo(sexo:string){

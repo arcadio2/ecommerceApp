@@ -17,14 +17,16 @@
           </a>
       </div>
 
-      <div class="justify-center gap-8">
+      <div class="justify-center gap-8 ">
 
           <nav aria-label="Site Nav"
-              class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide">
+            
+              class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide  ">
 
 
               <a (mouseover)="showSubMenu = true;showSearchInput = false; "
-                  class="block h-16 border-b-4 border-transparent leading-[4rem] text-black hover:italic">
+                  [ngClass]="{'italic':showSubMenu}"
+                  class="block h-16 border-b-4 border-transparent leading-[4rem] text-black  cursor-pointer">
                   Productos
               </a>
           </nav>
@@ -107,6 +109,7 @@
 
                       <div *ngIf="auth;" class="absolute top-10 left-0 w-48 bg-white rounded-lg shadow-lg px-4 py-2 sobrepuesto right-1 left-auto hidden">
                         <p class="justify-center text-black text-bold text-lg ">{{user!.nombre}}</p><!--text-center -->
+                        <hr>
                         <a routerLink="/user" class="block hover:text-gray-600 py-2">Mi perfil</a>
                         <a href="/orders" class="block hover:text-gray-600 py-2">Mis pedidos</a>
                         <a (click)="logout()" routerLink="/auth/logout" class="block hover:text-gray-600 py-2">Cerrar sesión</a>
@@ -152,12 +155,12 @@
       </div>
       <ul class="">
         <li class="py-2 px-4">
-          <a [routerLink]="['/listado']" [queryParams]="{genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             Ver todo
           </a>
         </li>
         <li class="py-2 px-4" *ngFor="let m of categoria_mujer">
-          <a [routerLink]="['/listado']" [queryParams]="{categoria:m.tipo,genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'mujer'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             {{m?.tipo}}
           </a>
         </li>
@@ -173,12 +176,12 @@
       </div>
       <ul class="">
         <li class="py-2 px-4">
-          <a [routerLink]="['/listado']" [queryParams]="{genero:'hombre'}" class="block py-1 px-3 hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'hombre'}" class="block py-1 px-3 hover:text-white hover:bg-black">
             Ver todo
           </a>
         </li>
         <li class="py-2 px-4" *ngFor="let m of categoria_hombre">
-          <a [routerLink]="['/listado']" [queryParams]="{categoria:m.tipo,genero:'hombre'}" class="block py-1 px-3  hover:text-white hover:bg-black">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'hombre'}" class="block py-1 px-3  hover:text-white hover:bg-black">
             {{m?.tipo}}
           </a>
         </li>
