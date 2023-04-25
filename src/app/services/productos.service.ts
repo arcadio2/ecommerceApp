@@ -77,13 +77,37 @@ export class ProductosService {
     return this.http.put<any>(this.url_base+'bolsa',bolsa,{headers:headers});
   }
 
+  deleteElementoCarrito(id:number){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    
+
+    return this.http.delete<any>(this.url_base+'bolsa/'+id,{headers:headers});
+  }
+
   getProductoByNombre(nombre:string){
     return this.http.get<any>(this.url_base+'get/'+nombre);
   }
 
 
-  getSimilar1(nombre:string){
-    return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
+  getSimilar1(nombre:string | undefined, categoria:string | undefined, genero:string | undefined ){
+    return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"&categoria="+categoria+"&genero="+genero);
+    if(nombre && categoria && genero){
+      return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"?categoria="+categoria+"?genero="+genero);
+    }
+    if(!nombre && categoria && genero){
+      
+    }
+    if(!nombre && !categoria && genero){
+
+    }
+    if(nombre && !categoria && !genero){
+      return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
+    }
+    
+  
   }
 
   getCategoriaBySexo(sexo:string){

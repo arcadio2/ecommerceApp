@@ -5,6 +5,8 @@ import { User } from 'src/app/models/user.model';
 import { Bolsa, DetalleProducto, ElementoCarrito, Producto, ProductoCarrito } from 'src/app/models/producto.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import {  ToastrService } from 'ngx-toastr';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class CarritoComprasComponent implements OnInit {
     private productoService: ProductosService,
     private usuarioService:UsuarioService,
     private authService:AuthService,
-    private toastService:ToastrService
+    private toastService:ToastrService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -86,7 +89,8 @@ export class CarritoComprasComponent implements OnInit {
       this.actualizarCantidad(this.bolsa[idxElemento]); 
 
     }else{
-      this.toastService.info("No hay mas stock disponible");
+      this.toastService.clear(); 
+      this.toastService.warning("No hay mas stock disponible");
     }
     
   }
@@ -109,7 +113,36 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   eliminarProducto(idxElemento: number){
-    this.carritoCompras.splice(idxElemento, 1  )
+    if(this.bolsa[idxElemento]?.id){
+      this.productoService.deleteElementoCarrito(this.bolsa[idxElemento]?.id!).subscribe(resp=>{
+        this.toastService.info(resp.mensaje); 
+      },err=>{
+        if(err.status==404){
+          console.log(err.error)
+          this.toastService.error(err.error.mensaje); 
+        }
+      }); 
+      this.carritoCompras.splice(idxElemento, 1  ); 
+    }else{
+      this.toastService.error("Ha ocurrido un error al eliminar el elemento"); 
+    }
+    
+    
+  }
+
+  eliminar(idxElemento:number) {
+    const dialogRef = this.dialog.open(DialogComponentComponent, {
+      width: '250px',
+      data: '¿Está seguro que desea eliminar este elemento?'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+       this.eliminarProducto(idxElemento);
+      } else {
+        console.log('Operación de eliminación cancelada.');
+      }
+    });
   }
 
   calcularCostoProducto(cantidad:number,precio:number){
