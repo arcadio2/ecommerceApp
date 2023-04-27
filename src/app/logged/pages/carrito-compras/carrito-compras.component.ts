@@ -8,6 +8,7 @@ import {  ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
 import { forkJoin } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class CarritoComprasComponent implements OnInit {
   bolsa!:Bolsa[];
 
   usuario:User | undefined; 
+  url_backend = environment.urlBase;
 
   constructor(
     private productoService: ProductosService,
@@ -30,6 +32,8 @@ export class CarritoComprasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
+
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User; 
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
@@ -122,6 +126,7 @@ export class CarritoComprasComponent implements OnInit {
         }
       }); 
       this.carritoCompras.splice(idxElemento, 1  ); 
+      this.bolsa.splice(idxElemento, 1  ); 
     }else{
       this.toastService.error("Ha ocurrido un error al eliminar el elemento"); 
     }

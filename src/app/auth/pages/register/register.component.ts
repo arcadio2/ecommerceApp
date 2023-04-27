@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
     
     this.registerForm.markAllAsTouched();
     
-    if(this.registerForm.valid){
+    //if(this.registerForm.valid){
       this.usuario.username = this.registerForm.get('username')?.value; 
       this.usuario.nombre = this.registerForm.get('nombre')?.value; 
       this.usuario.apellido = this.registerForm.get('apellido')?.value; 
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
           this.toast.error(err.error.mensaje+". Intenta con otro");
         }
       });
-    }
+    //}
     
   }
 }

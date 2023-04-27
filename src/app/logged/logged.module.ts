@@ -10,6 +10,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CompletarPerfilComponent } from './pages/completar-perfil/completar-perfil.component';
 import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.component';
+import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carrito.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.co
     IndexloggedComponent,
     CompletarPerfilComponent,
     InfoDetalladaComponent,
+    ElementoCarritoComponent,
   ],
   imports: [
     CommonModule,
