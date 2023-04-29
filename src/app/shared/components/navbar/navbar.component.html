@@ -20,7 +20,7 @@
       <div class="justify-center gap-8 ">
 
           <nav aria-label="Site Nav"
-            
+
               class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide  ">
 
 
@@ -37,7 +37,7 @@
           <div class="flex items-center">
               <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
                   <span class="hidden sm:block">
-                      <a 
+                      <a
                         (click)="showSearchInput = true"
                         (mouseover)="showSearchInput = true; showSubMenu=false;"
                         (mouseover)="indexProductoSeleccionado=-1"
@@ -51,7 +51,7 @@
                           <span class="sr-only"> Search </span>
 
                       </a>
-                      
+
                   </span>
                   <div class="search-input-container w-full" *ngIf="showSearchInput">
                     <input class="w-full px-4 py-2 border rounded-lg"  autocomplete="off"
@@ -64,9 +64,9 @@
                         <div class="bg-gray-100 border border-gray-300 rounded-lg product-list
                             shadow-lg p-4 w-full" *ngIf="textoBuscado">
                             <ul>
-                                <li 
-                                    class="p-2 border-b border-gray-300 
-                                    clickeable " 
+                                <li
+                                    class="p-2 border-b border-gray-300
+                                    clickeable "
                                     (click)="redirigir(producto?.nombre!)"
                                     [ngClass]="{'selected-product': i==indexProductoSeleccionado, '':''}"
                                     *ngFor="let producto of productos; let i=index"
@@ -76,7 +76,7 @@
                                 </li>
                             </ul>
                           </div>
-                          
+
                     </div>
                   <span>
                       <a (click)="irCarritoCompras()" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2 clickeable">
@@ -100,8 +100,8 @@
 
                           <span class="sr-only"> Account </span>
                       </a>
-                      
-                      <div *ngIf="!auth;" class="absolute top-11 left-0 w-48 bg-white rounded-lg shadow-lg px-4 py-2 sobrepuesto right-1 left-auto hidden">
+
+                      <div *ngIf="!auth;" class="absolute top-10 left-0 w-48 bg-white rounded-lg shadow-lg px-4 py-2 sobrepuesto right-1 left-auto hidden">
                         <a routerLink="/auth/iniciar-sesion" class="block hover:text-gray-600 py-2">Iniciar sesión</a>
                         <a  routerLink="/auth/registro" class="block hover:text-gray-600 py-2">Registrarse</a>
 
@@ -122,13 +122,13 @@
   </div>
 </header>
 
-<div #xd *ngIf="showSubMenu" 
+<div #xd *ngIf="showSubMenu"
   class="mx-auto bg-white border rounded-lg shadow-lg max-w-4xl z-10 fixed items-center justify-center "
   style="left: 0; right: 0; margin: auto;">
 
   <ul class="divide-x divide-black flex p-0 m-0 ">
     <li class="flex-1">
-      <div href="#" class="block px-4 py-2  font-semibold text-black sm:text-sm">
+      <div  class="block px-4 py-2  font-semibold text-black sm:text-sm">
         Explora
       </div>
       <ul class=" divide-black">
@@ -150,7 +150,7 @@
       </ul>
     </li>
     <li class="flex-1">
-      <div href="#" class="block px-4 py-2  font-semibold text-black sm:text-sm">
+      <div  class="block px-4 py-2  font-semibold text-black sm:text-sm">
         Mujer
       </div>
       <ul class="">
@@ -165,13 +165,13 @@
           </a>
         </li>
 
-       
-        
-      
+
+
+
       </ul>
     </li>
     <li class="flex-1">
-      <div href="#" class="block px-4 py-2 font-semibold text-black sm:text-sm">
+      <div  class="block px-4 py-2 font-semibold text-black sm:text-sm">
         Hombre
       </div>
       <ul class="">
@@ -186,9 +186,9 @@
           </a>
         </li>
 
-       
-        
-      
+
+
+
       </ul>
     </li>
   </ul>
@@ -217,25 +217,25 @@
             <nav aria-label="Site Nav"
                 class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500">
 
-                
+
 
                     <a (mouseover)="showSubMenu = true;showSearchInput = false; "
-                        
+
                         class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-gray-600 hover:text-black clickeable">
                         Productos
                     </a>
-                 
-                
-              
+
+
+
             </nav>
 
-      
 
-        
-              
-            
-    
-           
+
+
+
+
+
+
 
             <div class="flex items-center">
               <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
@@ -254,22 +254,22 @@
                           <span class="sr-only"> Search </span>
                       </a>
                   </button>
-                 
-                
+
+
                   <div class="search-input-container w-full" *ngIf="showSearchInput">
                       <input class="w-full px-4 py-2 border rounded-lg"  autocomplete="off"
                           [(ngModel)]="textoBuscado"
                           (keyup)="buscarProducto($event)"
                           (keydown)="seleccionarProducto($event)"
-  
+
                           type="text" placeholder="Buscar producto...">
 
                           <div class="bg-gray-100 border border-gray-300 rounded-lg product-list
                               shadow-lg p-4 w-full" *ngIf="textoBuscado">
                               <ul>
-                                  <li 
-                                      class="p-2 border-b border-gray-300 
-                                      clickeable " 
+                                  <li
+                                      class="p-2 border-b border-gray-300
+                                      clickeable "
                                       (click)="redirigir(producto?.nombre!)"
                                       [ngClass]="{'selected-product': i==indexProductoSeleccionado, '':''}"
                                       *ngFor="let producto of productos; let i=index"
@@ -279,7 +279,7 @@
                                   </li>
                               </ul>
                             </div>
-                            
+
                   </div>
 
                   <button
@@ -295,8 +295,8 @@
                       </a>
                   </button>
 
-               
-                    
+
+
 
                   <button class="relative mt-1">
                       <a  class="block border-b-4 border-transparent p-6 hover:border-gray-600">
@@ -325,8 +325,8 @@
       </div>
   </div>
 
- 
-  
+
+
 </header>
 
 -->

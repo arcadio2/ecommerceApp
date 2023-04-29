@@ -41,9 +41,15 @@
       </div>
 
       <div>
-
-        <div class="text-lg mt-6">
-          Datos del usuario:
+        <div class="mt-6 flex justify-between items-center">
+          <div class="text-lg">
+            Datos del usuario:
+          </div>
+          <div>
+            <button mat-icon-button type="button">
+              <mat-icon>mode_edit</mat-icon>
+            </button>
+          </div>
         </div>
 
         <div class="w-full border-2 border-black rounded-md px-3 mt-1">
@@ -123,10 +129,10 @@
         <div class="text-2xl text-center">
           Añade tus datos personales para ofrecerte una mejor experiencia...
         </div>
-        <div class="text-lg text-center mt-6 text-decoration-line: underline cursor-pointer"
-        (click)="irCompletarPerfil()">
+        <a class="text-lg text-center mt-6 text-decoration-line: underline cursor-pointer"
+             routerLink="/completar-perfil">
           Completa tu perfil aqui
-        </div>
+        </a>
       </div>
     </div>
   </div>

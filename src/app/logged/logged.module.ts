@@ -11,6 +11,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { CompletarPerfilComponent } from './pages/completar-perfil/completar-perfil.component';
 import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.component';
 import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carrito.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [
@@ -21,13 +22,14 @@ import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carr
     InfoDetalladaComponent,
     ElementoCarritoComponent,
   ],
-  imports: [
-    CommonModule,
-    LoggedRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        LoggedRoutingModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTooltipModule,
+    ]
 })
 export class LoggedModule { }

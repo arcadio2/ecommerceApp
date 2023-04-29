@@ -1,5 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
-import { zip } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,10 +10,10 @@ import { Perfil, User } from 'src/app/models/user.model';
 })
 export class PerfilComponent implements OnInit {
 
-  usuario: User | undefined;  
-  perfil!:Perfil | undefined; 
+  usuario: User | undefined;
+  perfil!:Perfil | undefined;
 
-  
+
   isDatoCompletos:boolean = false;
 
   constructor(
@@ -27,16 +26,16 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
-      this.usuario = resp.usuario as User;  
+      this.usuario = resp.usuario as User;
     })
     this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
- 
-      this.perfil = resp.perfil as Perfil;  
+
+      this.perfil = resp.perfil as Perfil;
       if(this.perfil){
-        this.isDatoCompletos = true; 
+        this.isDatoCompletos = true;
       }
     })
-  
+
   }
 
 

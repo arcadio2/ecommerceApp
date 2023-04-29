@@ -11,16 +11,16 @@ const routes: Routes = [
     path:'',component:IndexloggedComponent,
     children:[
       {
+        path:'completar-perfil',
+        component: CompletarPerfilComponent
+      },
+      {
         path:'perfil',
         component:PerfilComponent,
       },
       {
         path:'carrito-compras',
         component: CarritoComprasComponent
-      },
-      {
-        path:'completar-perfil',
-        component: CompletarPerfilComponent
       },
       {
         path:'**',
