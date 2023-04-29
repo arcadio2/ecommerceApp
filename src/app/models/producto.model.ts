@@ -9,6 +9,7 @@ export interface Producto {
     categoria?:        Categoria;
     comentarios?:      Comentario[];
     id?:               number;
+    
 }
 
 export interface Categoria {

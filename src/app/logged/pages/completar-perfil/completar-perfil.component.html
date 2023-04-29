@@ -8,28 +8,44 @@
 
         <div class="text-base text-center">
           <div>
-            EwE
+            {{usuario?.nombre}}
           </div>
         </div>
-        <form class="mt-9 w-full">
+        <form class="mt-9 w-full" [formGroup]="perfilForm">
+          <div class="my-8">
+            <div class="relative max-w-sm">
+              <div class="absolute inset-y-0 left-0 items-center pl-3 pointer-events-none ">
+                <svg aria-hidden="true" class="w-5 h-5 text-black dark:text-white" fill="currentColor" 
+                viewBox="0 0 20 20">
+                  
+                </svg>
+                <!-- <input type="date"> -->
+              </div>
+            </div>
+
+          </div>
 
           <div class="my-8">
-            <label class="block text-black-700 font-bold mb-2" >
+            <label class="block text-black font-bold mb-2" >
               Edad *
             </label>
-            <input name="email" formControlName="email"
+            <input name="edad" formControlName="edad"
                    class="border-b border-black w-full text-black-700
               leading-tight focus:outline-none focus:border-black-500 p-1" id="edad" type="text">
           </div>
 
           <div class="my-8">
             <label class="inline-flex items-center">
-              <input type="checkbox" name="opcion1" class="form-checkbox text-blue-500 h-5 w-5 border-gray-300 rounded-md bg-gray-300">
-              <span class="ml-2 text-gray-700">Hombre</span>
+              <input type="radio" name="sexo" 
+                id="sexo"
+                class="form-checkbox  h-5 w-5 border-black-300 rounded-md bg-black-300">
+              <span class="ml-2 text-black-700">Hombre</span>
             </label>
             <label class="ml-6 inline-flex items-center">
-              <input type="checkbox" name="opcion2" class="form-checkbox text-blue-500 h-5 w-5 border-gray-300 rounded-md bg-gray-300">
-              <span class="ml-2 text-gray-700">Mujer</span>
+              <input type="radio" 
+                  id="sexo"
+                name="sexo" class="form-checkbox h-5 w-5 border-black-300 rounded-md bg-black-300">
+              <span class="ml-2 text-black-700">Mujer</span>
             </label>
           </div>
 
@@ -40,7 +56,7 @@
             <label class="block text-black-700 font-bold mb-2" >
               Altura *
             </label>
-            <input name="email" formControlName="email"
+            <input name="altura" formControlName="altura"
                    class="border-b border-black w-full text-black-1000
               leading-tight focus:outline-none focus:border-black-500 p-1" id="email" type="text">
           </div>
@@ -49,18 +65,18 @@
             <label class="block text-black-700 font-bold mb-2" >
               Talla en camisas, playeras, blusas *
             </label>
-            <input name="email" formControlName="email"
+            <input name="talla_camisa" formControlName="talla_camisa"
                    class="border-b border-black w-full text-black-1000
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="email" type="text">
+              leading-tight focus:outline-none focus:border-black-500 p-1" id="talla_camisa" type="text">
           </div>
 
           <div class="my-8">
             <label class="block text-black-700 font-bold mb-2" >
               Talla en pantalones, jeans *
             </label>
-            <input name="email" formControlName="email"
+            <input name="talla_pantalon" formControlName="talla_pantalon"
                    class="border-b border-black w-full text-black-1000
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="email" type="text">
+              leading-tight focus:outline-none focus:border-black-500 p-1" id="talla_pantalon" type="text">
           </div>
 
           <div class="flex items-center justify-center mt-14 w-full">
