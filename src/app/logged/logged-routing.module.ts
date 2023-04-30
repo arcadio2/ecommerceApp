@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexloggedComponent } from './pages/indexlogged/indexlogged.component';
-import { PerfilComponent } from './pages/perfil/perfil.component';
 import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
-import {CompletarPerfilComponent} from "./pages/completar-perfil/completar-perfil.component";
-import {ConfiguracionBarComponent} from "./pages/configuracion-bar/configuracion-bar.component";
 
 
 const routes: Routes = [
@@ -12,16 +9,9 @@ const routes: Routes = [
     path:'',component:IndexloggedComponent,
     children:[
       {
-        path:'completar-perfil',
-        component: CompletarPerfilComponent
-      },
-      {
-        path:"configuracion-perfil",
-        component: ConfiguracionBarComponent
-      },
-      {
-        path:'perfil',
-        component:PerfilComponent,
+        path: 'configuracion-usuario',
+        loadChildren: () => import('./pages/modules/configuracion-usuario/configuracion-usuario.module')
+          .then(m => m.ConfiguracionUsuarioModule)
       },
       {
         path:'carrito-compras',
@@ -29,7 +19,7 @@ const routes: Routes = [
       },
       {
         path:'**',
-        redirectTo:'perfil'
+        redirectTo:'configuracion-usuario'
       },
     ]
   }

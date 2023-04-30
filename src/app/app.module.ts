@@ -19,6 +19,7 @@ import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonComponent } from './shared/compinents/button/button.component';
 import {LoggedModule} from "./logged/logged.module";
+import {MatIconModule} from "@angular/material/icon";
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import {LoggedModule} from "./logged/logged.module";
         HttpClientModule,
         MatButtonModule,
         MatDialogModule,
-        LoggedModule
+        LoggedModule,
+        MatIconModule
     ],
   providers: [
     {

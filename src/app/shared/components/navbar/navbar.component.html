@@ -54,29 +54,33 @@
 
                   </span>
                   <!--<div class="search-input-container w-full" *ngIf="showSearchInput">-->
-                  <div class="search-input-container w-full" *ngIf="showSearchInput">
-                    <input class="w-full px-4 py-2 border rounded-lg"  autocomplete="off"
+                  <div class="search-input-container w-full relative" *ngIf="showSearchInput">
+                    <input class="w-full px-4 py-2 border rounded-md"  autocomplete="off"
                         [(ngModel)]="textoBuscado"
                         (keyup)="buscarProducto($event)"
                         (keydown)="seleccionarProducto($event)"
 
                         type="text" placeholder="Buscar producto...">
 
-                        <div class="bg-gray-100 border border-gray-300 rounded-lg product-list
-                            shadow-lg p-4 w-full" *ngIf="textoBuscado">
-                            <ul>
+                        <div class="mt-3.5 bg-gray-100 border border-gray-300 rounded-md product-list
+                            p-4 w-full drop-shadow-md" *ngIf="textoBuscado">
+                            <ul class="">
                                 <li
-                                    class="p-2 border-b border-gray-300
-                                    clickeable "
+                                    class="p-[16px] border-b border-gray-300
+                                    clickeable flex gap-3 items-center text-sm"
                                     (click)="redirigir(producto?.nombre!)"
                                     [ngClass]="{'selected-product': i==indexProductoSeleccionado, '':''}"
                                     *ngFor="let producto of productos; let i=index"
                                     (mouseover)="seleccionarMouse($event,i)"
                                     (mousedown)="isHover=false;haveMouse=true">
-                                    {{producto.nombre}}
+
+                                    <mat-icon>search</mat-icon>
+                                    <div>{{producto.nombre}}
+
+                                    </div>
                                 </li>
                             </ul>
-                          </div>
+                        </div>
 
                     </div>
                   <span>
@@ -128,39 +132,39 @@
 
   <ul class="divide-x divide-black flex p-0 m-0 ">
     <li class="flex-1">
-      <div  class="block px-4 py-2  font-semibold text-black sm:text-sm">
+      <div  class="block p-3 font-semibold text-black text-lg">
         Explora
       </div>
       <ul class=" divide-black">
-        <li class="mb-1 px-4">
-          <a href="#" class="block py-2 px-3 hover:text-white hover:bg-black rounded-md">
+        <li class=" px-4">
+          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
             Lo más buscado
           </a>
         </li>
-        <li class="mb-1 px-4">
-          <a href="#" class="block py-2 px-3 hover:text-white hover:bg-black rounded-md">
+        <li class=" px-4">
+          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
             Lo más vendido
           </a>
         </li>
-        <li class="mb-1 px-4">
-          <a href="#" class="block py-2 px-3 hover:text-white hover:bg-black rounded-md">
+        <li class=" px-4">
+          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
             Novedades
           </a>
         </li>
       </ul>
     </li>
     <li class="flex-1">
-      <div  class="block px-4 py-2  font-semibold text-black sm:text-sm">
+      <div  class="block p-3  font-semibold text-black text-lg">
         Mujer
       </div>
       <ul class="">
         <li class="mb-1 px-4">
-          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'mujer'}" class="block  px-3 hover:text-white hover:bg-black rounded-md py-2">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'mujer'}" class="block p-3 hover:text-white hover:bg-black rounded-md ">
             Ver todo
           </a>
         </li>
         <li class=" mb-1 px-4" *ngFor="let m of categoria_mujer">
-          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'mujer'}" class="block py-2 px-3 hover:text-white hover:bg-black rounded-md">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'mujer'}" class="block p-3 hover:text-white hover:bg-black rounded-md">
             {{m?.tipo}}
           </a>
         </li>
@@ -171,17 +175,17 @@
       </ul>
     </li>
     <li class="flex-1">
-      <div  class="block px-4 py-2 font-semibold text-black sm:text-sm">
+      <div  class="block p-3 font-semibold text-black text-lg">
         Hombre
       </div>
       <ul class="">
         <li class="mb-1 px-4">
-          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'hombre'}" class="block py-2 px-3 hover:text-white hover:bg-black rounded-md">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{genero:'hombre'}" class="block p-3 hover:text-white hover:bg-black rounded-md">
             Ver todo
           </a>
         </li>
         <li class="mb-1 px-4" *ngFor="let m of categoria_hombre">
-          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'hombre'}" class="block py-2 px-3  hover:text-white hover:bg-black rounded-md">
+          <a [routerLink]="['/listado']" (click)="showSubMenu = false" [queryParams]="{categoria:m.tipo,genero:'hombre'}" class="block p-3 hover:text-white hover:bg-black rounded-md">
             {{m?.tipo}}
           </a>
         </li>

@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit {
 
 
   irCompletarPerfil(){
-    this.router.navigate(['user/completar-perfil'])
+    this.router.navigate(['user/configuracion-usuario/completar-perfil'])
   }
 
 }
