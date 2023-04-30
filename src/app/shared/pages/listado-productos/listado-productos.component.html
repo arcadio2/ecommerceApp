@@ -5,22 +5,33 @@
             <div class="lg:mt-0 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8 bg-white z-0">
 
                 <div class="hidden space-y-4 lg:block sticky top-16 py-6">
-                    <div class="text-xl font-semibold text-black sm:text-4xl">
+                    <div class="text-lg font-semibold text-black sm:text-4xl">
                         Colección de productos
                     </div>
                     <div class="flex flex-col items-start">
-                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                      <div *ngIf="generoProducto === 'mujer'">
+                        <div
+                          *ngFor="let categoria of catalagoMujer"
+                          (click)="seleccionarCateogoria(categoria)"
+                          [class]="categoriaProducto === categoria ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+                          class="relative text-lg  ease-out mt-8 cursor-pointer"
+                          href="#">
+                          {{categoria}}
+                        </div>
+
+                      </div>
+                      <div *ngIf="generoProducto === 'hombre'">
+                        <div
+                          *ngFor="let categoria of catalagoHombre"
+                          (click)="seleccionarCateogoria(categoria)"
+                          [class]="categoriaProducto === categoria ? 'font-extrabold' : 'font-medium  text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+                          class="relative text-lg  ease-out mt-8 cursor-pointer"
                             href="#">
-                            Camisas
-                        </a>
-                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
-                            href="#">
-                            Pantalones
-                        </a>
-                        <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
-                            href="#">
-                            Calcetines
-                        </a>
+                          {{categoria}}
+                        </div>
+
+                      </div>
+
                     </div>
 
                 </div>
@@ -29,7 +40,7 @@
                     <div class="flex w-full items-center border-b-2 border-black mb-6 p-3 sticky top-16 py-6 bg-white z-10">
                         <div class="flex items-start">
                             <div class="text-xl font-semibold text-black sm:text-3xl">
-                                Ver todo
+                              {{categoriaProducto}}
                             </div>
                         </div>
                         <div class="flex flex-1 justify-end items-end">
