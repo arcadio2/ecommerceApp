@@ -8,46 +8,41 @@
       </div>
       <div class="flex flex-col items-start">
         <div
-          class="relative text-lg  ease-out mt-8 cursor-pointer"
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
           [class]="tipoConfiguracion === 0 ? 'font-extrabold' : 'font-medium  text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
           (click)=seleccionarTipoConfiguracion(0)>
-          <span>
             <mat-icon>manage_accounts</mat-icon>
-          </span>
           <span>
             Detalles de la cuenta
           </span>
         </div>
         <div
-          class="relative text-lg  ease-out mt-8 cursor-pointer"
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
           [class]="tipoConfiguracion === 1 ? 'font-extrabold' : 'font-medium  text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
           (click)=seleccionarTipoConfiguracion(1)>
-          <span>
             <mat-icon>add_location_alt</mat-icon>
-          </span>
           <span>
             Directorio de envios
           </span>
 
         </div>
         <div
-          class="relative text-lg  ease-out mt-8 cursor-pointer"
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
           [class]="tipoConfiguracion === 2 ? 'font-extrabold' : 'font-medium  text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
           (click)=seleccionarTipoConfiguracion(2)>
-          <span>
+
             <mat-icon>inventory_2</mat-icon>
-          </span>
           <span>
             Mis pedidos
           </span>
         </div>
         <div
-          class="relative text-lg  ease-out mt-8 cursor-pointer"
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
           [class]="tipoConfiguracion === 3 ? 'font-extrabold' : 'font-medium  text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
           (click)=seleccionarTipoConfiguracion(3)>
-          <span>
+
             <mat-icon>insert_comment</mat-icon>
-          </span>
+
           <span>
             Atención al cliente
           </span>
@@ -60,9 +55,9 @@
               class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
             <span class="relative text-sm font-medium text-white transition-colors flex items-center gap-3">
-              <span>
+
               <mat-icon class="invert-color">logout</mat-icon>
-              </span>
+
               <span>
                   Cerrar sesión
 
