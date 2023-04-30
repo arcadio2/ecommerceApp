@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Producto } from 'src/app/models/producto.model';
+import {Categoria, Producto} from 'src/app/models/producto.model';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -12,10 +12,10 @@ import { ProductosService } from 'src/app/services/productos.service';
 export class ListadoProductosComponent implements OnInit {
 
   nombreProducto!:string;
-  categoriaProducto:string = "Ver todo";
+  categoriaProducto?:string;
   generoProducto!:string;
-  catalagoMujer: string[] = CatalagoRopaMujer
-  catalagoHombre: string[] = CatalagoRopaHombre
+  catalagoMujer: Categoria[] =[]
+  catalagoHombre: Categoria[] =[]
 
   productos:Producto[]=[];
 
@@ -31,6 +31,13 @@ export class ListadoProductosComponent implements OnInit {
       this.generoProducto = params.get('genero')!;
       //console.log(this.route.snapshot.queryParamMap.get("categoria"))
       this.buscarProductos();
+    });
+
+    this.productoService.getCategoriaBySexo("Hombre").subscribe(resp=>{
+      this.catalagoHombre = resp;
+    });
+    this.productoService.getCategoriaBySexo("Mujer").subscribe(resp=>{
+      this.catalagoMujer = resp;
     });
   }
   buscarProductos(){
@@ -60,16 +67,8 @@ export class ListadoProductosComponent implements OnInit {
     }
   }
 
-  seleccionarCateogoria(categoriaSeleccionada:string){
+  seleccionarCateogoria(categoriaSeleccionada:string | undefined){
     this.categoriaProducto = categoriaSeleccionada
     this.buscarProductos()
   }
 }
-
-const CatalagoRopaMujer: string[] = [
-  "Ver todo", "Playeras", "Blusas", "Pantalones", "Vestidos", "Tenis", "Sueteres"
-]
-
-const CatalagoRopaHombre: string[] = [
-  "Ver todo", "Playeras", "Pantalones", "Camisas", "Tenis", "Sueteres"
-]
