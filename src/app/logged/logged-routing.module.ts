@@ -4,6 +4,7 @@ import { IndexloggedComponent } from './pages/indexlogged/indexlogged.component'
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
 import {CompletarPerfilComponent} from "./pages/completar-perfil/completar-perfil.component";
+import {ConfiguracionBarComponent} from "./pages/configuracion-bar/configuracion-bar.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
       {
         path:'completar-perfil',
         component: CompletarPerfilComponent
+      },
+      {
+        path:"configuracion-perfil",
+        component: ConfiguracionBarComponent
       },
       {
         path:'perfil',

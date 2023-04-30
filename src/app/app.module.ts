@@ -18,6 +18,7 @@ import { DialogComponentComponent } from './shared/components/dialog-component/d
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonComponent } from './shared/compinents/button/button.component';
+import {LoggedModule} from "./logged/logged.module";
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ButtonComponent } from './shared/compinents/button/button.component';
         ),
         HttpClientModule,
         MatButtonModule,
-        MatDialogModule
+        MatDialogModule,
+        LoggedModule
     ],
   providers: [
     {
@@ -59,9 +61,9 @@ import { ButtonComponent } from './shared/compinents/button/button.component';
       useClass: InterceptorService,
       multi: true
     },
-    
+
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
-    
+
    /*  {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,

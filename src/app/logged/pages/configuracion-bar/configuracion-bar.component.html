@@ -1,0 +1,62 @@
+<div class=" space-y-4 fixed">
+  <div class="text-2xl font-semibold text-black">
+    Bienvenido {{usuario?.nombre}}
+  </div>
+  <div class="flex flex-col items-start">
+    <a class="relative text-lg text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8
+flex gap-3"
+       href="#">
+      <span>
+        <mat-icon>manage_accounts</mat-icon>
+      </span>
+      <span>
+        Detalles de la cuenta
+      </span>
+    </a>
+    <a class="relative text-lg text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8 flex gap-3"
+       href="#">
+      <span>
+        <mat-icon>add_location_alt</mat-icon>
+      </span>
+      <span>
+        Directorio de envios
+      </span>
+
+    </a>
+    <a class="relative text-lg text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8 flex gap-3"
+       href="#">
+      <span>
+        <mat-icon>inventory_2</mat-icon>
+      </span>
+      <span>
+        Mis pedidos
+      </span>
+    </a>
+    <a class="relative text-lg text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8 flex gap-3"
+       href="#">
+      <span>
+        <mat-icon>insert_comment</mat-icon>
+      </span>
+      <span>
+        Atención al cliente
+      </span>
+    </a>
+
+    <div class="mt-20 flex items-center justify-end gap-8 end-full  bottom-0 bg-white p-0 cursor-pointer">
+      <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2">
+        <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+        <span class="relative text-sm font-medium text-white transition-colors flex items-center gap-3">
+          <span>
+          <mat-icon class="invert-color">logout</mat-icon>
+          </span>
+          <span>
+              Cerrar sesión
+
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+
+</div>

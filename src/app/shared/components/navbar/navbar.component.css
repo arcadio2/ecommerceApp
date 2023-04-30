@@ -13,7 +13,7 @@
 
 
 .sobrepuesto{
-    border: 1px solid #000000;
+   /* border: 1px solid #000000;*/
     z-index: 100;
     margin-top: 25px;
 }
@@ -34,9 +34,9 @@
   .product-list {
     position: absolute;
     top: 100%;
-    left: 1;
+    left: 1px;
     z-index: 10;
-    
+
     background-color: #fff;
     max-width: 300px;
     border: 1px solid #ccc;
@@ -58,6 +58,6 @@
 }
 
 .xd{
-  margin-left: 10;
+  margin-left: 10px;
   width: 60%;
 }

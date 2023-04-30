@@ -5,32 +5,38 @@
         <form class="w-full" [formGroup]="loginForm" (ngSubmit)="login()">
           <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="username">
-              Nombre de usuario:
+              * Nombre de usuario:
             </label>
             <input name="username" formControlName="username"
               class="border-b border-black w-full text-black-700
               leading-tight focus:outline-none focus:border-black-500" id="username" type="text">
+            <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" class="mt-1 text-red-600 text-bold text-xs">
+              <p>El nombre de usuario es requerido</p>
+            </div>
           </div>
           <div class="mb-6">
             <label class="block text-black-700 font-bold mb-2" for="password">
-              Contraseña:
+              * Contraseña:
             </label>
             <input name="password" formControlName="password"
               class="border-b border-black w-full  text-black-700
               leading-tight focus:outline-none focus:border-black-500" id="password" type="password">
+            <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="mt-1 text-red-600 text-bold text-xs">
+              <p>El nombre de usuario es requerido</p>
+            </div>
           </div>
-          <div class="mb-4 flex justify-between">
-            <div class="flex gap-3">
+          <div class="mb-4 flex justify-end">
+            <!--<div class="flex gap-3">
               <div class="mb-0">
                 <input type="checkbox" id="remember-me" class="mb-0">
               </div>
               <label class="text-black-700 font-bold" for="remember-me">
                 Recuérdame
               </label>
-            </div>
+            </div>-->
             <a class="text-black underline cursor-pointer" (click)="irRestablecerContrasenia()">¿Olvidaste tu contraseña?</a>
           </div>
-          <div class="mt-10 flex items-center justify-center">
+          <div class="mt-8 flex items-center justify-center">
             <button
               class="bg-gray-950 text-white font-bold rounded border-2
               hover:bg-black
@@ -38,15 +44,17 @@
               focus:ring
               focus:ring-gray-300
               hover: border-black
-              w-full p-3" type="submit">
+              w-full p-3" type="submit"
+              [disabled]="loading"
+            >
               Iniciar sesión
             </button>
           </div>
           <div class="mt-10 flex items-center justify-center p-3">
-              <label class="text-black-200 mr-4" for="remember-me">
+              <label class="text-black-200 mr-4">
                   ¿No tienes cuenta?
               </label>
-              <a routerLink="/auth/registro" class="text-black underline font-bold cursor-pointer">Registrate</a>
+              <a routerLink="/auth/registro" class="text-black hover:underline font-bold cursor-pointer">Registrate</a>
           </div>
         </form>
       </div>

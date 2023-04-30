@@ -1,12 +1,10 @@
 <main class="min-h-screen flex flex-col">
-    <section>
-        <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <section class="bg-white">
+        <div class="mx-auto max-w-screen-2xl px-4  sm:px-6 lg:px-8">
 
-          
+            <div class="lg:mt-0 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8 bg-white z-0">
 
-            <div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
-
-                <div class="hidden space-y-4 lg:block">
+                <div class="hidden space-y-4 lg:block sticky top-16 py-6">
                     <div class="text-xl font-semibold text-black sm:text-4xl">
                         Colección de productos
                     </div>
@@ -28,7 +26,7 @@
                 </div>
 
                 <div class="lg:col-span-3 ">
-                    <div class="flex w-full items-center border-b-2 border-black mb-6 p-3">
+                    <div class="flex w-full items-center border-b-2 border-black mb-6 p-3 sticky top-16 py-6 bg-white z-10">
                         <div class="flex items-start">
                             <div class="text-xl font-semibold text-black sm:text-3xl">
                                 Ver todo
@@ -45,7 +43,7 @@
                             </span>
                         </div>
                     </div>
-                    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4" >
+                    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 z-0" >
                         <li *ngFor="let producto of productos; let i=index">
                             <app-detalle-producto [producto]="producto!"></app-detalle-producto>
                         </li>

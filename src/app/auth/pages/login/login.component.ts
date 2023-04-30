@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   usuario:User = new User();
   loginForm!: FormGroup;
+  loading: boolean = true
 
   constructor(private fromBuilder:FormBuilder,
     private authService:AuthService,
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private toast:ToastrService) { }
 
   ngOnInit(): void {
+    this.loading = false
     this.loginForm = this.fromBuilder.group({
       username:['',[Validators.required]],
       password:['',[Validators.required]]
@@ -28,6 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
+    this.loading = true
     this.loginForm.markAllAsTouched();
     if(this.loginForm.valid){
       this.usuario.username = this.loginForm.get('username')?.value;
@@ -46,7 +49,9 @@ export class LoginComponent implements OnInit {
           this.toast.error("Credenciales inválidas");
         }
       });
-    }
+    }else
+      this.toast.error("Ingrese correctamente su información");
+    this.loading = false
   }
 
   irRestablecerContrasenia (){

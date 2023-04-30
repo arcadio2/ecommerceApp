@@ -32,15 +32,16 @@
 <!-- [src]="url_backend+'api/imagenes/productos/uploads/img/'+nombre +'/'+color +'/1.jpg' -->
       <!--Tarjetas de prodcuto-->
       <!---->
-      <div *ngFor="let elemento of carritoCompras; let i = index" class="w-full p-5 py-12 border-b-2 border-black">
+      <div *ngFor="let elemento of carritoCompras; let i = index" class="w-full p-5 py-10 border-b-2 border-black">
         <div class="w-full flex justify-between">
           <div class="flex w-1/3 items-center justify-between gap-3">
             <div class="flex w-1/2 justify-center">
               <img 
+              class="group-hover:scale-105 sm:h-[100px]"
               [src]="url_backend+'api/imagenes/productos/uploads/img/'+elemento?.ropa?.nombre +'/'+elemento?.ropa?.color +'/1.jpg'"
               alt="{{elemento?.ropa?.imagen}}" >
             </div>
-            <div class="flex flex-col">
+            <div class="flex flex-col w-1/2">
               <div class="font-bold">
                 {{elemento?.ropa?.nombre}}
               </div>

@@ -12,6 +12,7 @@ import { CompletarPerfilComponent } from './pages/completar-perfil/completar-per
 import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.component';
 import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carrito.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import { ConfiguracionBarComponent } from './pages/configuracion-bar/configuracion-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,15 +22,19 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     CompletarPerfilComponent,
     InfoDetalladaComponent,
     ElementoCarritoComponent,
+    ConfiguracionBarComponent,
   ],
-    imports: [
-        CommonModule,
-        LoggedRoutingModule,
-        MatIconModule,
-        MatButtonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatTooltipModule,
-    ]
+  exports: [
+    ConfiguracionBarComponent
+  ],
+  imports: [
+    CommonModule,
+    LoggedRoutingModule,
+    MatIconModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+  ]
 })
 export class LoggedModule { }

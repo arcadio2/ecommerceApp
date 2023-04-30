@@ -15,7 +15,7 @@
               class="mt-1 text-red-600 text-bold text-xs">
               <p>El nombre es requerido</p>
             </div>
-            <div *ngIf="errores?.nombre" class="mt-1 text-black-600 text-bold text-xs">
+            <div *ngIf="errores?.nombre" class="mt-1 text-red-600 text-bold text-xs">
               {{errores.nombre}}
             </div>
         </div>
@@ -31,7 +31,7 @@
                 class="mt-1 text-red-600 text-bold text-xs">
                 <p>El apellido es requerido</p>
                 </div>
-                <div *ngIf="errores?.apellido" class="mt-1 text-black-600 text-bold text-xs">
+                <div *ngIf="errores?.apellido" class="mt-1 text-red-600 text-bold text-xs">
                   {{errores.apellido}}
                 </div>
 
@@ -48,7 +48,7 @@
                 class="mt-1 text-red-600 text-bold text-xs">
                 <p>El nombre de usuario es requerido</p>
                 </div>
-                <div *ngIf="errores?.username" class="mt-1 text-black-600 text-bold text-xs">
+                <div *ngIf="errores?.username" class="mt-1 text-red-600 text-bold text-xs">
                   {{errores.username}}
                 </div>
         </div>
@@ -64,7 +64,7 @@
               class="mt-1 text-red-600 text-bold text-xs">
               <p>El email es requerido</p>
               </div>
-              <div *ngIf="errores?.email" class="mt-1 text-black-600 text-bold text-xs">
+              <div *ngIf="errores?.email" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.email}}
               </div>
         </div>
@@ -80,7 +80,7 @@
             class="mt-1 text-red-600 text-bold text-xs">
             <p>La contraseña es requerida</p>
             </div>
-            <div *ngIf="errores?.password" class="mt-1 text-black-600 text-bold text-xs">
+            <div *ngIf="errores?.password" class="mt-1 text-red-600 text-bold text-xs">
               {{errores.password}}
             </div>
         </div>
@@ -111,7 +111,7 @@
             <label class="text-black-200 mr-4" for="remember-me">
                 ¿Ya tienes cuenta?
             </label>
-            <a routerLink="/auth/iniciar-sesion" class="text-black underline font-bold">Inicia sesión</a>
+            <a routerLink="/auth/iniciar-sesion" class="text-black hover:underline font-bold">Inicia sesión</a>
         </div>
       </form>
     </div>
