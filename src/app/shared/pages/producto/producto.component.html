@@ -97,107 +97,41 @@
 
                         <form class="mt-8">
                             <fieldset>
-                                <legend class="mb-1 text-sm font-medium">Color</legend>
+                                <legend class="mb-1 text-sm font-medium">Colores disponibles</legend>
 
                                 <div class="flex flex-wrap gap-1">
                                     <div
                                         class="flex flex-wrap w-4/12 justify-around gap-1 [&:hover_label]:opacity-75">
-                                        <div>
-                                            <input type="checkbox" id="ColorSg" class="sr-only" />
+                                        
+                                        <div *ngFor="let c of detalle_colores_disponibles;let i=index" (click)="cambiarColor(c.color?.color!)" >
+                                            <input type="checkbox" id="ColorSg{{i}}" class="sr-only" />
 
                                             <label for="ColorSg"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[#595759] transition hover:!opacity-100">
+                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[{{c.color?.hexadecimal}}] transition hover:!opacity-100">
                                                 <span class="sr-only"> Space Gray </span>
                                             </label>
                                         </div>
 
-                                        <div>
-                                            <input type="checkbox" id="ColorS" class="sr-only" />
-
-                                            <label for="ColorS"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[#d2d3d4] transition hover:!opacity-100">
-                                                <span class="sr-only"> Silver </span>
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input type="checkbox" id="ColorP" class="sr-only" />
-
-                                            <label for="ColorP"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[#d89f97] transition hover:!opacity-100">
-                                                <span class="sr-only"> Pink </span>
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input type="checkbox" id="ColorG" class="sr-only" />
-
-                                            <label for="ColorG"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[#afbfab] transition hover:!opacity-100">
-                                                <span class="sr-only"> Pink </span>
-                                            </label>
-                                        </div>
-
-                                        <div>
-                                            <input type="checkbox" id="ColorSb" class="sr-only" />
-
-                                            <label for="ColorSb"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[#91a5bb] transition hover:!opacity-100">
-                                                <span class="sr-only"> Pink </span>
-                                            </label>
-                                        </div>
+                       
                                     </div>
                                 </div>
                             </fieldset>
 
                             <fieldset class="mt-4">
-                                <legend class="mb-1 text-sm font-medium">Size</legend>
+                                <legend class="mb-1 text-sm font-medium">Tallas disponibles</legend>
 
-                                <div class="flex flex-wrap gap-1">
-                                    <label for="size_xs" class="cursor-pointer">
-                                        <input type="radio" name="size" id="size_xs" class="peer sr-only" />
-
-                                        <span
-                                            class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            XS
-                                        </span>
-                                    </label>
-
-                                    <label for="size_s" class="cursor-pointer">
-                                        <input type="radio" name="size" id="size_s" class="peer sr-only" />
+                                <div class="flex flex-wrap gap-1" >
+                                    <label for="size_xs" class="cursor-pointer" *ngFor="let t of detalle_tallas_disponibles; let i =index;" (click)="cambiarTalla(t.talla?.talla!)"
+                                    [ngClass]="{'bg-black text-white': t.talla?.talla == tallaProducto}" > 
+                                        <input type="radio" name="size" id="size_xs{{i}}" class="peer sr-only" />
 
                                         <span
                                             class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            S
+                                            {{t.talla?.talla}}
                                         </span>
                                     </label>
 
-                                    <label for="size_m" class="cursor-pointer">
-                                        <input type="radio" name="size" id="size_m" class="peer sr-only" />
-
-                                        <span
-                                            class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            M
-                                        </span>
-                                    </label>
-
-                                    <label for="size_l" class="cursor-pointer">
-                                        <input type="radio" name="size" id="size_l" class="peer sr-only" />
-
-                                        <span
-                                            class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            L
-                                        </span>
-                                    </label>
-
-                                    <label for="size_xl" class="cursor-pointer">
-                                        <input type="radio" name="size" id="size_xl" class="peer sr-only" />
-
-                                        <span
-                                            class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            XL
-                                        </span>
-                                    </label>
+                                  
                                 </div>
                             </fieldset>
 
