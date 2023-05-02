@@ -38,6 +38,7 @@ export interface DetalleProducto {
 export interface Color {
     color?: string;
     id?:    number;
+    hexadecimal?: string;
 }
 
 export interface Talla {
@@ -69,4 +70,15 @@ export interface ProductoCarrito {
 export  interface ElementoCarrito {
     ropa?: ProductoCarrito;
     cantidad?: number;
+  }
+
+
+  /**SOLO DE VISUALIZACIÓN */
+  export interface DetalleDto {
+    color?:           Color;
+    stock?:           number;
+    talla?:           Talla;
+    producto?:        Producto;
+    nombre_producto?: null | string;
+    id?:              number;
   }

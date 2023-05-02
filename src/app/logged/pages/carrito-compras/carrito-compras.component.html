@@ -57,13 +57,13 @@
             <div class="flex justify-between items-center gap-3">
               <div class="border-2 rounded-md border-black grid grid-cols-3 place-items-center gap-2">
                 <button class="flex items-center p-2"
-                (click)="aumentarElemento(i)">
-                    <mat-icon class="">add</mat-icon>
+                (click)="disminuirElemento(i)">
+                    <mat-icon class="">remove</mat-icon>
                 </button>
                 <div class="font-bold p-2">{{elemento?.cantidad}}</div>
                 <button class="flex items-center p-2"
-                (click)="disminuirElemento(i)">
-                    <mat-icon class="">remove</mat-icon>
+                (click)="aumentarElemento(i)">
+                    <mat-icon class="">add</mat-icon>
                 </button>
               </div>
               <button (click)="eliminar(i)">
