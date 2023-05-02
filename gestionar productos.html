@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo tienda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+</style>
+
+
+
+<body class="font-['Be_Vietnam_Pro']">
+    <header aria-label="Site Header" class="">
+        <div
+            class="border-b-2 border-gray-400 mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4">
+                <button type="button" class="p-2 lg:hidden">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <a href="#" class="flex">
+                    <span class="sr-only">Logo</span>
+                    <span class="inline-block h-10 w-32 rounded-lg bg-gray-200"></span>
+                </a>
+            </div>
+
+            <div class="flex flex-1 items-center justify-end gap-8">
+                <nav aria-label="Site Nav"
+                    class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500">
+
+
+                    <a href="/products"
+                        class="block h-16 border-b-4 border-transparent leading-[4rem] hover:border-gray-600 hover:text-black">
+                        Productos
+                    </a>
+                </nav>
+
+                <div class="flex items-center">
+                    <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
+                        <span>
+                            <a href="/cart" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg>
+
+                                <span class="sr-only">Cart</span>
+                            </a>
+                        </span>
+
+                        <span>
+                            <a href="/account" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+
+                                <span class="sr-only"> Account </span>
+                            </a>
+                        </span>
+
+                        <span class="hidden sm:block">
+                            <a href="/search" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+
+                                <span class="sr-only"> Search </span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="min-h-screen flex flex-col">
+        <!--
+          This component uses @tailwindcss/forms
+
+          yarn add @tailwindcss/forms
+          npm install @tailwindcss/forms
+
+          plugins: [require('@tailwindcss/forms')]
+        -->
+
+        <section>
+            <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+
+                <div class="mt-8 block lg:hidden">
+                    <button
+                        class="flex cursor-pointer items-end gap-2 border-b border-gray-400 pb-1 text-gray-900 transition hover:border-gray-600">
+                        <span class="text-sm font-medium"> Filters & Sorting </span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="h-4 w-4">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+
+                    <div class="hidden space-y-4 lg:block">
+                        <h2 class="text-xl font-semibold text-black sm:text-4xl">
+                            Gestión de Productos
+                        </h2>
+                        <div class="flex flex-col items-start">
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Volver al inicio
+                            </a>
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Ventas y Pedidos
+                            </a>
+                            <a class="relative text-xl text-black font-extrabold0 before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Gestión de productos
+                            </a>
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Estadísticas de clientes
+                            </a>
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Reporte general
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="lg:col-span-3 ">
+
+                        <div class="flex w-full items-center border-b-2 border-black mb-6 p-3">
+                            <input type="text" placeholder="Buscar producto"
+                                class="focus:border-none w-11/12 border-black border-solid border-2 rounded-md  p-3 outline-black outline-2">
+                            <svg class="h-4 w-1/12" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+
+                        <ul class="grid gap-6 grid-cols-1 w-full">
+
+                            <li class="grid gap-10 grid-cols-9">
+
+                                <div class="col-span-2">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqSdma0tkrqS_eOzK9DfkgYBlSkN1oCcCohQ&usqp=CAU"
+                                        alt="">
+                                </div>
+
+                                <div class="grid columns-1 rows-7 col-span-4">
+                                    <p class="font-bold underline row-span-3 grid text-lg content-center align-middle">
+                                        Producto</p>
+                                    <p>Talla : M</p>
+                                    <p>Color : Negro</p>
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502640/edit-1.svg" alt="">
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="">
+                                </div>
+                            </li>
+
+                            <li class="grid gap-10 grid-cols-9">
+
+                                <div class="col-span-2">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqSdma0tkrqS_eOzK9DfkgYBlSkN1oCcCohQ&usqp=CAU"
+                                        alt="">
+                                </div>
+
+                                <div class="grid columns-1 rows-7 col-span-4">
+                                    <p class="font-bold underline row-span-3 grid text-lg content-center align-middle">
+                                        Producto</p>
+                                    <p>Talla : M</p>
+                                    <p>Color : Negro</p>
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502640/edit-1.svg" alt="">
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="">
+                                </div>
+                            </li>
+
+                            <li class="grid gap-10 grid-cols-9">
+
+                                <div class="col-span-2">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqSdma0tkrqS_eOzK9DfkgYBlSkN1oCcCohQ&usqp=CAU"
+                                        alt="">
+                                </div>
+
+                                <div class="grid columns-1 rows-7 col-span-4">
+                                    <p class="font-bold underline row-span-3 grid text-lg content-center align-middle">
+                                        Producto</p>
+                                    <p>Talla : M</p>
+                                    <p>Color : Negro</p>
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502640/edit-1.svg" alt="">
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="">
+                                </div>
+                            </li>
+
+                            <li class="grid gap-10 grid-cols-9">
+
+                                <div class="col-span-2">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqSdma0tkrqS_eOzK9DfkgYBlSkN1oCcCohQ&usqp=CAU"
+                                        alt="">
+                                </div>
+
+                                <div class="grid columns-1 rows-7 col-span-4">
+                                    <p class="font-bold underline row-span-3 grid text-lg content-center align-middle">
+                                        Producto</p>
+                                    <p>Talla : M</p>
+                                    <p>Color : Negro</p>
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502640/edit-1.svg" alt="">
+                                </div>
+
+                                <div class="grid columns-2 col-span-1">
+                                    <img src="https://www.svgrepo.com/show/502608/delete-2.svg" alt="">
+                                </div>
+                            </li>
+
+                        </ul>
+
+                        <button class="p-3 rounded-md relative -bottom-12 text-white bg-black grid text-center w-full">
+                            Añadir producto
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+</body>
+
+</html>

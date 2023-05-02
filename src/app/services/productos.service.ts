@@ -40,6 +40,10 @@ export class ProductosService {
 
   }
 
+  getDetalleProdcutoCompra(id:number,color:string,talla:string){
+    return this.http.get<any>(environment.urlBase+'api/detalle/'+id+"/"+color+"/"+talla);
+  }
+
 
   addComentario(p:any){
     let objeto = {

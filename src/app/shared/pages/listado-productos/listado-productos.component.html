@@ -5,9 +5,17 @@
             <div class="lg:mt-0 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8 bg-white z-0">
 
                 <div class="hidden space-y-4 lg:block sticky top-16 py-6">
-                    <div class="text-lg font-semibold text-black sm:text-4xl">
+                    <div
+                      *ngIf="nombreProducto == null"
+                      class="text-lg font-semibold text-black sm:text-4xl">
                         Colección de productos
                     </div>
+                    <div
+                      *ngIf="nombreProducto != null"
+                      class="text-lg font-semibold text-black sm:text-4xl">
+                      Resultados de búsqueda para: <span class="italic text-2xl">"{{nombreProducto}}"</span>
+                    </div>
+
                     <div class="flex flex-col items-start">
                       <div *ngIf="generoProducto === 'mujer'">
                         <div
@@ -32,6 +40,18 @@
 
                       </div>
 
+                    </div>
+
+                    <div
+                      *ngIf="nombreProducto != null"
+                      class="flex flex-col">
+                      <div class="mt-3 text-base">
+                        Se encontraron:
+                      </div>
+                      <div>
+                        <span>{{productos.length}}</span>
+                        <span> resultados</span>
+                      </div>
                     </div>
 
                 </div>
