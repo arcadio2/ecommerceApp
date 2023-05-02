@@ -16,7 +16,7 @@ export class ImagenesService {
     private router: Router) { }
 
     obtenerImagenes(nombre:string,color:string){
-      console.log(nombre,color)
+
       return this.http.get<any>(this.url_base+'productos/'+nombre+'/'+color);
     }
 
