@@ -13,6 +13,7 @@ import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.co
 import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carrito.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { ConfiguracionBarComponent } from './pages/modules/configuracion-usuario/components/configuracion-bar/configuracion-bar.component';
+import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-compra.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ConfiguracionBarComponent } from './pages/modules/configuracion-usuario
     InfoDetalladaComponent,
     ElementoCarritoComponent,
     ConfiguracionBarComponent,
+    ConfirmarCompraComponent,
   ],
   exports: [
     ConfiguracionBarComponent
