@@ -7,8 +7,8 @@
             <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
                 <!-- Inicio grid de imagenes -->
                 <div class="grid grid-cols-2 gap-4 md:grid-cols-1 col-span-7">
-                    <div class="grid grid-cols-2 gap-0.5">
-                        <a class="group block overflow-hidden" *ngFor="let img of imagenes">
+                    <div class="grid grid-cols-2 gap-0.5" *ngIf="productoMostrado">
+                        <a class="group block overflow-hidden"  *ngFor="let img of imagenes">
                             <img alt="Les Paul"
                             [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto?.nombre +'/'+productoMostrado!.color?.color +'/'+img ||
                             'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'"
@@ -34,9 +34,11 @@
                                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
                                     class="inline-block mr-1 overflow-visible" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="6.5" cy="6.5" r="6.5" 
+                                    *ngIf="productoMostrado"
                                     [attr.fill]="productoMostrado!.color?.hexadecimal"></circle>
                                 </svg>
-                                <label class="font-semibold text-black">{{productoMostrado!.color?.color}}</label>
+                               
+                                <label *ngIf="productoMostrado" class="font-semibold text-black">{{productoMostrado.color?.color}}</label>
 
 
                             </div>

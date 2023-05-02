@@ -46,10 +46,11 @@ export class ProductoComponent implements OnInit {
     
     this.route.paramMap.subscribe(params=>{
       this.idProducto = parseInt(params.get('id')!);
-      console.log(this.idProducto)
+
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
       this.buscarProducto(); 
+    
     });
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
@@ -96,6 +97,11 @@ export class ProductoComponent implements OnInit {
       //this.producto = resp.producto;
       this.productoMostrado = resp.detalle; 
       this.producto = this.productoMostrado!.producto! || null; 
+  
+      if(!this.productoMostrado){
+        
+      }
+
       this.imagenesService.obtenerImagenes(this.producto?.nombre!,this.productoMostrado?.color?.color!).subscribe(img=>{
 
         this.imagenes = img.rutas; 
@@ -105,7 +111,10 @@ export class ProductoComponent implements OnInit {
     },err=>{
       if(err.status==404){  
         this.toastService.error("No existe el proucto")
+        window.history.back();
 
+      }else{
+        this.toastService.error("No existe el proucto 2")
       }
      
     })
