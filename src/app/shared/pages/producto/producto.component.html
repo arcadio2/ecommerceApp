@@ -121,13 +121,14 @@
                                 <legend class="mb-1 text-sm font-medium">Tallas disponibles</legend>
 
                                 <div class="flex flex-wrap gap-1" >
-                                    <label for="size_xs" class="cursor-pointer" *ngFor="let t of detalle_tallas_disponibles; let i =index;" (click)="cambiarTalla(t.talla?.talla!)"
-                                    [ngClass]="{'bg-black text-white': t.talla?.talla == tallaProducto}" > 
+                                    <label for="size_xs" class="cursor-pointer" 
+                                        *ngFor="let t of tallas_disponibles; let i =index;" (click)="cambiarTalla(t?.talla!)"
+                                    [ngClass]="{'bg-black text-white': t?.talla == tallaProducto}" > 
                                         <input type="radio" name="size" id="size_xs{{i}}" class="peer sr-only" />
 
                                         <span
                                             class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            {{t.talla?.talla}}
+                                            {{t?.talla}}
                                         </span>
                                     </label>
 
@@ -136,19 +137,27 @@
                             </fieldset>
 
                             <fieldset class="mt-4">
-                                <legend class="mb-1 text-sm font-medium">Quantity</legend>
-                                <label for="Quantity" class="sr-only"> Quantity </label>
+                                <div class="flex">
+                                    <legend class="mb-1 text-sm font-medium">Cantidad</legend>
+                                    <label for="Quantity" class="sr-only"> Cantidad </label>
+                                    <div class="ml-10">Disponibles: {{productoMostrado?.stock}}</div>
+                                </div>
+                                
+                                
+                             
+                                
+                                
 
                                 <div class="flex items-center border border-gray-200 rounded max-w-max">
-                                    <button type="button"
+                                    <button type="button" (click)="reducir()"
                                         class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
                                         &minus;
                                     </button>
 
-                                    <input type="number" id="Quantity" value="1"
+                                    <input type="number" id="cantidad" [(ngModel)] ="cantidad" name="cantidad"
                                         class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none" />
 
-                                    <button type="button"
+                                    <button type="button" (click)="aumentar()"
                                         class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
                                         &plus;
                                     </button>

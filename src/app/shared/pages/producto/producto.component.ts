@@ -2,8 +2,9 @@ import { Component, OnInit,OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Color, DetalleDto, DetalleProducto, Producto, Talla } from 'src/app/models/producto.model';
+import { Bolsa, Color, DetalleDto, DetalleProducto, Producto, Talla } from 'src/app/models/producto.model';
 import { User } from 'src/app/models/user.model';
+import { BolsaService } from 'src/app/services/bolsa.service';
 import { DetalleService } from 'src/app/services/detalle.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ProductosService } from 'src/app/services/productos.service';
@@ -28,11 +29,12 @@ export class ProductoComponent implements OnInit {
   productoMostrado!:DetalleDto | undefined;
   imagenes:string[]=[]; 
   url_backend:string =  environment.urlBase;
+  cantidad:number=1; 
 
   
   detalle_colores_disponibles:DetalleProducto[] | undefined=[]; 
   detalle_tallas_disponibles:DetalleProducto[] | undefined=[]; 
-  tallas_disponibles:Talla[] = []; 
+  tallas_disponibles:(Talla| undefined)[] = []; 
 
 
   constructor(private route: ActivatedRoute,
@@ -41,6 +43,7 @@ export class ProductoComponent implements OnInit {
               private authService:AuthService,
               private router:Router,
               private imagenesService:ImagenesService,
+              private bolsaService:BolsaService,
            
               private detalleService:DetalleService,
               private productoService:ProductosService
@@ -55,7 +58,10 @@ export class ProductoComponent implements OnInit {
 
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
+      
       this.buscarProducto(); 
+      this.tallas_disponibles = []; 
+      this.cantidad=1; 
     
     });
     if(this.authService.usuario.username){
@@ -73,6 +79,23 @@ export class ProductoComponent implements OnInit {
   agregarCarrito(){
     if(this.isAuth){
       //Función para agregar al carrito 
+      if(!this.isInBolsa()){
+        console.log(this.productoMostrado)
+        const  detalle:DetalleProducto = this.productoMostrado as DetalleProducto; 
+        detalle.nombre_producto = this.productoMostrado?.producto?.nombre;
+
+        let carrito:Bolsa = {
+          detalle_producto:detalle,
+          cantidad:this.cantidad
+        }
+        this.bolsaService.guardarCarrito(carrito).subscribe(resp=>{
+          console.log(resp)
+        })
+
+      }else{
+        //this.bolsaService.eliminarCarrito.
+      }
+      
 
     }else{
       this.toastService.warning("Debes iniciar sesión"); 
@@ -116,11 +139,11 @@ export class ProductoComponent implements OnInit {
         // Devolvemos el acumulador en cada iteración
         return acumulador;
       }, []);
-      this.detalle_tallas_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
+/*       this.detalle_tallas_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
    
         if (detalle.talla) {
           
-          if (!acumulador.some(det => det.talla?.talla === detalle.talla?.talla)) {
+          if (!acumulador.some(det => det.talla?.talla === detalle.talla?.talla ) ) {
             
             acumulador.push(detalle);
           }
@@ -128,6 +151,15 @@ export class ProductoComponent implements OnInit {
         // Devolvemos el acumulador en cada iteración
         return acumulador;
       }, []);
+ */
+      this.producto.detalle!.forEach(resp=>{
+        if(resp.color?.color==this.colorProducto){
+          this.tallas_disponibles.push(resp.talla!) ; 
+        }
+      })
+      const dataArr = new Set(this.tallas_disponibles);
+
+      this.tallas_disponibles = [...dataArr];
 
      /*  this.producto.detalle?.forEach(detalle=>{
 
@@ -159,7 +191,8 @@ export class ProductoComponent implements OnInit {
         window.history.back();
 
       }else{
-        this.toastService.error("No existe el proucto 2")
+        this.toastService.error("Ha ocurrido un error"); 
+        window.history.back();
       }
      
     })
@@ -193,7 +226,28 @@ export class ProductoComponent implements OnInit {
     this.router.navigate(['producto',this.producto?.id,color,talla])
 
   }
+  reducir(){
+    if(this.cantidad>1){
+      this.cantidad-=1; 
+    }
+  }
+
+  aumentar(){
+    if(this.cantidad<this.productoMostrado?.stock!){
+      this.cantidad+=1; 
+    }
+  }
   
+  existeTalla(talla:string){
+    let existe:boolean=false; 
+    this.detalle_tallas_disponibles?.forEach(resp=>{
+      if(resp.color?.color==this.colorProducto){
+        console.log(resp.color.color)
+         existe = true; 
+      }
+    })
+    return existe;
+  }
 
 }
 
