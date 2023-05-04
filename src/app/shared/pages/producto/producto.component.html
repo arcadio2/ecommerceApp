@@ -171,9 +171,11 @@
                     Comprar Ahora
                   </span>
                 </a>
+                {{isInBolsa()}}
+                {{inBolsa}}
                 <button
                   class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring "
-                  [disabled]="isInBolsa()"
+                  [disabled]="inBolsa"
                   [class] = "isInBolsa() || inBolsa === true ? 'opacity-50 cursor-default' : 'cursor-pointer'"
 
                   (click)="agregarCarrito()">
@@ -181,11 +183,11 @@
                     [class]="isInBolsa() ?  '' : 'absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white'"
                     class=""></span>
 
-                  <span class="text-sm font-medium text-black transition-colors "
+                  <!--<span class="text-sm font-medium text-black transition-colors "
                         *ngIf="isInBolsa()">
                     En el carrito
-                  </span>
-                  <span class="relative text-sm font-medium text-black transition-colors" *ngIf="!isInBolsa()">
+                  </span>-->
+                  <span class="relative text-sm font-medium text-black transition-colors">
                     {{textoCarrito}}
                   </span>
                 </button>

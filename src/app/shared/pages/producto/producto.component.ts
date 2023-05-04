@@ -110,6 +110,8 @@ export class ProductoComponent implements OnInit {
   }
 
   isInBolsa(){
+    this.inBolsa = false
+
     if(!this.isAuth){
       return false;
     }
@@ -117,7 +119,7 @@ export class ProductoComponent implements OnInit {
     this.usuario.bolsa?.forEach(elemento=>{
       if(elemento.detalle_producto?.id==this.productoMostrado!.id){
         this.inBolsa = true;
-
+        console.log(this.inBolsa)
       }
     })
 
@@ -213,7 +215,6 @@ export class ProductoComponent implements OnInit {
 
       }
     })
-
     this.router.navigate(['producto',this.producto?.id,color,talla])
 
   }
