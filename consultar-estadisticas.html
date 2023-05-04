@@ -53,7 +53,7 @@
             </div>
          
             <div class="flex flex-1 items-center justify-end gap-8">
-                   <!--
+                   
                 <nav aria-label="Site Nav"
                     class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide lg:text-gray-500">
 
@@ -77,7 +77,7 @@
                                 <span class="sr-only">Cart</span>
                             </a>
                         </span>
-                    -->
+                    
                         <span>
                             <a href="/account" class="block border-b-4 border-transparent p-6 hover:border-gray-600">
                                 <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -101,7 +101,7 @@
                                 <span class="sr-only"> Search </span>
                             </a>
                         </span>
-
+                        <!--
                         <span class="hidden sm:block">
                             <button class="inline-block relative">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,7 +110,7 @@
                                 <span class="animate-ping absolute top-1 right-0.5 block h-1 w-1 rounded-full ring-2 ring-green-400 bg-green-600"></span>
                             </button>
                         </span>
-
+                    -->
                     </div>
                 </div>
             </div>
@@ -174,27 +174,39 @@
 
                     <div class="lg:col-span-3 mx-auto my-auto">
 
-                        <div class="grid grid-cols-2 grid-rows-2 gap-12">
+                        <div class="grid grid-cols-4 gap-10 mx-10">
 
-                            <div class="flex flex-col items-center justify-center bg-white text-black font-bold text-center py-12 px-12 border border-black hover:scale-105 transition duration-300">
-                                <p class="mb-4">Ventas y pedidos</p>
-                                <img class="h-24 w-20 object-contain" src="https://cdn-icons-png.flaticon.com/512/9341/9341285.png " alt="Tienda de ropa">
+                            <div class="col-span-1 bg-white"></div>
+
+                            <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-500 ease-in-out transform hover:scale-105  hover:invert p-4">
+                                <h2 class="text-lg font-bold py-2">VENTAS Y PEDIDOS</h2>
+                                <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/9341/9341285.png " alt="Tienda de ropa">
+                                <p class="pb-4">Visualiza el número de pedidos realizados y el monto total de las ventas</p>
+                            </div>
+                              
+                            <div class="col-span-1 bg-white"></div>
+                            
+                            <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-500 ease-in-out transform hover:scale-105  hover:invert">
+                                <h2 class="text-lg font-bold py-2">GESTIÓN DE PRODUCTOS</h2>
+                                <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/2946/2946695.png" alt="Imagen">
+                                <p class="pb-4">Agrega, edita y elimina productos</p>
                             </div>
 
-                            <div class="flex flex-col items-center justify-center bg-white text-black font-bold text-center py-12 px-12 border border-black  hover:scale-105 transition duration-300">
-                                <p class="mb-4">Gestión de productos</p>
-                                <img class="h-24 w-20 object-contain" src="https://cdn-icons-png.flaticon.com/512/2946/2946695.png" alt="Productos">
+                            <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-500 ease-in-out transform hover:scale-105  hover:invert">
+                                <h2 class="text-lg font-bold py-2">REPORTE GENERAL</h2>
+                                <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/921/921540.png" alt="Estadísticas">
+                                <p class="pb-4">Accede a un informe y evalua el desempeño del negocio</p>
                             </div>
 
-                            <div class="flex flex-col items-center justify-center bg-white text-black font-bold text-center py-12 px-12 border border-black  hover:scale-105 transition duration-300">
-                                <p class="mb-4">Reporte general</p>
-                                <img class="h-24 w-20 object-contain" src="https://cdn-icons-png.flaticon.com/512/921/921540.png" alt="Estadísticas">
+                            <div class="col-span-1 bg-white"></div>
+
+                            <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-500 ease-in-out transform hover:scale-105  hover:invert p-4">
+                                <h2 class="text-lg font-bold py-2">ESTADÍSTICAS DE CLIENTES</h2>
+                                <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/1322/1322236.png" alt="Clientes">
+                                <p class="pb-4">Identifica los patrones de compra y las tendencias en los datos para mejorar la experiencia</p>
                             </div>
 
-                            <div class="flex flex-col items-center justify-center bg-white text-black font-bold text-center py-12 px-12 border border-black  hover:scale-105 transition duration-300">
-                                <p class="mb-4">Estadísticas de clientes</p>
-                                <img class="h-24 w-20 object-contain" src="https://cdn-icons-png.flaticon.com/512/1322/1322236.png" alt="Clientes">
-                            </div>
+                            <div class="col-span-1 bg-white"></div>
 
                         </div>
                     </div>
