@@ -18,23 +18,26 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductoComponent implements OnInit {
 
-  usuario!:User; 
-  colorSelected!:Color; 
-  tallaSelected!:Talla; 
-  idProducto!:number; 
-  colorProducto!:string; 
-  tallaProducto!:string; 
-  producto!:Producto | undefined; 
-  isAuth:boolean=false; 
+  usuario!:User;
+  colorSelected!:Color;
+  tallaSelected!:Talla;
+  idProducto!:number;
+  colorProducto!:string;
+  tallaProducto!:string;
+  producto!:Producto | undefined;
+  isAuth:boolean=false;
   productoMostrado!:DetalleDto | undefined;
-  imagenes:string[]=[]; 
+  imagenes:string[]=[];
   url_backend:string =  environment.urlBase;
-  cantidad:number=1; 
+  cantidad:number=1;
 
-  
-  detalle_colores_disponibles:DetalleProducto[] | undefined=[]; 
-  detalle_tallas_disponibles:DetalleProducto[] | undefined=[]; 
-  tallas_disponibles:(Talla| undefined)[] = []; 
+
+  detalle_colores_disponibles:DetalleProducto[] | undefined=[];
+  detalle_tallas_disponibles:DetalleProducto[] | undefined=[];
+  tallas_disponibles:(Talla| undefined)[] = [];
+
+  inBolsa: boolean = false
+  textoCarrito: string = "Agregar al carrito"
 
 
   constructor(private route: ActivatedRoute,
@@ -44,44 +47,44 @@ export class ProductoComponent implements OnInit {
               private router:Router,
               private imagenesService:ImagenesService,
               private bolsaService:BolsaService,
-           
+
               private detalleService:DetalleService,
               private productoService:ProductosService
               ) { }
 
-  
+
 
   ngOnInit(): void {
-    
+
     this.route.paramMap.subscribe(params=>{
       this.idProducto = parseInt(params.get('id')!);
 
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
-      
-      this.buscarProducto(); 
-      this.tallas_disponibles = []; 
-      this.cantidad=1; 
-    
+
+      this.buscarProducto();
+      this.tallas_disponibles = [];
+      this.cantidad=1;
+
     });
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
-        this.usuario = resp.usuario as User; 
-        this.isAuth = true; 
-        
-       
-        
-      }); 
+        this.usuario = resp.usuario as User;
+        this.isAuth = true;
+
+
+
+      });
     }
   }
 
 
   agregarCarrito(){
     if(this.isAuth){
-      //Función para agregar al carrito 
+      //Función para agregar al carrito
       if(!this.isInBolsa()){
         console.log(this.productoMostrado)
-        const  detalle:DetalleProducto = this.productoMostrado as DetalleProducto; 
+        const  detalle:DetalleProducto = this.productoMostrado as DetalleProducto;
         detalle.nombre_producto = this.productoMostrado?.producto?.nombre;
 
         let carrito:Bolsa = {
@@ -91,48 +94,50 @@ export class ProductoComponent implements OnInit {
         this.bolsaService.guardarCarrito(carrito).subscribe(resp=>{
           console.log(resp)
         })
-
+        this.toastService.success("Producto agregado correctamente")
+        this.textoCarrito = "En el carrito"
+        this.inBolsa = true
       }else{
+        this.textoCarrito = "Agregar al carrito"
+        this.inBolsa = false
         //this.bolsaService.eliminarCarrito.
       }
-      
+
 
     }else{
-      this.toastService.warning("Debes iniciar sesión"); 
+      this.toastService.warning("Debes iniciar sesión");
     }
   }
 
   isInBolsa(){
     if(!this.isAuth){
-      return false; 
+      return false;
     }
-
-    let inBolsa = false; 
 
     this.usuario.bolsa?.forEach(elemento=>{
       if(elemento.detalle_producto?.id==this.productoMostrado!.id){
-        inBolsa = true;
-        
+        this.inBolsa = true;
+
       }
     })
 
-    return inBolsa; 
+    return this.inBolsa;
   }
 
 
   buscarProducto(){
     this.productoService.getDetalleProdcutoCompra(this.idProducto,this.colorProducto,this.tallaProducto).subscribe(resp=>{
-     
+
       //this.producto = resp.producto;
-      this.productoMostrado = resp.detalle; 
-      this.producto = this.productoMostrado!.producto! || null; 
+      this.productoMostrado = resp.detalle;
+      this.producto = this.productoMostrado!.producto! || null;
 
       this.detalle_colores_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
-   
+
         if (detalle.color) {
-          
+
           if (!acumulador.some(det => det.color?.color === detalle.color?.color)) {
-            
+
             acumulador.push(detalle);
           }
         }
@@ -140,11 +145,11 @@ export class ProductoComponent implements OnInit {
         return acumulador;
       }, []);
 /*       this.detalle_tallas_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
-   
+
         if (detalle.talla) {
-          
+
           if (!acumulador.some(det => det.talla?.talla === detalle.talla?.talla ) ) {
-            
+
             acumulador.push(detalle);
           }
         }
@@ -154,7 +159,7 @@ export class ProductoComponent implements OnInit {
  */
       this.producto.detalle!.forEach(resp=>{
         if(resp.color?.color==this.colorProducto){
-          this.tallas_disponibles.push(resp.talla!) ; 
+          this.tallas_disponibles.push(resp.talla!) ;
         }
       })
       const dataArr = new Set(this.tallas_disponibles);
@@ -174,27 +179,27 @@ export class ProductoComponent implements OnInit {
           this.detalle_colores_disponibles?.push(detalle)
         }
       }) */
-  
+
       if(!this.productoMostrado){
-        
+
       }
 
       this.imagenesService.obtenerImagenes(this.producto?.nombre!,this.productoMostrado?.color?.color!).subscribe(img=>{
 
-        this.imagenes = img.rutas; 
+        this.imagenes = img.rutas;
       },err=>{
-        this.toastService.error("No se han encontrado las imagenes"); 
+        this.toastService.error("No se han encontrado las imagenes");
       })
     },err=>{
-      if(err.status==404){  
+      if(err.status==404){
         this.toastService.error("No existe el proucto")
         window.history.back();
 
       }else{
-        this.toastService.error("Ha ocurrido un error"); 
+        this.toastService.error("Ha ocurrido un error");
         window.history.back();
       }
-     
+
     })
   }
 
@@ -204,8 +209,8 @@ export class ProductoComponent implements OnInit {
 
     this.producto?.detalle!.forEach(resp=>{
       if(resp.color?.color==color){
-        talla = resp.talla?.talla; 
-        
+        talla = resp.talla?.talla;
+
       }
     })
 
@@ -213,13 +218,13 @@ export class ProductoComponent implements OnInit {
 
   }
   cambiarTalla(talla:string){
- 
+
     let color:string | undefined = this.colorProducto;
 
     this.producto?.detalle!.forEach(resp=>{
       if(resp.talla?.talla==talla){
-        color = resp.color?.color; 
-        
+        color = resp.color?.color;
+
       }
     })
 
@@ -228,22 +233,25 @@ export class ProductoComponent implements OnInit {
   }
   reducir(){
     if(this.cantidad>1){
-      this.cantidad-=1; 
+      this.cantidad-=1;
     }
   }
 
   aumentar(){
     if(this.cantidad<this.productoMostrado?.stock!){
-      this.cantidad+=1; 
+      this.cantidad+=1;
+    }
+    else {
+      this.toastService.warning("No hay mas stock disponible")
     }
   }
-  
+
   existeTalla(talla:string){
-    let existe:boolean=false; 
+    let existe:boolean=false;
     this.detalle_tallas_disponibles?.forEach(resp=>{
       if(resp.color?.color==this.colorProducto){
         console.log(resp.color.color)
-         existe = true; 
+         existe = true;
       }
     })
     return existe;

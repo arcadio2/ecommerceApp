@@ -1,201 +1,202 @@
-
-
 <main class="min-h-screen flex flex-col">
 
-    <section>
-        <div class="relative mx-auto max-w-screen">
-            <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
-                <!-- Inicio grid de imagenes -->
-                <div class="grid grid-cols-2 gap-4 md:grid-cols-1 col-span-7">
-                    <div class="grid grid-cols-2 gap-0.5" *ngIf="productoMostrado">
-                        <a class="group block overflow-hidden"  *ngFor="let img of imagenes">
-                            <img alt="Les Paul"
-                            [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto?.nombre +'/'+productoMostrado!.color?.color +'/'+img ||
+  <section>
+    <div class="relative mx-auto max-w-screen">
+      <div class="grid grid-cols-1 items-start gap-8 md:grid-cols-12">
+        <!-- Inicio grid de imagenes -->
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-1 col-span-7">
+          <div class="grid grid-cols-2 gap-0.5" *ngIf="productoMostrado">
+            <a class="group block overflow-hidden" *ngFor="let img of imagenes">
+              <img alt="Les Paul"
+                   [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto?.nombre +'/'+productoMostrado!.color?.color +'/'+img ||
                             'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'"
-                                />
-                        </a>
+              />
+            </a>
 
 
-              
-                    </div>
-                </div>
-                <!-- Fin grid de imagenes -->
-
-                <!-- Inicio detalle del producto -->
-                <div class="sticky top-16 col-span-5 px-6 items-center ">
-                    <div class="flex flex-col justify-center min-h-screen">
-                        <h1 class="text-xl font-bold sm:text-2xl w-11/12">
-                            {{producto?.nombre!}}
-                        </h1>
-
-                        <div class="mt-8 flex justify-between">
-
-                            <div class="space-y-2">
-                                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
-                                    class="inline-block mr-1 overflow-visible" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="6.5" cy="6.5" r="6.5" 
-                                    *ngIf="productoMostrado"
-                                    [attr.fill]="productoMostrado!.color?.hexadecimal"></circle>
-                                </svg>
-                               
-                                <label *ngIf="productoMostrado" class="font-semibold text-black">{{productoMostrado.color?.color}}</label>
-
-
-                            </div>
-
-                            <p class="text-lg font-bold">$119.99</p>
-
-                        </div>
-                        <div class="my-1 border-0 border-b border-black border-solid md:mr-3 xl:mb-4"></div>
-                        <!-- Inicio estrellas -->
-                        <div class="-ml-0.5 flex">
-                            <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-
-                            <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-
-                            <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-
-                            <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-
-                            <svg class="h-5 w-5 text-white stroke-1 stroke-black" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 20 20" fill="currentColor">
-                                <path
-                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                      
-                        </div>
-                        <!-- Fin estrellas -->
-
-                        <div class="mt-4">
-                            <div class="line-clamp-2 max-w-none">
-                                <p>
-                                    {{producto?.descripcion}}
-                                </p>
-                            </div>
-
-                            <a class="relative text-md text-black before:absolute before:-bottom-0.5 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
-                                href="#">
-                                Leer mas
-                            </a>
-                        </div>
-
-                        <form class="mt-8">
-                            <fieldset>
-                                <legend class="mb-1 text-sm font-medium">Colores disponibles</legend>
-
-                                <div class="flex flex-wrap gap-1">
-                                    <div
-                                        class="flex flex-wrap w-4/12 justify-around gap-1 [&:hover_label]:opacity-75">
-                                        
-                                        <div *ngFor="let c of detalle_colores_disponibles;let i=index" (click)="cambiarColor(c.color?.color!)" >
-                                            <input type="checkbox" id="ColorSg{{i}}" class="sr-only" />
-
-                                            <label for="ColorSg"
-                                                class="block h-6 w-6 cursor-pointer rounded-full bg-[{{c.color?.hexadecimal}}] transition hover:!opacity-100">
-                                                <span class="sr-only"> Space Gray </span>
-                                            </label>
-                                        </div>
-
-                       
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="mt-4">
-                                <legend class="mb-1 text-sm font-medium">Tallas disponibles</legend>
-
-                                <div class="flex flex-wrap gap-1" >
-                                    <label for="size_xs" class="cursor-pointer" 
-                                        *ngFor="let t of tallas_disponibles; let i =index;" (click)="cambiarTalla(t?.talla!)"
-                                    [ngClass]="{'bg-black text-white': t?.talla == tallaProducto}" > 
-                                        <input type="radio" name="size" id="size_xs{{i}}" class="peer sr-only" />
-
-                                        <span
-                                            class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                            {{t?.talla}}
-                                        </span>
-                                    </label>
-
-                                  
-                                </div>
-                            </fieldset>
-
-                            <fieldset class="mt-4">
-                                <div class="flex">
-                                    <legend class="mb-1 text-sm font-medium">Cantidad</legend>
-                                    <label for="Quantity" class="sr-only"> Cantidad </label>
-                                    <div class="ml-10">Disponibles: {{productoMostrado?.stock}}</div>
-                                </div>
-                                
-                                
-                             
-                                
-                                
-
-                                <div class="flex items-center border border-gray-200 rounded max-w-max">
-                                    <button type="button" (click)="reducir()"
-                                        class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
-                                        &minus;
-                                    </button>
-
-                                    <input type="number" id="cantidad" [(ngModel)] ="cantidad" name="cantidad"
-                                        class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none" />
-
-                                    <button type="button" (click)="aumentar()"
-                                        class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
-                                        &plus;
-                                    </button>
-                                </div>
-                            </fieldset>
-                            <div class="grid grid-cols-2 mt-4 items-center justify-around w-full text-center ">
-                                <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-                                    href="/download">
-                                    <span
-                                        class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
-
-                                    <span class="relative text-sm font-medium text-white transition-colors  ">
-                                        Comprar Ahora
-                                    </span>
-                                </a>
-                                <a class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2 cursor-pointer "
-                                    (click)="agregarCarrito()">
-                                    <span
-                                        class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
-
-                                    <span class="relative text-sm font-medium text-black transition-colors "
-                                    *ngIf="isInBolsa()">
-                                        En el Carrito
-                                    </span>
-                                    <span class="relative text-sm font-medium text-black transition-colors"
-                                    *ngIf="!isInBolsa()">
-                                        Agregar al Carrito
-                                    </span>
-                                </a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- Fin detalle del producto -->
-            </div>
+          </div>
         </div>
-    </section>
+        <!-- Fin grid de imagenes -->
 
+        <!-- Inicio detalle del producto -->
+        <div class="sticky top-16 col-span-5 px-6 items-center ">
+          <div class="flex flex-col justify-center min-h-screen">
+            <h1 class="text-xl font-bold sm:text-2xl w-11/12 capitalize">
+              {{producto?.nombre!}}
+            </h1>
+
+            <div class="mt-8 flex justify-between">
+
+              <div class="space-y-2">
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+                     class="inline-block mr-1 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6.5" cy="6.5" r="6.5"
+                          *ngIf="productoMostrado"
+                          [attr.fill]="productoMostrado!.color?.hexadecimal"></circle>
+                </svg>
+
+                <label *ngIf="productoMostrado"
+                       class="font-semibold text-black">{{productoMostrado.color?.color}}</label>
+
+
+              </div>
+
+              <p class="text-lg font-bold">$119.99</p>
+
+            </div>
+            <div class="my-1 border-0 border-b border-black border-solid  xl:mb-4"></div>
+            <!-- Inicio estrellas -->
+            <div class="-ml-0.5 flex">
+              <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+
+              <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+
+              <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+
+              <svg class="h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                   fill="currentColor">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+
+              <svg class="h-5 w-5 text-white stroke-1 stroke-black" xmlns="http://www.w3.org/2000/svg"
+                   viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+              </svg>
+
+            </div>
+            <!-- Fin estrellas -->
+
+            <div class="mt-4">
+              <div class="line-clamp-2 max-w-none">
+                <p>
+                  {{producto?.descripcion}}
+                </p>
+              </div>
+
+              <!--<a
+                class="relative text-md text-black before:absolute before:-bottom-0.5 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                href="#">
+                Leer mas
+              </a>-->
+            </div>
+
+            <form class="mt-8">
+              <fieldset>
+                <legend class="mb-1 text-sm font-medium">Colores disponibles</legend>
+
+                <div class="flex flex-wrap gap-1">
+                  <div
+                    class="flex w-4/12 gap-2 [&:hover_label]:opacity-75">
+
+                    <div *ngFor="let c of detalle_colores_disponibles;let i=index"
+                         (click)="cambiarColor(c.color?.color!)">
+                      <input type="checkbox" id="ColorSg{{i}}" class="sr-only"/>
+
+                      <label for="ColorSg"
+                             class="block h-6 w-6 cursor-pointer rounded-full bg-[{{c.color?.hexadecimal}}] transition hover:!opacity-100">
+                        <span class="sr-only"> Space Gray </span>
+                      </label>
+                    </div>
+
+
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset class="mt-4">
+                <legend class="mb-1 text-sm font-medium">Tallas disponibles</legend>
+
+                <div class="flex gap-2">
+                  <label for="size_xs" class="cursor-pointer"
+                         *ngFor="let t of tallas_disponibles; let i =index;" (click)="cambiarTalla(t?.talla!)"
+                         [ngClass]="{'bg-black text-white': t?.talla == tallaProducto}">
+                    <input type="radio" name="size" id="size_xs{{i}}" class="peer sr-only"/>
+
+                    <span
+                      class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                        {{t?.talla}}
+                    </span>
+                  </label>
+
+
+                </div>
+              </fieldset>
+              <div class="flex justify-between items-end">
+                <fieldset class="mt-4">
+                  <div class="flex">
+                    <legend class="mb-1 text-sm font-medium">Cantidad</legend>
+                    <label for="Quantity" class="sr-only"> Cantidad </label>
+                  </div>
+
+
+                  <div class="flex items-center border border-gray-200 rounded max-w-max">
+                    <button type="button" (click)="reducir()"
+                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
+                      &minus;
+                    </button>
+
+                    <input [disabled]= "true" type="number" id="cantidad" [(ngModel)]="cantidad" name="cantidad"
+                           class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>
+
+                    <button type="button" (click)="aumentar()"
+                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
+                      &plus;
+                    </button>
+                  </div>
+                </fieldset>
+
+                <div class="">Disponibles: {{productoMostrado?.stock}}</div>
+              </div>
+              <div class="grid grid-cols-2 mt-4 items-center justify-around w-full text-center gap-3">
+                <a
+                  class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring "
+                  href="/download">
+                  <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+                  <span class="relative text-sm font-medium text-white transition-colors  ">
+                    Comprar Ahora
+                  </span>
+                </a>
+                <button
+                  class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring "
+                  [disabled]="isInBolsa()"
+                  [class] = "isInBolsa() || inBolsa === true ? 'opacity-50 cursor-default' : 'cursor-pointer'"
+
+                  (click)="agregarCarrito()">
+                  <span
+                    [class]="isInBolsa() ?  '' : 'absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white'"
+                    class=""></span>
+
+                  <span class="text-sm font-medium text-black transition-colors "
+                        *ngIf="isInBolsa()">
+                    En el carrito
+                  </span>
+                  <span class="relative text-sm font-medium text-black transition-colors" *ngIf="!isInBolsa()">
+                    {{textoCarrito}}
+                  </span>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- Fin detalle del producto -->
+      </div>
+    </div>
+  </section>
 
 
 </main>
