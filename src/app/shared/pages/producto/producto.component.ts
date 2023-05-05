@@ -61,7 +61,8 @@ export class ProductoComponent implements OnInit {
 
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
-
+      this.inBolsa = false
+      this.textoCarrito = "Agregar al carrito"
       this.buscarProducto();
       this.tallas_disponibles = [];
       this.cantidad=1;
@@ -95,7 +96,7 @@ export class ProductoComponent implements OnInit {
           console.log(resp)
         })
         this.toastService.success("Producto agregado correctamente")
-        this.textoCarrito = "En el carrito vghvgv"
+        this.textoCarrito = "En el carrito"
         this.inBolsa = true
       }else{
         this.textoCarrito = "Agregar al carrito"
@@ -110,8 +111,6 @@ export class ProductoComponent implements OnInit {
   }
 
   isInBolsa(){
-    this.inBolsa = false
-
     if(!this.isAuth){
       return false;
     }
@@ -119,7 +118,7 @@ export class ProductoComponent implements OnInit {
     this.usuario.bolsa?.forEach(elemento=>{
       if(elemento.detalle_producto?.id==this.productoMostrado!.id){
         this.inBolsa = true;
-        console.log(this.inBolsa)
+
       }
     })
 
@@ -215,6 +214,7 @@ export class ProductoComponent implements OnInit {
 
       }
     })
+
     this.router.navigate(['producto',this.producto?.id,color,talla])
 
   }
