@@ -51,6 +51,7 @@ export class CarritoComprasComponent implements OnInit {
           const elemento_producto: ProductoCarrito = {
             costo: producto.precio!,
             nombre: producto.nombre!,
+            id: producto.id,
             color: elementos_bolsa[index].detalle_producto?.color?.color || '',
             talla: elementos_bolsa[index].detalle_producto?.talla?.talla || '',
           };

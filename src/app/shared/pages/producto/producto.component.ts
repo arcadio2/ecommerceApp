@@ -95,7 +95,7 @@ export class ProductoComponent implements OnInit {
           console.log(resp)
         })
         this.toastService.success("Producto agregado correctamente")
-        this.textoCarrito = "En el carrito"
+        this.textoCarrito = "En el carrito vghvgv"
         this.inBolsa = true
       }else{
         this.textoCarrito = "Agregar al carrito"
