@@ -14,8 +14,8 @@ export class AdminGuard implements CanActivate, CanLoad {
   }
 
   canActivate(): Observable<boolean > | Promise<boolean > | boolean  {
-    if(!this.authService.isAdmin()){
-      this.router.navigateByUrl("/user"); 
+    if(!this.authService.isAdmin()!){
+      this.router.navigateByUrl(""); 
       return false; 
     }
     return true;
