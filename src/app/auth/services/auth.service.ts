@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/user.model';
 import { BehaviorSubject } from 'rxjs';
+import { openDB } from 'idb';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,11 @@ export class AuthService {
   private _token!: string | null;
   public _isAuth = new BehaviorSubject<boolean>(false);
   //private _isAuth!: boolean; 
+  private dbPromise = openDB('mi-base-de-datos', 1, {
+    upgrade(db) {
+      db.createObjectStore('usuarios', { keyPath: 'id' });
+    },
+  });
 
 
   constructor(private http:HttpClient, private router: Router) { 
@@ -24,8 +31,8 @@ export class AuthService {
   public get usuario(): User {
     if (this._usuario != null) {
       return this._usuario;
-    } else if (this._usuario == null && sessionStorage.getItem('usuario') != null) {
-      let jsonUser = sessionStorage.getItem('usuario') || '';
+    } else if (this._usuario == null && localStorage.getItem('usuario') != null) {
+      let jsonUser = localStorage.getItem('usuario') || '';
       if(jsonUser!=''){
         this._usuario = JSON.parse( jsonUser ) as User ;
         return this._usuario;
@@ -46,8 +53,8 @@ export class AuthService {
   public get token(): string | null {
     if (this._token != null) {
       return this._token;
-    } else if (this._token == null && sessionStorage.getItem('token') != null) {
-      const tokenJson = sessionStorage.getItem('token') || '';
+    } else if (this._token == null && localStorage.getItem('token') != null) {
+      const tokenJson = localStorage.getItem('token') || '';
 
       this._token = tokenJson;
       if(tokenJson){
@@ -83,7 +90,14 @@ export class AuthService {
 
   guardarToken(accessToken: string): void {
     this._token = accessToken;
-    sessionStorage.setItem('token', accessToken);
+    this.dbPromise.then((db) => {
+      const tx = db.transaction('usuarios', 'readwrite');
+      const usuarios = tx.objectStore('usuarios');
+      usuarios.put({ id: 'token', value: accessToken });
+      return tx.oncomplete;
+    });
+    localStorage.setItem('token', accessToken);
+    
   }
 
   obtenerDatosToken(accessToken: string): any {
@@ -105,10 +119,11 @@ export class AuthService {
     this._usuario.roles = payload.authorities;
     
 
-    sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
+    localStorage.setItem('usuario', JSON.stringify(this._usuario));
   }
 
   isAuthenticated():boolean{
+    
     let payload = this.obtenerDatosToken(this.token!);
     if (payload != null && payload.user_name && payload.user_name.length > 0) {
       return true;
@@ -117,7 +132,8 @@ export class AuthService {
   }
   isAdmin():boolean{
     let user = this.usuario;
-    if(!user){
+
+    if(!this.isAuthenticated()){
       return false; 
     }
     let ban = false; 
@@ -131,7 +147,8 @@ export class AuthService {
   }
   isUser():boolean{
     let user = this.usuario;
-    if(!user){
+   
+    if(!this.isAuthenticated()){
       return false; 
     }
     let ban = false; 
@@ -167,9 +184,9 @@ export class AuthService {
   logout(): void {
     this._token = null;
     this._usuario = null;
-    sessionStorage.clear();
-    sessionStorage.removeItem('token');
-    sessionStorage.removeItem('usuario');
+    localStorage.clear();
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
   }
 
   
