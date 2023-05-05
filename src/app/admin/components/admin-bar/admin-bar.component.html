@@ -1,0 +1,75 @@
+<div class="mx-4">
+
+    <div class="space-y-4 mat-table-sticky top-16">
+      <div class="text-2xl font-semibold text-black">
+        Gestion del administrador
+      </div>
+      <div class="flex flex-col items-start">
+        <a
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
+          [class]="moduloAdmin === 0 ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+          (click)=seleccionarModuloAdmin(0)
+          [routerLink]="[' ']"
+        >
+          <mat-icon>manage_accounts</mat-icon>
+          <span>
+            Inicio
+          </span>
+        </a>
+        <div
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
+          [class]="moduloAdmin === 1 ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+          (click)=seleccionarModuloAdmin(1)
+          [routerLink]="['ventas-pedidos']"
+        >
+          <mat-icon>add_location_alt</mat-icon>
+          <span>
+            Ventas y Pedidos
+          </span>
+
+        </div>
+        <div
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
+          [class]="moduloAdmin === 2 ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+          (click)=seleccionarModuloAdmin(2)
+          [routerLink]="['gestionar-productos']"
+        >
+
+          <mat-icon>inventory_2</mat-icon>
+          <span>
+            Gestión de productos
+          </span>
+        </div>
+        <div
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
+          [class]="moduloAdmin === 3 ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+          (click)=seleccionarModuloAdmin(3)
+          [routerLink]="['estadisticas']"
+        >
+
+          <mat-icon>insert_comment</mat-icon>
+
+          <span>
+            Estadísticas de clientes
+          </span>
+        </div>
+        <div
+          class="relative text-lg  ease-out mt-8 cursor-pointer flex items-center gap-2"
+          [class]="moduloAdmin === 4 ? 'font-extrabold' : 'font-medium hover:font-bold text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-20' "
+          (click)=seleccionarModuloAdmin(3)
+          [routerLink]="['reporte-general']"
+        >
+
+          <mat-icon>insert_comment</mat-icon>
+
+          <span>
+            Reporte general
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+</div>
+

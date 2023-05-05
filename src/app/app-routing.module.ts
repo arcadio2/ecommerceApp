@@ -8,6 +8,10 @@ import { ListadoProductosComponent } from './shared/pages/listado-productos/list
 
 const routes: Routes = [
   {
+    path: "administrador",
+    loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)
+  },
+  {
     path:'home',
     component:HomeComponent
   },
@@ -22,7 +26,7 @@ const routes: Routes = [
   {
     path:'auth',
     loadChildren: ()=>import('./auth/auth.module').then(m=>m.AuthModule),
-   
+
   },
   {
     path:'user',

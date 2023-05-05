@@ -2,16 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { IndexAdminComponent } from './pages/index-admin/index-admin.component';
+import { AdminBarComponent } from './components/admin-bar/admin-bar.component';
+import {InicioComponent} from "./components/inicio/inicio.component";
+import {MatIconModule} from "@angular/material/icon";
+
 
 
 @NgModule({
   declarations: [
-    IndexAdminComponent
+    AdminBarComponent,
+    InicioComponent
   ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    MatIconModule
   ]
 })
-export class AdminModule { }
+export class AdminModule { } 
