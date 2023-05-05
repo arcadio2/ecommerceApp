@@ -44,8 +44,12 @@
               alt="{{elemento?.ropa?.imagen}}" >
             </div>
             <div class="flex flex-col w-1/2">
-              <div class="font-bold text-base capitalize">
+              
+              <div class="font-bold text-base capitalize cursor-pointer"
+                
+              [routerLink]="['/producto',elemento.ropa?.id,elemento.ropa?.color,elemento.ropa?.talla]">
                 {{elemento?.ropa?.nombre}}
+            
               </div>
               <div class="">
                 Talla: {{elemento?.ropa?.talla}}
@@ -77,7 +81,7 @@
 
               </div>
 
-              <div class="10">Disponibles: {{bolsa[i].cantidad}}</div>
+              <div class="10">Disponibles: {{bolsa[i].detalle_producto?.stock}}</div>
 
             </div>
 
