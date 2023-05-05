@@ -188,7 +188,7 @@
                   <span
                     [class]="isInBolsa() ?  '' : 'absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white'"
                    ></span>
-                 
+
                   <span class="text-sm font-medium text-black transition-colors "
                         *ngIf="isInBolsa()">
                     En el carrito
@@ -196,7 +196,7 @@
                   <span class="text-sm font-medium text-black transition-colors "
                         *ngIf="!isInBolsa()">
                         {{!cambiaEstado ?'Agregar al carrito':'En el carrito' }}
-                    
+
                   </span>
                   <!-- <span class="relative text-sm font-medium text-black transition-colors" >
                     {{textoCarrito}}
