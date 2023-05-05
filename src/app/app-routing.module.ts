@@ -5,6 +5,8 @@ import { AuthGuard } from './logged/guards/auth.guard';
 import { LoggedGuard } from './auth/guards/logged.guard';
 import { ProductoComponent } from './shared/pages/producto/producto.component';
 import { ListadoProductosComponent } from './shared/pages/listado-productos/listado-productos.component';
+import { AdminGuard } from './admin/guards/admin.guard';
+import { NoAdminGuard } from './admin/guards/no-admin.guard';
 
 const routes: Routes = [
   {
@@ -31,12 +33,14 @@ const routes: Routes = [
   {
     path:'user',
     loadChildren:()=>import('./logged/logged.module').then(m=>m.LoggedModule),
-    canActivate:[AuthGuard],
-    canLoad:[AuthGuard]
+    canActivate:[AuthGuard,NoAdminGuard],
+    canLoad:[AuthGuard,NoAdminGuard],
   },
   {
     path:'admin',
-    loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule)
+    loadChildren:()=>import('./admin/admin.module').then(m=>m.AdminModule),
+    canActivate:[AdminGuard],
+    canLoad:[AdminGuard]
   },
   {
     path:'**',redirectTo:'home'
