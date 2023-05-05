@@ -10,13 +10,13 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ProductosService } from 'src/app/services/productos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
-
+import { BehaviorSubject } from 'rxjs';
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
   styleUrls: ['./producto.component.css']
 })
-export class ProductoComponent implements OnInit {
+export class ProductoComponent implements OnInit,OnChanges {
 
   usuario!:User;
   colorSelected!:Color;
@@ -36,8 +36,10 @@ export class ProductoComponent implements OnInit {
   detalle_tallas_disponibles:DetalleProducto[] | undefined=[];
   tallas_disponibles:(Talla| undefined)[] = [];
 
-  inBolsa: boolean = false
-  textoCarrito: string = "Agregar al carrito"
+  inBolsa: boolean = false; 
+  cambiaEstado:boolean = false;
+  textoCarrito: string = "Agregar al carrito"; 
+  //inBolsaS = new BehaviorSubject <boolean>(false);
 
 
   constructor(private route: ActivatedRoute,
@@ -57,16 +59,19 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params=>{
+      this.cambiaEstado = false; 
       this.idProducto = parseInt(params.get('id')!);
 
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
-      this.inBolsa = false
-      this.textoCarrito = "Agregar al carrito"
+      
+     this.textoCarrito = "Agregar al carrito"; 
+     this.inBolsa = false; 
+
       this.buscarProducto();
       this.tallas_disponibles = [];
       this.cantidad=1;
-
+      
     });
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
@@ -79,12 +84,18 @@ export class ProductoComponent implements OnInit {
     }
   }
 
+  ngOnChanges(): void {
+    
+    /* this.tallas_disponibles = [];
+    this.buscarProducto(); */
+  }
+
 
   agregarCarrito(){
     if(this.isAuth){
       //Función para agregar al carrito
       if(!this.isInBolsa()){
-        console.log(this.productoMostrado)
+       
         const  detalle:DetalleProducto = this.productoMostrado as DetalleProducto;
         detalle.nombre_producto = this.productoMostrado?.producto?.nombre;
 
@@ -96,11 +107,15 @@ export class ProductoComponent implements OnInit {
           console.log(resp)
         })
         this.toastService.success("Producto agregado correctamente")
-        this.textoCarrito = "En el carrito"
-        this.inBolsa = true
+        
+        this.router.navigateByUrl("/user/carrito-compras")
+        this.inBolsa = true; 
+        this.cambiaEstado = true; 
+        //window.location.reload();
+        //this.inBolsaS.next(true); 
       }else{
         this.textoCarrito = "Agregar al carrito"
-        this.inBolsa = false
+        this.inBolsa = false;
         //this.bolsaService.eliminarCarrito.
       }
 
@@ -112,18 +127,30 @@ export class ProductoComponent implements OnInit {
 
   isInBolsa(){
     if(!this.isAuth){
+      
       return false;
     }
-
+    let bandera = false; 
+    
     this.usuario.bolsa?.forEach(elemento=>{
       if(elemento.detalle_producto?.id==this.productoMostrado!.id){
-        this.inBolsa = true;
+        bandera = true;
+        
+
+        //this.textoCarrito = "En el carrito"; 
+       
 
       }
     })
 
-    return this.inBolsa;
+    return bandera;
   }
+
+/*   obtener(){
+    this.inBolsaS.subscribe(resp=>{
+      this.inBolsa = resp; 
+    })
+  } */
 
 
   buscarProducto(){
@@ -145,19 +172,7 @@ export class ProductoComponent implements OnInit {
         // Devolvemos el acumulador en cada iteración
         return acumulador;
       }, []);
-/*       this.detalle_tallas_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
 
-        if (detalle.talla) {
-
-          if (!acumulador.some(det => det.talla?.talla === detalle.talla?.talla ) ) {
-
-            acumulador.push(detalle);
-          }
-        }
-        // Devolvemos el acumulador en cada iteración
-        return acumulador;
-      }, []);
- */
       this.producto.detalle!.forEach(resp=>{
         if(resp.color?.color==this.colorProducto){
           this.tallas_disponibles.push(resp.talla!) ;
@@ -167,30 +182,21 @@ export class ProductoComponent implements OnInit {
 
       this.tallas_disponibles = [...dataArr];
 
-     /*  this.producto.detalle?.forEach(detalle=>{
-
-        if(detalle.color?.color==this.colorProducto){
-          this.detalle_tallas_disponibles?.push(detalle)
-        }
-      })
-
-      this.producto.detalle?.forEach(detalle=>{
-
-        if(detalle.talla?.talla==this.tallaProducto){
-          this.detalle_colores_disponibles?.push(detalle)
-        }
-      }) */
+     
 
       if(!this.productoMostrado){
 
       }
-
+      
+     //this.inBolsaS.next(this.isInBolsa());
+      
       this.imagenesService.obtenerImagenes(this.producto?.nombre!,this.productoMostrado?.color?.color!).subscribe(img=>{
 
         this.imagenes = img.rutas;
       },err=>{
         this.toastService.error("No se han encontrado las imagenes");
       })
+
     },err=>{
       if(err.status==404){
         this.toastService.error("No existe el proucto")
