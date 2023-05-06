@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ButtonComponent } from './shared/compinents/button/button.component';
 import {LoggedModule} from "./logged/logged.module";
 import {MatIconModule} from "@angular/material/icon";
+import { VisualizarComentariosComponent } from './shared/pages/visualizar-comentarios/visualizar-comentarios.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatIconModule} from "@angular/material/icon";
     DetalleProductoComponent,
     ListadoProductosComponent,
     DialogComponentComponent,
-    ButtonComponent
+    ButtonComponent,
+    VisualizarComentariosComponent
   ],
     imports: [
         BrowserModule,

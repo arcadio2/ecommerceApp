@@ -11,6 +11,11 @@ import { ProductosService } from 'src/app/services/productos.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { environment } from 'src/environments/environment';
 import { BehaviorSubject } from 'rxjs';
+import {
+  AgregarProductoComponent
+} from "../../../admin/modules/gestion-productos/components/agregar-producto/agregar-producto.component";
+import {MatDialog} from "@angular/material/dialog";
+import {VisualizarComentariosComponent} from "../visualizar-comentarios/visualizar-comentarios.component";
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -36,9 +41,10 @@ export class ProductoComponent implements OnInit,OnChanges {
   detalle_tallas_disponibles:DetalleProducto[] | undefined=[];
   tallas_disponibles:(Talla| undefined)[] = [];
 
-  inBolsa: boolean = false; 
+  inBolsa: boolean = false;
   cambiaEstado:boolean = false;
-  textoCarrito: string = "Agregar al carrito"; 
+  textoCarrito: string = "Agregar al carrito";
+  loading = false
   //inBolsaS = new BehaviorSubject <boolean>(false);
 
 
@@ -49,6 +55,7 @@ export class ProductoComponent implements OnInit,OnChanges {
               private router:Router,
               private imagenesService:ImagenesService,
               private bolsaService:BolsaService,
+              private dialog: MatDialog,
 
               private detalleService:DetalleService,
               private productoService:ProductosService
@@ -59,19 +66,19 @@ export class ProductoComponent implements OnInit,OnChanges {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe(params=>{
-      this.cambiaEstado = false; 
+      this.cambiaEstado = false;
       this.idProducto = parseInt(params.get('id')!);
 
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
-      
-     this.textoCarrito = "Agregar al carrito"; 
-     this.inBolsa = false; 
+
+     this.textoCarrito = "Agregar al carrito";
+     this.inBolsa = false;
 
       this.buscarProducto();
       this.tallas_disponibles = [];
       this.cantidad=1;
-      
+
     });
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
@@ -85,7 +92,7 @@ export class ProductoComponent implements OnInit,OnChanges {
   }
 
   ngOnChanges(): void {
-    
+
     /* this.tallas_disponibles = [];
     this.buscarProducto(); */
   }
@@ -95,7 +102,7 @@ export class ProductoComponent implements OnInit,OnChanges {
     if(this.isAuth){
       //Función para agregar al carrito
       if(!this.isInBolsa()){
-       
+
         const  detalle:DetalleProducto = this.productoMostrado as DetalleProducto;
         detalle.nombre_producto = this.productoMostrado?.producto?.nombre;
 
@@ -107,12 +114,12 @@ export class ProductoComponent implements OnInit,OnChanges {
           console.log(resp)
         })
         this.toastService.success("Producto agregado correctamente")
-        
+
         this.router.navigateByUrl("/user/carrito-compras")
-        this.inBolsa = true; 
-        this.cambiaEstado = true; 
+        this.inBolsa = true;
+        this.cambiaEstado = true;
         //window.location.reload();
-        //this.inBolsaS.next(true); 
+        //this.inBolsaS.next(true);
       }else{
         this.textoCarrito = "Agregar al carrito"
         this.inBolsa = false;
@@ -127,18 +134,18 @@ export class ProductoComponent implements OnInit,OnChanges {
 
   isInBolsa(){
     if(!this.isAuth){
-      
+
       return false;
     }
-    let bandera = false; 
-    
+    let bandera = false;
+
     this.usuario.bolsa?.forEach(elemento=>{
       if(elemento.detalle_producto?.id==this.productoMostrado!.id){
         bandera = true;
-        
 
-        //this.textoCarrito = "En el carrito"; 
-       
+
+        //this.textoCarrito = "En el carrito";
+
 
       }
     })
@@ -148,7 +155,7 @@ export class ProductoComponent implements OnInit,OnChanges {
 
 /*   obtener(){
     this.inBolsaS.subscribe(resp=>{
-      this.inBolsa = resp; 
+      this.inBolsa = resp;
     })
   } */
 
@@ -182,14 +189,14 @@ export class ProductoComponent implements OnInit,OnChanges {
 
       this.tallas_disponibles = [...dataArr];
 
-     
+
 
       if(!this.productoMostrado){
 
       }
-      
+
      //this.inBolsaS.next(this.isInBolsa());
-      
+
       this.imagenesService.obtenerImagenes(this.producto?.nombre!,this.productoMostrado?.color?.color!).subscribe(img=>{
 
         this.imagenes = img.rutas;
@@ -262,6 +269,18 @@ export class ProductoComponent implements OnInit,OnChanges {
       }
     })
     return existe;
+  }
+
+  verComentarios() {
+    this.loading = true
+    this.dialog.open(VisualizarComentariosComponent, {
+      width: '80%',
+      hasBackdrop: true
+    }).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+      }
+    });
   }
 
 }
