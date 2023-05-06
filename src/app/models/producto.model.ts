@@ -33,6 +33,7 @@ export interface DetalleProducto {
     talla?: Talla | null;
     id?:    number;
     nombre_producto?:string; 
+    id_producto?:number;
 }
 
 export interface Color {
