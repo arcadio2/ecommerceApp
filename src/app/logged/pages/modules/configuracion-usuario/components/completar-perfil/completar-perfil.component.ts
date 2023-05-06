@@ -13,8 +13,8 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class CompletarPerfilComponent implements OnInit {
 
 
-  usuario: User | undefined;  
-  perfil!:Perfil | undefined; 
+  usuario: User | undefined;
+  perfil!:Perfil | undefined;
   perfilForm!:FormGroup;
 
   constructor(private router: Router,
@@ -24,19 +24,27 @@ export class CompletarPerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.perfilForm = this.fromBuilder.group({
+      nombre:['',[Validators.required]],
+      apellido:['',[Validators.required]],
       altura:['',[Validators.required]],
       talla_camisa:['',[Validators.required]],
       talla_pantalon:['',[Validators.required]],
       edad:['',[Validators.required]],
       password:['',[Validators.required]]
     })
+
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
-      this.usuario = resp.usuario as User;  
+      this.usuario = resp.usuario as User;
     })
+
     this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
- 
-      this.perfil = resp.perfil as Perfil;  
+
+      this.perfil = resp.perfil as Perfil;
+      console.log(this.perfil)
       if(this.perfil){
+
+        this.perfilForm.get('nombre')?.setValue(this.perfil.usuario?.nombre);
+        this.perfilForm.get('apellido')?.setValue(this.perfil.usuario?.apellido);
         this.perfilForm.get('altura')?.setValue(this.perfil.altura);
         this.perfilForm.get('edad')?.setValue(this.perfil.edad);
         this.perfilForm.get('talla_pantalon')?.setValue(this.perfil.talla_camisa);
@@ -44,8 +52,12 @@ export class CompletarPerfilComponent implements OnInit {
 
 
       }
+      this.usuario = resp.usuario as User;
+      //if(this.usuario){
+      //  this.perfilForm.get('nombre')?.setValue(this.usuario.nombre);
+      //}
     },err=>{
-      
+
     })
   }
 

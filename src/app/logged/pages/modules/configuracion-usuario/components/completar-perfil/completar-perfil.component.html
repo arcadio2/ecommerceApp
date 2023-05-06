@@ -36,6 +36,15 @@
 
           <div class="my-8">
             <label class="block text-black font-bold mb-2" >
+              Apellido *
+            </label>
+            <input name="apellido" formControlName="apellido"
+                   class="border-b border-black w-full text-black-700
+              leading-tight focus:outline-none focus:border-black-500 p-1" id="Apellido" type="text">
+          </div>
+
+          <div class="my-8">
+            <label class="block text-black font-bold mb-2" >
               Edad *
             </label>
             <input name="edad" formControlName="edad"
@@ -85,18 +94,31 @@
               leading-tight focus:outline-none focus:border-black-500 p-1" id="talla_pantalon" type="text">
           </div>
 
-          <div class="flex items-center justify-center mt-14 w-full">
-            <button
-              class="bg-gray-950 text-white font-bold rounded border-2
-              hover:bg-black
-              focus:outline-none
-              focus:ring
-              focus:ring-gray-300
-              hover: border-black
-              w-full p-3" type="submit">
-              Enviar
-            </button>
+          <div class="flex items-center justify-center mt-3 w-full">
+            <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+               href="#">
+                            <span
+                              class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+              <span class="relative text-sm font-medium text-white transition-colors  text-center">
+                                Enviar
+                            </span>
+            </a>
           </div>
+
+          <div class="flex items-center justify-center mt-3 w-full">
+            <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+               href="#">
+                            <span
+                              class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+              <span class="relative text-sm font-medium text-white transition-colors  text-center">
+                                Cancelar
+                            </span>
+            </a>
+          </div>
+
+
 
         </form>
       </div>

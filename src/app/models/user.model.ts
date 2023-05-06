@@ -6,16 +6,16 @@ export interface Sexo{
 }
 export class User {
     id!:number;
-    username!:string;
-    enabled!:boolean;
-    bolsa?:    Bolsa[];
-    compras?:  any[]; //TODO 
-    nombre!:string;
-    apellido!:string;
-    email!:string;
-    password!:string
+    username!:    string;
+    enabled!:     boolean;
+    bolsa?:       Bolsa[];
+    compras?:     any[]; //TODO
+    nombre!:      string;
+    apellido!:    string;
+    email!:       string;
+    password!:    string
    /*  roles!:Role[] */
-    roles!:string[];
+    roles!:       string[];
 }
 
 
@@ -30,7 +30,7 @@ export interface Role{
 
 
 export interface DiaSemana{
-    id:number; 
+    id:number;
     dia:string;
 }
 
@@ -52,8 +52,8 @@ export interface Perfil {
 export interface Direcciones {
     cp?:number,
     colonia?:string;
-    delegacion?:string; 
-    num_int?:number; 
-    num_ext?:number; 
+    delegacion?:string;
+    num_int?:number;
+    num_ext?:number;
 }
 
