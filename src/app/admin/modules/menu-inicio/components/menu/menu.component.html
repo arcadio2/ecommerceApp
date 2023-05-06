@@ -1,1 +1,43 @@
-<p>menu works!</p>
+<div class="grid grid-cols-4 gap-5 mx-10 mt-4">
+
+  <div class="col-span-1 bg-white"></div>
+
+  <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-200 ease-in-out transform hover:scale-105  hover:invert p-4 cursor-pointer"
+       [routerLink]="'ventas-pedidos'"
+  >
+    <h2 class="text-lg font-bold py-2">VENTAS Y PEDIDOS</h2>
+    <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/9341/9341285.png " alt="Tienda de ropa">
+    <p class="pb-4">Visualiza el número de pedidos realizados y el monto total de las ventas</p>
+  </div>
+
+  <div class="col-span-1 bg-white"></div>
+
+  <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-200 ease-in-out transform hover:scale-105  hover:invert cursor-pointer"
+       [routerLink]="['gestionar-productos']"
+  >
+    <h2 class="text-lg font-bold py-2">GESTIÓN DE PRODUCTOS</h2>
+    <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/2946/2946695.png" alt="Imagen">
+    <p class="pb-4">Agrega, edita y elimina productos</p>
+  </div>
+
+  <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-200 ease-in-out transform hover:scale-105  hover:invert cursor-pointer"
+       [routerLink]="['reporte-general']"
+  >
+    <h2 class="text-lg font-bold py-2">REPORTE GENERAL</h2>
+    <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/921/921540.png" alt="Estadísticas">
+    <p class="pb-4">Accede a un informe y evalua el desempeño del negocio</p>
+  </div>
+
+  <div class="col-span-1 bg-white"></div>
+
+  <div class="col-span-2 border-t-4 border-black bg-white text-black text-center transition duration-200 ease-in-out transform hover:scale-105  hover:invert p-4 cursor-pointer"
+       [routerLink]="['estadisticas']"
+  >
+    <h2 class="text-lg font-bold py-2">ESTADÍSTICAS DE CLIENTES</h2>
+    <img class="w-16 h-16 mx-auto my-4 filter" src="https://cdn-icons-png.flaticon.com/512/1322/1322236.png" alt="Clientes">
+    <p class="pb-4">Identifica los patrones de compra y las tendencias en los datos para mejorar la experiencia</p>
+  </div>
+
+  <div class="col-span-1 bg-white"></div>
+
+</div>
