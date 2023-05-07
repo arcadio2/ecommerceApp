@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Comentario, Producto } from 'src/app/models/producto.model';
+import { ComentariosService } from 'src/app/services/comentarios.service';
 
 @Component({
   selector: 'app-visualizar-comentarios',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VisualizarComentariosComponent implements OnInit {
 
-  constructor() { }
+  comentarios:Comentario[] = []; 
+
+  constructor(private comentarioService:ComentariosService,
+    @Inject(MAT_DIALOG_DATA) public producto: Producto ) { }
 
   ngOnInit(): void {
+    this.comentarioService.getComentariosProducto(this.producto.id!).subscribe((resp:any)=>{
+      this.comentarios = resp.comentarios as Comentario[]
+      console.log(resp)
+    })
   }
 
 

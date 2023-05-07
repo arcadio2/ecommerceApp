@@ -8,6 +8,7 @@
     <div class="grid grid-cols-5">
 
       <div class="col-span-2 grid grid-rows-5 grid-flow-col border-r-2 border-black">
+        
 
         <div class="row-span-2 grid grid-rows-4 grid-flow-col p-5">
           <div class="grid grid-cols-3">
@@ -111,9 +112,40 @@
         </div>
 
       </div>
-      <div class="col-span-3">
+      <div *ngIf="comentarios.length===0">
+        Aún no hay comentarios para este producto
+      </div>
+      <div class="col-span-3" *ngIf="comentarios.length!==0">
+     
+        <div *ngFor="let comentario of comentarios" class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2">
+          <div class="grid grid-cols-2 p-4">
+            <div class="grid grid-cols-5">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                  alt="">
+            </div>
+            <div class="grid justify-end font-bold">{{comentario.titulo}}</div>
+          </div>
+          <div class="row-span-2 pl-4 text-justify">
+            {{comentario.comentario}}
+          </div>
+          <div class="font-light pl-4">
+            {{comentario.usuario?.nombre!}} {{comentario.usuario?.apellido!}}
+          </div>
+          
 
-        <div class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2">
+
+        </div>
+
+        <div class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2"> <!--1 comentario-->
           <div class="grid grid-cols-2 p-4">
             <div class="grid grid-cols-5">
               <img class="h-6 w-6"

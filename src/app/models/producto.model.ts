@@ -22,6 +22,7 @@ export interface Comentario {
     username?:   string;
     comentario?: string;
     valoracion?: number;
+    titulo?:     string;
     id?:         number;
 }
 
@@ -82,4 +83,9 @@ export  interface ElementoCarrito {
     producto?:        Producto;
     nombre_producto?: null | string;
     id?:              number;
+  }
+
+  export interface ComentarioProducto{
+    comentario:string,
+    valoracion:number
   }
