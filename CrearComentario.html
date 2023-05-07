@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Crear Comentario</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600&display=swap" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
+
+    </head>
+    <body class="font-['Be_Vietnam_Pro']">
+        <main class="min-h-screen flex flex-col">
+            <section>
+                <div class="border-r-4 border-l-4 border-t-4 border-b-4 border-black -500 p-4">
+                    <div class="border-b-2 border-black -500 p-4">
+                                <div class="flex justify-center items-center text-3xl font-bold mt-8">
+                                        <div>Crear Comentario</div>
+                                </div>
+                    </div>
+                    <div class="flex flex-row">
+                        <div class="w-1/3 p-4 border-r-2 border-black -500 p-4">
+                            <div class="flex justify-center items-center text-3l font-bold mt-5">
+                                <div>Camiseta Skater Oversized en Negro Degradado </div>
+                            </div>
+                            <div class="flex justify-center">
+                                <img src="https://via.placeholder.com/400x400" alt="Placeholder Image" class="w-1/2">
+                            </div>         
+                        </div>
+                        
+                        <div class="w-2/3 p-4 -500 p-4 ">
+                            <form> 
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 font-bold mb-2" for="rating">
+                                        Calificación
+                                        </label>
+                                        <div class="flex items-center">
+                                        <input class="hidden" type="radio" name="rating" id="rating-1" value="1" />
+                                        <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-1">
+                                            <i class="far fa-star"></i>
+                                        </label>
+                                        <input class="hidden" type="radio" name="rating" id="rating-2" value="2" />
+                                        <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-2">
+                                            <i class="far fa-star"></i>
+                                        </label>
+                                        <input class="hidden" type="radio" name="rating" id="rating-3" value="3" />
+                                        <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-3">
+                                            <i class="far fa-star"></i>
+                                        </label>
+                                        <input class="hidden" type="radio" name="rating" id="rating-4" value="4" />
+                                        <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-4">
+                                            <i class="far fa-star"></i>
+                                        </label>
+                                        <input class="hidden" type="radio" name="rating" id="rating-5" value="5" />
+                                        <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-5">
+                                            <i class="far fa-star"></i>
+                                        </label>
+                                        </div>
+                                    </div>                             
+                                    <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                     Agregar Titulo</label>
+                                    <input type="text" id="small-input" class="block w-full p-2 text-gray-900 border border-gray-300 
+                                    rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 
+                                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400
+                                    dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">                              
+                                <div class="mb-6">
+                                    <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                    Agregar un Comentario Escrito</label>
+                                    <input type="text" id="large-input" class="block w-full p-6 text-gray-900 border border-gray-300
+                                    rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 
+                                    dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                                    dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <button
+                                class="bg-gray-950 text-white font-bold rounded border-2
+                                    hover:bg-black
+                                    focus:outline-none
+                                    focus:ring
+                                    focus:ring-gray-300
+                                    hover: border-black
+                                    w-[200px] p-3" type="submit">
+                                    Enviar
+                            </button>
+                            <button type="button" 
+                            class="text-gray-900 
+                                hover:text-white border border-gray-800
+                                hover:bg-gray-900 
+                                focus:ring-4
+                                focus:outline-none 
+                                focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 
+                                dark:border-gray-600 
+                                dark:text-gray-400 
+                                dark:hover:text-white 
+                                dark:hover:bg-gray-600 
+                                dark:focus:ring-gray-800"type="submit">
+                                Cancelar
+                            </button>
+                                                        
+                            </form>
+                        </div>              
+                    </div>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>
