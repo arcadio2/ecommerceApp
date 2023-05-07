@@ -19,18 +19,6 @@ export class IndexloggedComponent implements OnInit {
     private productoService:ProductosService) { }
 
   ngOnInit(): void {
- 
-    
-   
-    
-    this.productoService.getProducto("playera verde").subscribe(resp=>{
-      //console.log(resp)
-      let producto: Producto = resp.producto; 
-      this.productoService.addComentario(producto).subscribe(resp=>{
-        
-        console.log(resp)
-      }); 
-    })
    
   }
 
