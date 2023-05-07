@@ -87,5 +87,6 @@ export  interface ElementoCarrito {
 
   export interface ComentarioProducto{
     comentario:string,
-    valoracion:number
+    valoracion:number,
+    titulo:string
   }
