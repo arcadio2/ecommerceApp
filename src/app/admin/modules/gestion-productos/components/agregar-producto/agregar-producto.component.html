@@ -183,25 +183,25 @@
         </div>
       </div>
     </div>
-    <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-      <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-        (click)="registrarNuevoProducto()"
-      >
-        <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
-
-        <span class="relative text-sm font-medium text-white transition-colors  text-center">
-          Guardar Cambios
-        </span>
-      </button>
-      <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-        (click)="cancelar()"
-      >
-        <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
-
-        <span class="relative text-sm font-medium text-black transition-colors text-center">
-          Cancelar
-        </span>
-      </button>
-    </div>
   </mat-dialog-content>
 <!-- Fin modal -->
+  <mat-dialog-actions align="center">
+    <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+            (click)="registrarNuevoProducto()"
+    >
+      <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+      <span class="relative text-sm font-medium text-white transition-colors  text-center">
+          Guardar Cambios
+        </span>
+    </button>
+    <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+            (click)="cancelar()"
+    >
+      <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+
+      <span class="relative text-sm font-medium text-black transition-colors text-center">
+          Cancelar
+        </span>
+    </button>
+  </mat-dialog-actions>

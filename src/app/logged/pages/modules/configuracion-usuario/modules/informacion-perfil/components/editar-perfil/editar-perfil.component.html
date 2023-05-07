@@ -89,33 +89,29 @@
       </div>
     </form>
 
-    <div class="flex gap-3">
-      <div class="flex items-center justify-center mt-3 w-full">
-        <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-          (click)="editarPerfil()"
-        >
-                              <span
-                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
-
-          <span class="relative text-sm font-medium text-white transition-colors  text-center">
-                                  Enviar
-                              </span>
-        </button>
-      </div>
-
-      <div class="flex items-center justify-center mt-3">
-        <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-           (click)="cancelar()"
-        >
-                              <span
-                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-red-500 transition-all group-hover:w-full group-active:bg-white"></span>
-
-          <span class="relative text-sm font-medium text-red-500 transition-colors  text-center">
-                                  Cancelar
-                              </span>
-        </button>
-      </div>
-    </div>
 
   </div>
 </mat-dialog-content>
+
+<mat-dialog-actions align="center">
+  <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          (click)="editarPerfil()"
+  >
+                              <span
+                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-medium text-white transition-colors  text-center">
+                                  Enviar
+                              </span>
+  </button>
+  <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          (click)="cancelar()"
+  >
+                              <span
+                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-red-500 transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-medium text-red-500 transition-colors  text-center">
+                                  Cancelar
+                              </span>
+  </button>
+</mat-dialog-actions>
