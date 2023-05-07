@@ -4,23 +4,29 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Perfil, User } from 'src/app/models/user.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
-  selector: 'app-completar-perfil',
-  templateUrl: './completar-perfil.component.html',
-  styleUrls: ['./completar-perfil.component.css']
+  selector: 'app-completar-consultar-perfil',
+  templateUrl: './editar-perfil.component.html',
+  styleUrls: ['./editar-perfil.component.css']
 })
-export class CompletarPerfilComponent implements OnInit {
+export class EditarPerfilComponent implements OnInit {
 
 
   usuario: User | undefined;
   perfil!:Perfil | undefined;
   perfilForm!:FormGroup;
 
-  constructor(private router: Router,
+  loading = false
+
+  constructor(
+    private router: Router,
     private authService:AuthService,
     private fromBuilder:FormBuilder,
-    private usuarioService:UsuarioService,) { }
+    private usuarioService:UsuarioService,
+    private dialogRef: MatDialogRef<EditarPerfilComponent>
+    ) { }
 
   ngOnInit(): void {
     this.perfilForm = this.fromBuilder.group({
@@ -59,6 +65,21 @@ export class CompletarPerfilComponent implements OnInit {
     },err=>{
 
     })
+  }
+
+  editarPerfil() {
+    this.loading = true;
+
+    this.dialogRef.close(true);
+
+    this.loading = false;
+  }
+  cancelar() {
+    this.loading = true;
+
+    this.dialogRef.close(false);
+
+    this.loading = false;
   }
 
 }

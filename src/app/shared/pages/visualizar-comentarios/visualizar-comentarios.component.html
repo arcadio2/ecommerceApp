@@ -1,0 +1,219 @@
+<div class="mx-3 px-2 border-b-2 border-black text -center">
+  <p class="font-semibold text-black text-center">Reseñas del producto</p>
+</div>
+
+<mat-dialog-content>
+
+  <div class="bg-white px-4">
+    <div class="grid grid-cols-5">
+
+      <div class="col-span-2 grid grid-rows-5 grid-flow-col border-r-2 border-black">
+        
+
+        <div class="row-span-2 grid grid-rows-4 grid-flow-col p-5">
+          <div class="grid grid-cols-3">
+            <div class="p-4 font-extrabold text-5xl	">{{producto.valoracion_total}}</div>
+            <div class="p-4 grid grid-flow-col grid-rows-2 col-span-2">
+              <div class="grid grid-cols-5">
+                <img class="h-6 w-6" *ngFor="let c of recorrido_estrellas"
+                [src]="c!=0 ? 'https://www.svgrepo.com/show/510223/solid-star.svg' : 'https://www.svgrepo.com/show/509984/half-solid-star.svg'"
+                 alt="">
+
+                 <img *ngFor="let i of [].constructor(recorrido_estrellas_restantes)"
+                class="h-6 w-6" src="https://www.svgrepo.com/show/510242/star.svg" alt="">
+
+                <!-- <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt=""> -->
+              </div>
+              <div class="text-sm">
+                760 Calificaciones
+              </div>
+            </div>
+          </div>
+          <div class="row-span-2 p-4 grid grid-flow-col grid-rows-5">
+            <div class="grid grid-cols-7">
+              <div class="col-span-6 grid grid-cols-10 content-center">
+                <div class="col-span-8">
+                  <div class="border-black border-b-4"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div>5</div>
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt="">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7">
+              <div class="col-span-6 grid grid-cols-10 content-center">
+                <div class="col-span-2">
+                  <div class="border-black border-b-4"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div>4</div>
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt="">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7">
+              <div class="col-span-6 grid grid-cols-10 content-center">
+                <div class="col-span-1">
+                  <div class="border-black border-b-4"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div>3</div>
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt="">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7">
+              <div class="col-span-6 grid grid-cols-10 content-center">
+                <div class="col-span-1">
+                  <div class="border-black border-b-4"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div>2</div>
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt="">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-7">
+              <div class="col-span-6 grid grid-cols-10 content-center">
+                <div class="col-span-1">
+                  <div class="border-black border-b-4"></div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2">
+                <div>1</div>
+                <img class="h-6 w-6"
+                     src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                     alt="">
+              </div>
+            </div>
+          </div>
+          <div class="p-4">
+            <button
+              class="p-3 rounded-md relative -bottom-12 text-white bg-black grid text-center w-full"
+              (click)="irCrearComentario()"
+            >
+              Añadir mi reseña
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="comentarios.length===0">
+        Aún no hay comentarios para este producto
+      </div>
+      <div class="col-span-3" *ngIf="comentarios.length!==0">
+     
+        <div *ngFor="let comentario of comentarios" class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2">
+          <div class="grid grid-cols-2 p-4">
+            <div class="grid grid-cols-5">
+              <img *ngFor="let i of [].constructor((comentario.valoracion!))"
+                class="h-6 w-6" src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img *ngFor="let i of [].constructor(5-(comentario.valoracion!))"
+                class="h-6 w-6" src="https://www.svgrepo.com/show/510242/star.svg" alt="">
+
+           <!--    <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                  src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                  alt=""> -->
+            </div>
+            <div class="grid justify-end font-bold">{{comentario.titulo}}</div>
+          </div>
+          <div class="row-span-2 pl-4 text-justify">
+            {{comentario.comentario}}
+          </div>
+          <div class="font-light pl-4">
+            {{comentario.usuario?.nombre!}} {{comentario.usuario?.apellido!}}
+          </div>
+          
+
+
+        </div>
+
+
+        <div class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2">
+          <div class="grid grid-cols-2 p-4">
+            <div class="grid grid-cols-5">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                   alt="">
+            </div>
+            <div class="grid justify-end font-bold">Mejor calidad precio</div>
+          </div>
+          <div class="row-span-2 pl-4 text-justify">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel aspernatur impedit reiciendis repudiandae eligendi, delectus adipisci doloremque dolor sunt! Cumque facilis ea veniam rerum, sed quis. Beatae mollitia laboriosam nulla!
+          </div>
+          <div class="font-light pl-4">
+            Pedro Sola
+          </div>
+        </div>
+
+        <div class="grid grid-flow-col grid-rows-4 pl-5 pr-5 pt-2 pd-2">
+          <div class="grid grid-cols-2 p-4">
+            <div class="grid grid-cols-5">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
+              <img class="h-6 w-6"
+                   src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
+                   alt="">
+            </div>
+            <div class="grid justify-end font-bold">Mejor calidad precio</div>
+          </div>
+          <div class="row-span-2 pl-4 text-justify">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel aspernatur impedit reiciendis repudiandae eligendi, delectus adipisci doloremque dolor sunt! Cumque facilis ea veniam rerum, sed quis. Beatae mollitia laboriosam nulla!
+          </div>
+          <div class="font-light pl-4">
+            Pedro Sola
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>

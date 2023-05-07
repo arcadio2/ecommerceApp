@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CompletarPerfilComponent } from './completar-perfil.component';
+import { EditarPerfilComponent } from './editar-perfil.component';
 
 describe('CompletarPerfilComponent', () => {
-  let component: CompletarPerfilComponent;
-  let fixture: ComponentFixture<CompletarPerfilComponent>;
+  let component: EditarPerfilComponent;
+  let fixture: ComponentFixture<EditarPerfilComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CompletarPerfilComponent ]
+      declarations: [ EditarPerfilComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CompletarPerfilComponent);
+    fixture = TestBed.createComponent(EditarPerfilComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
