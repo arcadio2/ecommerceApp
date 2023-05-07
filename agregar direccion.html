@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototipo tienda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@200;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 48
+    }
+</style>
+
+
+
+<body class="font-['Be_Vietnam_Pro']">
+    <header aria-label="Site Header" class="sticky top-0 bg-white">
+        <div
+            class="border-b-2 border-black mx-auto flex h-16 max-w-screen-2xl items-center justify-between sm:px-6 lg:px-8">
+            <div class="flex items-center gap-4">
+                <button type="button" class="p-2 lg:hidden">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+
+                <a href="#" class="flex">
+                    <span class="sr-only">Logo</span>
+                    <span class="inline-block h-10 w-32 rounded-lg bg-gray-200"></span>
+                </a>
+            </div>
+
+            <div class="justify-center gap-8">
+
+                <nav aria-label="Site Nav"
+                    class="hidden lg:flex lg:gap-4 lg:text-xs lg:font-bold lg:uppercase lg:tracking-wide">
+
+
+                    <a href="/products"
+                        class="block h-16 border-b-4 border-transparent leading-[4rem] text-black hover:italic">
+                        Productos
+                    </a>
+                </nav>
+            </div>
+
+            <div class="">
+
+                <div class="flex items-center">
+                    <div class="flex items-center divide-x divide-gray-100 border-x border-gray-100">
+                        <span class="hidden sm:block">
+                            <a href="/search" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4 " xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+
+                                <span class="sr-only"> Search </span>
+                            </a>
+                        </span>
+                        <span>
+                            <a href="/cart" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                                </svg>
+
+                                <span class="sr-only">Cart</span>
+                            </a>
+                        </span>
+
+                        <span>
+                            <a href="/account" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2">
+                                <svg class="h-4 w-4  " xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+
+                                <span class="sr-only"> Account </span>
+                            </a>
+                        </span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="min-h-screen flex flex-col">
+        <section>
+            <div class="mx-auto max-w-screen-2xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+
+                <div class="mt-4 lg:mt-8 lg:grid lg:grid-cols-4 lg:items-start lg:gap-8">
+
+                    <div class="hidden space-y-4 lg:block">
+                        <h2 class="text-xl font-semibold text-black sm:text-4xl">
+                            Product Collection
+                        </h2>
+                        <div class="flex flex-col items-start">
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Camisas
+                            </a>
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Pantalones
+                            </a>
+                            <a class="relative text-xl text-black before:absolute before:-bottom-1 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                                href="#">
+                                Calcetines
+                            </a>
+                        </div>
+
+                    </div>
+
+                    <div class="lg:col-span-3 ">
+                        <div class="flex w-full items-center border-b-2 border-black mb-6 p-3">
+                            <div class="flex items-start">
+                                <h2 class="text-xl font-semibold text-black sm:text-3xl">
+                                    Agregar/Editar producto (modificar con if desde angular)
+                                </h2>
+                            </div>
+                            <div class="flex flex-1 justify-end items-end">
+                                <span
+                                    class="inline-block underline-offset-4 underline text-md font-semibold tracking-wide items-center">
+                                    Filtrar por
+
+                                </span>
+                                <span class="material-symbols-outlined">
+                                    expand_more
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+    <!-- Inicio modal -->
+    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+
+        <div class="fixed inset-0 z-10 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+
+                <div
+                    class="relative transform overflow-hidden bg-white text-left transition-all sm:my-8 sm:w-full sm:max-w-xl">
+                    <div class="mx-3 px-2 py-3 border-b-2 border-black text-center">
+                        <p class="font-semibold text-black text-center">Agregar/Editar direccion</p>
+
+                    </div>
+                    <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                        <div class="flex items-start flex-col">
+
+                            <label for="Name"
+                                class="relative block w-1/2 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                <input type="text" id="Name" placeholder="Nombre"
+                                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                    Nombre y apellido
+                                </span>
+                            </label>
+                            <label for="CP"
+                                class="relative block w-1/2 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                <input type="text" id="CP" placeholder="Codigo Postal"
+                                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                    Codigo Postal
+                                </span>
+                            </label>
+
+                            <div class="flex justify-between w-full">
+                                <label for="estado"
+                                    class="relative block w-1/2 mr-4 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="estado" placeholder="Estado"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Estado
+                                    </span>
+                                </label>
+                                <label for="municipio"
+                                    class="relative block w-1/2 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="municipio" placeholder="Municipio/Alcaldia"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Municipio/Alcaldia
+                                    </span>
+                                </label>
+                            </div>
+
+                            <label for="colonia"
+                                class="relative block w-1/2 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                <input type="text" id="colonia" placeholder="Colonia"
+                                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                    Colonia
+                                </span>
+                            </label>
+
+                            <div class="flex justify-between w-full">
+                                <label for="calle"
+                                    class="relative block w-1/2 mr-4 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="calle" placeholder="Calle"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Calle
+                                    </span>
+                                </label>
+                                <label for="NumeroExterior"
+                                    class="relative block w-1/2 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="NumeroExterior" placeholder="Numero Exterior"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Numero Exterior
+                                    </span>
+                                </label>
+                            </div>
+
+                            <label for="NumeroInterior"
+                                class="relative block w-1/2 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                <input type="text" id="NumeroInterior" placeholder="Numero Interior"
+                                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                    Numero Interior
+                                </span>
+                            </label>
+
+                            <p class="text-sm mt-3 text-center w-full">Entre que calles está? (Opcional) </p>
+                            <div class="flex justify-between w-full">
+                                <label for="calle1"
+                                    class="relative block w-1/2 mr-4 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="calle1" placeholder="Calle 1"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Calle 1
+                                    </span>
+                                </label>
+                                <label for="calle2"
+                                    class="relative block w-1/2 mr-4 mt-3 overflow-hidden border-b border-black bg-transparent pt-3 ">
+                                    <input type="text" id="calle2" placeholder="Calle 2"
+                                        class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                    <span
+                                        class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                        Calle 2
+                                    </span>
+                                </label>
+
+                            </div>
+                            <label for="NumeroContacto"
+                                class="relative block w-2/3 overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
+                                <input type="text" id="NumeroContacto" placeholder="Numero de Contacto"
+                                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                                    Numero de Contacto
+                                </span>
+                            </label>
+
+                            <label for="Informacion Adicional"
+                                class="relative block w-2/3 overflow-hidden border-b border-black bg-transparent pt-6 ">
+                                <textarea id="Informacion Adicional" placeholder="Informacion adicional del domicilio"
+                                    class="peer h-16 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                                    cols=""></textarea>
+
+                                <span
+                                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-5 peer-focus:text-xs">
+                                    Informacion adicional del domicilio
+                                </span>
+                            </label>
+
+                        </div>
+
+                    </div>
+                    <div class="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                        <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                            href="#">
+                            <span
+                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+                            <span class="relative text-sm font-medium text-white transition-colors  text-center">
+                                Guardar Cambios
+                            </span>
+                        </a>
+                        <a class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                            href="#">
+                            <span
+                                class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+
+                            <span class="relative text-sm font-medium text-black transition-colors text-center">
+                                Cancelar
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin modal -->
+</body>
+
+</html>
