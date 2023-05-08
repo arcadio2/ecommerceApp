@@ -15,6 +15,7 @@ export class AuthService {
   private url_base:string = environment.urlBase+'api/';
   private _usuario!: User | null;
   private _token!: string | null;
+  
   public _isAuth = new BehaviorSubject<boolean>(false);
   //private _isAuth!: boolean; 
   private dbPromise = openDB('mi-base-de-datos', 1, {
@@ -189,13 +190,24 @@ export class AuthService {
     ) 
   }
 
+  eliminarSesion(){
+    const token = this.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.post<any>(environment.urlBase+'api/logout',null,{headers:headers})
+  }
 
   logout(): void {
+    
     this._token = null;
     this._usuario = null;
     localStorage.clear();
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+
+  
   }
 
   

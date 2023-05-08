@@ -11,7 +11,7 @@ import { Bolsa, DetalleProducto } from '../models/producto.model';
 export class ProductosService {
 
   private url_base:string = environment.urlBase+'api/productos/';
-  token = this.authService.token;
+
 
   constructor(private http:HttpClient, private authService:AuthService,
        private router: Router) { }
@@ -22,7 +22,7 @@ export class ProductosService {
   }
 
   addValoracion(xd:any){
-    
+    const token = this.authService.token;
     let objeto = {
       valoracion:3.7,
       usuario:{
@@ -33,7 +33,7 @@ export class ProductosService {
     console.log(objeto)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.post<any>(this.url_base+'valoracion',objeto,{headers:headers})
@@ -46,6 +46,7 @@ export class ProductosService {
 
 
   addComentario(p:any){
+    const token = this.authService.token;
     let objeto = {
       comentario:'xddddd',
       usuario:{
@@ -57,34 +58,37 @@ export class ProductosService {
     console.log(objeto)
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.post<any>(this.url_base+'comentario',objeto,{headers:headers})
   }
 
   editDetalle(detalle:DetalleProducto){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.post<any>(this.url_base+'bolsa',detalle,{headers:headers})
   }
 
   editElementoCarrito(bolsa:Bolsa){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.put<any>(this.url_base+'bolsa',bolsa,{headers:headers});
   }
 
   deleteElementoCarrito(id:number){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
     
 

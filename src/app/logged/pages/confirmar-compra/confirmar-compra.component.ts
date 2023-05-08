@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -6,7 +6,7 @@ import {FormBuilder, Validators } from '@angular/forms';
   templateUrl: './confirmar-compra.component.html',
   styleUrls: ['./confirmar-compra.component.css']
 })
-export class ConfirmarCompraComponent implements OnInit {
+export class ConfirmarCompraComponent implements OnInit,AfterViewInit {
 
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
@@ -19,6 +19,7 @@ export class ConfirmarCompraComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
+    window.scrollTo(0, 0);
   }
 
   ngAfterViewInit(): void {

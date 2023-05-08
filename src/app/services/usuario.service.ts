@@ -88,10 +88,10 @@ export class UsuarioService {
 
     saveProfile(perfil:Perfil){
       const token = this.authService.token;
-      const userSend:User = new User(); 
-      userSend.username = perfil.usuario?.username || '';
+      //const userSend:User = new User(); 
+      //userSend.username = perfil.usuario?.username || '';
       
-      perfil.usuario = userSend; 
+      //perfil.usuario = userSend; 
   
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',

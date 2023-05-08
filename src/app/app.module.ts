@@ -22,6 +22,7 @@ import {LoggedModule} from "./logged/logged.module";
 import {MatIconModule} from "@angular/material/icon";
 import { VisualizarComentariosComponent } from './shared/pages/visualizar-comentarios/visualizar-comentarios.component';
 import { CrearComentarioComponent } from './shared/pages/crear-comentario/crear-comentario.component';
+import {TextFieldModule} from "@angular/cdk/text-field";
 
 
 @NgModule({
@@ -37,30 +38,31 @@ import { CrearComentarioComponent } from './shared/pages/crear-comentario/crear-
     VisualizarComentariosComponent,
     CrearComentarioComponent
   ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        FormsModule,
-        ReactiveFormsModule,
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
 
-        ToastrModule.forRoot(
-            {
-                positionClass: 'toast-bottom-center', timeOut: 5000,
-                preventDuplicates: true,
-                closeButton: true,
-                maxOpened: 1,
+    ToastrModule.forRoot(
+      {
+        positionClass: 'toast-bottom-center', timeOut: 5000,
+        preventDuplicates: true,
+        closeButton: true,
+        maxOpened: 1,
 
-                autoDismiss: true,
-                enableHtml: true
-            },
-        ),
-        HttpClientModule,
-        MatButtonModule,
-        MatDialogModule,
-        LoggedModule,
-        MatIconModule
-    ],
+        autoDismiss: true,
+        enableHtml: true
+      },
+    ),
+    HttpClientModule,
+    MatButtonModule,
+    MatDialogModule,
+    LoggedModule,
+    MatIconModule,
+    TextFieldModule
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

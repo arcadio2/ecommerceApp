@@ -2,144 +2,135 @@
   <div class="text-3xl font-bold mb-4">Confirmar compra</div>
 </div>
 
-<div>
-  <h1>Hola</h1>
-  <mat-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input
-            matInput
-            placeholder="Last name, First name"
-            formControlName="firstCtrl"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <!-- #docregion label -->
-    <mat-step [stepControl]="secondFormGroup" label="Fill out your address">
-      <!-- #enddocregion label -->
-      <form [formGroup]="secondFormGroup">
-        <mat-form-field appearance="fill">
-          <mat-label>Address</mat-label>
-          <input
-            matInput
-            formControlName="secondCtrl"
-            placeholder="Ex. 1 Main St, New York, NY"
-            required
-          />
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </mat-step>
-    <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
-    </mat-step>
-  </mat-stepper>
-</div>
 
 <div class="grid grid-cols-2 h-[2000px]"><!--Le quitas el 2000 xd, solo es para ver si se queda pegado el ticket-->
-  <div class="col-span-1 flex justify-center ">
+  <div class="col-span-1 flex justify-center ">ñ
     <div class="col-span-1 max-h-screen overflow-y-auto p-4">
-      <div class="text-xl font bold">1. Agrega tu dirección</div>
-      <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
-
-        <table>
-          <tr>
-            <td class="p-5">
-              <label class="block text-black-700 font-bold mb-2" >
-                Calle
-              </label>
-              <input name="calle" formControlName="calle"
-                     class="border-b border-black w-full text-black-1000
+      <div>
+        <mat-stepper orientation="vertical"  [linear]="isLinear" #stepper>
+          <mat-step >
+            <form >
+              <ng-template matStepLabel>Agrega tu dirección</ng-template>
+              <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
+                <table>
+                  <tr>
+                    <td class="p-5">
+                      <label class="block text-black-700 font-bold mb-2" >
+                        Calle
+                      </label>
+                      <input name="calle"
+                             class="border-b border-black w-full text-black-1000
               leading-tight focus:outline-none focus:border-black-500 p-1" id="calle" type="text">
-            </td>
+                    </td>
 
-            <td class="p-5">
-                <label class="block text-black-700 font-bold mb-2">
-                  Numero Ext
-                </label>
-                <input name="num-ext" formControlName="num-ext"
-                       class="border-b border-black w-full text-black-1000
+                    <td class="p-5">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Numero Ext
+                      </label>
+                      <input name="num-ext"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="num-ext" type="text">
-            </td>
+                    </td>
 
-            <td class="p-5">
-                <label class="block text-black-700 font-bold mb-2">
-                  Numero int
-                </label>
-                <input name="num-int" formControlName="num-int"
-                       class="border-b border-black w-full text-black-1000
+                    <td class="p-5">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Numero int
+                      </label>
+                      <input name="num-int"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="num-int" type="text">
-            </td>
-          </tr>
+                    </td>
+                  </tr>
 
-          <tr>
-            <td class="p-5" colspan="2">
-                <label class="block text-black-700 font-bold mb-2 ">
-                  Colonia
-                </label>
-                <input name="colonia" formControlName="colonia"
-                       class="border-b border-black w-full text-black-1000
+                  <tr>
+                    <td class="p-5" colspan="2">
+                      <label class="block text-black-700 font-bold mb-2 ">
+                        Colonia
+                      </label>
+                      <input name="colonia"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="colonia" type="text">
-            </td>
+                    </td>
 
-            <td class="p-5" colspan="1">
-                <label class="block text-black-700 font-bold mb-2">
-                  Codigo Postal
-                </label>
-                <input name="codigo-postal" formControlName="codigo-postal"
-                       class="border-b border-black w-full text-black-1000
+                    <td class="p-5" colspan="1">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Codigo Postal
+                      </label>
+                      <input name="codigo-postal"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="codigo-postal" type="text">
-            </td>
-          </tr>
+                    </td>
+                  </tr>
 
-          <tr>
-            <td class="p-5" colspan="2">
-                <label class="block text-black-700 font-bold mb-2">
-                  Estado
-                </label>
-                <input name="estado" formControlName="estado"
-                       class="border-b border-black w-full text-black-1000
+                  <tr>
+                    <td class="p-5" colspan="2">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Estado
+                      </label>
+                      <input name="estado"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="estado" type="text">
-            </td>
+                    </td>
 
-            <td class="p-5" colspan="1">
-                <label class="block text-black-700 font-bold mb-2">
-                  Delegación o Municipio
-                </label>
-                <input name="municipio" formControlName="municipio"
-                       class="border-b border-black w-full text-black-1000
+                    <td class="p-5" colspan="1">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Delegación o Municipio
+                      </label>
+                      <input name="municipio"
+                             class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="municipio" type="text">
-            </td>
-          </tr>
+                    </td>
+                  </tr>
 
-          <tr>
-            <td class="p-5" colspan="3">
-                <label class="block text-black-700 font-bold mb-2">
-                  Número de telefono
-                </label>
-                <input name="numero-telefono" formControlName="codigo-postal"
-                       class="border-b border-black w-full  text-black-1000
+                  <tr>
+                    <td class="p-5" colspan="3">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Número de telefono
+                      </label>
+                      <input name="numero-telefono"
+                             class="border-b border-black w-full  text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="numero-telefono" type="text">
-            </td>
-          </tr>
-        </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <div>
+                <button matStepperNext class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                >
+                  <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+                  <span class="relative text-sm font-medium text-white transition-colors  text-center">
+                    Enviar
+                  </span>
+                </button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step >
+            <form >
+              <ng-template matStepLabel>Fill out your address</ng-template>
+              <mat-form-field appearance="fill">
+                <mat-label>Address</mat-label>
+                <input matInput placeholder="Ex. 1 Main St, New York, NY"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            <p>You are now done.</p>
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="stepper.reset()">Reset</button>
+            </div>
+          </mat-step>
+        </mat-stepper>
       </div>
+
     </div>
   </div>
 
