@@ -105,7 +105,7 @@
                         </div>
 
                       <div *ngIf="auth;" class="absolute top-10 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
-                        <div class=" font-bold text-lg mt-1.5">Hola {{user!.nombre}}</div><!--text-center -->
+                        <div class=" font-bold text-lg mt-1.5" *ngIf="user">Hola {{user!.nombre}}</div><!--text-center -->
                         <a routerLink="/user" class="block py-2 mt-2 hover:underline cursor-pointer">Mi perfil</a>
                         <!--<a href="/orders" class="block hover:text-gray-600 py-2">Mis pedidos</a>-->
                         <a (click)="logout()" routerLink="/auth/logout" class="block  hover:underline py-2 mt-1 hover:text-red-600 cursor-pointer">Cerrar sesión</a>

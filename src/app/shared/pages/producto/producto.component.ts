@@ -2,7 +2,7 @@ import { Component, OnInit,OnChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { Bolsa, Color, DetalleDto, DetalleProducto, Producto, Talla } from 'src/app/models/producto.model';
+import { Bolsa, Color, Comentario, DetalleDto, DetalleProducto, Producto, Talla } from 'src/app/models/producto.model';
 import { User } from 'src/app/models/user.model';
 import { BolsaService } from 'src/app/services/bolsa.service';
 import { DetalleService } from 'src/app/services/detalle.service';
@@ -16,6 +16,7 @@ import {
 } from "../../../admin/modules/gestion-productos/components/agregar-producto/agregar-producto.component";
 import {MatDialog} from "@angular/material/dialog";
 import {VisualizarComentariosComponent} from "../visualizar-comentarios/visualizar-comentarios.component";
+import { ComentariosService } from 'src/app/services/comentarios.service';
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -40,7 +41,7 @@ export class ProductoComponent implements OnInit,OnChanges {
   detalle_colores_disponibles:DetalleProducto[] | undefined=[];
   detalle_tallas_disponibles:DetalleProducto[] | undefined=[];
   tallas_disponibles:(Talla| undefined)[] = [];
-
+  comentarios:Comentario[] = [];
   inBolsa: boolean = false;
   cambiaEstado:boolean = false;
   textoCarrito: string = "Agregar al carrito";
@@ -56,7 +57,7 @@ export class ProductoComponent implements OnInit,OnChanges {
               private imagenesService:ImagenesService,
               private bolsaService:BolsaService,
               private dialog: MatDialog,
-
+              private comentariosService:ComentariosService,
               private detalleService:DetalleService,
               private productoService:ProductosService
               ) { }
@@ -190,7 +191,10 @@ export class ProductoComponent implements OnInit,OnChanges {
 
       this.tallas_disponibles = [...dataArr];
 
-
+      this.comentariosService.getComentariosProducto(this.producto.id!).subscribe((resp:any)=>{
+        this.comentarios = resp.comentarios as Comentario[]
+        console.log(resp)
+      })
 
       if(!this.productoMostrado){
 
