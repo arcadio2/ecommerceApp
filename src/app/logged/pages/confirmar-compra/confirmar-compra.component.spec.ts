@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmarCompraComponent } from './confirmar-compra.component';
-
+import { StepperOverviewExample } from './confirmar-compra.component';
 describe('ConfirmarCompraComponent', () => {
   let component: ConfirmarCompraComponent;
+
   let fixture: ComponentFixture<ConfirmarCompraComponent>;
 
   beforeEach(async () => {
