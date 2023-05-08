@@ -10,30 +10,33 @@ import { Bolsa } from '../models/producto.model';
 })
 export class BolsaService {
   private url_base:string = environment.urlBase+'api/productos/';
-  token = this.authService.token;
+
   constructor(private http:HttpClient, private authService:AuthService,
     private router: Router) { }
 
     guardarCarrito(carrito:Bolsa){
-      console.log(carrito)
+      const token = this.authService.token;
+
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
+        'Authorization': `Bearer ${token}`
       })
       return this.http.post<any>(this.url_base+'bolsa',carrito,{headers:headers});
     }
     eliminarCarrito(id:number){
+      const token = this.authService.token;
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
+        'Authorization': `Bearer ${token}`
       })
       return this.http.delete<any>(this.url_base+'bolsa/'+id,{headers:headers});
     }
 
     obtenerCarrito(){
+      const token = this.authService.token;
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.token}`
+        'Authorization': `Bearer ${token}`
       })
       return this.http.get<any>(this.url_base+'get/bolsa',{headers:headers});
     }

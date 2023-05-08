@@ -17,7 +17,7 @@ import {MatDialogModule} from "@angular/material/dialog";
     CommonModule,
     InformacionPerfilRoutingModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule 
   ]
 })
 export class InformacionPerfilModule { }
