@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { IndexloggedComponent } from './pages/indexlogged/indexlogged.component';
 import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.component";
+import {ConfirmarCompraComponent} from "./pages/confirmar-compra/confirmar-compra.component";
 
 
 const routes: Routes = [
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path:'carrito-compras',
         component: CarritoComprasComponent
+      },
+      {
+        path:'confirmar-compra',
+        component: ConfirmarCompraComponent
       },
       {
         path:'**',

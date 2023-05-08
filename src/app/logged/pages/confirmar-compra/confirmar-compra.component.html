@@ -1,107 +1,139 @@
-<p>confirmar-compra works!</p>
+<div class="col-span-1 flex justify-center items-center" style="margin-top: 100px;">
+  <h1 class="text-2xl font-bold mb-4">Confirmar compra</h1>
+</div>
 
-<div class=" flex items-center justify-center bg-white"> <!--items-center h-screen-->
-  <div class="flex-col justify-center w-[500px]">
-    <div class="flex justify-center bg-white border-2 border-black w-full p-8 ">
-      <div class="w-[95%] flex-col justify-center ">
-        <div class="text-3xl font-bold mb-20 text-center">
-          Completar perfil
-        </div>
+<div class="grid grid-cols-2 h-screen">
+  <div class="col-span-1 flex justify-center items-center">
+    <div class="col-span-1 max-h-screen overflow-y-auto p-4">
+      <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
 
-        <div class="text-base text-center">
-          <div>
+        <table>
+          <tr>
+            <td class="p-5">
+              <label class="block text-black-700 font-bold mb-2" >
+                Calle
+              </label>
+              <input name="calle" formControlName="calle"
+                     class="border-b border-black w-full text-black-1000
+              leading-tight focus:outline-none focus:border-black-500 p-1" id="calle" type="text">
+            </td>
 
-          </div>
-        </div>
-        <form class="mt-9 w-full" >
-          <div class="my-8">
-            <div class="relative max-w-sm">
-              <div class="absolute inset-y-0 left-0 items-center pl-3 pointer-events-none ">
-                <svg aria-hidden="true" class="w-5 h-5 text-black dark:text-white" fill="currentColor"
-                     viewBox="0 0 20 20">
+            <td class="p-5">
+                <label class="block text-black-700 font-bold mb-2">
+                  Numero Ext
+                </label>
+                <input name="num-ext" formControlName="num-ext"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-ext" type="text">
+            </td>
 
-                </svg>
-                <!-- <input type="date"> -->
-              </div>
-            </div>
+            <td class="p-5">
+                <label class="block text-black-700 font-bold mb-2">
+                  Numero int
+                </label>
+                <input name="num-int" formControlName="num-int"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-int" type="text">
+            </td>
+          </tr>
 
-          </div>
+          <tr>
+            <td class="p-5" colspan="2">
+                <label class="block text-black-700 font-bold mb-2 ">
+                  Colonia
+                </label>
+                <input name="colonia" formControlName="colonia"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="colonia" type="text">
+            </td>
 
-          <div class="my-8">
-            <label class="block text-black font-bold mb-2" >
-              Nombre *
-            </label>
-            <input name="nombre" formControlName="nombre"
-                   class="border-b border-black w-full text-black-700
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="nombre" type="text">
-          </div>
+            <td class="p-5" colspan="1">
+                <label class="block text-black-700 font-bold mb-2">
+                  Codigo Postal
+                </label>
+                <input name="codigo-postal" formControlName="codigo-postal"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="codigo-postal" type="text">
+            </td>
+          </tr>
 
-          <div class="my-8">
-            <label class="block text-black font-bold mb-2" >
-              Edad *
-            </label>
-            <input name="edad" formControlName="edad"
-                   class="border-b border-black w-full text-black-700
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="edad" type="text">
-          </div>
+          <tr>
+            <td class="p-5" colspan="2">
+                <label class="block text-black-700 font-bold mb-2">
+                  Estado
+                </label>
+                <input name="estado" formControlName="estado"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="estado" type="text">
+            </td>
 
-          <div class="my-8">
-            <label class="inline-flex items-center">
-              <input type="radio" name="sexo"
-                     id="sexoHombre"
-                     class="form-checkbox  h-5 w-5 border-black-300 rounded-md bg-black-300">
-              <span class="ml-2 text-black-700">Hombre</span>
-            </label>
-            <label class="ml-6 inline-flex items-center">
-              <input type="radio"
-                     id="sexoMujer"
-                     name="sexo" class="form-checkbox h-5 w-5 border-black-300 rounded-md bg-black-300">
-              <span class="ml-2 text-black-700">Mujer</span>
-            </label>
-          </div>
+            <td class="p-5" colspan="1">
+                <label class="block text-black-700 font-bold mb-2">
+                  Delegación o Municipio
+                </label>
+                <input name="municipio" formControlName="municipio"
+                       class="border-b border-black w-3/4 text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="municipio" type="text">
+            </td>
+          </tr>
 
-          <div class="my-8">
-            <label class="block text-black-700 font-bold mb-2" >
-              Altura *
-            </label>
-            <input name="altura" formControlName="altura"
-                   class="border-b border-black w-full text-black-1000
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="email" type="text">
-          </div>
-
-          <div class="my-8">
-            <label class="block text-black-700 font-bold mb-2" >
-              Talla en camisas, playeras, blusas *
-            </label>
-            <input name="talla_camisa" formControlName="talla_camisa"
-                   class="border-b border-black w-full text-black-1000
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="talla_camisa" type="text">
-          </div>
-
-          <div class="my-8">
-            <label class="block text-black-700 font-bold mb-2" >
-              Talla en pantalones, jeans *
-            </label>
-            <input name="talla_pantalon" formControlName="talla_pantalon"
-                   class="border-b border-black w-full text-black-1000
-              leading-tight focus:outline-none focus:border-black-500 p-1" id="talla_pantalon" type="text">
-          </div>
-
-          <div class="flex items-center justify-center mt-14 w-full">
-            <button
-              class="bg-gray-950 text-white font-bold rounded border-2
-              hover:bg-black
-              focus:outline-none
-              focus:ring
-              focus:ring-gray-300
-              hover: border-black
-              w-full p-3" type="submit">
-              Enviar
-            </button>
-          </div>
-
-        </form>
+          <tr>
+            <td class="p-5" colspan="3">
+                <label class="block text-black-700 font-bold mb-2">
+                  Número de telefono
+                </label>
+                <input name="numero-telefono" formControlName="codigo-postal"
+                       class="border-b border-black w-full  text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="numero-telefono" type="text">
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
+
+
+  <div class="col-span-1 flex justify-center items-center mb-auto">
+    <div class="col-span-1 max-h-screen overflow-y-auto p-4">
+      <div class="sticky top-16 right-0 max-h-screen bg-white rounded-lg border border-black pb-4 p-3" >
+        <h1 class="text-2xl font-bold mb-4">Resumen de compra</h1>
+        <div class="w-64 max-w-full mx-auto">
+          <div class="border-b border-black w-3/3 mx-auto"></div>
+        </div>
+        <div class="text-sm font-bold mt-4 mb-2">Productos</div>
+        <div class="flex justify-between items-center mb-2">
+          <div class="text-sm">Producto 1</div>
+          <div class="text-sm">$20.00</div>
+        </div>
+        <div class="flex justify-between items-center mb-2">
+          <div class="text-sm">Producto 2</div>
+          <div class="text-sm">$35.00</div>
+        </div>
+        <div class="w-64 max-w-full mx-auto">
+          <div class="border-b border-black w-3/3 mx-auto"></div>
+        </div>
+        <div class="flex justify-between items-center mt-4 mb-2">
+          <div class="text-sm">Envío</div>
+          <div class="text-sm">$5.00</div>
+        </div>
+        <div class="w-64 max-w-full mx-auto">
+          <div class="border-b border-black w-3/3 mx-auto"></div>
+        </div>
+        <div class="flex justify-between items-center mt-4 mb-2">
+          <div class="text-sm font-bold">Total</div>
+          <div class="text-sm font-bold">$60.00</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>
+
+
+
+
+
+
+
