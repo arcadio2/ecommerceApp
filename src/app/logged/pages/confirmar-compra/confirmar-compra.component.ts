@@ -21,6 +21,10 @@ export class ConfirmarCompraComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    window.scrollTo(0, 0);
+  }
+
 }
 
 
