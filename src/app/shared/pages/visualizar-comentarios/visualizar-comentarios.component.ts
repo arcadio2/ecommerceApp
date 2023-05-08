@@ -27,6 +27,7 @@ export class VisualizarComentariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.cantidad_estrellas = Math.ceil(this.producto.valoracion_total!) || 0;
+    
     for (let i = 0; i < this.cantidad_estrellas; i++) {
       // Si el número es entero, agregamos elementos con valor 1
       if (Number.isInteger(this.producto.valoracion_total!)) {

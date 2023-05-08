@@ -12,7 +12,7 @@
 
         <div class="row-span-2 grid grid-rows-4 grid-flow-col p-5">
           <div class="grid grid-cols-3">
-            <div class="p-4 font-extrabold text-5xl	">{{producto.valoracion_total}}</div>
+            <div class="p-4 font-extrabold text-5xl	">{{(producto.valoracion_total  || 0) | number:'1.1-1'}}</div>
             <div class="p-4 grid grid-flow-col grid-rows-2 col-span-2">
               <div class="grid grid-cols-5">
                 <img class="h-6 w-6" *ngFor="let c of recorrido_estrellas"
@@ -35,7 +35,7 @@
                      alt=""> -->
               </div>
               <div class="text-sm">
-                760 Calificaciones
+                {{comentarios.length}} Calificaciones
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@
           <div class="row-span-2 pl-4 text-justify">
             {{comentario.comentario}}
           </div>
-          <div class="font-light pl-4">
+          <div class="font-medium pl-4 text-black ">
             {{comentario.usuario?.nombre!}} {{comentario.usuario?.apellido!}}
           </div>
           

@@ -45,7 +45,8 @@ export class EditarPerfilComponent implements OnInit {
       talla_camisa:['',[Validators.required]],
       talla_pantalon:['',[Validators.required]],
       edad:['',[Validators.required]],
-      sexo:['',[Validators.required]]
+      sexo:['',[Validators.required]],
+      fecha:['',[Validators.required]]
     })
 
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
@@ -88,6 +89,7 @@ export class EditarPerfilComponent implements OnInit {
     const altura = this.perfilForm.get('altura')!.value;
     const tallaCamisa = this.perfilForm.get('talla_camisa')!.value;
     const tallaPantalon = this.perfilForm.get('talla_pantalon')!.value;
+    const fecha = this.perfilForm.get('fecha')!.value;
     const sexo = this.perfilForm.get('sexo')!.value;
 
 
@@ -105,6 +107,7 @@ export class EditarPerfilComponent implements OnInit {
     perfil_save.talla_camisa = tallaCamisa; 
     perfil_save.talla_pantalon = tallaPantalon; 
     perfil_save.usuario = usuario_save; 
+    perfil_save.fecha_nacimiento = fecha; 
 
     if(sexo==1){
       perfil_save.sexo = this.hombre; 
@@ -113,6 +116,7 @@ export class EditarPerfilComponent implements OnInit {
     }
 
     this.usuarioService.saveProfile(perfil_save).subscribe(resp=>{
+      this.authService.usuariochange.next(!this.authService.usuariochange.value); 
       console.log(resp)
     },err=>{
       console.log(err)
