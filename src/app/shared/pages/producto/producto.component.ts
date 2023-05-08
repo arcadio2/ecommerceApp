@@ -112,10 +112,11 @@ export class ProductoComponent implements OnInit,OnChanges {
         }
         this.bolsaService.guardarCarrito(carrito).subscribe(resp=>{
           console.log(resp)
+          this.router.navigateByUrl("/user/carrito-compras")
         })
         this.toastService.success("Producto agregado correctamente")
 
-        this.router.navigateByUrl("/user/carrito-compras")
+       
         this.inBolsa = true;
         this.cambiaEstado = true;
         //window.location.reload();

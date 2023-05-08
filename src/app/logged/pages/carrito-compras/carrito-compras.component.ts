@@ -9,6 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
 import { forkJoin } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { BolsaService } from 'src/app/services/bolsa.service';
 
 
 @Component({
@@ -30,17 +31,23 @@ export class CarritoComprasComponent implements OnInit {
     private usuarioService:UsuarioService,
     private authService:AuthService,
     private toastService:ToastrService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private bolsaService:BolsaService
   ) {}
 
   ngOnInit(): void {
 
     this.loading = true
+    /*
+    this.bolsaService.obtenerCarrito().subscribe((resp:any)=>{
+      this.bolsa = resp.bolsa; 
+    },err=>{
+      
+    })*/
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
       this.bolsa = elementos_bolsa;
-      console.log("Bolsa", this.bolsa)
       const observables = elementos_bolsa.map(elemento =>
         this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!)
       );

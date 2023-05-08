@@ -13,6 +13,7 @@ export class AppComponent {
 
   constructor(private auth:AuthService){
     this.user = this.auth.usuario
+
   }
   
 }

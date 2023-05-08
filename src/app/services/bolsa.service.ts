@@ -29,4 +29,12 @@ export class BolsaService {
       })
       return this.http.delete<any>(this.url_base+'bolsa/'+id,{headers:headers});
     }
+
+    obtenerCarrito(){
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${this.token}`
+      })
+      return this.http.get<any>(this.url_base+'get/bolsa',{headers:headers});
+    }
 }

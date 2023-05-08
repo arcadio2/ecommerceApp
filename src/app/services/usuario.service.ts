@@ -82,7 +82,7 @@ export class UsuarioService {
         'Authorization': `Bearer ${token}`
       })
   
-      return this.http.get(this.url_base+'users/'+username,{headers:headers})
+      return this.http.get(this.url_base+'get/user',{headers:headers})
     }
 
 

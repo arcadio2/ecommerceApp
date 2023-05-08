@@ -126,7 +126,16 @@ export class AuthService {
     
     let payload = this.obtenerDatosToken(this.token!);
     if (payload != null && payload.user_name && payload.user_name.length > 0) {
+      let now = new Date().getTime() / 1000;
+   
+      if (payload.exp < now) {
+        localStorage.clear();
+        localStorage.removeItem('token');
+        localStorage.removeItem('usuario');
+        return false;
+      }
       return true;
+
     }
     return false;
   }
