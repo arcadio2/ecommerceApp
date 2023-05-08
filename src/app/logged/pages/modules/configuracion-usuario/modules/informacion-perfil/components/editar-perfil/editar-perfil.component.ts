@@ -36,7 +36,8 @@ export class EditarPerfilComponent implements OnInit {
       talla_camisa:['',[Validators.required]],
       talla_pantalon:['',[Validators.required]],
       edad:['',[Validators.required]],
-      password:['',[Validators.required]]
+      password:['',[Validators.required]],
+      sexo:['',[Validators.required]]
     })
 
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{

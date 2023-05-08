@@ -40,13 +40,13 @@
 
               <label class="inline-flex items-center">
                 <input type="radio" name="sexo"
-                  id="sexoHombre"
+                  id="sexoHombre" value="Hombre" formControlName="sexo"
                   class="form-checkbox  h-5 w-5 border-black-300 rounded-md bg-black-300">
                 <span class="ml-2 text-black-700">Hombre</span>
               </label>
               <label class="ml-6 inline-flex items-center">
                 <input type="radio"
-                    id="sexoMujer"
+                    id="sexoMujer" [value]="'xd'" formControlName="sexo" 
                   name="sexo" class="form-checkbox h-5 w-5 border-black-300 rounded-md bg-black-300">
                 <span class="ml-2 text-black-700">Mujer</span>
               </label>

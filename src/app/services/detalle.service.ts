@@ -11,10 +11,12 @@ export class DetalleService {
 
 
   private url_base:string = environment.urlBase+'api/detalle/';
-  token = this.authService.token;
+
 
   constructor(private http:HttpClient, private authService:AuthService,
-    private router: Router) { }
+    private router: Router) {
+      const token = this.authService.token;
+     }
 
     getDetalleProdcutoCompra(id:number,color:string,talla:string){
       return this.http.get<any>(this.url_base+'detalle/'+id+"/"+color+"/"+talla);
