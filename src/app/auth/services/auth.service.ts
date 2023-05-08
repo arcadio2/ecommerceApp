@@ -17,6 +17,7 @@ export class AuthService {
   private _token!: string | null;
   
   public _isAuth = new BehaviorSubject<boolean>(false);
+  public usuariochange =new BehaviorSubject<boolean>(false);
   //private _isAuth!: boolean; 
   private dbPromise = openDB('mi-base-de-datos', 1, {
     upgrade(db) {

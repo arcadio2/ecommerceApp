@@ -46,6 +46,7 @@ export interface Perfil {
     altura?:         number;
     talla_camisa?:   number;
     talla_pantalon?: number;
+    fecha_nacimiento: Date;
     direcciones?:    Direcciones[];
 }
 

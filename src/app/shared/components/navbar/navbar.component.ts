@@ -5,6 +5,7 @@ import {Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import { ProductosService } from 'src/app/services/productos.service';
 import { Categoria, Producto } from 'src/app/models/producto.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -17,6 +18,7 @@ export class NavbarComponent implements OnInit, OnChanges{
     private elementRef: ElementRef,
     private authService: AuthService,
     private router: Router,
+    private usuarioService:UsuarioService,
     private productoService:ProductosService,
     private toast:ToastrService
   ) { }
@@ -31,6 +33,7 @@ export class NavbarComponent implements OnInit, OnChanges{
   indexProductoSeleccionado:number=-1; 
   isHover:boolean = false; 
   haveMouse:boolean = true;
+  usuario!:User;
   
   showSubMenu:boolean = false; 
 
@@ -44,7 +47,16 @@ export class NavbarComponent implements OnInit, OnChanges{
     //this.auth = this.user?.email ? true : false;
     this.authService._isAuth.subscribe(v =>{
       this.auth=v;
-      this.user = this.authService.usuario;
+      this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
+        this.user = resp.usuario as User;
+      })
+      this.authService.usuariochange.subscribe(resp=>{
+        this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
+          this.user = resp.usuario as User;
+        })
+      })
+      //this.user = this.authService.usuario;
+
     }); 
 
     this.productoService.getCategoriaBySexo("Hombre").subscribe(resp=>{
