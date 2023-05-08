@@ -15,9 +15,9 @@ export class VisualizarComentariosComponent implements OnInit {
 
   loading = false
   comentarios:Comentario[] = [];
-  cantidad_estrellas:number = 0; 
-  recorrido_estrellas:number[] =[]; 
-  recorrido_estrellas_restantes:number=0; 
+  cantidad_estrellas:number = 0;
+  recorrido_estrellas:number[] =[];
+  recorrido_estrellas_restantes:number=0;
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialog: MatDialog,
@@ -26,7 +26,7 @@ export class VisualizarComentariosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public producto: Producto ) { }
 
   ngOnInit(): void {
-    this.cantidad_estrellas = Math.ceil(this.producto.valoracion_total!) || 0; 
+    this.cantidad_estrellas = Math.ceil(this.producto.valoracion_total!) || 0;
     for (let i = 0; i < this.cantidad_estrellas; i++) {
       // Si el número es entero, agregamos elementos con valor 1
       if (Number.isInteger(this.producto.valoracion_total!)) {
@@ -40,7 +40,7 @@ export class VisualizarComentariosComponent implements OnInit {
         }
       }
     }
-    
+
     //this.recorrido_estrellas = Array.from(Array(this.cantidad_estrellas).keys()).map(i => i + 1);
     console.log(this.recorrido_estrellas)
     this.recorrido_estrellas_restantes = 5-this.recorrido_estrellas.length;
@@ -59,7 +59,6 @@ export class VisualizarComentariosComponent implements OnInit {
     this.loading = true
     this.dialogRefVisualizar.close(false)
     this.dialog.open(CrearComentarioComponent, {
-      width: '80%',
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
