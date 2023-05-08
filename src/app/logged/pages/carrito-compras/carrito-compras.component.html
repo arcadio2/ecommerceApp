@@ -11,7 +11,7 @@
       <span class="text-bold mt-10 text-lg">
         No tienes elementos en tu carrito
       </span>
-      <div class="mt-10 items-center justify-center flex">
+      <div class="flex flex-col gap-10 mt-10 items-center justify-center flex">
         <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
                 [disabled]="loading"
                 [class] = "loading === true ? 'opacity-50 cursor-default' : ''"
@@ -23,6 +23,7 @@
             Explorar
           </span>
         </button>
+        <mat-spinner *ngIf="loading === true" ></mat-spinner>
       </div>
 
 
@@ -44,12 +45,12 @@
               alt="{{elemento?.ropa?.imagen}}" >
             </div>
             <div class="flex flex-col w-1/2">
-              
+
               <div class="font-bold text-base capitalize cursor-pointer"
-                
+
               [routerLink]="['/producto',elemento.ropa?.id,elemento.ropa?.color,elemento.ropa?.talla]">
                 {{elemento?.ropa?.nombre}}
-            
+
               </div>
               <div class="">
                 Talla: {{elemento?.ropa?.talla}}
@@ -103,15 +104,15 @@
           </div>
         </div>
 
-        <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-          routerLink="/user/carrito-compras">
+        <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          routerLink="/user/confirmar-compra">
           <span
               class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
           <span class="relative text-sm font-medium text-white transition-colors ">
             Continuar compra
           </span>
-        </a>
+        </button>
 
 
       <!-- <button

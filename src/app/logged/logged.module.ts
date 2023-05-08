@@ -11,6 +11,7 @@ import { InfoDetalladaComponent } from './pages/info-detallada/info-detallada.co
 import { ElementoCarritoComponent } from './pages/elemento-carrito/elemento-carrito.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-compra.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -22,14 +23,15 @@ import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-com
   ],
   exports: [
   ],
-  imports: [
-    CommonModule,
-    LoggedRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTooltipModule,
-  ]
+    imports: [
+        CommonModule,
+        LoggedRoutingModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+    ]
 })
 export class LoggedModule { }
