@@ -106,6 +106,7 @@
 
 <button class="p-3 rounded-md relative -bottom-12 text-white bg-black grid text-center w-full"
         (click)="agregarNuevoProducto()"
+        [disabled]="loading"
 >
   Añadir producto
 </button>
