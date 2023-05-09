@@ -25,7 +25,7 @@ export class GestionComponent implements OnInit {
   agregarNuevoProducto() {
     this.loading = true
     this.dialog.open(AgregarProductoComponent, {
-      width: '80%'
+
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
