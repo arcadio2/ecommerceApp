@@ -51,6 +51,9 @@ export class EditarPerfilComponent implements OnInit {
 
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
+      this.perfilForm.get('nombre')?.setValue(this.usuario?.nombre);
+      this.perfilForm.get('apellido')?.setValue(this.usuario?.apellido);
+
     })
 
     this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
@@ -59,8 +62,7 @@ export class EditarPerfilComponent implements OnInit {
       console.log(this.perfil)
       if(this.perfil){
 
-        this.perfilForm.get('nombre')?.setValue(this.perfil.usuario?.nombre);
-        this.perfilForm.get('apellido')?.setValue(this.perfil.usuario?.apellido);
+       
         this.perfilForm.get('altura')?.setValue(this.perfil.altura);
         this.perfilForm.get('edad')?.setValue(this.perfil.edad);
         this.perfilForm.get('talla_pantalon')?.setValue(this.perfil.talla_pantalon);
@@ -72,7 +74,7 @@ export class EditarPerfilComponent implements OnInit {
         });
 
       }
-      this.usuario = resp.usuario as User;
+      //this.usuario = resp.usuario as User;
       //if(this.usuario){
       //  this.perfilForm.get('nombre')?.setValue(this.usuario.nombre);
       //}
@@ -94,10 +96,11 @@ export class EditarPerfilComponent implements OnInit {
 
 
     //console.log(nombre, apellido, edad, altura, tallaCamisa, tallaPantalon, sexo);
-    const perfil_save:Perfil = this.perfil!;
-    const usuario_save:User = perfil_save.usuario!; 
+    const perfil_save:Perfil = this.perfil! || {};
 
+    const usuario_save:User = this.usuario!; 
 
+    console.log(altura)
     usuario_save.apellido = apellido; 
     usuario_save.nombre = nombre; 
 

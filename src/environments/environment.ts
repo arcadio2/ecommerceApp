@@ -5,7 +5,12 @@
 export const environment = {
   production: false,
   //urlBase:'https://shine-ecommerce-app.herokuapp.com/',
-  urlBase:'http://localhost:8080/'
+  urlBase:'http://localhost:8080/',
+  direcciones_api:'https://api.tau.com.mx/dipomex/v1/',
+  api_key_dipomex:"430bd21056ca321315d7002b9a86cdac7a061d72",
+  geocode_api:"22e45b6bb20a4c58a66f46b78cae2278",
+  sepomex_api:"eac3d63c-3247-4e59-8de8-b92e8a944736",
+  postali:"https://postali.app/"
 };
 
 /*

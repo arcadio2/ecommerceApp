@@ -28,9 +28,9 @@ export class InterceptorService implements HttpInterceptor{
       const apiReq = req.url.includes('http') ? req : req.clone({ url: `${req.url}`,
       setHeaders: {
         authorization: `Bearer ${ token }`,
-        
       }}
       );
+   
       return next.handle(apiReq);
     }else{
       const apiReq = req.url.includes('http') ? req : req.clone({ url: `${req.url}`});

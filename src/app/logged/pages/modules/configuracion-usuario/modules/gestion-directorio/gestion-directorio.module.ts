@@ -7,6 +7,7 @@ import { AgregarDireccionComponent } from './components/agregar-direccion/agrega
 import {MatDialogModule} from "@angular/material/dialog";
 import { EditarDireccionComponent } from './components/editar-direccion/editar-direccion.component';
 import {MatButtonModule} from "@angular/material/button";
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule,
     GestionDirectorioRoutingModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    ReactiveFormsModule
   ]
 })
 export class GestionDirectorioModule { }

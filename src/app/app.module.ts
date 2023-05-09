@@ -64,11 +64,11 @@ import {TextFieldModule} from "@angular/cdk/text-field";
     TextFieldModule
   ],
   providers: [
-    {
+/*     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    },
+    }, */
 
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
 
