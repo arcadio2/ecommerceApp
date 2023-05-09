@@ -15,8 +15,8 @@ export interface Producto {
 export interface Categoria {
     id?:   number;
     tipo?: string;
-    isHombre?: boolean;
-    isMujer?: boolean;
+    hombre?: boolean;
+    mujer?: boolean;
     tronco_superior?: boolean
 }
 

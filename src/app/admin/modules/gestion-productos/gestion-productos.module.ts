@@ -7,6 +7,7 @@ import { AgregarProductoComponent } from './components/agregar-producto/agregar-
 import {MatDialogModule} from "@angular/material/dialog";
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {ReactiveFormsModule} from "@angular/forms";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     GestionProductosRoutingModule,
     MatDialogModule,
     TextFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule
   ]
 })
 export class GestionProductosModule { }

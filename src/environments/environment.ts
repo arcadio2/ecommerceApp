@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   //urlBase:'https://shine-ecommerce-app.herokuapp.com/',
-  urlBase:"http://172.100.82.224:8080/"
+  urlBase:"http://172.100.82.224:8080/",
   //urlBase:'http://localhost:8080/'
   //urlBase:'https://shine-ecommerce-app.herokuapp.com/',
 
