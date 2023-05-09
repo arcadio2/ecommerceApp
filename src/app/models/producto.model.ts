@@ -9,12 +9,15 @@ export interface Producto {
     categoria?:        Categoria;
     comentarios?:      Comentario[];
     id?:               number;
-    
+
 }
 
 export interface Categoria {
     id?:   number;
     tipo?: string;
+    isHombre?: boolean;
+    isMujer?: boolean;
+    tronco_superior?: boolean
 }
 
 export interface Comentario {
@@ -33,7 +36,7 @@ export interface DetalleProducto {
     stock?: number;
     talla?: Talla | null;
     id?:    number;
-    nombre_producto?:string; 
+    nombre_producto?:string;
     id_producto?:number;
 }
 
@@ -46,6 +49,7 @@ export interface Color {
 export interface Talla {
     talla?: string;
     id?:    number;
+    tronco_superior?: boolean
 }
 
 export interface Bolsa {
@@ -56,9 +60,9 @@ export interface Bolsa {
 
 
 /**
- * 
- * Solo para visualización 
- * 
+ *
+ * Solo para visualización
+ *
  */
 export interface ProductoCarrito {
     id?: number;
@@ -68,7 +72,7 @@ export interface ProductoCarrito {
     costo?: number;
     imagen?: string
   }
-  
+
 export  interface ElementoCarrito {
     ropa?: ProductoCarrito;
     cantidad?: number;
