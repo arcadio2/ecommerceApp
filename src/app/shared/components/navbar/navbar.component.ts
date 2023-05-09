@@ -61,6 +61,7 @@ export class NavbarComponent implements OnInit, OnChanges{
 
     this.productoService.getCategoriaBySexo("Hombre").subscribe(resp=>{
       this.categoria_hombre = resp; 
+      console.log(this.categoria_hombre)
     }); 
     this.productoService.getCategoriaBySexo("Mujer").subscribe(resp=>{
       this.categoria_mujer = resp; 

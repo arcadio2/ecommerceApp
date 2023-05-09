@@ -47,13 +47,16 @@ export class CarritoComprasComponent implements OnInit {
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
+      console.log(this.usuario)
       this.bolsa = elementos_bolsa;
+      
       const observables = elementos_bolsa.map(elemento =>
         this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!)
       );
 
       forkJoin(observables).subscribe(respuestas => {
         respuestas.forEach((resp, index) => {
+          
           const producto: Producto = resp.producto;
           const elemento_producto: ProductoCarrito = {
             costo: producto.precio!,

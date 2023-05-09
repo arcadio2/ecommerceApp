@@ -25,6 +25,7 @@ export class DetalleProductoComponent implements OnInit {
     private productoService:ProductosService) { }
 
   ngOnInit(): void {
+    console.log(this.producto,"ashusaiasbiu")
     this.color = this.producto.detalle![0].color?.color || '';  
     this.nombre = this.producto.nombre || '';  
     this.detalles_guardados = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
