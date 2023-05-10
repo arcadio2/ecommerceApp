@@ -66,7 +66,9 @@
                                     (mouseover)="seleccionarMouse($event,i)"
                                     (mousedown)="isHover=false;haveMouse=true">
 
-                                    <mat-icon>search</mat-icon>
+                                  <i class="material-symbols-outlined">
+                                    search
+                                  </i>
                                     <div>{{producto.nombre}}
 
                                     </div>
@@ -76,26 +78,25 @@
 
                     </div>
                   <span>
-                      <a (click)="irCarritoCompras()" class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2 clickeable">
-                          <svg class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                      <a (click)="irCarritoCompras()" class="block border-b-4 border-transparent p-5  drop-shadow hover:drop-shadow-none clickeable material-symbols-outlined">
+                          <!--<svg class="h-4 w-4 " fill="none" viewBox="0 0 24 24" stroke="currentColor"
                               xmlns="http://www.w3.org/2000/svg">
                               <path stroke-linecap="round" stroke-linejoin="round"
                                   d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-                          </svg>
+                          </svg>-->
 
-                          <span class="sr-only">shopping_cart</span>
+                            shopping_cart
+                       <!-- <mat-icon class="fa-lg" fontSet="fa-light" fontIcon="fa-user" ></mat-icon>-->
                       </a>
                   </span>
 
                   <span class="relative mt-1">
-                      <a  class="block border-b-4 border-transparent p-6 hover:stroke-1 stroke-2 clickeable">
-                          <svg class="h-4 w-4  " xmlns="http://www.w3.org/2000/svg" fill="none"
-                              viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round"
-                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                          </svg>
+                      <a  class="block border-b-4 border-transparent p-5  drop-shadow hover:drop-shadow-none clickeable">
 
-                          <span class="sr-only"> Account </span>
+
+                          <i class="material-symbols-outlined">
+                            person
+                          </i>
                       </a>
 
                       <div *ngIf="!auth;" class="absolute top-10 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
