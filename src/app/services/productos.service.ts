@@ -16,9 +16,13 @@ export class ProductosService {
   constructor(private http:HttpClient, private authService:AuthService,
        private router: Router) { }
 
-      
+
   getProducto(nombre_producto:string){
-    return this.http.get<any>(this.url_base+'producto/'+nombre_producto); 
+    return this.http.get<any>(this.url_base+'producto/'+nombre_producto);
+  }
+
+  getAllProductos(){
+    return this.http.get<any>(environment.urlBase+'api/productos')
   }
 
   addValoracion(xd:any){
@@ -27,7 +31,7 @@ export class ProductosService {
       valoracion:3.7,
       usuario:{
         id:'1'
-      }, 
+      },
       producto:xd
     }
     console.log(objeto)
@@ -52,8 +56,8 @@ export class ProductosService {
       usuario:{
         id:1,
         username:'arcadio'
-      }, 
-      producto:p  
+      },
+      producto:p
     }
     console.log(objeto)
     const headers = new HttpHeaders({
@@ -90,7 +94,7 @@ export class ProductosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     })
-    
+
 
     return this.http.delete<any>(this.url_base+'bolsa/'+id,{headers:headers});
   }
@@ -106,7 +110,7 @@ export class ProductosService {
       return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"?categoria="+categoria+"?genero="+genero);
     }
     if(!nombre && categoria && genero){
-      
+
     }
     if(!nombre && !categoria && genero){
 
@@ -114,12 +118,12 @@ export class ProductosService {
     if(nombre && !categoria && !genero){
       return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
     }
-    
-  
+
+
   }
 
   getCategoriaBySexo(sexo:string){
     return this.http.get<any>(this.url_base+'categoria/'+sexo);
   }
-  
+
 }
