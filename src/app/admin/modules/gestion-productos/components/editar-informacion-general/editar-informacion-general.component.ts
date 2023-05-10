@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Producto} from "../../../../../models/producto.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProductosService} from "../../../../../services/productos.service";
+import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
 
 @Component({
   selector: 'app-editar-informacion-general',
@@ -16,7 +17,8 @@ export class EditarInformacionGeneralComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<EditarInformacionGeneralComponent>,
     private productoService: ProductosService,
-    @Inject(MAT_DIALOG_DATA) public nombreProducto: string
+    private productoAdminService: ProductosAdminService,
+    @Inject(MAT_DIALOG_DATA) public producto: Producto
   ) {
     this.editarInfoGeneralForm = this.createProductoForm()
   }
@@ -26,9 +28,9 @@ export class EditarInformacionGeneralComponent implements OnInit {
 
   createProductoForm(){
     return new FormGroup({
-      nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      precio: new FormControl<number>(-1, {nonNullable: true, validators: [Validators.required]}),
+      nombre: new FormControl<string>(this.producto.nombre!, {nonNullable: true, validators: [Validators.required]}),
+      descripcion: new FormControl<string>(this.producto.descripcion!, {nonNullable: true, validators: [Validators.required]}),
+      precio: new FormControl<number>(this.producto.precio!, {nonNullable: true, validators: [Validators.required]}),
     })
   }
 
@@ -37,12 +39,15 @@ export class EditarInformacionGeneralComponent implements OnInit {
     this.editarInfoGeneralForm.markAllAsTouched();
     if (this.editarInfoGeneralForm.valid) {
       const nuevoProducto: Producto = {
+        id:this.producto.id,
         nombre: this.editarInfoGeneralForm.controls.nombre.value,
         descripcion: this.editarInfoGeneralForm.controls.descripcion.value,
         precio: this.editarInfoGeneralForm.controls.precio.value,
 
       }
-      console.log(nuevoProducto)
+      this.productoAdminService.editProducto(nuevoProducto).subscribe(resp=>{
+        console.log(resp)
+      })
     }
     this.dialogRef.close(true);
 

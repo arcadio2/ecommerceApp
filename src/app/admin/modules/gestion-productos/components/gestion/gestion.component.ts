@@ -58,9 +58,25 @@ export class GestionComponent implements OnInit {
     });
   }
 
-  irEditarInformacionGeneral(nombreProducto: string){
+  disminuir(subProducto:DetalleProducto){
+    const stock = subProducto.stock;
+    if((stock!) >1){
+      subProducto.stock!-=1; 
+      this.productoAdminService.editDetalleProducto(subProducto).subscribe(resp=>{
+        
+      })
+    }
+  }
+  aumentar(subProducto:DetalleProducto){
+    subProducto.stock!+=1; 
+    this.productoAdminService.editDetalleProducto(subProducto).subscribe(resp=>{
+        
+    })
+  }
+
+  irEditarInformacionGeneral(product: Producto){
     this.loading = true
-    this.dialog.open(EditarInformacionGeneralComponent, {data: nombreProducto}).afterClosed().subscribe((res) => {
+    this.dialog.open(EditarInformacionGeneralComponent, {data: product}).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
         this.loadData();
