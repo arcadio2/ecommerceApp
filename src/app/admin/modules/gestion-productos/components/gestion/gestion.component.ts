@@ -5,6 +5,7 @@ import {ToastrService} from "ngx-toastr";
 import {ProductosService} from "../../../../../services/productos.service";
 import {Producto} from "../../../../../models/producto.model";
 import {environment} from "../../../../../../environments/environment";
+import {EditarInformacionGeneralComponent} from "../editar-informacion-general/editar-informacion-general.component";
 
 @Component({
   selector: 'app-gestion',
@@ -55,5 +56,17 @@ export class GestionComponent implements OnInit {
     });
   }
 
+  irEditarInformacionGeneral(nombreProducto: string){
+    this.loading = true
+    this.dialog.open(EditarInformacionGeneralComponent, {data: nombreProducto}).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+        this.loadData();
+        this.toastService.success("Descripción general editada exitosamente")
+      }
+    });
+  }
+
   protected readonly environment = environment;
 }
+
