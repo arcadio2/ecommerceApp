@@ -16,12 +16,14 @@ import {MatCardModule} from "@angular/material/card";
 import {MatListModule} from "@angular/material/list";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { EditarInformacionGeneralComponent } from './components/editar-informacion-general/editar-informacion-general.component';
 
 
 @NgModule({
   declarations: [
     GestionComponent,
-    AgregarProductoComponent
+    AgregarProductoComponent,
+    EditarInformacionGeneralComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { InformacionPerfilRoutingModule } from './informacion-perfil-routing.module';
 import {ConsultarPerfilComponent} from "./components/consultar-perfil/consultar-perfil.component";
 import {EditarPerfilComponent} from "./components/editar-perfil/editar-perfil.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatDialogModule} from "@angular/material/dialog";
 
 
@@ -13,11 +13,12 @@ import {MatDialogModule} from "@angular/material/dialog";
     ConsultarPerfilComponent,
     EditarPerfilComponent
   ],
-  imports: [
-    CommonModule,
-    InformacionPerfilRoutingModule,
-    ReactiveFormsModule,
-    MatDialogModule 
-  ]
+    imports: [
+        CommonModule,
+        InformacionPerfilRoutingModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        FormsModule
+    ]
 })
 export class InformacionPerfilModule { }

@@ -41,12 +41,12 @@ export class EditarPerfilComponent implements OnInit {
     this.perfilForm = this.fromBuilder.group({
       nombre:['',[Validators.required]],
       apellido:['',[Validators.required]],
-      altura:['',[Validators.required]],
-      talla_camisa:['',[Validators.required]],
-      talla_pantalon:['',[Validators.required]],
-      edad:['',[Validators.required]],
-      sexo:['',[Validators.required]],
-      fecha:['',[Validators.required]]
+      altura:['',[]],
+      talla_camisa:['',[]],
+      talla_pantalon:['',[]],
+      edad:['',[]],
+      sexo:['',[]],
+      fecha:['',[]]
     })
 
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
@@ -59,16 +59,14 @@ export class EditarPerfilComponent implements OnInit {
     this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
 
       this.perfil = resp.perfil as Perfil;
-      console.log(this.perfil)
+
       if(this.perfil){
 
-       
         this.perfilForm.get('altura')?.setValue(this.perfil.altura);
         this.perfilForm.get('edad')?.setValue(this.perfil.edad);
         this.perfilForm.get('talla_pantalon')?.setValue(this.perfil.talla_pantalon);
         this.perfilForm.get('talla_camisa')?.setValue(this.perfil.talla_camisa);
         //this.perfilForm.get('talla_camisa')?.setValue(this.perfil.sexo?.sexo);
-        console.log(this.perfil.sexo)
         this.perfilForm.patchValue({
           sexo: this.perfil.sexo?.id
         });
@@ -98,28 +96,28 @@ export class EditarPerfilComponent implements OnInit {
     //console.log(nombre, apellido, edad, altura, tallaCamisa, tallaPantalon, sexo);
     const perfil_save:Perfil = this.perfil! || {};
 
-    const usuario_save:User = this.usuario!; 
+    const usuario_save:User = this.usuario!;
 
     console.log(altura)
-    usuario_save.apellido = apellido; 
-    usuario_save.nombre = nombre; 
+    usuario_save.apellido = apellido;
+    usuario_save.nombre = nombre;
 
-    
-    perfil_save.altura = altura; 
-    perfil_save.edad = edad; 
-    perfil_save.talla_camisa = tallaCamisa; 
-    perfil_save.talla_pantalon = tallaPantalon; 
-    perfil_save.usuario = usuario_save; 
-    perfil_save.fecha_nacimiento = fecha; 
+
+    perfil_save.altura = altura;
+    perfil_save.edad = edad;
+    perfil_save.talla_camisa = tallaCamisa;
+    perfil_save.talla_pantalon = tallaPantalon;
+    perfil_save.usuario = usuario_save;
+    perfil_save.fecha_nacimiento = fecha;
 
     if(sexo==1){
-      perfil_save.sexo = this.hombre; 
+      perfil_save.sexo = this.hombre;
     }else{
       perfil_save.sexo = this.mujer;
     }
 
     this.usuarioService.saveProfile(perfil_save).subscribe(resp=>{
-      this.authService.usuariochange.next(!this.authService.usuariochange.value); 
+      this.authService.usuariochange.next(!this.authService.usuariochange.value);
       console.log(resp)
     },err=>{
       console.log(err)
