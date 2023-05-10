@@ -15,7 +15,7 @@ export class ImagenesService {
   constructor(private http:HttpClient, private authService:AuthService,
     private router: Router) { }
 
-    obtenerImagenes(nombre:string,color:string){
+    obtenerImagenes(nombre:number,color:string){
 
       return this.http.get<any>(this.url_base+'productos/'+nombre+'/'+color);
     }
