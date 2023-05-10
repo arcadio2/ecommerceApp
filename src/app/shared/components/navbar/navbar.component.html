@@ -99,13 +99,13 @@
                           </i>
                       </a>
 
-                      <div *ngIf="!auth;" class="absolute top-10 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
+                      <div *ngIf="!auth;" class="absolute top-11 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
                         <a routerLink="/auth/iniciar-sesion" class="block py-2 mt-1 hover:underline  cursor-pointer font-bold text-base">Inicia sesión</a>
                         <a  routerLink="/auth/registro" class="block  py-2 mt-1 text-xs">¿No tienes una cuenta? <span class="font-bold hover:underline  cursor-pointer">¡Registrate aquí!</span></a>
 
                         </div>
 
-                      <div *ngIf="auth;" class="absolute top-10 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
+                      <div *ngIf="auth;" class="absolute top-11 left-0 w-48 bg-white rounded-md drop-shadow-md px-6 py-3 sobrepuesto right-1 left-auto hidden border-0 z-50">
                         <div class=" font-bold text-lg mt-1.5" *ngIf="user">Hola {{user!.nombre}}</div><!--text-center -->
                         <a routerLink="/user" class="block py-2 mt-2 hover:underline cursor-pointer">Mi perfil</a>
                         <!--<a href="/orders" class="block hover:text-gray-600 py-2">Mis pedidos</a>-->
