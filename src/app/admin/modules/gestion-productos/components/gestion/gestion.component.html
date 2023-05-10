@@ -324,7 +324,10 @@
       <mat-expansion-panel-header>
         <mat-panel-title>
           <div class="w-[50px]">
-              <img src="./assets/shine-sin-eslogan.png" alt="">
+              <img  class="sm:h-[50px]"
+              [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color +'/1.jpg'
+              || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color +'/1.png'"
+                alt="">
           </div>
         </mat-panel-title>
         <mat-panel-description class="">
@@ -420,7 +423,8 @@
 
           </mat-card-header>
           <img class="group-hover:scale-105 sm:h-[100px] py-2"
-               [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ subProducto.id +'/'+ subProducto.color?.color +'/1.jpg'"
+               [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.jpg'
+               || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.png'"
                alt="" >
           <mat-card-content>
             <div class="flex flex-col gap-3 font-['Be_Vietnam_Pro']">
@@ -443,8 +447,8 @@
                     {{subProducto.stock}}
                   </div>
                   <div class="text-gray-600 border border-black rounded-md grid grid-cols-2 items-center place-content-center">
-                    <div class="border-r px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-l-md">+</div>
-                    <div class="px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-r-md">-</div>
+                    <div class="border-r px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-l-md" (click)="aumentar(subProducto)">+</div>
+                    <div class="px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-r-md" (click)="disminuir(subProducto)">-</div>
                   </div>
                 </div>
               </div>

@@ -3,8 +3,9 @@ import {AgregarProductoComponent} from "../agregar-producto/agregar-producto.com
 import {MatDialog} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
 import {ProductosService} from "../../../../../services/productos.service";
-import {Producto} from "../../../../../models/producto.model";
+import {DetalleProducto, Producto} from "../../../../../models/producto.model";
 import {environment} from "../../../../../../environments/environment";
+import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
 
 @Component({
   selector: 'app-gestion',
@@ -20,7 +21,8 @@ export class GestionComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private toastService: ToastrService,
-    private productosService: ProductosService
+    private productosService: ProductosService,
+    private productoAdminService: ProductosAdminService
   ) {
   }
 
@@ -54,6 +56,41 @@ export class GestionComponent implements OnInit {
       }
     });
   }
+
+  editarProducto(){
+    this.loading = true
+    this.dialog.open(AgregarProductoComponent, {}).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+        this.loadData();
+        this.toastService.success("Producto agregado exitosamente")
+      }
+    });
+  }
+
+  disminuir(subproducto:DetalleProducto){
+    const cantidad = subproducto.stock; 
+    if(cantidad!>=1){
+      subproducto.stock! -=1; 
+    }
+    this.productoAdminService.editDetalleProducto(subproducto).subscribe(resp=>{
+      console.log(resp)
+    })
+    
+
+  }
+  aumentar(subproducto:DetalleProducto){
+    const cantidad = subproducto.stock; 
+    subproducto.stock! +=1; 
+ /*    if(cantidad! >=1){
+      subproducto.stock! -=1; 
+    } */
+    this.productoAdminService.editDetalleProducto(subproducto).subscribe(resp=>{
+      console.log(resp)
+    })
+
+  }
+  
 
   protected readonly environment = environment;
 }
