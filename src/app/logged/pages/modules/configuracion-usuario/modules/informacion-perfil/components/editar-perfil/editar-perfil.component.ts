@@ -70,6 +70,26 @@ export class EditarPerfilComponent implements OnInit {
       this.perfilForm.get('nombre')?.setValue(this.usuario?.nombre);
       this.perfilForm.get('apellido')?.setValue(this.usuario?.apellido);
 
+    }, error => {
+      console.log(error)
+    })
+
+    this.categoriaControllersService.getTallasSuperiores().subscribe({
+      next: r => {
+        this.tallasSuperiores = r.tallas
+
+      }, error: err=>{
+        console.log(err)
+      }
+    })
+
+    this.categoriaControllersService.getTallasInferiores().subscribe({
+      next: r => {
+        this.tallasInferiores = r.tallas
+        console.log(this.tallasInferiores)
+      }, error: err=>{
+        console.log(err)
+      }
     })
 
     this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
@@ -77,7 +97,7 @@ export class EditarPerfilComponent implements OnInit {
       this.perfil = resp.perfil as Perfil;
 
       if(this.perfil){
-
+        console.log("talla", this.perfil.talla_camisa)
         this.perfilForm.get('altura')?.setValue(this.perfil.altura);
         this.perfilForm.get('edad')?.setValue(this.perfil.edad);
         this.perfilForm.get('talla_pantalon')?.setValue(this.perfil.talla_pantalon);
@@ -88,29 +108,13 @@ export class EditarPerfilComponent implements OnInit {
         });
       }
 
-      this.categoriaControllersService.getTallasSuperiores().subscribe({
-        next: r => {
-          this.tallasSuperiores = r.tallas
-          console.log(this.tallasSuperiores)
-        }, error: err=>{
-          console.log(err)
-        }
-      })
-
-      this.categoriaControllersService.getTallasInferiores().subscribe({
-        next: r => {
-          this.tallasInferiores = r.tallas
-          console.log(this.tallasInferiores)
-        }, error: err=>{
-          console.log(err)
-        }
-      })
       //this.usuario = resp.usuario as User;
       //if(this.usuario){
       //  this.perfilForm.get('nombre')?.setValue(this.usuario.nombre);
       //}
-    },err=>{
 
+    },err=>{
+      console.log(err)
     })
 
   }

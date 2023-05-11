@@ -49,25 +49,38 @@ export class ConsultarPerfilComponent implements OnInit {
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
 
-      this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
+      this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe({
+        next: (resp:any)=>{
+          this.perfil = resp.perfil as Perfil;
+          console.log("talla", this.perfil.talla_camisa)
+          if(this.perfil){
+            this.isDatoCompletos = true;
 
-        this.perfil = resp.perfil as Perfil;
+            this.categoriaControllersService.getTallasSuperiores().subscribe({
+              next: r => {
+                this.tallasSuperiores = r.tallas
+                console.log("talla", this.perfil?.talla_camisa)
+                console.log(this.tallasSuperiores)
+                const tallaEncontrada = this.tallasSuperiores.find(talla=> talla.id == this.perfil?.talla_camisa)?.talla ?? 'no hay'
+                this.tallaAlta = tallaEncontrada
 
-        if(this.perfil){
-          this.isDatoCompletos = true;
-          this.categoriaControllersService.getTallasSuperiores().subscribe({
-            next: r => {
-              this.tallasSuperiores = r.tallas
-              const tallaEncontrada:Talla = this.tallasSuperiores.find(talla=> talla.id == this.perfil?.talla_camisa)!
-              this.tallaAlta = tallaEncontrada.talla!
-              this.loading = false
-            }, error: err=>{
-              console.log(err)
-              this.loading = false
-            }
-          })
+              }, error: err=>{
+                console.log(err)
+
+              }
+            })
+          }
+
+        },error: err => {
+          console.log(err)
         }
       })
+
+
+      this.loading=false
+    }, error => {
+      this.loading=false
+      console.log(error)
     })
   }
 
