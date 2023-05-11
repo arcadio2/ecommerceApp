@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { LoggedGuard } from './guards/logged.guard';
-import {RestablecerContraseniaComponent} from "./pages/restablecer-contrasenia/restablecer-contrasenia.component";
+import {RecuperarContraseniaComponent} from "./pages/recuperar-contrasenia/recuperar-contrasenia.component";
 import {CarritoComprasComponent} from "../logged/pages/carrito-compras/carrito-compras.component";
 
 const routes: Routes = [
@@ -25,8 +25,8 @@ const routes: Routes = [
         canLoad:[LoggedGuard]
       },
       {
-        path:'restablecer-contraseña',
-        component: RestablecerContraseniaComponent,
+        path:'recuperar-contraseña',
+        component: RecuperarContraseniaComponent,
         canActivate: [LoggedGuard],
         canLoad: [LoggedGuard]
       },

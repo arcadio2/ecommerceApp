@@ -323,12 +323,15 @@
     <mat-expansion-panel *ngFor="let producto of productosAgregados" [disabled]="loading">
       <mat-expansion-panel-header>
         <mat-panel-title>
-          <div class="w-[50px]">
+          <div mat-card-avatar class="w-[50px] bg-cover" [style.backgroundImage]="'url('+ environment.urlBase + 'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color + '/1.jpg)'">
+
+          </div>
+         <!-- <div mat-card-avatar class="w-[50px] bg-cover">
               <img  class="sm:h-[50px]"
               [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color +'/1.jpg'
-              || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color +'/1.png'"
+              ||     environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color +'/1.png'"
                 alt="">
-          </div>
+          </div>-->
         </mat-panel-title>
         <mat-panel-description class="">
           <div class="font-['Be_Vietnam_Pro'] text-black flex justify-between items-center w-full">
@@ -423,10 +426,16 @@
             </mat-card-title>
 
           </mat-card-header>
-          <img class="group-hover:scale-105 sm:h-[100px] py-2"
+          <div class="flex justify-center">
+            <img class="group-hover:scale-105 sm:h-[100px] py-2"
+                 [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.jpg'
+               || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.png'"
+                 alt="" >
+          </div>
+          <!--<img class="group-hover:scale-105 sm:h-[100px] py-2"
                [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.jpg'
                || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.png'"
-               alt="" >
+               alt="" >-->
           <mat-card-content>
             <div class="flex flex-col gap-3 font-['Be_Vietnam_Pro']">
               <div class="">

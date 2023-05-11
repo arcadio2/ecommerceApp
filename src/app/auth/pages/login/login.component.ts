@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
   }
 
   irRestablecerContrasenia (){
-    this.router.navigate(['auth/restablecer-contraseña'])
+    this.router.navigate(['auth/recuperar-contraseña'])
   }
 
 }
