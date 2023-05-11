@@ -102,7 +102,7 @@
                   Talla camisas / playeras / blusas:
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.talla_camisa }}
+                  {{ tallaAlta }}
                 </div>
               </div>
             </div>
@@ -113,7 +113,7 @@
                   Talla en pantalones / jeans :
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.talla_pantalon }}
+                  {{ perfil?.talla_pantalon}}
                 </div>
               </div>
             </div>
@@ -123,15 +123,17 @@
         </div>
         <div *ngIf="isDatoCompletos"
           class="mt-5 flex items-center justify-end gap-8 end-full  bottom-0 bg-white p-0">
-          <a class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2 cursor-pointer"
-             (click)="editarPerfil()">
+          <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2 cursor-pointer"
+             (click)="irEditarPerfil()"
+             [disabled]="loading"
+          >
             <span
                 class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
             <span class="relative text-sm font-medium text-white transition-colors ">
               Editar Perfil
             </span>
-        </a>
+        </button>
         </div>
 
         <div *ngIf="!isDatoCompletos" class="flex-col">
@@ -140,15 +142,15 @@
           </div>
           <!-- class="text-lg text-center mt-6 text-decoration-line: underline cursor-pointer" -->
           <div class="w-full flex justify-center" >
-            <div class="font-bold text-2xl m-3 relative w-max two cursor-pointer"
-               (click)="editarPerfil()">
-              <div>
+            <button class="font-bold text-2xl m-3 relative w-max two cursor-pointer"
+                    (click)="irEditarPerfil()"
+                    [disabled]="loading"
+            >
                 <!--<mat-icon>edit</mat-icon>-->
                 Completa tu perfil aquí
-              </div>
               <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-px bg-black"></span>
               <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-px bg-black"></span>
-            </div>
+            </button>
           </div>
         </div>
       </div>

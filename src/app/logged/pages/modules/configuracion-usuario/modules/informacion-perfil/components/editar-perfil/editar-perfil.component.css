@@ -5,3 +5,7 @@ edad{
 altura{
   margin-bottom: 100px;
 }
+
+select, option{
+  font-family: 'Be_Vietnam_Pro', sans-serif;
+}
