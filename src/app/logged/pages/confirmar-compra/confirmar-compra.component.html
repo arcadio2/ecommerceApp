@@ -4,6 +4,7 @@
 
 
 <div class="grid grid-cols-7 h-[2000px]"><!--Le quitas el 2000 xd, solo es para ver si se queda pegado el ticket-->
+
   <div class="col-span-5 flex justify-center ">
     <div class="col-span-1 max-h-screen overflow-y-auto p-4">
       <div>
@@ -109,8 +110,6 @@
               </div>
             </form>
 
-
-
           </mat-step>
           <mat-step >
             <form >
@@ -119,11 +118,67 @@
                   Facturación
                 </div>
               </ng-template>
-              <mat-form-field appearance="fill">
-                <mat-label>Address</mat-label>
-                <input matInput placeholder="Ex. 1 Main St, New York, NY"
-                       required>
-              </mat-form-field>
+              <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
+                <table [formGroup]="direccionForm">
+                  <tr>
+                    <td class="p-5" colspan="7">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Número de telefono
+                      </label>
+                      <input name="numero-telefono" formControlName="telefono"
+                             class="border-b border-black w-full  text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="numero-telefono" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-5" colspan="4">
+                      <label class="block text-black-700 font-bold mb-2 ">
+                        Fecha de vencimiento
+                      </label>
+                      <input name="estado" formControlName="estado"
+                             class="border-b border-black w-full text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="estado" type="text">
+                    </td>
+
+                    <td class="p-5" >
+                      <label class="block text-black-700 font-bold mb-2">
+                        Cvv
+                      </label>
+                      <input name="municipio" formControlName="municipio"
+                             class="border-b border-black w-full text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="municipio" type="text">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="p-5" colspan="3">
+                      <label class="block text-black-700 font-bold mb-2" >
+                        Calle
+                      </label>
+                      <input name="calle" formControlName="calle"
+                             class="border-b border-black w-full text-black-1000
+              leading-tight focus:outline-none focus:border-black-500 p-1" id="calle" type="text">
+                    </td>
+
+                    <td class="p-5">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Numero Ext
+                      </label>
+                      <input name="num-ext" formControlName="numExt"
+                             class="border-b border-black w-full text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-ext" type="text">
+                    </td>
+
+                    <td class="p-5">
+                      <label class="block text-black-700 font-bold mb-2">
+                        Numero int
+                      </label>
+                      <input name="num-int" formControlName="numInt"
+                             class="border-b border-black w-full text-black-1000
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-int" type="text">
+                    </td>
+                  </tr>
+                </table>
+              </div>
               <div>
                 <button mat-button matStepperPrevious>Back</button>
                 <button mat-button matStepperNext>Next</button>
@@ -133,7 +188,7 @@
           <mat-step>
             <ng-template matStepLabel>
               <div class="font-['Be_Vietnam_Pro'] text-black font-bold text-lg">
-                Ewe ya acabaste
+                Resumen de productos
               </div>
             </ng-template>
             <p>You are now done.</p>
