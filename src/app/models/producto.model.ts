@@ -9,7 +9,7 @@ export interface Producto {
     categoria?:        Categoria;
     comentarios?:      Comentario[];
     id?:               number;
-
+    hombre?:           boolean; 
 }
 
 export interface Categoria {
