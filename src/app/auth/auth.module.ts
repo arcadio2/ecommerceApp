@@ -7,7 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './pages/logout/logout.component';
-import { RecuperarContraseniaComponent } from './pages/recuperar-contrasenia/recuperar-contrasenia.component';
+import { ReestablecerContraseniaComponent } from './pages/reestablecer-contrasenia/reestablecer-contrasenia.component';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { RecuperarContraseniaComponent } from './pages/recuperar-contrasenia/rec
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    RecuperarContraseniaComponent,
+    ReestablecerContraseniaComponent,
 
   ],
   imports: [

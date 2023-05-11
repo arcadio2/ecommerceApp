@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialogRef} from "@angular/material/dialog";
 import {ProductosService} from "../../../../../services/productos.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Categoria, Color, Producto} from "../../../../../models/producto.model";
+import {Categoria, Color, DetalleDto, Producto, Talla} from "../../../../../models/producto.model";
 import {CategoriaControllersService} from "../../../../../services/categoria-controllers.service";
 
 @Component({
@@ -14,10 +14,20 @@ export class AgregarProductoComponent implements OnInit {
   loading = false
   readonly agregarProductoForm;
   coloresDisponibles: Color[] = []
+  tallasDisponibles: Talla[] = [];
+  tallasSeleccionables: Talla[] = [];
   categoriasDisponibles: Categoria[] = []
   categoriasSeleccionables: Categoria[] =[]
   catalagoHombre = [];
   selectedHombre:boolean = true;
+  troncoSuperior:boolean = true; 
+
+  tallasSeleccionadas: Talla[] = [];
+
+  detallesSeleccionados: DetalleDto[] = []; 
+  stockSeleccionados:number[] = []; 
+  
+  colorSeleccionado!:Color;
 
   constructor(
     private dialogRef: MatDialogRef<AgregarProductoComponent>,
@@ -30,6 +40,10 @@ export class AgregarProductoComponent implements OnInit {
   ngOnInit(): void {
     this.categoriaControllers.getColores().subscribe((resp:any)=>{
       this.coloresDisponibles = resp.colores
+    })
+    this.categoriaControllers.getTallas().subscribe((resp:any)=>{
+      this.tallasDisponibles = resp.tallas; 
+      this.tallasSeleccionables = this.tallasDisponibles.filter(t=>t.tronco_superior==true); 
     })
 
     this.categoriaControllers.getCategoriasRopa().subscribe((resp: any)=>{
@@ -55,6 +69,46 @@ export class AgregarProductoComponent implements OnInit {
   console.log(this.categoriasSeleccionables)
 
   }
+  cambiarTalla(event:any){
+
+    this.categoriasSeleccionables.forEach(r=>{
+      if(r.tipo==event.target.value){
+        this.troncoSuperior = r.tronco_superior!;  
+      }
+    })
+
+    if(this.troncoSuperior){
+      this.tallasSeleccionables = this.tallasDisponibles.filter(r => r.tronco_superior==true)
+    }else{
+      this.tallasSeleccionables = this.tallasDisponibles.filter(r => r.tronco_superior==false)
+
+    }
+
+  }
+
+  cambiarColor(color:Color){
+    this.colorSeleccionado = color; 
+  }
+  anadirTalla(talla:Talla){
+
+    if(this.tallasSeleccionadas.includes(talla)){
+
+      const indice_elemento =this.tallasSeleccionadas.indexOf(talla);
+      if (indice_elemento > -1) {
+        this.tallasSeleccionadas.splice(indice_elemento, 1);
+        this.stockSeleccionados.splice(indice_elemento, 1);
+      }
+      
+    }else{
+
+      this.tallasSeleccionadas.push(talla);
+      this.stockSeleccionados.push(0);  
+   
+    }
+    
+
+  }
+
 
   createProductoForm(){
     return new FormGroup({

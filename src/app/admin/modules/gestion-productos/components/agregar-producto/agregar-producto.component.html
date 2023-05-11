@@ -1,12 +1,12 @@
 
   <div  class="mx-3 px-2 border-b-2 border-black text-center">
-    <p class="font-semibold text-black text-center">Agregar/Editar producto</p>
+    <p class="font-semibold text-black text-center">Agregar producto</p>
 
   </div>
   <mat-dialog-content>
     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-      <!--<div class="grid grid-cols-2">-->
-      <div>
+      <div class="grid grid-cols-2">
+      <!-- <div> -->
 
 
         <div [formGroup]="agregarProductoForm" class="flex items-start flex-col">
@@ -62,8 +62,12 @@
                 <option selected value="0" class="font-sm" >Hombre</option>
                 <option value="1" class="font-sm">Mujer</option>
               </select>
-              <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3">
-                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm">
+              <select (change)="cambiarTalla($event)"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
+                >
+
+                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm" 
+                  >
                   <span >{{tipo.tipo}}</span>
                 </option>
               </select>
@@ -81,6 +85,7 @@
                     <input type="checkbox" id="ColorSg+{{i}}" class="sr-only" />
 
                     <label for="ColorSg"
+                          (click)="cambiarColor(color)"
                            class="block h-6 w-6 cursor-pointer rounded-full bg-[{{color.hexadecimal}}] transition hover:!opacity-100">
                       <span class="sr-only"> {{color.color}} </span>
                     </label>
@@ -89,53 +94,23 @@
               </div>
             </fieldset>
             <fieldset class="mt-4">
-              <legend class="mb-1 text-sm font-medium">Tamaño</legend>
+              <legend class="mb-1 text-sm font-medium">Selecciona las tallas que quieres añadir</legend>
 
               <div class="flex flex-wrap justify-around gap-1">
-                <label for="size_xs" class="cursor-pointer">
-                  <input type="radio" name="size" id="size_xs" class="peer sr-only" />
+                <label for="size_xs{{i}}" class="cursor-pointer" *ngFor="let talla of tallasSeleccionables; let i=index"
+                  >
+                  <input type="checkbox" name="size" id="size_xs{{i}}" class="peer sr-only" (click)="anadirTalla(talla)"/>
 
                   <span
                     class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                XS
+                                                {{talla.talla}}
                                             </span>
+                                            
+                                            
                 </label>
 
-                <label for="size_s" class="cursor-pointer">
-                  <input type="radio" name="size" id="size_s" class="peer sr-only" />
 
-                  <span
-                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                S
-                                            </span>
-                </label>
-
-                <label for="size_m" class="cursor-pointer">
-                  <input type="radio" name="size" id="size_m" class="peer sr-only" />
-
-                  <span
-                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                M
-                                            </span>
-                </label>
-
-                <label for="size_l" class="cursor-pointer">
-                  <input type="radio" name="size" id="size_l" class="peer sr-only" />
-
-                  <span
-                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                L
-                                            </span>
-                </label>
-
-                <label for="size_xl" class="cursor-pointer">
-                  <input type="radio" name="size" id="size_xl" class="peer sr-only" />
-
-                  <span
-                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                XL
-                                            </span>
-                </label>
+             
                 <div>
                   <input type="button" id="ColorSb" class="sr-only" />
 
@@ -147,6 +122,41 @@
             </fieldset>
           </div>
         </div>
+        <div class="flex items-start flex-col p-3">
+          En esta sección podrás editar el stock para cada combinación talla-color que hayas seleccionado
+          <div *ngIf="colorSeleccionado">
+            Color seleccionado: 
+            <input type="checkbox" id="ColorSgSelected" class="sr-only" />
+
+            <label for="ColorSg"
+                 
+                   class="block h-6 w-6 cursor-pointer rounded-full bg-[{{colorSeleccionado.hexadecimal}}] transition hover:!opacity-100">
+              <span class="sr-only"> {{colorSeleccionado.color}} </span>
+            </label>
+            <div class="flex flex-wrap justify-around gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
+              
+                <label  class="cursor-pointer">
+                  <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
+
+                  <span
+                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                {{talla.talla}}
+                                            </span>
+                </label>
+                <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
+                  <input type="number"  placeholder="Stock " [(ngModel)]="stockSeleccionados[i]"
+                         class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+      
+                  <span
+                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                    Stock para talla {{talla.talla}}
+                  </span>
+                </label>
+              </div>
+
+
+          </div>
+        </div>
         <!--<div>
 
           <img alt="Les Paul"
@@ -155,6 +165,7 @@
         </div>-->
       </div>
     </div>
+
   </mat-dialog-content>
 <!-- Fin modal -->
   <mat-dialog-actions align="center">
