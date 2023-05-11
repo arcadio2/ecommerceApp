@@ -1,34 +1,22 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
 /* You can add global styles to this file, and also import other style files */
+
 .material-symbols-outlined {
-    font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 48
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 100,
+    'GRAD' 100,
+    'opsz' 20
 }
+
 
 :hover.invert-color{
     color: white;
     background-color: black;
 }
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-}
 
-.material-symbols-outlined {
-  font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 48
-}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-

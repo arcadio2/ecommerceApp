@@ -73,6 +73,10 @@ export class NavbarComponent implements OnInit, OnChanges{
     
   }
 
+  isAdmin(){
+    return this.authService.isAdmin(); 
+  }
+
 
   logout(){
     this.auth=false;

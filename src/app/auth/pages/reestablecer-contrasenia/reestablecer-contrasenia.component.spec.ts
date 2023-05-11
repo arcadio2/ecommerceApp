@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestablecerContraseniaComponent } from './restablecer-contrasenia.component';
+import { ReestablecerContraseniaComponent } from './reestablecer-contrasenia.component';
 
 describe('ForgottenPasswordComponent', () => {
-  let component: RestablecerContraseniaComponent;
-  let fixture: ComponentFixture<RestablecerContraseniaComponent>;
+  let component: ReestablecerContraseniaComponent;
+  let fixture: ComponentFixture<ReestablecerContraseniaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RestablecerContraseniaComponent ]
+      declarations: [ ReestablecerContraseniaComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RestablecerContraseniaComponent);
+    fixture = TestBed.createComponent(ReestablecerContraseniaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

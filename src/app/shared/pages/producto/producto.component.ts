@@ -202,7 +202,7 @@ export class ProductoComponent implements OnInit,OnChanges {
 
      //this.inBolsaS.next(this.isInBolsa());
 
-      this.imagenesService.obtenerImagenes(this.producto?.nombre!,this.productoMostrado?.color?.color!).subscribe(img=>{
+      this.imagenesService.obtenerImagenes(this.producto?.id!,this.productoMostrado?.color?.color!).subscribe(img=>{
 
         this.imagenes = img.rutas;
       },err=>{

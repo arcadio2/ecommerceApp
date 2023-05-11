@@ -64,6 +64,10 @@
               class="mt-1 text-red-600 text-bold text-xs">
               <p>El email es requerido</p>
               </div>
+              <div  *ngIf="registerForm.controls['email'].hasError('email') && registerForm.controls['email'].touched"
+                    class="mt-1 text-red-600 text-bold text-xs">
+                <p>EL formato del email es incorrecto</p>
+              </div>
               <div *ngIf="errores?.email" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.email}}
               </div>
@@ -86,10 +90,10 @@
         </div>
 
         <div class="mb-4 flex items-center p-3">
-          <input type="checkbox" id="remember-me" class="mr-2 leading-tight">
-            <div class="text-center text-sm w-full">
-                * He leído y entiendo la <span routerLink="/auth" class="text-black underline font-bold"> Politica de privacidad</span>
-            </div>
+          <div class="text-center text-sm w-full">
+              Al registrarte, aceptas haber leído y aceptado los <span routerLink="/auth" class="text-black underline font-bold"> Términos de Servicio</span> y nuestra
+            <span routerLink="/auth" class="text-black underline font-bold">Política de privacidad</span>
+          </div>
 
         </div>
 

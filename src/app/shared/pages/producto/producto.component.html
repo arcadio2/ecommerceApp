@@ -8,7 +8,7 @@
           <div class="grid grid-cols-2 gap-0.5" *ngIf="productoMostrado">
             <a class="group block overflow-hidden" *ngFor="let img of imagenes">
               <img alt="Les Paul"
-                   [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto?.nombre +'/'+productoMostrado!.color?.color +'/'+img ||
+                   [src]="url_backend+'api/imagenes/productos/uploads/img/'+idProducto +'/'+productoMostrado!.color?.color +'/'+img ||
                             'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'"
               />
             </a>
@@ -41,7 +41,7 @@
 
               </div>
 
-              <div class="text-lg font-bold">$119.99</div>
+              <div class="text-lg font-bold">${{producto?.precio | number:'1.2-2'}}</div>
 
             </div>
             <div class="my-1 border-0 border-b border-black border-solid  xl:mb-4"></div>

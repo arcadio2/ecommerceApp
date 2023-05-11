@@ -9,6 +9,9 @@ import {
   AgregarProductoComponent
 } from "../../../../../../../../admin/modules/gestion-productos/components/agregar-producto/agregar-producto.component";
 import {EditarPerfilComponent} from "../editar-perfil/editar-perfil.component";
+import {CategoriaControllersService} from "../../../../../../../../services/categoria-controllers.service";
+import {Talla} from "../../../../../../../../models/producto.model";
+import {filter} from "rxjs";
 @Component({
   selector: 'app-consultar-perfil',
   templateUrl: './consultar-perfil.component.html',
@@ -23,6 +26,8 @@ export class ConsultarPerfilComponent implements OnInit {
   isDatoCompletos:boolean = false;
 
   loading = false
+  tallasSuperiores: Talla[] =[]
+  tallaAlta: string = ''
 
   constructor(
     private router: Router,
@@ -30,6 +35,7 @@ export class ConsultarPerfilComponent implements OnInit {
     private usuarioService:UsuarioService,
     private dialog: MatDialog,
     private toastService:ToastrService,
+    private categoriaControllersService : CategoriaControllersService
   ) {
 
   }
@@ -39,20 +45,47 @@ export class ConsultarPerfilComponent implements OnInit {
   }
 
   loadData(){
+    this.loading = true
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
-    })
-    this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
 
-      this.perfil = resp.perfil as Perfil;
-      if(this.perfil){
-        this.isDatoCompletos = true;
-      }
+      this.usuarioService.getProfileByUsername(this.authService.usuario.username).subscribe({
+        next: (resp:any)=>{
+          this.perfil = resp.perfil as Perfil;
+          console.log("talla", this.perfil.talla_camisa)
+          if(this.perfil){
+            this.isDatoCompletos = true;
+
+            this.categoriaControllersService.getTallasSuperiores().subscribe({
+              next: r => {
+                this.tallasSuperiores = r.tallas
+                console.log("talla", this.perfil?.talla_camisa)
+                console.log(this.tallasSuperiores)
+                const tallaEncontrada = this.tallasSuperiores.find(talla=> talla.id == this.perfil?.talla_camisa)?.talla ?? 'no hay'
+                this.tallaAlta = tallaEncontrada
+
+              }, error: err=>{
+                console.log(err)
+
+              }
+            })
+          }
+
+        },error: err => {
+          console.log(err)
+        }
+      })
+
+
+      this.loading=false
+    }, error => {
+      this.loading=false
+      console.log(error)
     })
   }
 
 
-  editarPerfil() {
+  irEditarPerfil() {
     this.loading = true
     this.dialog.open(EditarPerfilComponent, {
       width: '80%'
@@ -65,6 +98,7 @@ export class ConsultarPerfilComponent implements OnInit {
     });
   }
 
+  protected readonly filter = filter;
 }
 
 

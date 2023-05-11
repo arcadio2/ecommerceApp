@@ -6,14 +6,24 @@ import { GestionComponent } from './components/gestion/gestion.component';
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {TextFieldModule} from "@angular/cdk/text-field";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
+import {MatIconModule} from "@angular/material/icon";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonModule} from "@angular/material/button";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { EditarInformacionGeneralComponent } from './components/editar-informacion-general/editar-informacion-general.component';
 
 
 @NgModule({
   declarations: [
     GestionComponent,
-    AgregarProductoComponent
+    AgregarProductoComponent,
+    EditarInformacionGeneralComponent
   ],
   imports: [
     CommonModule,
@@ -21,7 +31,16 @@ import {MatSelectModule} from "@angular/material/select";
     MatDialogModule,
     TextFieldModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatListModule,
+    MatProgressBarModule,
+    FormsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class GestionProductosModule { }
