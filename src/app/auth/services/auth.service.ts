@@ -211,5 +211,8 @@ export class AuthService {
   
   }
 
+  restablecerContra(email:string){
+    return this.http.post(this.url_base+'mail',email); 
+  }
   
 }

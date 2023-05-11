@@ -17,6 +17,7 @@
 
 
               <a (mouseover)="showSubMenu = true;showSearchInput = false; "
+              *ngIf="!isAdmin()"
                   [ngClass]="{'underline':showSubMenu}"
                   class="block h-16 border-b-4 border-transparent leading-[4rem] text-black font-bold text-base cursor-pointer transition duration-75">
                   Productos
