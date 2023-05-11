@@ -158,9 +158,15 @@ export class AgregarProductoComponent implements OnInit {
           
         })
       }); 
-      const tipo:Categoria = this.categoriasDisponibles.filter(c=>{
-        c.tipo==this.agregarProductoForm.controls.tipoRopa.value;
-      })[0]; 
+      let tipo!:Categoria;
+      this.categoriasDisponibles.forEach(c=>{
+        if( c.tipo==this.agregarProductoForm.controls.tipoRopa.value){
+          tipo=c; 
+        }
+       
+      }); 
+
+      console.log("RIPO",tipo)
 
       const nuevoProducto: Producto = {
         nombre: this.agregarProductoForm.controls.nombre.value,
