@@ -33,5 +33,27 @@ export class CategoriaControllersService {
     return this.http.get<any>(this.url_base+'categorias',{headers:headers});
   }
 
+  getTallasSuperiores(){
+    const token = this.authService.token;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.get<any>(this.url_base+'tallas/true',{headers:headers});
+  }
+
+  getTallasInferiores(){
+    const token = this.authService.token;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.get<any>(this.url_base+'tallas/false',{headers:headers});
+  }
+
 
 }
