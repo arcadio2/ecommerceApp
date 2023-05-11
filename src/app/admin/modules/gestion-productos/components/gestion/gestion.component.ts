@@ -7,6 +7,7 @@ import {DetalleProducto, Producto} from "../../../../../models/producto.model";
 import {environment} from "../../../../../../environments/environment";
 import {EditarInformacionGeneralComponent} from "../editar-informacion-general/editar-informacion-general.component";
 import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
+import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
 
 @Component({
   selector: 'app-gestion',
@@ -83,6 +84,32 @@ export class GestionComponent implements OnInit {
         this.toastService.success("Descripción general editada exitosamente")
       }
     });
+  }
+
+  eliminar(producto:Producto) {
+    this.loading = true
+
+    const dialogRef = this.dialog.open(DialogComponentComponent, {
+      width: '30%',
+      data: '¿Está seguro que desea eliminar este elemento?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loading = false
+      if (result === 'yes') {
+       this.eliminarProducto(producto);
+      } else {
+        console.log('Operación de eliminación cancelada.');
+      }
+    });
+  }
+
+  eliminarProducto(producto:Producto){
+    this.productoAdminService.eliminarProducto(producto.nombre!).subscribe(resp=>{
+      const indice_elemento =this.productosAgregados.indexOf(producto);
+      this.productosAgregados.splice(indice_elemento, 1);
+      this.toastService.info("Se ha eliminado el producto")
+    })
   }
 
   protected readonly environment = environment;

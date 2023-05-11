@@ -56,6 +56,10 @@ export class CarritoComprasComponent implements OnInit {
 
       forkJoin(observables).subscribe(respuestas => {
         respuestas.forEach((resp, index) => {
+          if(elementos_bolsa[index].cantidad! >elementos_bolsa[index].detalle_producto?.stock!){
+            elementos_bolsa[index].cantidad = elementos_bolsa[index].detalle_producto?.stock; 
+            this.actualizarCantidad(elementos_bolsa[index]); 
+          }
           
           const producto: Producto = resp.producto;
           const elemento_producto: ProductoCarrito = {

@@ -22,6 +22,7 @@
           </label>
           <label for="Description" class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-6 mt-2 ">
               <textarea id="Description" placeholder="Descripcion"
+                  
                         class="mt-3 peer w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                         matInput
                         cdkTextareaAutosize
@@ -42,7 +43,7 @@
               Precio
             </span>
           </label>
-          <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
+    <!--       <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
             <input type="number" formControlName="stock" placeholder="Stock"
                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
@@ -50,7 +51,7 @@
               class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
               Stock
             </span>
-          </label>
+          </label> -->
 
           <div class="grid grid-cols-3 text-sm w-full mt-3">
             <div class="text-xs text-gray-700">
@@ -58,15 +59,16 @@
             </div>
             <div class="col-span-2 flex flex-col gap-3">
               <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
-                (change)="cambiarCategoria($event)">
+                (change)="cambiarCategoria($event)" formControlName="sexo">
                 <option selected value="0" class="font-sm" >Hombre</option>
                 <option value="1" class="font-sm">Mujer</option>
               </select>
-              <select (change)="cambiarTalla($event)"
+              <select (change)="cambiarTalla($event)" formControlName="tipoRopa"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
                 >
 
                 <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm" 
+                  [value]="tipo.tipo"
                   >
                   <span >{{tipo.tipo}}</span>
                 </option>
@@ -82,7 +84,7 @@
               <div class="flex flex-wrap gap-1">
                 <div class="flex flex-wrap w-full justify-around gap-1 [&:hover_label]:opacity-75">
                   <div *ngFor="let color of coloresDisponibles; let i=index">
-                    <input type="checkbox" id="ColorSg+{{i}}" class="sr-only" />
+                    <input type="checkbox" id="ColorSg+{{i}}" class="sr-only" formControlName="color" />
 
                     <label for="ColorSg"
                           (click)="cambiarColor(color)"
@@ -130,28 +132,32 @@
 
             <label for="ColorSg"
                  
-                   class="block h-6 w-6 cursor-pointer rounded-full bg-[{{colorSeleccionado.hexadecimal}}] transition hover:!opacity-100">
+                   class="p-3 mt-3 block h-6 w-6 cursor-pointer rounded-full bg-[{{colorSeleccionado.hexadecimal}}] transition hover:!opacity-100">
               <span class="sr-only"> {{colorSeleccionado.color}} </span>
             </label>
             <div class="flex flex-wrap justify-around gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
-              
-                <label  class="cursor-pointer">
-                  <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
+                <div class="flex">
+                  <label  class="cursor-pointer p-3 mt-2">
+                    <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
+  
+                    <span
+                      class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
+                                                  {{talla.talla}}
+                                              </span>
+                  </label>
+                  <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
+                    <input type="number" min="0"  placeholder="Stock " [(ngModel)]="stockSeleccionados[i]"
+                           class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+        
+                    <span
+                      class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+                      Stock para talla {{talla.talla}}
+                    </span>
+                  </label>
+                </div>
+       
 
-                  <span
-                    class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                                                {{talla.talla}}
-                                            </span>
-                </label>
-                <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
-                  <input type="number"  placeholder="Stock " [(ngModel)]="stockSeleccionados[i]"
-                         class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
-      
-                  <span
-                    class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-                    Stock para talla {{talla.talla}}
-                  </span>
-                </label>
+               
               </div>
 
 
@@ -171,7 +177,7 @@
   <mat-dialog-actions align="center">
     <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
             (click)="registrarNuevoProducto()"
-            [disabled]="loading"
+           
     >
       <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 

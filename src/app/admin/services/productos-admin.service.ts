@@ -41,5 +41,24 @@ export class ProductosAdminService {
 
     return this.http.put<any>(this.url_base_detalle+'edit',detalle,{headers:headers})
   }
+  eliminarProducto(producto:string){
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.delete<any>(this.url_base+'delete/'+producto,{headers:headers})
+  }
+
+  agregarProducto(producto:Producto){
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.post<any>(this.url_base+'create',producto,{headers:headers})
+  }
        
 }

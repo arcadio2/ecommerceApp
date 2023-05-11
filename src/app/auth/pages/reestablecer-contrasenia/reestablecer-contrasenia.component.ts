@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../services/auth.service";
 import {ToastrService} from "ngx-toastr";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reestablecer-contrasenia',
@@ -13,6 +14,7 @@ export class ReestablecerContraseniaComponent implements OnInit {
   email:string='';
   contraForm!: FormGroup;
   constructor(private authService:AuthService,
+              private router:Router,
               private fromBuilder:FormBuilder,
               private toastService:ToastrService) { }
 
@@ -28,6 +30,7 @@ export class ReestablecerContraseniaComponent implements OnInit {
 
       this.authService.restablecerContra(this.email).subscribe((resp:any)=>{
         this.toastService.info(resp.mensaje);
+        this.router.navigateByUrl('/auth'); 
       },error=>{
         this.toastService.error("El email no es válido o no está registrado");
       })
