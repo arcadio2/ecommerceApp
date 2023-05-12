@@ -38,11 +38,19 @@
               </div>
             </div>
           </div>
+
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <div class="underline underline-offset-2 text-black hover:font-semibold cursor-pointer"
+             (click)="irCambiarContrasenia()"
+        >
+          Cambiar contraseña
         </div>
       </div>
 
       <div>
-        <div class="mt-6 flex justify-between items-center">
+        <div class="mt-3 flex justify-between items-center">
           <div class="text-lg">
             Datos del usuario:
           </div>
@@ -69,7 +77,7 @@
                   Edad:
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.edad}}
+                  {{ perfil?.edad ?? 'Sin registrar'}}
                 </div>
               </div>
             </div>
@@ -80,7 +88,7 @@
                   Sexo:
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.sexo?.sexo }}
+                  {{ perfil?.sexo?.sexo ?? 'Sin registrar'}}
                 </div>
               </div>
             </div>
@@ -91,7 +99,7 @@
                   Altura (cm):
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.altura }}
+                  {{ perfil?.altura ?? 'Sin registrar'}}
                 </div>
               </div>
             </div>
@@ -102,7 +110,7 @@
                   Talla camisas / playeras / blusas:
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ tallaAlta }}
+                  {{ tallaAlta ?? 'Sin registrar'}}
                 </div>
               </div>
             </div>
@@ -113,7 +121,7 @@
                   Talla en pantalones / jeans :
                 </div>
                 <div class="flex justify-center text-sm">
-                  {{ perfil?.talla_pantalon}}
+                  {{ perfil?.talla_pantalon ?? 'Sin registrar'}}
                 </div>
               </div>
             </div>
