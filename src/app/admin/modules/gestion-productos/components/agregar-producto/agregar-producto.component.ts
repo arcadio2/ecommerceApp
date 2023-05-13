@@ -23,6 +23,7 @@ export class AgregarProductoComponent implements OnInit {
   catalagoHombre = [];
   selectedHombre:boolean = true;
   troncoSuperior:boolean = true; 
+  fotosSeleccionadas: File[]=[];
 
   tallasSeleccionadas: Talla[] = [];
 
@@ -126,7 +127,8 @@ export class AgregarProductoComponent implements OnInit {
       
       sexo: new FormControl<string>('0', {nonNullable: true, validators: [Validators.required]}),
       tipoRopa: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      color: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]})
+      color: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+      foto: new FormControl<any>('', {nonNullable: true, validators: [Validators.required]})
     })
   }
 
@@ -143,6 +145,10 @@ export class AgregarProductoComponent implements OnInit {
     }
     if(this.tallasSeleccionadas.length==0){
       this.toastService.error("Debes seleccionar tallas a agregar"); 
+      return
+    }
+    if(this.fotosSeleccionadas.length==0){
+      this.toastService.error("Debes seleccionar al menos 1 foto"); 
       return
     }
     if (!this.agregarProductoForm.errors) {
@@ -178,7 +184,14 @@ export class AgregarProductoComponent implements OnInit {
    
       }
       this.productoAdminService.agregarProducto(nuevoProducto).subscribe(resp=>{
-        console.log(resp); 
+        
+        const nuevo:Producto = resp.producto; 
+        console.log("NUEVO ",nuevo)
+        const id_producto = nuevo.id; 
+        const color_producto = nuevo.detalle![0].color?.color!; 
+        this.productoAdminService.subirFotos(this.fotosSeleccionadas,id_producto!,color_producto).subscribe(resp=>{
+
+        })
         this.dialogRef.close(true);
 
         this.loading = false;  
@@ -189,6 +202,11 @@ export class AgregarProductoComponent implements OnInit {
       this.toastService.error("Los datos son inválidos"); 
     }
     
+  }
+
+  seleccionarFoto(event:any){
+    this.fotosSeleccionadas = event.target.files; 
+    console.log(this.fotosSeleccionadas)
   }
 
   cancelar() {
