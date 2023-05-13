@@ -60,5 +60,25 @@ export class ProductosAdminService {
 
     return this.http.post<any>(this.url_base+'create',producto,{headers:headers})
   }
+
+  subirFotos(archivos: File[], id_producto:number,color:string) {
+    let formData = new FormData();
+    console.log(color,id_producto,archivos)
+    
+    formData.append("id_producto", id_producto+'');
+    formData.append("color", color+'');
+    for(let i = 0; i < archivos.length; i++){
+      formData.append("file", archivos[i]);
+    }
+    console.log("DATA",formData.get("file"))
+    
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+    
+
+    return this.http.post(this.url_base+'productos/upload',formData,{headers:headers});
+  }
        
 }
