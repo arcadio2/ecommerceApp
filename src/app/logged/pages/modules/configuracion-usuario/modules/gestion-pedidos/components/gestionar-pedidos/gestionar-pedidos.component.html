@@ -1,1 +1,198 @@
-<p>gestionar-pedidos works!</p>
+<!--
+<div class="flex w-full items-center justify-center border-b-2 border-black mb-6 p-3 gap-3">
+  <div class="text-2xl uppercase font-bold">
+    Gestión de pedidos
+  </div>
+</div>
+<div class="flex flex-col items-center gap-4">
+  <mat-accordion class="w-[90%] font-['Be_Vietnam_Pro']">
+    <mat-expansion-panel  [disabled]="loading">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <div mat-card-avatar class="w-[50px] bg-cover" [style.backgroundImage]="'url('+ environment.urlBase + 'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ producto.detalle![0].color?.color + '/1.jpg)'">
+
+          </div>
+        </mat-panel-title>
+        <mat-panel-description class="">
+          <div class="font-['Be_Vietnam_Pro'] text-black flex justify-between items-center w-full">
+            <div class="capitalize font-bold font-base">
+              {{producto.nombre}}
+            </div>
+
+            <div class="">
+              {{producto.precio | currency}}
+            </div>
+            <div class="flex gap-3">
+              <button [disabled]="loading" mat-icon-button
+                      (click)="irEditarInformacionGeneral(producto)"
+              >
+                <mat-icon class="flex items-center justify-center text-2xl cursor-pointer font-black"
+                          [matTooltip]="'Editar datos generales'"
+                >edit</mat-icon>
+              </button>
+              <button [disabled]="loading" mat-icon-button
+                      (click)="eliminar(producto)"
+              >
+                <mat-icon class="flex items-center justify-center text-2xl cursor-pointer font-black"
+                          [matTooltip]="'Borrar producto'"
+
+                >delete</mat-icon>
+              </button>
+
+            </div>
+
+          </div>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="font-['Be_Vietnam_Pro'] flex flex-col gap-3 mt-4">
+
+        <div class="grid grid-cols-5 gap-3">
+          &lt;!&ndash;Imagen&ndash;&gt;
+          <div class="col-span-1 w-[100px]">
+            <img src="./assets/shine-sin-eslogan.png" alt="">
+          </div>
+
+          &lt;!&ndash;Descripcion general&ndash;&gt;
+          <div class="col-span-4 grid grid-cols-2 gap-3">
+            <div class="flex flex-col gap-3">
+              <div class="">
+                <span class="font-semibold">Catálago:</span>
+                <div class="flex gap-1 font-base">
+                  <span *ngIf="producto.categoria?.hombre == true">Hombre</span>
+                  <span *ngIf="producto.categoria?.mujer == true">Mujer</span>
+                </div>
+              </div>
+
+              <div class="">
+                <span class="font-semibold">Tipo de prenda:</span>
+                <div>
+                  {{producto.categoria?.tipo}}
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-3">
+              <div class="">
+                <span class="font-semibold">Descripción:</span>
+                <div class="text-sm">
+                  {{producto.descripcion}}
+                </div>
+              </div>
+              <div class="">
+                <span class="font-semibold">Id:</span>
+                <div>
+                  {{producto.id}}
+                </div>
+              </div>
+            </div>
+
+            &lt;!&ndash; <button [disabled]="loading" mat-icon-button class="cursor-pointer"
+             >
+               <mat-icon class="fa-xl" fontSet="fa-regular" fontIcon="fa-pen-to-square"
+                         [matTooltip]="'Editar detalles'"
+               ></mat-icon>
+             </button>&ndash;&gt;
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:grid sm:grid-cols-3 w-full gap-4 mt-4">
+        &lt;!&ndash;SubProductos&ndash;&gt;
+        <mat-card class="" *ngFor="let subProducto of producto.detalle">
+          <mat-card-header>
+            <mat-card-title class="capitalize">
+              <div class="font-['Be_Vietnam_Pro']">
+                {{subProducto.nombre_producto}}
+              </div>
+            </mat-card-title>
+
+          </mat-card-header>
+          <div class="flex justify-center">
+            <img class="group-hover:scale-105 sm:h-[100px] py-2"
+                 [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.jpg'
+               || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.png'"
+                 alt="" >
+          </div>
+          &lt;!&ndash;<img class="group-hover:scale-105 sm:h-[100px] py-2"
+               [src]="environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.jpg'
+               || environment.urlBase +'api/imagenes/productos/uploads/img/'+ producto.id +'/'+ subProducto.color?.color +'/1.png'"
+               alt="" >&ndash;&gt;
+          <mat-card-content>
+            <div class="flex flex-col gap-3 font-['Be_Vietnam_Pro']">
+              <div class="">
+                <span class="font-semibold">Color:</span>
+                <div>
+                  {{subProducto.color?.color}}
+                </div>
+              </div>
+              <div class="">
+                <span class="font-semibold">Talla:</span>
+                <div>
+                  {{subProducto.talla?.talla}}
+                </div>
+              </div>
+              <div class="">
+                <span class="font-semibold">Stock:</span>
+                <div class="flex justify-between">
+                  <div>
+                    {{subProducto.stock}}
+                  </div>
+                  <div class="text-gray-600 border border-black rounded-md grid grid-cols-2 items-center place-content-center">
+                    <div class="border-r px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-l-md text-2xl"
+                         (click)="aumentar(subProducto)">
+                      +
+                    </div>
+                    <div class="px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-r-md text-2xl"
+                         (click)="disminuir(subProducto)">
+                      -
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button color="font-['Be_Vietnam_Pro']"
+                    [disabled]="loading"
+            >
+              Eliminar
+            </button>
+          </mat-card-actions>
+        </mat-card>
+
+      </div>
+
+      <mat-action-row>
+        <div class="flex items-center justify-end gap-8 w-full bg-white">
+          <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                  [disabled]="loading"
+          >
+            <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+            <span class="relative text-sm text-black transition-colors ">
+            Añadir más subproductos
+          </span>
+          </button>
+        </div>
+      </mat-action-row>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>
+<div class="mt-10 flex items-center justify-end gap-8 end-full sticky bottom-0 bg-white p-3">
+  <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          (click)="agregarNuevoProducto()"
+  >
+    <span
+      class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-semibold text-white transition-colors ">
+            Añadir producto
+          </span>
+  </button>
+</div>
+
+<div class="flex justify-center items-center">
+  <mat-spinner *ngIf="loading" ></mat-spinner>
+</div>
+
+
+-->

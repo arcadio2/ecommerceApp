@@ -1,0 +1,66 @@
+<div  class="mx-3 px-2 border-b-2 border-black text-center">
+  <p class="font-semibold text-black text-center">Cambiar contraseña</p>
+</div>
+<mat-dialog-content>
+  <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+    <!--<div class="grid grid-cols-2">-->
+    <div>
+      <div  class="flex items-start flex-col gap-8">
+
+        <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
+          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+                 class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+          <span
+            class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+              * Contraseña actual:
+            </span>
+        </label>
+        <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
+          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+                 class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+          <span
+            class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+              * Nueva contraseña:
+            </span>
+        </label>
+        <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
+          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+                 class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+
+          <span
+            class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
+              * Confirmación:
+            </span>
+        </label>
+
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+  <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          (click)="cambiarContrasenia()"
+          [disabled]="loading"
+  >
+    <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-medium text-white transition-colors  text-center">
+          Aceptar
+    </span>
+  </button>
+
+  <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          (click)="cancelar()"
+          [disabled]="loading"
+  >
+    <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-medium text-black transition-colors  text-center">
+      Cancelar
+    </span>
+  </button>
+</mat-dialog-actions>
+

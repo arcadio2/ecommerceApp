@@ -1,11 +1,14 @@
-<div class="flex w-full items-center border-b-2 border-black mb-6 p-3 gap-3">
-  <input type="text" placeholder="Buscar producto"
+<div class="flex w-full items-center justify-center border-b-2 border-black mb-6 p-3 gap-3">
+  <!--<input type="text" placeholder="Buscar producto"
          class="focus:border-none w-11/12 border-black border-solid border-2 rounded-md  p-3 outline-black outline-2">
   <i class="material-symbols-outlined cursor-pointer">
     search
-  </i>
+  </i>-->
+  <div class="text-2xl uppercase font-bold">
+    Gestión de productos
+  </div>
 </div>
-<div class="flex flex-col items-center w-full gap-4">
+<div class="flex flex-col items-center gap-4">
   <!--<div class="w-[90%] p-5 py-10 border-b border-black flex justify-center">
     <div class="w-2/3 sm:grid sm:grid-cols-5 flex flex-col gap-3">
       <div class="sm:col-span-4 flex items-center gap-4">
@@ -338,9 +341,7 @@
             <div class="capitalize font-bold font-base">
               {{producto.nombre}}
             </div>
-            <div class="text-sm">
-              {{producto.descripcion}}
-            </div>
+
             <div class="">
               {{producto.precio | currency}}
             </div>
@@ -357,7 +358,7 @@
               >
                 <mat-icon class="flex items-center justify-center text-2xl cursor-pointer font-black"
                           [matTooltip]="'Borrar producto'"
-                          
+
                 >delete</mat-icon>
               </button>
 
@@ -380,8 +381,8 @@
               <div class="">
                 <span class="font-semibold">Catálago:</span>
                 <div class="flex gap-1 font-base">
-                  <span *ngIf="producto.categoria?.hombre == true">Hombre</span>
-                  <span *ngIf="producto.categoria?.mujer == true">Mujer</span>
+                  <span *ngIf="producto.hombre == true">Hombre</span>
+                  <span *ngIf="producto.hombre == false">Mujer</span>
                 </div>
               </div>
 
@@ -394,9 +395,9 @@
             </div>
             <div class="flex flex-col gap-3">
               <div class="">
-                <span class="font-semibold">Precio:</span>
-                <div>
-                  {{producto.precio | currency}}
+                <span class="font-semibold">Descripción:</span>
+                <div class="text-sm">
+                  {{producto.descripcion}}
                 </div>
               </div>
               <div class="">
@@ -459,26 +460,41 @@
                     {{subProducto.stock}}
                   </div>
                   <div class="text-gray-600 border border-black rounded-md grid grid-cols-2 items-center place-content-center">
-                    <div class="border-r px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-l-md" (click)="aumentar(subProducto)">+</div>
-                    <div class="px-4 py-2 cursor-pointer hover:bg-gray-100 rounded-r-md" (click)="disminuir(subProducto)">-</div>
+                    <div class="border-r px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-l-md text-2xl"
+                         (click)="aumentar(subProducto)">
+                      +
+                    </div>
+                    <div class="px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-r-md text-2xl"
+                         (click)="disminuir(subProducto)">
+                      -
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </mat-card-content>
           <mat-card-actions align="end">
-            <button mat-button color="font-['Be_Vietnam_Pro']">Eliminar</button>
+            <button mat-button color="font-['Be_Vietnam_Pro']"
+               [disabled]="loading"
+            >
+              Eliminar
+            </button>
           </mat-card-actions>
         </mat-card>
 
       </div>
-      <mat-divider></mat-divider>
+
       <mat-action-row>
-        <button mat-button class="font-bold"
-          [disabled]="loading"
-        >
-          Agregar más subproductos
-        </button>
+        <div class="flex items-center justify-end gap-8 w-full bg-white">
+          <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+                  [disabled]="loading"
+          >
+            <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+            <span class="relative text-sm text-black transition-colors ">
+            Añadir más subproductos
+          </span>
+          </button>
+        </div>
       </mat-action-row>
     </mat-expansion-panel>
   </mat-accordion>

@@ -65,6 +65,10 @@ export class ProductoComponent implements OnInit,OnChanges {
 
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  loadData(){
 
     this.route.paramMap.subscribe(params=>{
       this.cambiaEstado = false;
@@ -73,8 +77,8 @@ export class ProductoComponent implements OnInit,OnChanges {
       this.colorProducto = params.get('color')!;
       this.tallaProducto = params.get('talla')!;
 
-     this.textoCarrito = "Agregar al carrito";
-     this.inBolsa = false;
+      this.textoCarrito = "Agregar al carrito";
+      this.inBolsa = false;
 
       this.buscarProducto();
       this.tallas_disponibles = [];
@@ -117,7 +121,7 @@ export class ProductoComponent implements OnInit,OnChanges {
         })
         this.toastService.success("Producto agregado correctamente")
 
-       
+
         this.inBolsa = true;
         this.cambiaEstado = true;
         //window.location.reload();
@@ -280,12 +284,12 @@ export class ProductoComponent implements OnInit,OnChanges {
     this.loading = true
     this.dialog.open(VisualizarComentariosComponent, {
       width: '80%',
-      data:this.productoMostrado?.producto!,
+      data:{producto: this.productoMostrado?.producto!, productoMostrado: this.productoMostrado},
       hasBackdrop: true
     }).afterClosed().subscribe((res) => {
       this.loading = false
-      if (res === true) {
-      }
+      this.loadData()
+      console.log("hola")
     });
   }
 

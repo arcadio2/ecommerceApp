@@ -5,13 +5,11 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { Perfil, User } from 'src/app/models/user.model';
 import {MatDialog} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
-import {
-  AgregarProductoComponent
-} from "../../../../../../../../admin/modules/gestion-productos/components/agregar-producto/agregar-producto.component";
 import {EditarPerfilComponent} from "../editar-perfil/editar-perfil.component";
 import {CategoriaControllersService} from "../../../../../../../../services/categoria-controllers.service";
 import {Talla} from "../../../../../../../../models/producto.model";
 import {filter} from "rxjs";
+import {CambiarContraseniaComponent} from "../cambiar-contrasenia/cambiar-contrasenia.component";
 @Component({
   selector: 'app-consultar-perfil',
   templateUrl: './consultar-perfil.component.html',
@@ -61,8 +59,7 @@ export class ConsultarPerfilComponent implements OnInit {
                 this.tallasSuperiores = r.tallas
                 console.log("talla", this.perfil?.talla_camisa)
                 console.log(this.tallasSuperiores)
-                const tallaEncontrada = this.tallasSuperiores.find(talla=> talla.id == this.perfil?.talla_camisa)?.talla ?? 'no hay'
-                this.tallaAlta = tallaEncontrada
+                this.tallaAlta = this.tallasSuperiores.find(talla=> talla.id == this.perfil?.talla_camisa)?.talla ?? 'Sin registrar'
 
               }, error: err=>{
                 console.log(err)
@@ -94,6 +91,18 @@ export class ConsultarPerfilComponent implements OnInit {
       if (res === true) {
         this.loadData();
         this.toastService.success("Perfil editado exitosamente")
+      }
+    });
+  }
+
+  irCambiarContrasenia(){
+    this.loading = false
+    this.dialog.open(CambiarContraseniaComponent, {
+    }).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+        this.loadData();
+        this.toastService.success("Contraseña editada exitosamente")
       }
     });
   }
