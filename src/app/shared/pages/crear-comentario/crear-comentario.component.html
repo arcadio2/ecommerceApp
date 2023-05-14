@@ -15,7 +15,7 @@
       </div>
 
       <div class="w-2/3 m-4">
-        <form class="flex flex-col gap-3">
+        <div [formGroup]="comentarioForm" class="flex flex-col gap-3">
           <div class="">
             <!--Calificaciones-->
             <div class="flex flex-col">
@@ -23,28 +23,37 @@
                 Calificación:
               </label>
               <div class="rating">
-                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
-                <input type="radio" name="rating-1" class="mask mask-star bg-black" checked />
-                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
-                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
-                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
+                <input type="radio" class="mask mask-star bg-black hover:bg-black" [value]="0" formControlName="valoracion"/>
+                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="1" formControlName="valoracion" checked />
+                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="2" formControlName="valoracion"/>
+                <input type="radio" class="mask mask-star bg-black hover:bg-black" [value]="3" formControlName="valoracion"/>
+                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="4" formControlName="valoracion"/>
+              </div>
+              <div  *ngIf="comentarioForm.controls.valoracion.invalid && comentarioForm.controls.valoracion.touched"
+                    class="mt-1 text-red-600 text-bold text-xs">
+                <p>La valoración es requerida</p>
               </div>
             </div>
           </div>
           <div>
             <label for="Name" class="relative block  overflow-hidden border-b border-black bg-transparent pt-3 ">
-              <input type="text" id="Name" placeholder="Nombre"
+              <input type="text" id="Name" placeholder="Titulo" formControlName="titulo"
                      class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
               <span class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                 Título
               </span>
             </label>
+            <div  *ngIf="comentarioForm.controls.titulo.invalid && comentarioForm.controls.titulo.touched"
+                  class="mt-1 text-red-600 text-bold text-xs">
+              <p>El título es requerido</p>
+            </div>
+
           </div>
           <div >
             <label for="Description"
                    class="relative block overflow-hidden border-b border-black bg-transparent pt-6 ">
-              <textarea id="Description" placeholder="Descripcion"
+              <textarea id="Description" placeholder="Comentario" formControlName="descripcion"
                         class="mt-3 peer w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                         matInput
                         cdkTextareaAutosize
@@ -57,9 +66,13 @@
                 Descripción
               </span>
             </label>
+            <div  *ngIf="comentarioForm.controls.descripcion.invalid && comentarioForm.controls.descripcion.touched"
+                  class="mt-1 text-red-600 text-bold text-xs">
+              <p>La descripción es requerida</p>
+            </div>
           </div>
 
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -84,4 +97,5 @@
           Cancelar
         </span>
   </button>
+
 </mat-dialog-actions>

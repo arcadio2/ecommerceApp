@@ -9,8 +9,9 @@ export interface Producto {
     categoria?:        Categoria;
     comentarios?:      Comentario[];
     id?:               number;
-    hombre?:           boolean; 
+    hombre?:           boolean;
 }
+
 
 export interface Categoria {
     id?:   number;

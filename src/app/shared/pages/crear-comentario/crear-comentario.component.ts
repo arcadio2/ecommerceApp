@@ -1,9 +1,12 @@
-import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatDialogRef} from "@angular/material/dialog";
+import {Component, Inject, NgZone, OnInit, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
 import {VisualizarComentariosComponent} from "../visualizar-comentarios/visualizar-comentarios.component";
 import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 import {take} from "rxjs";
+import {ComentariosService} from "../../../services/comentarios.service";
+import {ComentarioProducto, Producto} from "../../../models/producto.model";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-crear-comentario',
@@ -12,13 +15,21 @@ import {take} from "rxjs";
 })
 export class CrearComentarioComponent implements OnInit {
   loading = false
-
+  comentarioForm = new FormGroup({
+    valoracion: new FormControl<number>(0, {nonNullable: true, validators: [Validators.required]}),
+    titulo: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+    descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+  });
 
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialogRefCrear: MatDialogRef<CrearComentarioComponent>,
-    private _ngZone: NgZone
-  ) { }
+    private _ngZone: NgZone,
+    private comentariosService: ComentariosService,
+    @Inject(MAT_DIALOG_DATA) public idProducto: number,
+  ) {
+
+  }
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   ngOnInit(): void {
@@ -33,12 +44,36 @@ export class CrearComentarioComponent implements OnInit {
     this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
   }
 
-  crearComentario() {
-    this.loading = true;
-    this.dialogRefVisualizar.close(false)
-    this.dialogRefCrear.close(true);
+  createComentarioForm(){
+    return new FormGroup({
+      valoracion: new FormControl<number>(0, {nonNullable: true, validators: [Validators.required]}),
+      titulo: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+      descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+    })
+  }
 
-    this.loading = false;
+  crearComentario() {
+    this.comentarioForm.markAllAsTouched()
+    if (this.comentarioForm.valid){
+      this.loading = true;
+      this.comentarioForm.disable()
+      const comentarioNuevo: ComentarioProducto= {
+        titulo: this.comentarioForm.controls.titulo.value,
+        comentario: this.comentarioForm.controls.descripcion.value,
+        valoracion: this.comentarioForm.controls.valoracion.value
+      }
+
+      this.comentariosService.guardarComentario(this.idProducto, comentarioNuevo ).subscribe((resp)=>{
+        this.loading = false
+        this.comentarioForm.enable()
+        this.dialogRefVisualizar.close(true)
+      },(error)=>{
+        this.loading = false
+        this.comentarioForm.enable()
+        this.dialogRefVisualizar.close(false)
+      })
+    }
+
   }
   cancelar() {
     this.loading = true;

@@ -21,9 +21,9 @@
         <!-- Inicio detalle del producto -->
         <div class="sticky top-16 col-span-5 px-6 items-center ">
           <div class="flex flex-col justify-center min-h-screen">
-            <h1 class="text-xl font-bold sm:text-2xl w-11/12 capitalize">
+            <div class="text-xl font-bold sm:text-2xl w-11/12 capitalize">
               {{producto?.nombre!}}
-            </h1>
+            </div>
 
             <div class="mt-8 flex justify-between items-center py-3">
 
@@ -155,7 +155,7 @@
 
                   <div class="flex items-center border border-gray-200 rounded max-w-max">
                     <button type="button" (click)="reducir()"
-                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 text-2xl">
+                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
                       &minus;
                     </button>
 
@@ -163,7 +163,7 @@
                            class="h-10 w-16 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"/>
 
                     <button type="button" (click)="aumentar()"
-                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75 text-2xl">
+                            class="w-10 h-10 leading-10 text-gray-600 transition hover:opacity-75">
                       &plus;
                     </button>
                   </div>

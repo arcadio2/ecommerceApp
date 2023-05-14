@@ -26,8 +26,12 @@ export class VisualizarComentariosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public producto: Producto ) { }
 
   ngOnInit(): void {
+    this.loadData()
+  }
+
+  loadData(): void {
     this.cantidad_estrellas = Math.ceil(this.producto.valoracion_total!) || 0;
-    
+
     for (let i = 0; i < this.cantidad_estrellas; i++) {
       // Si el número es entero, agregamos elementos con valor 1
       if (Number.isInteger(this.producto.valoracion_total!)) {
@@ -53,17 +57,16 @@ export class VisualizarComentariosComponent implements OnInit {
     })
   }
 
-  loadData(): void {
-  }
-
   irCrearComentario() {
     this.loading = true
-    this.dialogRefVisualizar.close(false)
     this.dialog.open(CrearComentarioComponent, {
+      data:this.producto?.id!,
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
+        console.log("hola v")
         this.toastService.success("Reseña guardada exitosamente")
+        this.dialogRefVisualizar.close(true)
       }
     });
   }

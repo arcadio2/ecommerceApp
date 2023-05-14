@@ -63,7 +63,7 @@
       </div>
       <div class="col-span-3" *ngIf="comentarios.length!==0">
 
-        <div *ngFor="let comentario of comentarios" class="flex flex-col  pl-5 pr-5 pt-2 pd-2">
+        <div *ngFor="let comentario of comentarios" class="flex flex-col px-2 pb-4 border-b">
           <div class="grid grid-cols-2 p-4">
             <div class="grid grid-cols-5">
               <img *ngFor="let i of [].constructor((comentario.valoracion!))"
