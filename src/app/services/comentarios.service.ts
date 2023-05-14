@@ -20,11 +20,24 @@ export class ComentariosService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
     })
+    
     return this.http.post<any>(this.url_base+id_producto,comentario,{headers:headers});
+
+  }
+  editComentario(id_producto:number,comentario:ComentarioProducto){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    
+    return this.http.put<any>(this.url_base+id_producto,comentario,{headers:headers});
 
   }
 
   getComentariosProducto(id_producto:number){
+    return this.http.get(this.url_base+id_producto); 
+  }
+  getByUsernameAndProducto(id_producto:number,username:string){
     return this.http.get(this.url_base+id_producto); 
   }
 

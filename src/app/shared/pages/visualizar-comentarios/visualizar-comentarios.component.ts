@@ -5,6 +5,9 @@ import { ComentariosService } from 'src/app/services/comentarios.service';
 import {CrearComentarioComponent} from "../crear-comentario/crear-comentario.component";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {ToastrService} from "ngx-toastr";
+import { User } from 'src/app/models/user.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-visualizar-comentarios',
@@ -18,15 +21,27 @@ export class VisualizarComentariosComponent implements OnInit {
   cantidad_estrellas:number = 0;
   recorrido_estrellas:number[] =[];
   recorrido_estrellas_restantes:number=0;
+  tiene_comentario:boolean=false; 
+  usuario!:User; 
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialog: MatDialog,
+    private auth:AuthService,
     private toastService:ToastrService,
+    private usuarioService: UsuarioService,
     private comentarioService:ComentariosService,
     @Inject(MAT_DIALOG_DATA) public producto: Producto ) { }
 
   ngOnInit(): void {
-    this.loadData()
+    this.loadData(); 
+   if(this.auth.usuario){
+    this.usuarioService.getUserByUsername(this.auth.usuario.username!).subscribe((resp:any)=>{
+      this.usuario = resp.usuario; 
+      console.log(this.usuario)
+    })
+   }
+    
+
   }
 
   loadData(): void {
@@ -52,8 +67,9 @@ export class VisualizarComentariosComponent implements OnInit {
 
 
     this.comentarioService.getComentariosProducto(this.producto.id!).subscribe((resp:any)=>{
-      this.comentarios = resp.comentarios as Comentario[]
-      console.log(resp)
+      this.comentarios = resp.comentarios as Comentario[]; 
+      
+   
     })
   }
 

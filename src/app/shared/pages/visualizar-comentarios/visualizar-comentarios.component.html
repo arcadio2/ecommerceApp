@@ -48,7 +48,10 @@
               <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
               <span class="relative text-sm font-medium text-white transition-colors  text-center">
-              Añadir mi reseña
+                <div *ngIf="!usuario">
+                  Añadir mi reseña
+                </div>
+              
             </span>
             </button>
           </div>
