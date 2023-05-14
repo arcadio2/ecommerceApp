@@ -284,7 +284,7 @@ export class ProductoComponent implements OnInit,OnChanges {
     this.loading = true
     this.dialog.open(VisualizarComentariosComponent, {
       width: '80%',
-      data:this.productoMostrado?.producto!,
+      data:{producto: this.productoMostrado?.producto!, productoMostrado: this.productoMostrado},
       hasBackdrop: true
     }).afterClosed().subscribe((res) => {
       this.loading = false

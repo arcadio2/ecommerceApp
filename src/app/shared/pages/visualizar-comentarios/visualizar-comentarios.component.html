@@ -13,7 +13,7 @@
           <div class="grid grid-rows-1 grid-flow-col p-5">
 
             <div class="grid grid-cols-3">
-              <div class="p-4 font-extrabold text-5xl	">{{(producto.valoracion_total  || 0) | number:'1.1-1'}}</div>
+              <div class="p-4 font-extrabold text-5xl	">{{(data.producto.valoracion_total  || 0) | number:'1.1-1'}}</div>
               <div class="p-4 grid grid-flow-col grid-rows-2 col-span-2">
                 <div class="grid grid-cols-5">
                   <img class="h-6 w-6" *ngFor="let c of recorrido_estrellas"

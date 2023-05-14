@@ -5,9 +5,10 @@ import {VisualizarComentariosComponent} from "../visualizar-comentarios/visualiz
 import {CdkTextareaAutosize} from "@angular/cdk/text-field";
 import {take} from "rxjs";
 import {ComentariosService} from "../../../services/comentarios.service";
-import {ComentarioProducto, Producto} from "../../../models/producto.model";
+import {ComentarioProducto, DetalleDto, Producto} from "../../../models/producto.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {environment} from "../../../../environments/environment";
+import {ImagenesService} from "../../../services/imagenes.service";
 
 @Component({
   selector: 'app-crear-comentario',
@@ -21,6 +22,7 @@ export class CrearComentarioComponent implements OnInit {
     titulo: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
     descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
   });
+  imagenes:string[]=[];
 
   url_backend:string =  environment.urlBase;
 
@@ -29,18 +31,24 @@ export class CrearComentarioComponent implements OnInit {
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialogRefCrear: MatDialogRef<CrearComentarioComponent>,
     private _ngZone: NgZone,
+    private imagenesService:ImagenesService,
     private comentariosService: ComentariosService,
-    @Inject(MAT_DIALOG_DATA) public producto: Producto,
+    @Inject(MAT_DIALOG_DATA) public data: {producto: Producto, productoMostrado: DetalleDto}
   ) {
 
   }
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   ngOnInit(): void {
-
+    this.loadData()
   }
   loadData(){
+    this.imagenesService.obtenerImagenes(this.data.producto?.id!,this.data.productoMostrado?.color?.color!).subscribe(img=>{
+      this.imagenes = img.rutas;
+    },err=>{
+    })
 
+    console.log('api/imagenes/productos/uploads/img/'+this.data.producto.id +'/'+this.data.productoMostrado!.color?.color +'/'+this.imagenes[0])
   }
 
   triggerResize() {
@@ -67,7 +75,7 @@ export class CrearComentarioComponent implements OnInit {
         valoracion: this.comentarioForm.controls.valoracion.value
       }
 
-      this.comentariosService.guardarComentario(this.producto?.id!, comentarioNuevo ).subscribe((resp)=>{
+      this.comentariosService.guardarComentario(this.data.producto?.id!, comentarioNuevo ).subscribe((resp)=>{
         this.loading = false
         this.comentarioForm.enable()
         this.dialogRefVisualizar.close(true)
