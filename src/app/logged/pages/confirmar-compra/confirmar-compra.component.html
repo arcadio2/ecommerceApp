@@ -124,7 +124,7 @@
                 <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
                   <table [formGroup]="direccionForm">
                     <tr>
-                      <td class="p-5 w-full">
+                      <td class="p-5" colspan="5">
                         <label class="block text-black-700 font-bold mb-2">
                           Número de tarjeta
                         </label>
@@ -135,7 +135,7 @@
                     </tr>
 
                     <tr>
-                      <td class="p-5" colspan="2">
+                      <td class="p-5" colspan="3">
                         <label class="block text-black-700 font-bold mb-2 ">
                           Fecha de vencimiento
                         </label>
@@ -144,12 +144,12 @@
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="vencimiento" type="text">
                       </td>
 
-                      <td class="p-5" colspan="1">
+                      <td class="p-5" colspan="2">
                         <label class="block text-black-700 font-bold mb-2">
                           Cvv
                         </label>
                         <input name="Cvv" formControlName="Cvv"
-                               class="border-b border-black w-3/3 text-black-1000
+                               class="border-b border-black w-full text-black-1000
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="Cvv" type="text">
                       </td>
                     </tr>
