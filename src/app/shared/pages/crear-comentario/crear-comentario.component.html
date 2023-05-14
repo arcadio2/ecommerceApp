@@ -1,5 +1,5 @@
 <div class=" px-2 border-b-2 border-black text -center">
-  <p class="font-semibold text-black text-center">Crear Comentario</p>
+  <p class="font-semibold text-black text-center">Crear comentario</p>
 </div>
 
 <mat-dialog-content>
@@ -7,10 +7,10 @@
     <div class="flex flex-row">
       <div class="w-1/3 border-r-2 border-black -500 ">
         <div class="flex justify-center items-center text-3l font-bold mt-5">
-          <div>Camiseta Skater Oversized en Negro Degradado</div>
+          <div class="text-center">Camiseta Skater Oversized en Negro Degradado</div>
         </div>
         <div class="flex justify-center">
-          <img src="https://via.placeholder.com/400x400" alt="Placeholder Image" class="w-1/2">
+          <img src="./assets/shine-sin-eslogan.png" alt="Placeholder Image" class="w-1/2">
         </div>
       </div>
 
@@ -18,31 +18,16 @@
         <form class="flex flex-col gap-3">
           <div class="">
             <!--Calificaciones-->
-            <div>
-              <label class="mb-2 text-sm font-medium"  for="rating">
-                Calificación
+            <div class="flex flex-col">
+              <label class="mb-2 text-sm font-medium text-gray-600">
+                Calificación:
               </label>
-              <div class="flex items-center">
-                <input class="hidden" type="radio" name="rating" id="rating-1" value="1"/>
-                <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-1">
-                  <i class="far fa-star"></i>
-                </label>
-                <input class="hidden" type="radio" name="rating" id="rating-2" value="2"/>
-                <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-2">
-                  <i class="far fa-star"></i>
-                </label>
-                <input class="hidden" type="radio" name="rating" id="rating-3" value="3"/>
-                <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-3">
-                  <i class="far fa-star"></i>
-                </label>
-                <input class="hidden" type="radio" name="rating" id="rating-4" value="4"/>
-                <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-4">
-                  <i class="far fa-star"></i>
-                </label>
-                <input class="hidden" type="radio" name="rating" id="rating-5" value="5"/>
-                <label class="text-4xl text-gray-400 hover:text-yellow-400 cursor-pointer" for="rating-5">
-                  <i class="far fa-star"></i>
-                </label>
+              <div class="rating">
+                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
+                <input type="radio" name="rating-1" class="mask mask-star bg-black" checked />
+                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
+                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
+                <input type="radio" name="rating-1" class="mask mask-star bg-black" />
               </div>
             </div>
           </div>
