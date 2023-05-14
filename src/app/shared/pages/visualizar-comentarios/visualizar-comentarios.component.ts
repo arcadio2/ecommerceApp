@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Comentario, Producto } from 'src/app/models/producto.model';
+import { Comentario, DetalleDto, Producto } from 'src/app/models/producto.model';
 import { ComentariosService } from 'src/app/services/comentarios.service';
 import {CrearComentarioComponent} from "../crear-comentario/crear-comentario.component";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
@@ -22,6 +22,7 @@ export class VisualizarComentariosComponent implements OnInit {
   recorrido_estrellas:number[] =[];
   recorrido_estrellas_restantes:number=0;
   tiene_comentario:boolean=false; 
+  comentario!:Comentario; 
   usuario!:User; 
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
@@ -30,26 +31,29 @@ export class VisualizarComentariosComponent implements OnInit {
     private toastService:ToastrService,
     private usuarioService: UsuarioService,
     private comentarioService:ComentariosService,
-    @Inject(MAT_DIALOG_DATA) public producto: Producto ) { }
+    @Inject(MAT_DIALOG_DATA) public data: {producto: Producto, productoMostrado: DetalleDto} ) { }
 
   ngOnInit(): void {
     this.loadData(); 
-   if(this.auth.usuario){
-    this.usuarioService.getUserByUsername(this.auth.usuario.username!).subscribe((resp:any)=>{
-      this.usuario = resp.usuario; 
-      console.log(this.usuario)
+    this.usuario = this.auth.usuario; 
+
+    this.comentarioService.getByUsernameAndProducto(this.data.producto.id!).subscribe((resp:any)=>{
+      if(resp.comentario){
+        this.comentario  = resp.comentario; 
+
+        this.tiene_comentario = true; 
+      }
     })
-   }
     
 
   }
 
   loadData(): void {
-    this.cantidad_estrellas = Math.ceil(this.producto.valoracion_total!) || 0;
+    this.cantidad_estrellas = Math.ceil(this.data.producto.valoracion_total!) || 0;
 
     for (let i = 0; i < this.cantidad_estrellas; i++) {
       // Si el número es entero, agregamos elementos con valor 1
-      if (Number.isInteger(this.producto.valoracion_total!)) {
+      if (Number.isInteger(this.data.producto.valoracion_total!)) {
         this.recorrido_estrellas.push(1);
       } else {
         // Si el número no es entero, agregamos elementos con valor 0 excepto el último que es 1
@@ -66,7 +70,7 @@ export class VisualizarComentariosComponent implements OnInit {
     this.recorrido_estrellas_restantes = 5-this.recorrido_estrellas.length;
 
 
-    this.comentarioService.getComentariosProducto(this.producto.id!).subscribe((resp:any)=>{
+    this.comentarioService.getComentariosProducto(this.data.producto.id!).subscribe((resp:any)=>{
       this.comentarios = resp.comentarios as Comentario[]; 
       
    
@@ -76,7 +80,7 @@ export class VisualizarComentariosComponent implements OnInit {
   irCrearComentario() {
     this.loading = true
     this.dialog.open(CrearComentarioComponent, {
-      data:this.producto?.id!,
+      data:{producto: this.data.producto, productoMostrado: this.data.productoMostrado,comentario:this.comentario}
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {

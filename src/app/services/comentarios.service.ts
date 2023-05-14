@@ -37,8 +37,13 @@ export class ComentariosService {
   getComentariosProducto(id_producto:number){
     return this.http.get(this.url_base+id_producto); 
   }
-  getByUsernameAndProducto(id_producto:number,username:string){
-    return this.http.get(this.url_base+id_producto); 
+  getByUsernameAndProducto(id_producto:number){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    
+    return this.http.get(this.url_base+'usuario/'+id_producto,{headers:headers}); 
   }
 
  
