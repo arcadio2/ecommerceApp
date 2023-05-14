@@ -60,7 +60,7 @@ export class VisualizarComentariosComponent implements OnInit {
   irCrearComentario() {
     this.loading = true
     this.dialog.open(CrearComentarioComponent, {
-      data:this.producto?.id!,
+      data:this.producto,
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {

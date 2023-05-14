@@ -7,6 +7,7 @@ import {take} from "rxjs";
 import {ComentariosService} from "../../../services/comentarios.service";
 import {ComentarioProducto, Producto} from "../../../models/producto.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-crear-comentario',
@@ -21,12 +22,15 @@ export class CrearComentarioComponent implements OnInit {
     descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
   });
 
+  url_backend:string =  environment.urlBase;
+
+
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialogRefCrear: MatDialogRef<CrearComentarioComponent>,
     private _ngZone: NgZone,
     private comentariosService: ComentariosService,
-    @Inject(MAT_DIALOG_DATA) public idProducto: number,
+    @Inject(MAT_DIALOG_DATA) public producto: Producto,
   ) {
 
   }
@@ -63,7 +67,7 @@ export class CrearComentarioComponent implements OnInit {
         valoracion: this.comentarioForm.controls.valoracion.value
       }
 
-      this.comentariosService.guardarComentario(this.idProducto, comentarioNuevo ).subscribe((resp)=>{
+      this.comentariosService.guardarComentario(this.producto?.id!, comentarioNuevo ).subscribe((resp)=>{
         this.loading = false
         this.comentarioForm.enable()
         this.dialogRefVisualizar.close(true)
