@@ -1,24 +1,47 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
+import {CrearComentarioComponent} from "../../../shared/pages/crear-comentario/crear-comentario.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AuthService} from "../../../auth/services/auth.service";
+import {ToastrService} from "ngx-toastr";
+import {ProductosCompra} from "../../../models/producto.model";
+import {ConfirmarPagoComponent} from "../confirmar-pago/confirmar-pago.component";
 
 @Component({
   selector: 'app-confirmar-compra',
   templateUrl: './confirmar-compra.component.html',
-  styleUrls: ['./confirmar-compra.component.css']
+  styleUrls: ['./confirmar-compra.component.css'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: {showError: true},
+    },
+  ],
 })
-export class ConfirmarCompraComponent implements OnInit,AfterViewInit {
+export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
 
-  firstFormGroup = this._formBuilder.group({
+  /*firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
   secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required],
-  });
+  });*/
   isLinear = false;
-  readonly direccionForm;
+  direccionForm = this.createDireccionForm();
+  facturacionForm = this.createFacturacionForm()
 
-  constructor(private _formBuilder: FormBuilder) {
-    this.direccionForm = this.createForm()
+  loading = false
+
+  productosCompra?: ProductosCompra
+
+  constructor(
+    private _formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private toastService:ToastrService,
+
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -29,7 +52,11 @@ export class ConfirmarCompraComponent implements OnInit,AfterViewInit {
     window.scrollTo(0, 0);
   }
 
-  createForm() {
+  loadData(){
+
+  }
+
+  createDireccionForm() {
     return new FormGroup({
       estado: new FormControl('', {
         nonNullable: true,
@@ -64,6 +91,35 @@ export class ConfirmarCompraComponent implements OnInit,AfterViewInit {
         validators: [Validators.required]
       })
     })
+  }
+  createFacturacionForm() {
+    return new FormGroup({
+      noTarjeta: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+      vencimiento: new FormControl( '', {
+        nonNullable: true,
+        validators: [Validators.required]
+      }),
+      cvv: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      })
+    })
+  }
+
+  irConfirmarPago() {
+    this.loading = true
+    this.dialog.open(ConfirmarPagoComponent, {
+      data: this.productosCompra
+    }).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+        this.loadData()
+        this.toastService.success("Pago correcto")
+      }
+    });
   }
 
 }

@@ -95,3 +95,14 @@ export  interface ElementoCarrito {
     valoracion:number,
     titulo:string
   }
+  export interface PaymentIntentDto{
+    token: string;
+    descripcion: string;
+    amount : number;
+    currency: number
+  }
+
+  export interface ProductosCompra {
+    idCompra: number,
+    productos: ElementoCarrito[]
+  }
