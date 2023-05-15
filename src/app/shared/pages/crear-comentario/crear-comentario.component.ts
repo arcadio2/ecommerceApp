@@ -71,7 +71,7 @@ export class CrearComentarioComponent implements OnInit {
       })
     }
     return new FormGroup({
-      valoracion: new FormControl<number>(0, {nonNullable: true, validators: [Validators.required]}),
+      valoracion: new FormControl<number>(1, {nonNullable: true, validators: [Validators.required]}),
       titulo: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
       descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
     })
