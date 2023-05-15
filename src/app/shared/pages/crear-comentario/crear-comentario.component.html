@@ -26,11 +26,11 @@
                 Calificación:
               </label>
               <div class="rating">
-                <input type="radio" class="mask mask-star bg-black hover:bg-black" [value]="1" formControlName="valoracion"/>
-                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="2" formControlName="valoracion" checked />
-                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="3" formControlName="valoracion"/>
-                <input type="radio" class="mask mask-star bg-black hover:bg-black" [value]="4" formControlName="valoracion"/>
-                <input type="radio"  class="mask mask-star bg-black hover:bg-black" [value]="5" formControlName="valoracion"/>
+                <input type="radio" class="mask mask-star bg-black " [value]="1" formControlName="valoracion"/>
+                <input type="radio"  class="mask mask-star bg-black " [value]="2" formControlName="valoracion" />
+                <input type="radio"  class="mask mask-star bg-black " [value]="3" formControlName="valoracion"/>
+                <input type="radio" class="mask mask-star bg-black " [value]="4" formControlName="valoracion"/>
+                <input type="radio"  class="mask mask-star bg-black " [value]="5" formControlName="valoracion"/>
               </div>
               <div  *ngIf="comentarioForm.controls.valoracion.invalid && comentarioForm.controls.valoracion.touched"
                     class="mt-1 text-red-600 text-bold text-xs">

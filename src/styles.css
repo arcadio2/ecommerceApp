@@ -15,6 +15,16 @@
     background-color: black;
 }
 
+.mat-step-header .mat-step-label{
+}
+
+.mat-step-header .mat-step-icon {
+  color: rgba(0, 0, 0, .54);
+  background-color: black;
+  width: 40px;
+  height: 40px;
+  color: white;
+}
 
 
 @tailwind base;

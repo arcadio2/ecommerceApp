@@ -21,9 +21,9 @@ export class VisualizarComentariosComponent implements OnInit {
   cantidad_estrellas:number = 0;
   recorrido_estrellas:number[] =[];
   recorrido_estrellas_restantes:number=0;
-  tiene_comentario:boolean=false; 
-  comentario!:Comentario; 
-  usuario!:User; 
+  tiene_comentario:boolean=false;
+  comentario!:Comentario;
+  usuario!:User;
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialog: MatDialog,
@@ -34,17 +34,8 @@ export class VisualizarComentariosComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: {producto: Producto, productoMostrado: DetalleDto} ) { }
 
   ngOnInit(): void {
-    this.loadData(); 
-    this.usuario = this.auth.usuario; 
-
-    this.comentarioService.getByUsernameAndProducto(this.data.producto.id!).subscribe((resp:any)=>{
-      if(resp.comentario){
-        this.comentario  = resp.comentario; 
-
-        this.tiene_comentario = true; 
-      }
-    })
-    
+    this.loadData();
+    this.usuario = this.auth.usuario;
 
   }
 
@@ -71,9 +62,17 @@ export class VisualizarComentariosComponent implements OnInit {
 
 
     this.comentarioService.getComentariosProducto(this.data.producto.id!).subscribe((resp:any)=>{
-      this.comentarios = resp.comentarios as Comentario[]; 
-      
-   
+      this.comentarios = resp.comentarios as Comentario[];
+
+
+    })
+
+    this.comentarioService.getByUsernameAndProducto(this.data.producto.id!).subscribe((resp:any)=>{
+      if(resp.comentario){
+        this.comentario  = resp.comentario;
+
+        this.tiene_comentario = true;
+      }
     })
   }
 
@@ -85,6 +84,7 @@ export class VisualizarComentariosComponent implements OnInit {
       this.loading = false
       if (res === true) {
         console.log("hola v")
+        this.loadData()
         this.toastService.success("Reseña guardada exitosamente")
         this.dialogRefVisualizar.close(true)
       }

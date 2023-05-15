@@ -32,7 +32,7 @@ export class CrearComentarioComponent implements OnInit {
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialogRefCrear: MatDialogRef<CrearComentarioComponent>,
     private _ngZone: NgZone,
-   
+
     private imagenesService:ImagenesService,
     private comentariosService: ComentariosService,
     @Inject(MAT_DIALOG_DATA) public data: {producto: Producto, productoMostrado: DetalleDto,comentario:Comentario}
@@ -42,7 +42,7 @@ export class CrearComentarioComponent implements OnInit {
 
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   ngOnInit(): void {
-    
+
     this.loadData()
   }
   loadData(){
@@ -60,7 +60,7 @@ export class CrearComentarioComponent implements OnInit {
   }
 
   createComentarioForm(){
-    const comentario = this.data.comentario; 
+    const comentario = this.data.comentario;
 
     if(comentario){
       console.log("SI TIENE")
@@ -69,12 +69,14 @@ export class CrearComentarioComponent implements OnInit {
         titulo: new FormControl<string>(comentario.titulo!, {nonNullable: true, validators: [Validators.required]}),
         descripcion: new FormControl<string>(comentario.comentario!, {nonNullable: true, validators: [Validators.required]}),
       })
-    }
+    }else{
     return new FormGroup({
       valoracion: new FormControl<number>(1, {nonNullable: true, validators: [Validators.required]}),
       titulo: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
       descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
     })
+
+    }
   }
 
   crearComentario() {
@@ -82,13 +84,13 @@ export class CrearComentarioComponent implements OnInit {
     if (this.comentarioForm.valid){
       this.loading = true;
       this.comentarioForm.disable()
-      
-      
+
+
       if(this.data.comentario){
-        const comentarioNuevo = this.data.comentario; 
-        comentarioNuevo.valoracion = this.comentarioForm.controls.valoracion.value; 
-        comentarioNuevo.titulo= this.comentarioForm.controls.titulo.value; 
-        comentarioNuevo.comentario = this.comentarioForm.controls.descripcion.value; 
+        const comentarioNuevo = this.data.comentario;
+        comentarioNuevo.valoracion = this.comentarioForm.controls.valoracion.value;
+        comentarioNuevo.titulo= this.comentarioForm.controls.titulo.value;
+        comentarioNuevo.comentario = this.comentarioForm.controls.descripcion.value;
         this.comentariosService.editComentario(this.data.producto.id!,comentarioNuevo as ComentarioProducto).subscribe(resp=>{
           this.loading = false
           this.comentarioForm.enable()
