@@ -44,9 +44,10 @@ export class RegisterComponent implements OnInit {
       this.usuario.password = this.registerForm.get('password')?.value;
       this.authService.registerUser(this.usuario).subscribe(resp=>{
 
-        this.authService.login(this.usuario).subscribe(res =>{
-          alert("xd")
+        this.toast.success("Te haz registrado con éxito. Por favor, incia seisión.")
 
+        this.router.navigateByUrl('/auth');
+     /*    this.authService.login(this.usuario).subscribe(res =>{
           this.authService.guardarUsuario(res.access_token);
           this.authService.guardarToken(res.access_token);
           this.usuario = this.authService.usuario;
@@ -60,7 +61,7 @@ export class RegisterComponent implements OnInit {
 
             this.toast.error("No se pudo iniciar sesión");
           }
-        })
+        }) */
       }, err=>{
         console.log("error",err)
         if(err.status==400){

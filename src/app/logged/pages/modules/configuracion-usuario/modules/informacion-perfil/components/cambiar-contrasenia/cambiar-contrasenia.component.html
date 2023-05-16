@@ -5,10 +5,10 @@
   <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
     <!--<div class="grid grid-cols-2">-->
     <div>
-      <div  class="flex items-start flex-col gap-8">
+      <div  class="flex items-start flex-col gap-8" [formGroup]="contraForm">
 
         <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
-          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+          <input type="password" formControlName="viejaContra" placeholder="Nombre"
                  class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
           <span
@@ -17,7 +17,7 @@
             </span>
         </label>
         <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
-          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+          <input type="password" formControlName="confirmar" placeholder="Nombre"
                  class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
           <span
@@ -26,12 +26,12 @@
             </span>
         </label>
         <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
-          <input type="text" formControlName="viejaContra" placeholder="Nombre"
+          <input type="password" formControlName="nueva" placeholder="Nombre"
                  class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
           <span
             class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-              * Confirmación:
+              * Repite tu contraseña:
             </span>
         </label>
 

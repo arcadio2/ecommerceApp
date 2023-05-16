@@ -8,6 +8,7 @@ import {ToastrService} from "ngx-toastr";
 import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { IaService } from 'src/app/services/ia.service';
 
 @Component({
   selector: 'app-visualizar-comentarios',
@@ -30,6 +31,7 @@ export class VisualizarComentariosComponent implements OnInit {
     private auth:AuthService,
     private toastService:ToastrService,
     private usuarioService: UsuarioService,
+    private iaService:IaService,
     private comentarioService:ComentariosService,
     @Inject(MAT_DIALOG_DATA) public data: {producto: Producto, productoMostrado: DetalleDto} ) { }
 
@@ -63,7 +65,9 @@ export class VisualizarComentariosComponent implements OnInit {
 
     this.comentarioService.getComentariosProducto(this.data.producto.id!).subscribe((resp:any)=>{
       this.comentarios = resp.comentarios as Comentario[];
-
+      this.iaService.palabrasClave(this.comentarios).subscribe(resp=>{
+        console.log("IA ",resp)
+      })
 
     })
 

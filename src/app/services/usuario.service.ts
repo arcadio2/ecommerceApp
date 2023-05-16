@@ -85,6 +85,21 @@ export class UsuarioService {
       return this.http.get(this.url_base+'get/user',{headers:headers})
     }
 
+    cambiarContrasena(contrasenia:string,viejaContra:string){
+      const token = this.authService.token;
+  
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      })
+      const body = {
+        contrasenia:contrasenia,
+        vieja:viejaContra
+      }
+  
+      return this.http.put(this.url_base+'user/contrasenia',body,{headers:headers})
+    }
+
 
     saveProfile(perfil:Perfil){
       const token = this.authService.token;
