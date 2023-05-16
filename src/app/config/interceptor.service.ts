@@ -16,12 +16,13 @@ export class InterceptorService implements HttpInterceptor{
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.auth.token;
-   
-
-    const headers = new HttpHeaders({
+   /*  const headers = req.headers.set('Access-Control-Allow-Origin', 'http://localhost:4200');
+    const newReq = req.clone({ headers });
+    return next.handle(newReq); */
+   /*  const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
-    })
+    }) */
 
     
     if(token){
