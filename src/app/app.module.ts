@@ -23,7 +23,8 @@ import {MatIconModule} from "@angular/material/icon";
 import { VisualizarComentariosComponent } from './shared/pages/visualizar-comentarios/visualizar-comentarios.component';
 import { CrearComentarioComponent } from './shared/pages/crear-comentario/crear-comentario.component';
 import {TextFieldModule} from "@angular/cdk/text-field";
-
+import {NgxStripeModule} from "ngx-stripe";
+import {environment} from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -61,7 +62,9 @@ import {TextFieldModule} from "@angular/cdk/text-field";
     MatDialogModule,
     LoggedModule,
     MatIconModule,
-    TextFieldModule
+    TextFieldModule,
+    NgxStripeModule.forRoot(environment.stripePublicKey),
+    NgxStripeModule
   ],
   providers: [
 /*     {

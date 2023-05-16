@@ -1,12 +1,15 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {STEPPER_GLOBAL_OPTIONS} from "@angular/cdk/stepper";
 import {CrearComentarioComponent} from "../../../shared/pages/crear-comentario/crear-comentario.component";
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../../auth/services/auth.service";
 import {ToastrService} from "ngx-toastr";
-import {ProductosCompra} from "../../../models/producto.model";
+import {PaymentIntentDto, ProductosCompra} from "../../../models/producto.model";
 import {ConfirmarPagoComponent} from "../confirmar-pago/confirmar-pago.component";
+import {PaymentService} from "../../../services/payment.service";
+import {StripeCardComponent, StripeService} from "ngx-stripe";
+import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js";
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -34,12 +37,37 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   loading = false
 
   productosCompra?: ProductosCompra
+  precioTotal?: number = 1
+
+
+  @ViewChild(StripeCardComponent) card?: StripeCardComponent;
+
+  cardOptions: StripeCardElementOptions = {
+    style: {
+      base: {
+        iconColor: '#000000',
+        color: '#000000',
+        fontWeight: '300',
+        fontFamily: '"Be_Vietnam_Pro", sans-serif',
+        fontSize: '18px',
+        '::placeholder': {
+          color: '#CFD7E0'
+        },
+
+      }
+    }
+  };
+
+  elementsOptions: StripeElementsOptions = {
+    locale: 'es'
+  };
 
   constructor(
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
     private toastService:ToastrService,
-
+    private paymentService: PaymentService,
+    private stripeService: StripeService
   ) {
 
   }
@@ -94,6 +122,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
   createFacturacionForm() {
     return new FormGroup({
+      nombreTitular: new FormControl('', {
+        nonNullable: true,
+        validators: [Validators.required]
+      })/*,
       noTarjeta: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required]
@@ -105,7 +137,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
       cvv: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required]
-      })
+      })*/
     })
   }
 
@@ -120,6 +152,38 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         this.toastService.success("Pago correcto")
       }
     });
+  }
+
+  comprar(): void {
+    const name = this.facturacionForm.controls.nombreTitular.value;
+    console.log("nombre", name)
+    this.stripeService
+      .createToken(this.card!.element, { name })
+      .subscribe((result) => {
+        if (result.token) {
+          // Use the token
+          console.log(result.token.id);
+
+          const paymentIntentDto: PaymentIntentDto = {
+            token: result.token.id,
+            amount: this.precioTotal!,
+            currency: 'MXN',
+            descripcion: "playera verde, playera roja"
+          };
+
+          this.paymentService.pagar(paymentIntentDto).subscribe({
+            next: data =>{
+              console.log(data)
+            }, error: err => {
+              console.log("hubo un error", err)
+          }
+            }
+          );
+        } else if (result.error) {
+          // Error creating the token
+          console.log(result.error.message);
+        }
+      });
   }
 
 }

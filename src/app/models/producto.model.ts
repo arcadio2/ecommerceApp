@@ -99,7 +99,7 @@ export  interface ElementoCarrito {
     token: string;
     descripcion: string;
     amount : number;
-    currency: number
+    currency: string;
   }
 
   export interface ProductosCompra {

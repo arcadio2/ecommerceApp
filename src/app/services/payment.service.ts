@@ -11,14 +11,14 @@ export class PaymentService {
   private url_base:string = environment.urlBase+'api/stripe/';
   constructor(private http:HttpClient, private authService:AuthService) { }
 
-  payment(paymentIntentDto: PaymentIntentDto){
+  pagar(paymentIntentDto: PaymentIntentDto){
     const token = this.authService.token;
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     })
-    return this.http.post<string>(this.url_base+'confirm/' + paymentIntentDto,{headers:headers});
+    return this.http.post<string>(this.url_base+'payment', paymentIntentDto,{headers:headers});
   }
   confirmar(id:string){
     const token = this.authService.token;
@@ -27,7 +27,7 @@ export class PaymentService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`
     })
-    return this.http.post<string>(this.url_base+'confirm/' + id,{headers:headers});
+    return this.http.post<string>(this.url_base+'confirm/' + id,{},{headers:headers});
   }
   cancelar(id:string){
     const token = this.authService.token;

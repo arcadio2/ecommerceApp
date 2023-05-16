@@ -13,7 +13,9 @@ export const environment = {
   api_key_dipomex:"430bd21056ca321315d7002b9a86cdac7a061d72",
   geocode_api:"22e45b6bb20a4c58a66f46b78cae2278",
   sepomex_api:"eac3d63c-3247-4e59-8de8-b92e8a944736",
-  postali:"https://postali.app/"
+  postali:"https://postali.app/",
+
+  stripePublicKey: 'pk_test_51N5JRtEpKkKQPptuC5XsQF9kNBYlBOoc0BHI2pSX5y5ymHlTY8FMwQIswsSAXI80SKzxcSinO2tCKvDAUwAv8Phy00QwYT6lRn'
 };
 
 /*

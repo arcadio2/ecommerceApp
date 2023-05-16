@@ -112,16 +112,25 @@
                 </div>
               </ng-template>
               <div>
-                <div class="bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
+                <div class="flex flex-col gap-3 bg-white rounded-lg border border-black pb-4" style="padding: 1rem;">
                   <table class="w-full">
+                    <tr>
+                      <td class="p-3" colspan="5">
+                        <label class="block text-black-700 font-bold mb-2">
+                          Nombre del titular
+                        </label>
+                        <input name="numero-tarjeta" formControlName="nombreTitular"
+                               class="border-b border-black w-full  text-black-1000 leading-tight focus:outline-none focus:border-black-500 p-1" id="nombreTitular" type="text">
+                      </td>
+                    </tr>
+<!--
                     <tr>
                       <td class="p-3" colspan="5">
                         <label class="block text-black-700 font-bold mb-2">
                           Número de tarjeta
                         </label>
                         <input name="numero-tarjeta" formControlName="noTarjeta"
-                               class="border-b border-black w-full  text-black-1000
-             leading-tight focus:outline-none focus:border-black-500 p-1" id="numero-tarjeta" type="text">
+                               class="border-b border-black w-full  text-black-1000 leading-tight focus:outline-none focus:border-black-500 p-1"  type="text">
                       </td>
                     </tr>
 
@@ -132,7 +141,7 @@
                         </label>
                         <input name="vencimiento" formControlName="vencimiento"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="vencimiento" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" type="text">
                       </td>
 
                       <td class="p-3" colspan="2">
@@ -141,7 +150,15 @@
                         </label>
                         <input name="Cvv" formControlName="cvv"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="Cvv" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" type="text">
+                      </td>
+                    </tr>-->
+                    <tr>
+                      <td class="p-3" colspan="5">
+                        <ngx-stripe-card
+                          [options]="cardOptions"
+                          [elementsOptions]="elementsOptions"
+                        ></ngx-stripe-card>
                       </td>
                     </tr>
                   </table>
@@ -190,7 +207,7 @@
               </button>
 
               <button matStepperNext class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-                (click)="irConfirmarPago()"
+                (click)="comprar()"
               >
                 <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 

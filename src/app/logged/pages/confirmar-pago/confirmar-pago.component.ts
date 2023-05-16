@@ -21,21 +21,39 @@ export class ConfirmarPagoComponent implements OnInit {
   }
 
   confirmarCompra() {
-    this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
+    /*this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
       next: data =>{
         console.log("Pago confirmado")
       }, error: err => {
         console.log(err)
       }
+    })*/
+    this.paymentService.confirmar('1').subscribe({
+      next: data =>{
+        console.log("Pago confirmado")
+        this.dialogRef.close(true)
+      }, error: err => {
+        console.log(err)
+        this.dialogRef.close(false)
+      }
     })
   }
 
   cancelarCompra() {
-    this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
+    /*this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
       next: data =>{
         console.log("Pago cancelado")
       }, error: err => {
         console.log(err)
+      }
+    })*/
+    this.paymentService.confirmar('1').subscribe({
+      next: data =>{
+        console.log("Pago cancelado")
+        this.dialogRef.close(false)
+      }, error: err => {
+        console.log(err)
+        this.dialogRef.close(false)
       }
     })
   }

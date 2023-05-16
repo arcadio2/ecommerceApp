@@ -16,6 +16,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
 import { ConfirmarPagoComponent } from './pages/confirmar-pago/confirmar-pago.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {NgxStripeModule} from "ngx-stripe";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import {MatDialogModule} from "@angular/material/dialog";
         MatStepperModule,
         MatInputModule,
         MatDialogModule,
+        NgxStripeModule,
     ]
 })
 export class LoggedModule { }
