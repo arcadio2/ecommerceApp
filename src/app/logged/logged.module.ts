@@ -14,6 +14,8 @@ import { ConfirmarCompraComponent } from './pages/confirmar-compra/confirmar-com
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatStepperModule} from "@angular/material/stepper";
 import {MatInputModule} from "@angular/material/input";
+import { ConfirmarPagoComponent } from './pages/confirmar-pago/confirmar-pago.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -22,20 +24,22 @@ import {MatInputModule} from "@angular/material/input";
     InfoDetalladaComponent,
     ElementoCarritoComponent,
     ConfirmarCompraComponent,
+    ConfirmarPagoComponent,
   ],
   exports: [
   ],
-  imports: [
-    CommonModule,
-    LoggedRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatStepperModule,
-    MatInputModule,
-  ]
+    imports: [
+        CommonModule,
+        LoggedRoutingModule,
+        MatIconModule,
+        MatButtonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatInputModule,
+        MatDialogModule,
+    ]
 })
 export class LoggedModule { }
