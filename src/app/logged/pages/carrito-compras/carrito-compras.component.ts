@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductosService} from "../../../services/productos.service";
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { User } from 'src/app/models/user.model';
-import { Bolsa, DetalleProducto, ElementoCarrito, Producto, ProductoCarrito } from 'src/app/models/producto.model';
+import { Bolsa, DetalleDto, DetalleProducto, ElementoCarrito, Producto, ProductoCarrito } from 'src/app/models/producto.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import {  ToastrService } from 'ngx-toastr';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -10,6 +10,7 @@ import { DialogComponentComponent } from 'src/app/shared/components/dialog-compo
 import { forkJoin } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { BolsaService } from 'src/app/services/bolsa.service';
+import { ComprasService } from 'src/app/services/compras.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ import { BolsaService } from 'src/app/services/bolsa.service';
 export class CarritoComprasComponent implements OnInit {
   carritoCompras: ElementoCarrito[] = [];
   bolsa!:Bolsa[];
-
+  productos:DetalleDto[] = []; 
   usuario:User | undefined;
   url_backend = environment.urlBase;
 
@@ -32,6 +33,7 @@ export class CarritoComprasComponent implements OnInit {
     private authService:AuthService,
     private toastService:ToastrService,
     public dialog: MatDialog,
+    private comprasService:ComprasService,
     private bolsaService:BolsaService
   ) {}
 
@@ -47,8 +49,9 @@ export class CarritoComprasComponent implements OnInit {
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
       const elementos_bolsa:Bolsa[] = this.usuario?.bolsa!;
-      console.log(this.usuario)
+
       this.bolsa = elementos_bolsa;
+      this.productos = this.bolsa.map(v=>v.detalle_producto as DetalleDto)
       
       const observables = elementos_bolsa.map(elemento =>
         this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!)
@@ -62,6 +65,7 @@ export class CarritoComprasComponent implements OnInit {
           }
           
           const producto: Producto = resp.producto;
+          this.productos[index].producto=producto; 
           const elemento_producto: ProductoCarrito = {
             costo: producto.precio!,
             nombre: producto.nombre!,
@@ -77,8 +81,8 @@ export class CarritoComprasComponent implements OnInit {
 
           this.carritoCompras.push(elemento_carro);
         });
-
-        console.log('Carro', this.carritoCompras);
+       
+        //console.log('Carro', this.carritoCompras);
       });
 
       this.loading = false
@@ -173,6 +177,11 @@ export class CarritoComprasComponent implements OnInit {
 
   calcularCostoProducto(cantidad:number,precio:number){
     return cantidad*precio;
+  }
+
+  guardarProductos(){
+    this.comprasService.productos = this.productos! || []; 
+    this.comprasService.bolsa = this.bolsa || [];
   }
 }
 

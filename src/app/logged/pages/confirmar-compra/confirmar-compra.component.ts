@@ -5,12 +5,14 @@ import {CrearComentarioComponent} from "../../../shared/pages/crear-comentario/c
 import {MatDialog} from "@angular/material/dialog";
 import {AuthService} from "../../../auth/services/auth.service";
 import {ToastrService} from "ngx-toastr";
-import {PaymentIntentDto, ProductosCompra} from "../../../models/producto.model";
+import {Bolsa, DetalleDto, PaymentIntentDto, ProductosCompra} from "../../../models/producto.model";
 import {ConfirmarPagoComponent} from "../confirmar-pago/confirmar-pago.component";
 import {PaymentService} from "../../../services/payment.service";
 import {StripeCardComponent, StripeService} from "ngx-stripe";
 import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js";
 import {Direcciones} from "../../../models/user.model";
+import { ComprasService } from 'src/app/services/compras.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -28,11 +30,14 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   isLinear = false;
   direccionForm = this.createDireccionForm();
   facturacionForm = this.createFacturacionForm()
-
+  productos:DetalleDto[]=[]; 
+  bolsa:Bolsa[]=[]; 
   loading = false
 
   productosCompra?: ProductosCompra
-  precioTotal?: number = 1000
+  precioTotal?: number = 1000; 
+
+  direccion!:Direcciones; 
 
   error: any
   errorDomicilio: boolean = false
@@ -62,6 +67,8 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   constructor(
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
+    private router:Router,
+    private comprasService:ComprasService,
     private toastService:ToastrService,
     private paymentService: PaymentService,
     private stripeService: StripeService
@@ -70,6 +77,12 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.productos  = this.comprasService.productos; 
+    this.bolsa = this.comprasService.bolsa; 
+    console.log("A comprar",this.bolsa);
+    if(this.productos.length==0){
+      this.router.navigateByUrl('/listado?genero=hombre&categoria=Ver%20todo')
+    }
     window.scrollTo(0, 0);
   }
 
@@ -156,12 +169,13 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
       const direccionUsuario: Direcciones ={
         calle: this.direccionForm.controls.calle.value,
         estado: this.direccionForm.controls.estado.value,
-        delegacion: this.direccionForm.controls.municipio.value,
+        municipio: this.direccionForm.controls.municipio.value,
         colonia: this.direccionForm.controls.colonia.value,
         num_ext: parseInt(this.direccionForm.controls.numExt.value),
         num_int: parseInt(this.direccionForm.controls.numInt.value),
         cp: parseInt(this.direccionForm.controls.codigoPostal.value)
       }
+      this.direccion = direccionUsuario; 
       console.log(direccionUsuario)
       this.loading =false
     }
@@ -182,6 +196,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
           if (result.token) {
             // Use the token
             console.log(result.token.id);
+
 
             const paymentIntentDto: PaymentIntentDto = {
               token: result.token.id,
@@ -208,6 +223,18 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
           }
         });
     }
+  }
+
+  cantidadProductos(precio:number,cantidad:number){
+    return cantidad*precio; 
+  }
+
+  calcularTotal(){
+    let total = 0; 
+    this.bolsa.forEach((c,index)=>{
+      total+= c.cantidad! * this.productos[index].producto?.precio!; 
+    })
+    return total;
   }
 
 }

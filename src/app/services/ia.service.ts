@@ -14,7 +14,7 @@ export class IaService {
   palabrasClave(comentarios:Comentario[]){
     const headers = new HttpHeaders({ 'Access-Control-Allow-Origin': 'http://localhost:4200' });
     const options = { headers: headers };
-    let comments:string[] = comentarios.map(e=>e.comentario!);
+    let comments:string[] = comentarios.map(e=>e.titulo+". " +e.comentario!);
     const myObject: { [index: number]: string } = {};
 
     comments.forEach((value, index) => {

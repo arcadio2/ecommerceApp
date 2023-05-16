@@ -53,7 +53,7 @@ export interface Perfil {
 export interface Direcciones {
     cp?:number,
     colonia?:string;
-    delegacion?:string;
+    municipio?:string;
     num_int?:number;
     num_ext?:number;
     estado?: string;

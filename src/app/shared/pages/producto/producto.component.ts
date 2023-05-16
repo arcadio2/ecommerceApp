@@ -17,6 +17,7 @@ import {
 import {MatDialog} from "@angular/material/dialog";
 import {VisualizarComentariosComponent} from "../visualizar-comentarios/visualizar-comentarios.component";
 import { ComentariosService } from 'src/app/services/comentarios.service';
+import { ComprasService } from 'src/app/services/compras.service';
 @Component({
   selector: 'app-producto',
   templateUrl: './producto.component.html',
@@ -57,6 +58,7 @@ export class ProductoComponent implements OnInit,OnChanges {
               private imagenesService:ImagenesService,
               private bolsaService:BolsaService,
               private dialog: MatDialog,
+              private comprasService: ComprasService,
               private comentariosService:ComentariosService,
               private detalleService:DetalleService,
               private productoService:ProductosService
@@ -293,6 +295,16 @@ export class ProductoComponent implements OnInit,OnChanges {
     });
   }
 
+
+  guardarProductos(){
+    this.comprasService.productos = [this.productoMostrado!] || [];
+    const bolsa:Bolsa = {
+      detalle_producto:this.productoMostrado as DetalleProducto,
+      cantidad:1
+    }
+    this.comprasService.bolsa = [bolsa] || [];
+    
+  }
 }
 
 

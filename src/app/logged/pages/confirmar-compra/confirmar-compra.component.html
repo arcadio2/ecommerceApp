@@ -276,14 +276,12 @@
           <div class="border-b border-black w-3/3 mx-auto"></div>
         </div>
         <div class="text-sm font-bold mt-4 mb-2">Productos</div>
-        <div class="flex justify-between items-center mb-2">
-          <div class="text-sm">Producto 1</div>
-          <div class="text-sm">$20.00</div>
+
+        <div class="flex justify-between items-center mb-2" *ngFor="let elemento of bolsa; let i =index">
+          <div class="text-sm">{{productos[i].producto?.nombre}}: ({{elemento.cantidad}})</div>
+          <div class="text-sm">${{cantidadProductos(productos[i].producto?.precio!,elemento.cantidad!)| number:'1.2-2' }}</div>
         </div>
-        <div class="flex justify-between items-center mb-2">
-          <div class="text-sm">Producto 2</div>
-          <div class="text-sm">$35.00</div>
-        </div>
+   
         <div class="w-64 max-w-full mx-auto">
           <div class="border-b border-black w-3/3 mx-auto"></div>
         </div>
@@ -296,7 +294,7 @@
         </div>
         <div class="flex justify-between items-center mt-4 mb-2">
           <div class="text-sm font-bold">Total</div>
-          <div class="text-sm font-bold">$60.00</div>
+          <div class="text-sm font-bold">${{calcularTotal()| number:'1.2-2'}}</div>
 
         </div>
       </div>
