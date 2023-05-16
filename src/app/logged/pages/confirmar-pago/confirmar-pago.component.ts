@@ -12,7 +12,8 @@ export class ConfirmarPagoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmarPagoComponent>,
-    @Inject(MAT_DIALOG_DATA) public productosCompra: ProductosCompra,
+    /*@Inject(MAT_DIALOG_DATA) public productosCompra: ProductosCompra,*/
+    @Inject(MAT_DIALOG_DATA) public idCompra: string,
     private paymentService: PaymentService,
   ) { }
 
@@ -28,7 +29,7 @@ export class ConfirmarPagoComponent implements OnInit {
         console.log(err)
       }
     })*/
-    this.paymentService.confirmar('1').subscribe({
+    this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
         console.log("Pago confirmado")
         this.dialogRef.close(true)

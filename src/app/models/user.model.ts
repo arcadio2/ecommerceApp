@@ -56,5 +56,8 @@ export interface Direcciones {
     delegacion?:string;
     num_int?:number;
     num_ext?:number;
+    estado?: string;
+    calle?: string;
+
 }
 

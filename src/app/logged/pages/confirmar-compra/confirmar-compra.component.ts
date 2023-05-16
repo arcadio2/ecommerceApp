@@ -10,6 +10,7 @@ import {ConfirmarPagoComponent} from "../confirmar-pago/confirmar-pago.component
 import {PaymentService} from "../../../services/payment.service";
 import {StripeCardComponent, StripeService} from "ngx-stripe";
 import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js";
+import {Direcciones} from "../../../models/user.model";
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -24,12 +25,6 @@ import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js
 })
 export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
 
-  /*firstFormGroup = this._formBuilder.group({
-    firstCtrl: ['', Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ['', Validators.required],
-  });*/
   isLinear = false;
   direccionForm = this.createDireccionForm();
   facturacionForm = this.createFacturacionForm()
@@ -37,8 +32,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   loading = false
 
   productosCompra?: ProductosCompra
-  precioTotal?: number = 1
+  precioTotal?: number = 1000
 
+  error: any
+  errorDomicilio: boolean = false
 
   @ViewChild(StripeCardComponent) card?: StripeCardComponent;
 
@@ -112,12 +109,9 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
       }),
       numInt: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required]
+        validators: []
       }),
-      telefono: new FormControl('', {
-        nonNullable: true,
-        validators: [Validators.required]
-      })
+
     })
   }
   createFacturacionForm() {
@@ -141,10 +135,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
     })
   }
 
-  irConfirmarPago() {
+  irConfirmarPago(idCompra: string) {
     this.loading = true
     this.dialog.open(ConfirmarPagoComponent, {
-      data: this.productosCompra
+      data: idCompra
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
@@ -154,36 +148,66 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
     });
   }
 
+  guardarDireccion(){
+    this.loading = true
+    this.direccionForm.markAllAsTouched()
+    if (this.direccionForm.valid){
+      this.errorDomicilio =false
+      const direccionUsuario: Direcciones ={
+        calle: this.direccionForm.controls.calle.value,
+        estado: this.direccionForm.controls.estado.value,
+        delegacion: this.direccionForm.controls.municipio.value,
+        colonia: this.direccionForm.controls.colonia.value,
+        num_ext: parseInt(this.direccionForm.controls.numExt.value),
+        num_int: parseInt(this.direccionForm.controls.numInt.value),
+        cp: parseInt(this.direccionForm.controls.codigoPostal.value)
+      }
+      console.log(direccionUsuario)
+      this.loading =false
+    }
+    else{
+      this.errorDomicilio = true
+      this.loading = false
+    }
+  }
+
   comprar(): void {
-    const name = this.facturacionForm.controls.nombreTitular.value;
-    console.log("nombre", name)
-    this.stripeService
-      .createToken(this.card!.element, { name })
-      .subscribe((result) => {
-        if (result.token) {
-          // Use the token
-          console.log(result.token.id);
+    if (this.direccionForm.valid) {
 
-          const paymentIntentDto: PaymentIntentDto = {
-            token: result.token.id,
-            amount: this.precioTotal!,
-            currency: 'MXN',
-            descripcion: "playera verde, playera roja"
-          };
+      const name = this.facturacionForm.controls.nombreTitular.value;
+      console.log("nombre", name)
+      this.stripeService
+        .createToken(this.card!.element, { name })
+        .subscribe((result) => {
+          if (result.token) {
+            // Use the token
+            console.log(result.token.id);
 
-          this.paymentService.pagar(paymentIntentDto).subscribe({
-            next: data =>{
-              console.log(data)
-            }, error: err => {
-              console.log("hubo un error", err)
+            const paymentIntentDto: PaymentIntentDto = {
+              token: result.token.id,
+              amount: this.precioTotal!,
+              currency: 'MXN',
+              descripcion: "playera verde, playera roja"
+            };
+            console.log("objeto", paymentIntentDto)
+
+            this.paymentService.pagar(paymentIntentDto).subscribe({
+              next:( data:any) =>{
+                console.log(data)
+                console.log("id",data.id)
+                this.irConfirmarPago(data.id)
+              }, error: err => {
+                console.log("hubo un error", err)
+              }
+            });
+
+            this.error = undefined
+          } else if (result.error) {
+            // Error creating the token
+            this.error = result.error.message;
           }
-            }
-          );
-        } else if (result.error) {
-          // Error creating the token
-          console.log(result.error.message);
-        }
-      });
+        });
+    }
   }
 
 }

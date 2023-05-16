@@ -1,17 +1,18 @@
 <h2 mat-dialog-title>¿Deseas proceder con la compra?</h2>
 <mat-dialog-content>
+  <div>idCompra: {{this.idCompra}}</div>
   <div class="">Una vez confirmado el pago, no se podrán realizar devoluciones</div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
 
   <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2 "
           (click)="cancelarCompra()" mat-raised-button >
-            <span
-              class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+      <span
+        class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
 
-    <span class="relative text-sm font-medium text-black transition-colors">
-                No
-            </span>
+      <span class="relative text-sm font-medium text-black transition-colors">
+        No
+      </span>
   </button>
 
 
