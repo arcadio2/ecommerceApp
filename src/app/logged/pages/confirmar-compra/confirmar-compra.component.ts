@@ -13,6 +13,7 @@ import {StripeCardElementOptions, StripeElementsOptions} from "@stripe/stripe-js
 import {Direcciones} from "../../../models/user.model";
 import { ComprasService } from 'src/app/services/compras.service';
 import { Router } from '@angular/router';
+import {Compra} from "../../../models/compras.model";
 
 @Component({
   selector: 'app-confirmar-compra',
@@ -30,14 +31,15 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   isLinear = false;
   direccionForm = this.createDireccionForm();
   facturacionForm = this.createFacturacionForm()
-  productos:DetalleDto[]=[]; 
-  bolsa:Bolsa[]=[]; 
+  productos:DetalleDto[]=[];
+  bolsa:Bolsa[]=[];
+  compras: Compra[] = []
   loading = false
 
   productosCompra?: ProductosCompra
-  precioTotal?: number = 1000; 
+  precioTotal?: number = 1000;
 
-  direccion!:Direcciones; 
+  direccion!:Direcciones;
 
   error: any
   errorDomicilio: boolean = false
@@ -71,14 +73,15 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
     private comprasService:ComprasService,
     private toastService:ToastrService,
     private paymentService: PaymentService,
-    private stripeService: StripeService
+    private stripeService: StripeService,
+    private authService:AuthService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.productos  = this.comprasService.productos; 
-    this.bolsa = this.comprasService.bolsa; 
+    this.productos  = this.comprasService.productos;
+    this.bolsa = this.comprasService.bolsa;
     console.log("A comprar",this.bolsa);
     if(this.productos.length==0){
       this.router.navigateByUrl('/listado?genero=hombre&categoria=Ver%20todo')
@@ -148,10 +151,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
     })
   }
 
-  irConfirmarPago(idCompra: string) {
+  irConfirmarPago(compras: Compra[], idCompraPayment: string) {
     this.loading = true
     this.dialog.open(ConfirmarPagoComponent, {
-      data: idCompra
+      data: {compras, idCompraPayment}
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
@@ -175,7 +178,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         num_int: parseInt(this.direccionForm.controls.numInt.value),
         cp: parseInt(this.direccionForm.controls.codigoPostal.value)
       }
-      this.direccion = direccionUsuario; 
+      this.direccion = direccionUsuario;
       console.log(direccionUsuario)
       this.loading =false
     }
@@ -197,20 +200,41 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
             // Use the token
             console.log(result.token.id);
 
+            let compra: Compra
+            let id = 1
+            const fechaHoy: Date = new Date();
+            let descripcion = ""
+
+            this.bolsa.forEach((c,index)=>{
+              let compra: Compra = {
+                Id: id,
+                direccion: this.direccion,
+                usuario: this.authService.usuario,
+                fecha_compra: fechaHoy,
+                codigo_seguimiento: result.token.id,
+                detalle_producto: c.detalle_producto!
+              }
+              console.log(compra)
+              this.compras?.push(compra)
+              descripcion += c.detalle_producto?.nombre_producto + ", "
+              id++
+            })
+
+
 
             const paymentIntentDto: PaymentIntentDto = {
               token: result.token.id,
               amount: this.precioTotal!,
               currency: 'MXN',
-              descripcion: "playera verde, playera roja"
+              descripcion: descripcion
             };
             console.log("objeto", paymentIntentDto)
 
             this.paymentService.pagar(paymentIntentDto).subscribe({
               next:( data:any) =>{
                 console.log(data)
-                console.log("id",data.id)
-                this.irConfirmarPago(data.id)
+                console.log("compras", this.compras)
+                this.irConfirmarPago(this.compras!, data.id)
               }, error: err => {
                 console.log("hubo un error", err)
               }
@@ -226,13 +250,15 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
 
   cantidadProductos(precio:number,cantidad:number){
-    return cantidad*precio; 
+    return cantidad*precio;
   }
 
   calcularTotal(){
-    let total = 0; 
+    let total = 0;
+
     this.bolsa.forEach((c,index)=>{
-      total+= c.cantidad! * this.productos[index].producto?.precio!; 
+      total+= c.cantidad! * this.productos[index].producto?.precio!;
+
     })
     return total;
   }

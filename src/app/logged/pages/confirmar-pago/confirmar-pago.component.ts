@@ -2,6 +2,8 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {ProductosCompra} from "../../../models/producto.model";
 import {PaymentService} from "../../../services/payment.service";
+import {Compra} from "../../../models/compras.model";
+import {ComprasService} from "../../../services/compras.service";
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -10,11 +12,14 @@ import {PaymentService} from "../../../services/payment.service";
 })
 export class ConfirmarPagoComponent implements OnInit {
 
+  idCompra = this.data.idCompraPayment
+
   constructor(
     public dialogRef: MatDialogRef<ConfirmarPagoComponent>,
     /*@Inject(MAT_DIALOG_DATA) public productosCompra: ProductosCompra,*/
-    @Inject(MAT_DIALOG_DATA) public idCompra: string,
+    @Inject(MAT_DIALOG_DATA) public data: {compras: Compra[], idCompraPayment: string},
     private paymentService: PaymentService,
+    private comprasService: ComprasService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +34,11 @@ export class ConfirmarPagoComponent implements OnInit {
         console.log(err)
       }
     })*/
+
+    this.comprasService.crearListaCompras(this.data.compras).subscribe((resp:any)=>{
+      console.log("se guardo la lista compras")
+    })
+
     this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
         console.log("Pago confirmado")
@@ -48,7 +58,7 @@ export class ConfirmarPagoComponent implements OnInit {
         console.log(err)
       }
     })*/
-    this.paymentService.confirmar('1').subscribe({
+    this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
         console.log("Pago cancelado")
         this.dialogRef.close(false)
