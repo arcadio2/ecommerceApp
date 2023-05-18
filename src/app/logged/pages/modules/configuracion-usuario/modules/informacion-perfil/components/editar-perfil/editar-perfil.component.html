@@ -104,9 +104,12 @@
               </label>
               <input name="altura" formControlName="altura"
                      class="border-b border-black w-full text-black-1000
-                leading-tight focus:outline-none focus:border-black-500 p-1" id="altura" type="text"
+                  leading-tight focus:outline-none focus:border-black-500 p-1" type="text" pattern="[0-9]+(\.[0-9]+)?"
                      [disabled]="loading"
               >
+              <div *ngIf="perfilForm.controls['altura'].invalid && perfilForm.controls['altura'].touched" class="mt-1 text-red-600 text-bold text-xs">
+                Por favor, ingrese una estatura válida en metros.
+              </div>
             </div>
             <div class="my-8">
               <label class="block text-black-700 font-bold mb-2" >

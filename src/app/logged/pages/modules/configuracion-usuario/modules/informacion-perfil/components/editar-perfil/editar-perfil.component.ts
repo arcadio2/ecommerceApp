@@ -57,7 +57,7 @@ export class EditarPerfilComponent implements OnInit {
     this.perfilForm = this.fromBuilder.group({
       nombre:['',[Validators.required]],
       apellido:['',[Validators.required]],
-      altura:['',[]],
+      altura:['',[Validators.pattern('[0-9]+(\.[0-9]+)?')]],
       talla_camisa:['',[]],
       talla_pantalon:['',[]],
       edad:['',[]],
