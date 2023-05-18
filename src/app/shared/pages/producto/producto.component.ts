@@ -300,10 +300,10 @@ export class ProductoComponent implements OnInit,OnChanges {
     this.comprasService.productos = [this.productoMostrado!] || [];
     const bolsa:Bolsa = {
       detalle_producto:this.productoMostrado as DetalleProducto,
-      cantidad:1
+      cantidad:this.cantidad
     }
     this.comprasService.bolsa = [bolsa] || [];
-    
+
   }
 }
 

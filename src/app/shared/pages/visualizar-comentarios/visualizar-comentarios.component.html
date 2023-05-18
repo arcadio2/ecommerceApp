@@ -41,7 +41,15 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-center">
+          <div class=" flex justify-center">
+            <mat-chip-list aria-label="Palabras Clave" class="w-10/12 flex justify-center">
+              <mat-chip *ngFor="let palabra of palabrasClave">
+                {{palabra}}
+              </mat-chip>
+
+            </mat-chip-list>
+          </div>
+          <div class="mt-5 flex justify-center">
             <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
                     (click)="irCrearComentario()"
             >
@@ -54,10 +62,11 @@
                 <div *ngIf="tiene_comentario">
                   Editar mi reseña
                 </div>
-              
+
             </span>
             </button>
           </div>
+
         </div>
       </div>
       <div

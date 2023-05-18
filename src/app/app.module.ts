@@ -25,6 +25,7 @@ import { CrearComentarioComponent } from './shared/pages/crear-comentario/crear-
 import {TextFieldModule} from "@angular/cdk/text-field";
 import {NgxStripeModule} from "ngx-stripe";
 import {environment} from "../environments/environment";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -39,33 +40,34 @@ import {environment} from "../environments/environment";
     VisualizarComentariosComponent,
     CrearComentarioComponent
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
 
-    ToastrModule.forRoot(
-      {
-        positionClass: 'toast-bottom-center', timeOut: 5000,
-        preventDuplicates: true,
-        closeButton: true,
-        maxOpened: 1,
+        ToastrModule.forRoot(
+            {
+                positionClass: 'toast-bottom-center', timeOut: 5000,
+                preventDuplicates: true,
+                closeButton: true,
+                maxOpened: 1,
 
-        autoDismiss: true,
-        enableHtml: true
-      },
-    ),
-    HttpClientModule,
-    MatButtonModule,
-    MatDialogModule,
-    LoggedModule,
-    MatIconModule,
-    TextFieldModule,
-    NgxStripeModule.forRoot(environment.stripePublicKey),
-    NgxStripeModule
-  ],
+                autoDismiss: true,
+                enableHtml: true
+            },
+        ),
+        HttpClientModule,
+        MatButtonModule,
+        MatDialogModule,
+        LoggedModule,
+        MatIconModule,
+        TextFieldModule,
+        NgxStripeModule.forRoot(environment.stripePublicKey),
+        NgxStripeModule,
+        MatChipsModule
+    ],
   providers: [
 /*     {
       provide: HTTP_INTERCEPTORS,

@@ -25,6 +25,8 @@ export class VisualizarComentariosComponent implements OnInit {
   tiene_comentario:boolean=false;
   comentario!:Comentario;
   usuario!:User;
+  palabrasClave: any
+
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialog: MatDialog,
@@ -66,7 +68,7 @@ export class VisualizarComentariosComponent implements OnInit {
     this.comentarioService.getComentariosProducto(this.data.producto.id!).subscribe((resp:any)=>{
       this.comentarios = resp.comentarios as Comentario[];
       this.iaService.palabrasClave(this.comentarios).subscribe(resp=>{
-        console.log("IA ",resp)
+        this.palabrasClave = resp
       })
 
     })

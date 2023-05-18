@@ -1,13 +1,12 @@
 import { DetalleProducto } from "./producto.model";
-import { Direcciones } from "./user.model";
+import {Direcciones, User} from "./user.model";
 
-export interface Usuario {
+export interface Compra {
     Id: number;
-    usuario: Usuario;
+    usuario: User;
     detalle_producto: DetalleProducto;
     codigo_seguimiento: string;
     fecha_compra: Date;
     direccion: Direcciones;
   }
 
-  

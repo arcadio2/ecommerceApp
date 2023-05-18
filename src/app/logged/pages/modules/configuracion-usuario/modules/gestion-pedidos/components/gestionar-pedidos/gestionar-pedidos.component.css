@@ -1,184 +1,25 @@
-* {
-  font-family: 'Be_Vietnam_Pro', sans-serif;
-}
-
-.texto-centro {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
-  margin-top: 3rem;
-}
-
-.texto-centro h2 {
-  text-align: center;
-  font-size: 22px;
-  font-style: normal;
-  letter-spacing: -0.05em;
-  text-align: center;
-}
-
-.detalle-pedido{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
-  gap: 10rem;
-  align-items: center;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.texto-columna{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  flex-direction: column;
-  align-items: center;
-}
-
-.texto-columna h4{
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: -0.05em;
-  padding: 8px;
-  text-align: center;
-  color: rgba(53,53,53,0.94);
-  margin: 0;
-}
-.texto-columna h3{
-  font-style: normal;
-  font-size: 22px;
-  text-align: center;
-  margin: 0;
-  color:rgba(53,53,53,0.94);
-}
-
-.todos-los-pedidos {
+table {
   width: 100%;
-  max-width: 1000px;
-  margin: auto;
 }
 
-.table {
-  width: 100%;
-  border: 1px solid #ccc;
-  border-collapse: collapse;
-  margin: 0;
-  padding: 0;
-  table-layout: fixed;
+tr.example-detail-row {
+  height: 0;
 }
 
-.table tr {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
 }
 
-.table th, .table td {
-  font-size: 16px;
-  padding: 8px;
-  text-align: center;
-  letter-spacing: -0.05em;
-
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
 }
 
-.table thead th{
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  padding: 8px;
-  text-align: center;
-  color: rgba(53,53,53,0.94);
+.example-element-row td {
+  border-bottom-width: 0;
 }
 
-.table tbody th{
-  font-size: 12px;
-  background-color: #ddd;
-  font-weight: 400;
-  letter-spacing: -0.05em;
-  color: rgba(53,53,53,0.94);
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
 }
 
-.tabla-imagen{
-  width: 200px;
-}
-
-.table th:last-child,
-.table td:last-child {
-  text-align: right;
-}
-
-.table th:last-child i,
-.table td:last-child i {
-  margin-right: 8px;
-  color:rgba(53,53,53,0.94);
-}
-
-.amount {
-  float: right;
-  width: 250px;
-  margin: 30px 0 30px;
-  border-bottom: 2px solid #000000;
-}
-
-.amount td {
-  font-size: 16px;
-  padding: 4px;
-  text-align: right;
-  letter-spacing: -0.05em;
-}
-
-.amount th {
-  font-size: 20px;
-  font-weight: 800px;
-  text-align: right;
-  height: 80px;
-}
-
-@media screen and (max-width: 600px) {
-  .table {
-    border: 0px;
-  }
-  .table thead {
-    display: none;
-  }
-  .table tr {
-    margin-bottom: 8px;
-    display: block;
-  }
-  .table th, .table td {
-    font-size: 12px;
-    font-style: normal;
-  }
-  .table td {
-    display: block;
-    border-bottom: 1px solid #ddd;
-    text-align: right;
-  }
-  .table td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    text-transform: uppercase;
-    float: left;
-  }
-
-  .amount {
-    border: 1px solid #ddd;
-    border-bottom: 4px solid #ddd;
-    width: 100%;
-    table-layout: fixed;
-  }
-  .amount td {
-    font-size: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
-  }
-  .amount th {
-    height: 30px;
-    text-align: center;
-  }
-}
-@media screen and (max-width: 800px) {
-  .detalle-pedido{
-    gap: 1rem;
-  }
-}
