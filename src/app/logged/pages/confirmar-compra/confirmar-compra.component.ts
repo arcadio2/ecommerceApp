@@ -189,6 +189,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
 
   comprar(): void {
+    this.guardarDireccion()
     this.direccionForm.markAllAsTouched()
     if (this.direccionForm.valid) {
       this.loading = true
