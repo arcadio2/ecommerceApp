@@ -29,7 +29,7 @@
                        leading-tight focus:outline-none focus:border-black-500 p-1" id="estado" type="text">
                         <div *ngIf="direccionForm.controls.estado.invalid && direccionForm.controls.estado.touched"
                               class="mt-1 text-red-600 text-bold text-xs">
-                          <p>La valoración es requerida</p>
+                          <p>El estado es requerido</p>
                         </div>
                       </td>
 
@@ -39,10 +39,10 @@
                         </label>
                         <input name="municipio" formControlName="municipio"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="municipio" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="municipio" type="text" placeholder="">
                         <div *ngIf="direccionForm.controls.municipio.invalid && direccionForm.controls.municipio.touched"
                              class="mt-1 text-red-600 text-bold text-xs">
-                          <p>La delegación o municipio es requerida</p>
+                          <p>La delegación o municipio es requerido</p>
                         </div>
                       </td>
                     </tr>
@@ -53,7 +53,7 @@
                         </label>
                         <input name="colonia" formControlName="colonia"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="colonia" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="colonia" type="text" >
                         <div *ngIf="direccionForm.controls.colonia.invalid && direccionForm.controls.colonia.touched"
                              class="mt-1 text-red-600 text-bold text-xs">
                           <p>La colonia es requerida</p>
@@ -66,10 +66,14 @@
                         </label>
                         <input name="codigo-postal" formControlName="codigoPostal"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="codigo-postal" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="codigo-postal" type="number">
+                        <div *ngIf="direccionForm.controls.codigoPostal.hasError('pattern') && direccionForm.controls.codigoPostal.touched"
+                             class="mt-1 text-red-600 text-bold text-xs">
+                          <p>Por favor, solo ingresa números</p>
+                        </div>
                         <div *ngIf="direccionForm.controls.codigoPostal.invalid && direccionForm.controls.codigoPostal.touched"
                              class="mt-1 text-red-600 text-bold text-xs">
-                          <p>El codigo postal es requerido</p>
+                          <p>El código postal es requerido</p>
                         </div>
                       </td>
                     </tr>
@@ -94,8 +98,12 @@
                         </label>
                         <input name="num-ext" formControlName="numExt"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-ext" type="text">
-                        <div *ngIf="direccionForm.controls.numExt.invalid && direccionForm.controls.numExt.touched"
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-ext" type="number">
+                        <div *ngIf="direccionForm.controls.numExt.hasError('pattern') && direccionForm.controls.numExt.touched"
+                             class="mt-1 text-red-600 text-bold text-xs">
+                          <p>Por favor, solo ingresa números</p>
+                        </div>
+                        <div *ngIf="direccionForm.controls.numExt.hasError('required') && direccionForm.controls.numExt.touched"
                              class="mt-1 text-red-600 text-bold text-xs">
                           <p> El número exterior es requerido </p>
                         </div>
@@ -107,7 +115,11 @@
                         </label>
                         <input name="num-int" formControlName="numInt"
                                class="border-b border-black w-full text-black-1000
-                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-int" type="text">
+                       leading-tight focus:outline-none focus:border-black-500 p-1" id="num-int" type="number">
+                        <div *ngIf="direccionForm.controls.numInt.hasError('pattern') && direccionForm.controls.numInt.touched"
+                             class="mt-1 text-red-600 text-bold text-xs">
+                          <p>Por favor, solo ingresa números</p>
+                        </div>
                       </td>
                     </tr>
 
