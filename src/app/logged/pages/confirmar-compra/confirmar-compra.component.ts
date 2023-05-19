@@ -111,21 +111,21 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         nonNullable: true,
         validators: [Validators.required]
       }),
-      codigoPostal: new FormControl('', {
+      codigoPostal: new FormControl<number>(0, {
         nonNullable: true,
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.pattern('^[0-9]+$')]
       }),
       calle: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required]
       }),
-      numExt: new FormControl('', {
+      numExt: new FormControl<number>(0, {
         nonNullable: true,
-        validators: [Validators.required]
+        validators: [Validators.required, Validators.pattern('^[0-9]+$')]
       }),
-      numInt: new FormControl('', {
+      numInt: new FormControl<number>(0, {
         nonNullable: true,
-        validators: []
+        validators: [Validators.pattern('^[0-9]+$')]
       }),
 
     })
@@ -174,9 +174,9 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         estado: this.direccionForm.controls.estado.value,
         municipio: this.direccionForm.controls.municipio.value,
         colonia: this.direccionForm.controls.colonia.value,
-        num_ext: parseInt(this.direccionForm.controls.numExt.value),
-        num_int: parseInt(this.direccionForm.controls.numInt.value),
-        cp: parseInt(this.direccionForm.controls.codigoPostal.value)
+        num_ext: this.direccionForm.controls.numExt.value,
+        num_int: this.direccionForm.controls.numInt.value,
+        cp: this.direccionForm.controls.codigoPostal.value
       }
       this.direccion = direccionUsuario;
       console.log(direccionUsuario)
