@@ -60,8 +60,6 @@ export class VisualizarComentariosComponent implements OnInit {
       }
     }
 
-    //this.recorrido_estrellas = Array.from(Array(this.cantidad_estrellas).keys()).map(i => i + 1);
-    console.log(this.recorrido_estrellas)
     this.recorrido_estrellas_restantes = 5-this.recorrido_estrellas.length;
 
 
@@ -89,7 +87,7 @@ export class VisualizarComentariosComponent implements OnInit {
     }).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
-        console.log("hola v")
+   
         this.loadData()
         this.toastService.success("Reseña guardada exitosamente")
         this.dialogRefVisualizar.close(true)

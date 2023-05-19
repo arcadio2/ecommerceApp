@@ -63,7 +63,6 @@ export class CrearComentarioComponent implements OnInit {
     const comentario = this.data.comentario;
 
     if(comentario){
-      console.log("SI TIENE")
       return new FormGroup({
         valoracion: new FormControl<number>(comentario.valoracion!, {nonNullable: true, validators: [Validators.required]}),
         titulo: new FormControl<string>(comentario.titulo!, {nonNullable: true, validators: [Validators.required]}),
@@ -109,7 +108,8 @@ export class CrearComentarioComponent implements OnInit {
         this.comentariosService.guardarComentario(this.data.producto?.id!, comentarioNuevo ).subscribe((resp)=>{
           this.loading = false
           this.comentarioForm.enable()
-          this.dialogRefVisualizar.close(true)
+          this.dialogRefVisualizar.close(true);
+          this.comentariosService.comentarioChange.next(!this.comentariosService.comentarioChange.value);
         },(error)=>{
           this.loading = false
           this.comentarioForm.enable()

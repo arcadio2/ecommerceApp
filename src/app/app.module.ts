@@ -26,6 +26,7 @@ import {TextFieldModule} from "@angular/cdk/text-field";
 import {NgxStripeModule} from "ngx-stripe";
 import {environment} from "../environments/environment";
 import {MatChipsModule} from "@angular/material/chips";
+import { EstrellasComponent } from './shared/components/estrellas/estrellas.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatChipsModule} from "@angular/material/chips";
     DialogComponentComponent,
     ButtonComponent,
     VisualizarComentariosComponent,
-    CrearComentarioComponent
+    CrearComentarioComponent,
+    EstrellasComponent
   ],
     imports: [
         BrowserModule,

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { ComentarioProducto } from '../models/producto.model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { ComentarioProducto } from '../models/producto.model';
 export class ComentariosService {
   private url_base:string = environment.urlBase+'api/productos/comentario/';
   token = this.authService.token;
+  public comentarioChange =new BehaviorSubject<boolean>(false);
   constructor(private http:HttpClient, private authService:AuthService,
     private router: Router) { }
 

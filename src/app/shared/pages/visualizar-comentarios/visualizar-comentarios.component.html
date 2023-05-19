@@ -15,13 +15,8 @@
             <div class="grid grid-cols-3">
               <div class="p-4 font-extrabold text-5xl	">{{(data.producto.valoracion_total!  || 0) | number:'1.1-1'}}</div>
               <div class="p-4 grid grid-flow-col grid-rows-2 col-span-2">
-                <div class="grid grid-cols-5">
-                  <img class="h-6 w-6" *ngFor="let c of recorrido_estrellas"
-                  [src]="c!=0 ? 'https://www.svgrepo.com/show/510223/solid-star.svg' : 'https://www.svgrepo.com/show/509984/half-solid-star.svg'"
-                   alt="">
-
-                   <img *ngFor="let i of [].constructor(recorrido_estrellas_restantes)"
-                  class="h-6 w-6" src="https://www.svgrepo.com/show/510242/star.svg" alt="">
+                
+                    <app-estrellas  [valoracion_total]="data.producto.valoracion_total!" ></app-estrellas>
 
                   <!-- <img class="h-6 w-6"
                        src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
@@ -34,7 +29,7 @@
                   <img class="h-6 w-6"
                        src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
                        alt=""> -->
-                </div>
+             
                 <div class="text-sm">
                   {{comentarios.length}} Calificaciones
                 </div>
@@ -42,14 +37,21 @@
             </div>
           </div>
           <div class=" flex justify-center">
-            <mat-chip-list aria-label="Palabras Clave" class="w-10/12 flex justify-center">
+            <div class="w-10/12 flex flex-wrap justify-center ">
+              <span *ngFor="let palabra of palabrasClave" class="p-1 capitalize border-black bg-black border-solid border text-sm  text-white rounded-xl m-1 select-none">
+                {{palabra}}
+              </span>
+            </div>
+          
+           <!--  <mat-chip-list aria-label="Palabras Clave" class="w-10/12 flex justify-center "  >
               <mat-chip *ngFor="let palabra of palabrasClave">
                 {{palabra}}
               </mat-chip>
 
-            </mat-chip-list>
+            </mat-chip-list> -->
+            
           </div>
-          <div class="mt-5 flex justify-center">
+          <div class="mt-5 flex justify-center" *ngIf="usuario?.nombre">
             <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
                     (click)="irCrearComentario()"
             >
@@ -80,24 +82,7 @@
 
         <div *ngFor="let comentario of comentarios" class="flex flex-col px-2 pb-4 border-b">
           <div class="grid grid-cols-2 p-4">
-            <div class="grid grid-cols-5">
-              <img *ngFor="let i of [].constructor((comentario.valoracion!))"
-                class="h-6 w-6" src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
-              <img *ngFor="let i of [].constructor(5-(comentario.valoracion!))"
-                class="h-6 w-6" src="https://www.svgrepo.com/show/510242/star.svg" alt="">
-
-           <!--    <img class="h-6 w-6"
-                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
-              <img class="h-6 w-6"
-                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
-              <img class="h-6 w-6"
-                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
-              <img class="h-6 w-6"
-                  src="https://www.svgrepo.com/show/510223/solid-star.svg" alt="">
-              <img class="h-6 w-6"
-                  src="https://www.svgrepo.com/show/509984/half-solid-star.svg"
-                  alt=""> -->
-            </div>
+            <app-estrellas  [valoracion_total]="comentario.valoracion!" ></app-estrellas>
             <div class="grid justify-end font-bold">{{comentario.titulo}}</div>
           </div>
           <div class="row-span-2 pl-4 text-justify">
