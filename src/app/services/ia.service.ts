@@ -20,7 +20,6 @@ export class IaService {
     comments.forEach((value, index) => {
       myObject[index] = value;
     });
-    console.log(myObject)
     return this.http.post(this.url_py+'extract',myObject,options);  
 
   }

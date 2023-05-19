@@ -131,17 +131,23 @@
       </div>
       <ul class=" divide-black">
         <li class=" px-4">
-          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
-            Lo más buscado
+          <a [routerLink]="['/listado']" 
+          [queryParams]="{ categoria:'Para ti'}"    
+          class="block p-3 hover:text-white hover:bg-black rounded-md">
+            Recomendado para ti
           </a>
         </li>
         <li class=" px-4">
-          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
+          <a [routerLink]="['/listado']" 
+            [queryParams]="{ categoria:'Lo mas vendido'}"  
+            class="block p-3 hover:text-white hover:bg-black rounded-md">
             Lo más vendido
           </a>
         </li>
         <li class=" px-4">
-          <a href="#" class="block p-3 hover:text-white hover:bg-black rounded-md">
+          <a [routerLink]="['/listado']" 
+            [queryParams]="{ categoria:'Novedades'}"  
+            class="block p-3 hover:text-white hover:bg-black rounded-md">
             Novedades
           </a>
         </li>

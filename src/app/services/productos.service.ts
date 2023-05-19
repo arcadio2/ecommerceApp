@@ -105,7 +105,12 @@ export class ProductosService {
 
 
   getSimilar1(nombre:string | undefined, categoria:string | undefined, genero:string | undefined ){
-    return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"&categoria="+categoria+"&genero="+genero);
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+    return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"&categoria="+categoria+"&genero="+genero,{headers});
     if(nombre && categoria && genero){
       return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"?categoria="+categoria+"?genero="+genero);
     }

@@ -75,7 +75,7 @@ export class ProductoComponent implements OnInit,OnChanges {
   
 
   loadData(){
-
+    this.usuario = this.authService.usuario;
     this.route.paramMap.subscribe(params=>{
       this.cambiaEstado = false;
       this.idProducto = parseInt(params.get('id')!);
@@ -94,6 +94,7 @@ export class ProductoComponent implements OnInit,OnChanges {
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
         this.usuario = resp.usuario as User;
+        console.log("USUARIO ",this.usuario)
         this.isAuth = true;
 
 
