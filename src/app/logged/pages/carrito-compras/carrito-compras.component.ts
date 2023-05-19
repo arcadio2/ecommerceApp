@@ -130,9 +130,9 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   actualizarCantidad(detalle:DetalleProducto){
-    console.log(detalle)
+
     this.productoService.editElementoCarrito(detalle).subscribe(resp=>{
-      console.log(resp);
+
 
     })
   }
@@ -144,7 +144,7 @@ export class CarritoComprasComponent implements OnInit {
         this.toastService.info(resp.mensaje);
       },(err:any)=>{
         if(err.status==404){
-          console.log(err.error)
+
           this.toastService.error(err.error.mensaje);
         }
       });
@@ -170,7 +170,7 @@ export class CarritoComprasComponent implements OnInit {
       if (result === 'yes') {
        this.eliminarProducto(idxElemento);
       } else {
-        console.log('Operación de eliminación cancelada.');
+        
       }
     });
   }

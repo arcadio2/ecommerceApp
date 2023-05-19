@@ -1,0 +1,10 @@
+
+<div class="grid grid-cols-5">
+    <img class="h-6 w-6" *ngFor="let c of recorrido_estrellas"
+    [src]="c!=0 ? 'https://www.svgrepo.com/show/510223/solid-star.svg' : 'https://www.svgrepo.com/show/509984/half-solid-star.svg'"
+    alt="">
+
+    <img *ngFor="let i of [].constructor(recorrido_estrellas_restantes)"
+    class="h-6 w-6" src="https://www.svgrepo.com/show/510242/star.svg" alt="">
+
+</div>

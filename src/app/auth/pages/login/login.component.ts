@@ -37,8 +37,8 @@ export class LoginComponent implements OnInit {
       this.usuario.password = this.loginForm.get('password')?.value;
 
       this.authService.login(this.usuario).subscribe(res =>{
-        this.authService.guardarUsuario(res.access_token);
         this.authService.guardarToken(res.access_token);
+        this.authService.guardarUsuario(res.access_token);
         this.usuario = this.authService.usuario;
         this.router.navigateByUrl('/user/configuracion-usuario');
         this.toast.success("Haz iniciado sesión con éxito");

@@ -1,4 +1,4 @@
-import { Component, OnInit,OnChanges } from '@angular/core';
+import { Component, OnInit,OnChanges, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/auth/services/auth.service';
@@ -38,6 +38,7 @@ export class ProductoComponent implements OnInit,OnChanges {
   url_backend:string =  environment.urlBase;
   cantidad:number=1;
 
+  valoracion_total?:number=0 || undefined; 
 
   detalle_colores_disponibles:DetalleProducto[] | undefined=[];
   detalle_tallas_disponibles:DetalleProducto[] | undefined=[];
@@ -61,17 +62,20 @@ export class ProductoComponent implements OnInit,OnChanges {
               private comprasService: ComprasService,
               private comentariosService:ComentariosService,
               private detalleService:DetalleService,
-              private productoService:ProductosService
+              private productoService:ProductosService,
+              private changeDetectorRef: ChangeDetectorRef
               ) { }
 
 
 
   ngOnInit(): void {
-    this.loadData()
+    this.loadData(); 
+
   }
+  
 
   loadData(){
-
+    this.usuario = this.authService.usuario;
     this.route.paramMap.subscribe(params=>{
       this.cambiaEstado = false;
       this.idProducto = parseInt(params.get('id')!);
@@ -90,6 +94,7 @@ export class ProductoComponent implements OnInit,OnChanges {
     if(this.authService.usuario.username){
       this.usuarioService.getUserByUsername(this.authService.usuario!.username).subscribe((resp:any)=>{
         this.usuario = resp.usuario as User;
+        console.log("USUARIO ",this.usuario)
         this.isAuth = true;
 
 
@@ -170,10 +175,14 @@ export class ProductoComponent implements OnInit,OnChanges {
 
   buscarProducto(){
     this.productoService.getDetalleProdcutoCompra(this.idProducto,this.colorProducto,this.tallaProducto).subscribe(resp=>{
-
+      
       //this.producto = resp.producto;
+      this.valoracion_total = undefined; 
       this.productoMostrado = resp.detalle;
       this.producto = this.productoMostrado!.producto! || null;
+      this.valoracion_total = this.producto.valoracion_total!; 
+      console.log(this.valoracion_total)
+      this.changeDetectorRef.detectChanges();
 
       this.detalle_colores_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
 
