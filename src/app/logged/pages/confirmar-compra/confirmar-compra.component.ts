@@ -111,21 +111,21 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         nonNullable: true,
         validators: [Validators.required]
       }),
-      codigoPostal: new FormControl<number>(0, {
+      codigoPostal: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required, Validators.pattern('^[0-9]+$')]
+        validators: [Validators.required, Validators.pattern('[0-9]+$')]
       }),
       calle: new FormControl('', {
         nonNullable: true,
         validators: [Validators.required]
       }),
-      numExt: new FormControl<number>(0, {
+      numExt: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.required, Validators.pattern('^[0-9]+$')]
+        validators: [Validators.required, Validators.pattern('[0-9]+$')]
       }),
-      numInt: new FormControl<number>(0, {
+      numInt: new FormControl('', {
         nonNullable: true,
-        validators: [Validators.pattern('^[0-9]+$')]
+        validators: [Validators.pattern('[0-9]+$')]
       }),
 
     })
@@ -174,9 +174,9 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         estado: this.direccionForm.controls.estado.value,
         municipio: this.direccionForm.controls.municipio.value,
         colonia: this.direccionForm.controls.colonia.value,
-        num_ext: this.direccionForm.controls.numExt.value,
-        num_int: this.direccionForm.controls.numInt.value,
-        cp: this.direccionForm.controls.codigoPostal.value
+        num_ext: parseInt(this.direccionForm.controls.numExt.value),
+        num_int: parseInt(this.direccionForm.controls.numInt.value),
+        cp: parseInt(this.direccionForm.controls.codigoPostal.value)
       }
       this.direccion = direccionUsuario;
       console.log(direccionUsuario)
@@ -189,8 +189,9 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
 
   comprar(): void {
+    this.direccionForm.markAllAsTouched()
     if (this.direccionForm.valid) {
-
+      this.loading = true
       const name = this.facturacionForm.controls.nombreTitular.value;
       console.log("nombre", name)
       this.stripeService
@@ -235,8 +236,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
                 console.log(data)
                 console.log("compras", this.compras)
                 this.irConfirmarPago(this.compras!, data.id)
+                this.loading = false
               }, error: err => {
                 console.log("hubo un error", err)
+                this.loading = false
               }
             });
 
