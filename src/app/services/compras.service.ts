@@ -20,7 +20,7 @@ export class ComprasService {
     }
 
 
-  listCompras(){
+  listComprasByUsuario(){
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.token}`
@@ -38,6 +38,15 @@ export class ComprasService {
 
     return this.http.post<any>(this.url_base+'save', compras, {headers:headers});
 
+  }
+
+  listAllCompras(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.get<any>(this.url_base+'get/all',{headers:headers});
   }
 
 

@@ -42,7 +42,7 @@ export class GestionarPedidosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.comprasService.listCompras().subscribe((resp)=>{
+    this.comprasService.listComprasByUsuario().subscribe((resp)=>{
       this.dataSourcePedidos = resp.compras
       console.log(resp.compras)
     })
