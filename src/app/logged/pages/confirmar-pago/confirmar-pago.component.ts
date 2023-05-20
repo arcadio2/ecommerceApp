@@ -38,7 +38,7 @@ export class ConfirmarPagoComponent implements OnInit {
     })*/
 
     this.comprasService.crearListaCompras(this.data.compras).subscribe((resp:any)=>{
-      console.log("se guardo la lista compras", this.data.compras)
+      console.log("se guardo la lista compras", resp.compras)
     }, error => {
       console.log("No se guardo la lista")
     })
