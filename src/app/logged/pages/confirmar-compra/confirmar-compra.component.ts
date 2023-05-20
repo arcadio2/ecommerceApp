@@ -203,23 +203,26 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
             console.log(result.token.id);
 
             let compra: Compra
-            let id = 1
+            let i = 0
             const fechaHoy: Date = new Date();
             let descripcion = ""
 
             this.bolsa.forEach((c,index)=>{
               let compra: Compra = {
-                Id: id,
+                //Id: id,
                 direccion: this.direccion,
                 usuario: this.authService.usuario,
                 fecha_compra: fechaHoy,
                 codigo_seguimiento: result.token.id,
-                detalle_producto: c.detalle_producto!
+                detalle_producto: c.detalle_producto!,
+                cantidad: c.cantidad!,
+                active: true,
+                precio: this.cantidadProductos(this.productos[i].producto?.precio!,c.cantidad!)
               }
               console.log(compra)
               this.compras?.push(compra)
               descripcion += c.detalle_producto?.nombre_producto + ", "
-              id++
+              i++
             })
 
 

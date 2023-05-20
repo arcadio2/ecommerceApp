@@ -4,6 +4,7 @@ import {Producto} from "../../../../../../../../models/producto.model";
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Compra} from "../../../../../../../../models/compras.model";
 import {ComprasService} from "../../../../../../../../services/compras.service";
+import {zip} from "rxjs";
 
 @Component({
   selector: 'app-gestionar-pedidos',
@@ -21,121 +22,32 @@ export class GestionarPedidosComponent implements OnInit {
   loading = false
 
   dataSourcePedidos?: Compra[] ;
-  columnsToDisplay = ['id', 'codigo_seguimiento', 'fecha_compra'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement?: PeriodicElement | null;
+  columnsToDisplay: string[] = ['id', 'precio', 'fecha_compra'];
+  labelsColumns: string[] = ['ID', 'Precio', 'Fecha de compra'];
+  columnasZip: [string, string][] = this.columnsToDisplay.map((value, index) => [value, this.labelsColumns[index]]);
+  nombreProductoIndex = 1; // Índice en el que deseas insertar el nombre del producto
+  columnsToDisplayWithExpand = [...this.columnsToDisplay];
+
+
+  expandedElement?:  | null;
+  imagenes:string[]=[];
+
+  url_backend = environment.urlBase;
   constructor(
     private comprasService: ComprasService
   ) {
-
+    this.columnsToDisplayWithExpand.splice(this.nombreProductoIndex, 0, 'nombre_producto');
+    this.columnsToDisplayWithExpand.push('active');
+    this.columnsToDisplayWithExpand.push('expand');
   }
 
   ngOnInit(): void {
     this.comprasService.listCompras().subscribe((resp)=>{
-      this.dataSourcePedidos = resp
-      console.log(resp)
+      this.dataSourcePedidos = resp.compras
+      console.log(resp.compras)
     })
   }
 
   protected readonly environment = environment;
 
 }
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    position: 1,
-    name: 'Hydrogen',
-    weight: 1.0079,
-    symbol: 'H',
-    description: `Hydrogen is a chemical element with symbol H and atomic number 1. With a standard
-        atomic weight of 1.008, hydrogen is the lightest element on the periodic table.`,
-  },
-  {
-    position: 2,
-    name: 'Helium',
-    weight: 4.0026,
-    symbol: 'He',
-    description: `Helium is a chemical element with symbol He and atomic number 2. It is a
-        colorless, odorless, tasteless, non-toxic, inert, monatomic gas, the first in the noble gas
-        group in the periodic table. Its boiling point is the lowest among all the elements.`,
-  },
-  {
-    position: 3,
-    name: 'Lithium',
-    weight: 6.941,
-    symbol: 'Li',
-    description: `Lithium is a chemical element with symbol Li and atomic number 3. It is a soft,
-        silvery-white alkali metal. Under standard conditions, it is the lightest metal and the
-        lightest solid element.`,
-  },
-  {
-    position: 4,
-    name: 'Beryllium',
-    weight: 9.0122,
-    symbol: 'Be',
-    description: `Beryllium is a chemical element with symbol Be and atomic number 4. It is a
-        relatively rare element in the universe, usually occurring as a product of the spallation of
-        larger atomic nuclei that have collided with cosmic rays.`,
-  },
-  {
-    position: 5,
-    name: 'Boron',
-    weight: 10.811,
-    symbol: 'B',
-    description: `Boron is a chemical element with symbol B and atomic number 5. Produced entirely
-        by cosmic ray spallation and supernovae and not by stellar nucleosynthesis, it is a
-        low-abundance element in the Solar system and in the Earth's crust.`,
-  },
-  {
-    position: 6,
-    name: 'Carbon',
-    weight: 12.0107,
-    symbol: 'C',
-    description: `Carbon is a chemical element with symbol C and atomic number 6. It is nonmetallic
-        and tetravalent—making four electrons available to form covalent chemical bonds. It belongs
-        to group 14 of the periodic table.`,
-  },
-  {
-    position: 7,
-    name: 'Nitrogen',
-    weight: 14.0067,
-    symbol: 'N',
-    description: `Nitrogen is a chemical element with symbol N and atomic number 7. It was first
-        discovered and isolated by Scottish physician Daniel Rutherford in 1772.`,
-  },
-  {
-    position: 8,
-    name: 'Oxygen',
-    weight: 15.9994,
-    symbol: 'O',
-    description: `Oxygen is a chemical element with symbol O and atomic number 8. It is a member of
-         the chalcogen group on the periodic table, a highly reactive nonmetal, and an oxidizing
-         agent that readily forms oxides with most elements as well as with other compounds.`,
-  },
-  {
-    position: 9,
-    name: 'Fluorine',
-    weight: 18.9984,
-    symbol: 'F',
-    description: `Fluorine is a chemical element with symbol F and atomic number 9. It is the
-        lightest halogen and exists as a highly toxic pale yellow diatomic gas at standard
-        conditions.`,
-  },
-  {
-    position: 10,
-    name: 'Neon',
-    weight: 20.1797,
-    symbol: 'Ne',
-    description: `Neon is a chemical element with symbol Ne and atomic number 10. It is a noble gas.
-        Neon is a colorless, odorless, inert monatomic gas under standard conditions, with about
-        two-thirds the density of air.`,
-  },
-];

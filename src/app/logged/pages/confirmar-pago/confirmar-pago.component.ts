@@ -4,6 +4,7 @@ import {ProductosCompra} from "../../../models/producto.model";
 import {PaymentService} from "../../../services/payment.service";
 import {Compra} from "../../../models/compras.model";
 import {ComprasService} from "../../../services/compras.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-confirmar-pago',
@@ -19,7 +20,8 @@ export class ConfirmarPagoComponent implements OnInit {
     /*@Inject(MAT_DIALOG_DATA) public productosCompra: ProductosCompra,*/
     @Inject(MAT_DIALOG_DATA) public data: {compras: Compra[], idCompraPayment: string},
     private paymentService: PaymentService,
-    private comprasService: ComprasService
+    private comprasService: ComprasService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,16 +38,20 @@ export class ConfirmarPagoComponent implements OnInit {
     })*/
 
     this.comprasService.crearListaCompras(this.data.compras).subscribe((resp:any)=>{
-      console.log("se guardo la lista compras")
+      console.log("se guardo la lista compras", this.data.compras)
+    }, error => {
+      console.log("No se guardo la lista")
     })
 
     this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
         console.log("Pago confirmado")
         this.dialogRef.close(true)
+        this.router.navigate(['user/configuracion-usuario/gestion-pedidos'])
       }, error: err => {
         console.log(err)
         this.dialogRef.close(false)
+
       }
     })
   }

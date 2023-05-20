@@ -46,16 +46,18 @@
             </div>
             <div class="my-1 border-0 border-b border-black border-solid  xl:mb-4"></div>
 
-            <div class="flex justify-between items-center">
+            <div class="grid grid-cols-2 w-full items-center">
 
               <!-- Inicio estrellas -->
-              <div *ngIf="valoracion_total">
-                <app-estrellas [valoracion_total]="valoracion_total!"></app-estrellas>
-                
+              <div >
+                <div class="flex" *ngIf="valoracion_total">
+                  <app-estrellas [valoracion_total]="valoracion_total!"></app-estrellas>
+                </div>
+
               </div>
               <!-- Fin estrellas -->
 
-              <a class="text-xs tracking-widest uppercase hover:underline hover:underline-offset-4 cursor-pointer"
+              <a class="text-xs tracking-widest uppercase hover:underline hover:underline-offset-4 cursor-pointer text-end"
                 (click)="verComentarios()"
               >Comentarios ({{comentarios.length}})</a>
 
