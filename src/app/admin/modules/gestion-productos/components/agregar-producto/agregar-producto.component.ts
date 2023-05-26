@@ -139,6 +139,20 @@ export class AgregarProductoComponent implements OnInit {
     console.log(this.agregarProductoForm.controls.nombre.value);
     console.log(this.agregarProductoForm.controls.sexo.value);
     console.log(this.agregarProductoForm.controls.tipoRopa.value);
+
+    const nombre_producto = this.agregarProductoForm.controls.nombre.value; 
+    const desc_producto = this.agregarProductoForm.controls.descripcion.value; 
+
+    if(!nombre_producto || nombre_producto.length>30  || nombre_producto.length<5){
+      this.toastService.error("Debes escribir un nombre y debe ser menor a 30 caracteres y mayor a 5"); 
+      return; 
+    }
+
+    if(!desc_producto || desc_producto.length>300 || desc_producto.length<20){
+      this.toastService.error("Debes escribir un nombre y debe ser menor a 300 caracteres y mayor a 20"); 
+      return; 
+    }
+
     if(!this.colorSeleccionado){
       this.toastService.error("Debes seleccionar un color"); 
       return

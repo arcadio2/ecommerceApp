@@ -475,7 +475,8 @@
           </mat-card-content>
           <mat-card-actions align="end">
             <button mat-button color="font-['Be_Vietnam_Pro']"
-               [disabled]="loading"
+               [disabled]="loading" 
+               (click)="eliminarDetalle(subProducto)"
             >
               Eliminar
             </button>

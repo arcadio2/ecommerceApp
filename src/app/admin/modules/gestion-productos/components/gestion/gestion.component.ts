@@ -112,6 +112,30 @@ export class GestionComponent implements OnInit {
     })
   }
 
+  eliminarDetalle(detalle:DetalleProducto){
+    this.loading = true
+
+    const dialogRef = this.dialog.open(DialogComponentComponent, {
+      width: '30%',
+      data: '¿Está seguro que desea eliminar este elemento?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loading = false
+      if (result === 'yes') {
+       this.eliminarSub(detalle);
+      } else {
+        console.log('Operación de eliminación cancelada.');
+      }
+    });
+  }
+
+  eliminarSub(detalle:DetalleProducto){
+    this.productoAdminService.eliminarDetalle(detalle.id!).subscribe(resp=>{
+      this.toastService.info("Se ha eliminado el sub producto")
+    })
+  }
+
   protected readonly environment = environment;
 }
 
