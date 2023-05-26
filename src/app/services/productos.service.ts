@@ -117,20 +117,7 @@ export class ProductosService {
     }else{
       return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"&categoria="+categoria+"&genero="+genero,);
     }
-    if(nombre && categoria && genero){
-      return this.http.get<any>(this.url_base+'listado?nombre='+nombre+"?categoria="+categoria+"?genero="+genero);
-    }
-    if(!nombre && categoria && genero){
-
-    }
-    if(!nombre && !categoria && genero){
-
-    }
-    if(nombre && !categoria && !genero){
-      return this.http.get<any>(this.url_base+'listado?nombre='+nombre);
-    }
-
-
+ 
   }
 
   getCategoriaBySexo(sexo:string){

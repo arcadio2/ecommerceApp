@@ -61,6 +61,15 @@ export class ProductosAdminService {
     return this.http.post<any>(this.url_base+'create',producto,{headers:headers})
   }
 
+  eliminarDetalle(id:number){
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.delete<any>(this.url_base_detalle+'delete/'+id,{headers:headers})
+  }
+
   subirFotos(archivos: File[], id_producto:number,color:string) {
     let formData = new FormData();
     console.log(color,id_producto,archivos)
