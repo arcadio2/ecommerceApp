@@ -21,7 +21,7 @@ import { ComprasService } from 'src/app/services/compras.service';
 export class CarritoComprasComponent implements OnInit {
   carritoCompras: ElementoCarrito[] = [];
   bolsa!:Bolsa[];
-  productos:DetalleDto[] = []; 
+  productos:DetalleDto[] = [];
   usuario:User | undefined;
   url_backend = environment.urlBase;
 
@@ -42,9 +42,9 @@ export class CarritoComprasComponent implements OnInit {
     this.loading = true
     /*
     this.bolsaService.obtenerCarrito().subscribe((resp:any)=>{
-      this.bolsa = resp.bolsa; 
+      this.bolsa = resp.bolsa;
     },err=>{
-      
+
     })*/
     this.usuarioService.getUserByUsername(this.authService.usuario.username).subscribe((resp:any)=>{
       this.usuario = resp.usuario as User;
@@ -52,7 +52,7 @@ export class CarritoComprasComponent implements OnInit {
 
       this.bolsa = elementos_bolsa;
       this.productos = this.bolsa.map(v=>v.detalle_producto as DetalleDto)
-      
+
       const observables = elementos_bolsa.map(elemento =>
         this.productoService.getProducto(elemento.detalle_producto?.nombre_producto!)
       );
@@ -60,12 +60,12 @@ export class CarritoComprasComponent implements OnInit {
       forkJoin(observables).subscribe(respuestas => {
         respuestas.forEach((resp, index) => {
           if(elementos_bolsa[index].cantidad! >elementos_bolsa[index].detalle_producto?.stock!){
-            elementos_bolsa[index].cantidad = elementos_bolsa[index].detalle_producto?.stock; 
-            this.actualizarCantidad(elementos_bolsa[index]); 
+            elementos_bolsa[index].cantidad = elementos_bolsa[index].detalle_producto?.stock;
+            this.actualizarCantidad(elementos_bolsa[index]);
           }
-          
+
           const producto: Producto = resp.producto;
-          this.productos[index].producto=producto; 
+          this.productos[index].producto=producto;
           const elemento_producto: ProductoCarrito = {
             costo: producto.precio!,
             nombre: producto.nombre!,
@@ -81,7 +81,7 @@ export class CarritoComprasComponent implements OnInit {
 
           this.carritoCompras.push(elemento_carro);
         });
-       
+
         //console.log('Carro', this.carritoCompras);
       });
 
@@ -170,7 +170,7 @@ export class CarritoComprasComponent implements OnInit {
       if (result === 'yes') {
        this.eliminarProducto(idxElemento);
       } else {
-        
+
       }
     });
   }
@@ -180,7 +180,7 @@ export class CarritoComprasComponent implements OnInit {
   }
 
   guardarProductos(){
-    this.comprasService.productos = this.productos! || []; 
+    this.comprasService.productos = this.productos! || [];
     this.comprasService.bolsa = this.bolsa || [];
   }
 }

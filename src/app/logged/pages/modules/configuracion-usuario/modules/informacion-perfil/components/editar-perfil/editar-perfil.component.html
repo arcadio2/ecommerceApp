@@ -22,6 +22,10 @@
                     class="mt-1 text-red-600 text-bold text-xs">
                 <p>El nombre es requerido</p>
               </div>
+              <div  *ngIf="perfilForm.controls['nombre'].hasError('pattern') && perfilForm.controls['nombre'].touched"
+                    class="mt-1 text-red-600 text-bold text-xs">
+                <p>Por favor, revise su nombre</p>
+              </div>
               <div *ngIf="errores?.nombre" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.nombre}}
               </div>
@@ -40,6 +44,10 @@
               <div  *ngIf="perfilForm.controls['apellido'].invalid && perfilForm.controls['apellido'].touched"
                     class="mt-1 text-red-600 text-bold text-xs">
                 <p>El apellido es requerido</p>
+              </div>
+              <div  *ngIf="perfilForm.controls['apellido'].hasError('pattern') && perfilForm.controls['apellido'].touched"
+                    class="mt-1 text-red-600 text-bold text-xs">
+                <p>Por favor, revise su apellido</p>
               </div>
               <div *ngIf="errores?.apellido" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.apellido}}

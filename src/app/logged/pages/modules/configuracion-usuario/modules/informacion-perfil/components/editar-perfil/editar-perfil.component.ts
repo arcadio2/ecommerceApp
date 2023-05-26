@@ -55,8 +55,8 @@ export class EditarPerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.perfilForm = this.fromBuilder.group({
-      nombre:['',[Validators.required]],
-      apellido:['',[Validators.required]],
+      nombre:['',[Validators.required, Validators.pattern('^[a-zA-Z\s]+$')]],
+      apellido:['',[Validators.required, Validators.pattern('^[a-zA-Z\s]+$')]],
       altura:['',[Validators.pattern('[0-9]+(\.[0-9]+)?')]],
       talla_camisa:['',[]],
       talla_pantalon:['',[]],
@@ -136,7 +136,6 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   editarPerfil() {
-    this.loading = true;
     this.perfilForm.markAllAsTouched()
     if (this.perfilForm.valid){
       this.perfilForm.disable()
@@ -171,7 +170,7 @@ export class EditarPerfilComponent implements OnInit {
       }else{
         perfil_save.sexo = this.mujer;
       }
-
+      this.loading = true;
       this.usuarioService.saveProfile(perfil_save).subscribe({
         next: resp=>{
           this.authService.usuariochange.next(!this.authService.usuariochange.value);
