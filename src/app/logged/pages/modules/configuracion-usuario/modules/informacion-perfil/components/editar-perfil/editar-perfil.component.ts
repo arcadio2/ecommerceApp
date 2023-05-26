@@ -55,8 +55,8 @@ export class EditarPerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.perfilForm = this.fromBuilder.group({
-      nombre:['',[Validators.required, Validators.pattern('^[a-zA-Z\s]+$')]],
-      apellido:['',[Validators.required, Validators.pattern('^[a-zA-Z\s]+$')]],
+      nombre:['',[Validators.required, Validators.pattern('^[a-zA-Z\\sáéíóúÁÉÍÓÚüÜñÑ]+$')]],
+      apellido:['',[Validators.required, Validators.pattern('^[a-zA-Z\\sáéíóúÁÉÍÓÚüÜñÑ]+$')]],
       altura:['',[Validators.pattern('[0-9]+(\.[0-9]+)?')]],
       talla_camisa:['',[]],
       talla_pantalon:['',[]],
