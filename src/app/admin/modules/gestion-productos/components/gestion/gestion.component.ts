@@ -8,6 +8,7 @@ import {environment} from "../../../../../../environments/environment";
 import {EditarInformacionGeneralComponent} from "../editar-informacion-general/editar-informacion-general.component";
 import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
 import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
+import { AgregarDetalleComponent } from '../agregar-detalle/agregar-detalle.component';
 
 @Component({
   selector: 'app-gestion',
@@ -51,6 +52,16 @@ export class GestionComponent implements OnInit {
   agregarNuevoProducto() {
     this.loading = true
     this.dialog.open(AgregarProductoComponent, {}).afterClosed().subscribe((res) => {
+      this.loading = false
+      if (res === true) {
+        this.loadData();
+        this.toastService.success("Producto agregado exitosamente")
+      }
+    });
+  }
+  agregarNuevoSub(product:Producto) {
+    this.loading = true
+    this.dialog.open(AgregarDetalleComponent, {data: product}).afterClosed().subscribe((res) => {
       this.loading = false
       if (res === true) {
         this.loadData();

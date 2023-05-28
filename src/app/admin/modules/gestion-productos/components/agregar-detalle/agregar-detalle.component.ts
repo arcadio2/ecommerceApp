@@ -1,18 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {ProductosService} from "../../../../../services/productos.service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Categoria, Color, DetalleDto, DetalleProducto, Producto, Talla} from "../../../../../models/producto.model";
-import {CategoriaControllersService} from "../../../../../services/categoria-controllers.service";
+import { Component, Inject,OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
+import { Categoria, Color, DetalleDto, DetalleProducto, Producto, Talla } from 'src/app/models/producto.model';
+import { CategoriaControllersService } from 'src/app/services/categoria-controllers.service';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
-  selector: 'app-agregar-producto',
-  templateUrl: './agregar-producto.component.html',
-  styleUrls: ['./agregar-producto.component.css']
+  selector: 'app-agregar-detalle',
+  templateUrl: './agregar-detalle.component.html',
+  styleUrls: ['./agregar-detalle.component.css']
 })
-export class AgregarProductoComponent implements OnInit {
+export class AgregarDetalleComponent implements OnInit {
+
   loading = false
   readonly agregarProductoForm;
   coloresDisponibles: Color[] = []
@@ -24,22 +25,22 @@ export class AgregarProductoComponent implements OnInit {
   selectedHombre:boolean = true;
   troncoSuperior:boolean = true; 
   fotosSeleccionadas: File[]=[];
-  public imagenPrevisualizada: string[]=[];
 
   tallasSeleccionadas: Talla[] = [];
 
-  detallesSeleccionados: DetalleProducto[] = []; 
+  detallesSeleccionados: DetalleDto[] = []; 
   stockSeleccionados:number[] = []; 
   
   colorSeleccionado!:Color;
 
   constructor(
-    private dialogRef: MatDialogRef<AgregarProductoComponent>,
-    private productoService: ProductosService,
-    private productoAdminService: ProductosAdminService,
-    private toastService:ToastrService,
-    private categoriaControllers: CategoriaControllersService
-  ) {
+      private dialogRef: MatDialogRef<AgregarDetalleComponent>,
+      private productoService: ProductosService,
+      private productoAdminService: ProductosAdminService,
+      private toastService:ToastrService,
+      private categoriaControllers: CategoriaControllersService,
+      @Inject(MAT_DIALOG_DATA) public producto: Producto,
+    ) {
     this.agregarProductoForm = this.createProductoForm()
   }
 
@@ -122,12 +123,12 @@ export class AgregarProductoComponent implements OnInit {
   createProductoForm(){
    /*  stock: new FormControl<number>(-1, {nonNullable: true, validators: [Validators.required]}), */
     return new FormGroup({
-      nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      precio: new FormControl<number>(100, {nonNullable: true, validators: [Validators.required]}),
+      nombre: new FormControl<string>({value:this.producto.nombre!,disabled:true}, {nonNullable: true, validators: [Validators.required]}),
+      descripcion: new FormControl<string>({value:this.producto.descripcion!,disabled:true}, {nonNullable: true, validators: [Validators.required]}),
+      precio: new FormControl<number>({value:this.producto.precio!,disabled:true}, {nonNullable: true, validators: [Validators.required]}),
+
       
-      sexo: new FormControl<string>('0', {nonNullable: true, validators: [Validators.required]}),
-      tipoRopa: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+      
       color: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
       foto: new FormControl<any>('', {nonNullable: true, validators: [Validators.required]})
     })
@@ -136,23 +137,6 @@ export class AgregarProductoComponent implements OnInit {
   registrarNuevoProducto() {
     this.loading = true;
     this.agregarProductoForm.markAllAsTouched();
-
-    console.log(this.agregarProductoForm.controls.nombre.value);
-    console.log(this.agregarProductoForm.controls.sexo.value);
-    console.log(this.agregarProductoForm.controls.tipoRopa.value);
-
-    const nombre_producto = this.agregarProductoForm.controls.nombre.value; 
-    const desc_producto = this.agregarProductoForm.controls.descripcion.value; 
-
-    if(!nombre_producto || nombre_producto.length>30  || nombre_producto.length<5){
-      this.toastService.error("Debes escribir un nombre y debe ser menor a 30 caracteres y mayor a 5"); 
-      return; 
-    }
-
-    if(!desc_producto || desc_producto.length>300 || desc_producto.length<20){
-      this.toastService.error("Debes escribir un nombre y debe ser menor a 300 caracteres y mayor a 20"); 
-      return; 
-    }
 
     if(!this.colorSeleccionado){
       this.toastService.error("Debes seleccionar un color"); 
@@ -175,21 +159,13 @@ export class AgregarProductoComponent implements OnInit {
           color:this.colorSeleccionado,
           talla:t,
           stock:this.stockSeleccionados[index],
-
+          producto:this.producto
           
         })
       }); 
       let tipo!:Categoria;
-      this.categoriasDisponibles.forEach(c=>{
-        if( c.tipo==this.agregarProductoForm.controls.tipoRopa.value){
-          tipo=c; 
-        }
-       
-      }); 
-
-      console.log("RIPO",tipo)
-
-      const nuevoProducto: Producto = {
+   
+     /*  const nuevoProducto: Producto = {
         nombre: this.agregarProductoForm.controls.nombre.value,
         descripcion: this.agregarProductoForm.controls.descripcion.value,
         precio: this.agregarProductoForm.controls.precio.value,
@@ -197,14 +173,17 @@ export class AgregarProductoComponent implements OnInit {
         categoria:tipo,
         hombre: true ? this.agregarProductoForm.controls.sexo.value =='0':false,
    
-      }
-      this.productoAdminService.agregarProducto(nuevoProducto).subscribe(resp=>{
+      } */
+      const detalle:DetalleDto = this.detallesSeleccionados as DetalleDto; 
+      //detalle.producto = this.producto; 
+      //console.log("El que se envia",detalle)
+
+      this.productoAdminService.agregarDetalle(detalle).subscribe(resp=>{
         
-        const nuevo:Producto = resp.producto; 
-        console.log("NUEVO ",nuevo)
-        const id_producto = nuevo.id; 
-        const color_producto = nuevo.detalle![0].color?.color!; 
-        this.productoAdminService.subirFotos(this.fotosSeleccionadas,id_producto!,color_producto).subscribe(resp=>{
+        const nuevo:DetalleProducto = resp.subproducto; 
+  
+        const color_producto = nuevo.color?.color!; 
+        this.productoAdminService.subirFotos(this.fotosSeleccionadas,this.producto.id!,color_producto).subscribe(resp=>{
 
         })
         this.dialogRef.close(true);
@@ -221,16 +200,7 @@ export class AgregarProductoComponent implements OnInit {
 
   seleccionarFoto(event:any){
     this.fotosSeleccionadas = event.target.files; 
-    this.imagenPrevisualizada=[]; 
-/*     event.target.files.forEach((r:any)=>{
-      let lector = new FileReader();
-  
-      lector.onload = () => {
-        this.imagenPrevisualizada.push(lector.result as string);
-      };
-      lector.readAsDataURL(r);
-    }) */
-    
+    console.log(this.fotosSeleccionadas)
   }
 
   cancelar() {
@@ -241,6 +211,5 @@ export class AgregarProductoComponent implements OnInit {
     this.loading = false;
   }
 
+
 }
-
-

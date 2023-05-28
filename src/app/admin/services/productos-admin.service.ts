@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { DetalleProducto, Producto } from 'src/app/models/producto.model';
+import { DetalleDto, DetalleProducto, Producto } from 'src/app/models/producto.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -61,6 +61,16 @@ export class ProductosAdminService {
     return this.http.post<any>(this.url_base+'create',producto,{headers:headers})
   }
 
+  editarAgregarProducto(producto:Producto){
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.post<any>(this.url_base+'edit',producto,{headers:headers})
+  }
+
   eliminarDetalle(id:number){
     const token = this.authService.token;
     const headers = new HttpHeaders({
@@ -68,6 +78,14 @@ export class ProductosAdminService {
     })
 
     return this.http.delete<any>(this.url_base_detalle+'delete/'+id,{headers:headers})
+  }
+  agregarDetalle(detalle:DetalleDto){
+    const token = this.authService.token;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    })
+
+    return this.http.post<any>(this.url_base_detalle+'add',detalle,{headers:headers})
   }
 
   subirFotos(archivos: File[], id_producto:number,color:string) {

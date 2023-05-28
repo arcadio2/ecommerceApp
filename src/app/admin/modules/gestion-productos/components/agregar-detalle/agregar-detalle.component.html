@@ -1,5 +1,5 @@
 
-  <div  class="mx-3 px-2 border-b-2 border-black text-center">
+<div  class="mx-3 px-2 border-b-2 border-black text-center">
     <p class="font-semibold text-black text-center">Agregar producto</p>
 
   </div>
@@ -13,6 +13,7 @@
           <form  [formGroup]="agregarProductoForm" enctype="multipart/form-data">
           <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
             <input type="text" formControlName="nombre" placeholder="Nombre" 
+                  
                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
             <span
@@ -53,28 +54,7 @@
             </span>
           </label> -->
 
-          <div class="grid grid-cols-3 text-sm w-full mt-3">
-            <div class="text-xs text-gray-700">
-              Selecciona el catálago
-            </div>
-            <div class="col-span-2 flex flex-col gap-3">
-              <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
-                (change)="cambiarCategoria($event)" formControlName="sexo">
-                <option selected value="0" class="font-sm" >Hombre</option>
-                <option value="1" class="font-sm">Mujer</option>
-              </select>
-              <select (change)="cambiarTalla($event)" formControlName="tipoRopa"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
-                >
-
-                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm" 
-                  [value]="tipo.tipo"
-                  >
-                  <span >{{tipo.tipo}}</span>
-                </option>
-              </select>
-            </div>
-          </div>
+        
           
 
           <div class="mt-3 w-full pt-3">
@@ -168,7 +148,7 @@
                   </label>
                 </div>
        
-                <img [src]="imagenPrevisualizada  [0]" alt="Previsualización de la imagen">
+
                
               </div>
 
@@ -194,7 +174,7 @@
       <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
       <span class="relative text-sm font-medium text-white transition-colors  text-center">
-          Guardar Cambios
+          Agregar cambios
         </span>
     </button>
     <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"
