@@ -14,7 +14,7 @@ import { ProductosAdminService } from 'src/app/admin/services/productos-admin.se
 })
 export class AgregarProductoComponent implements OnInit {
   loading = false
-  readonly agregarProductoForm;
+  agregarProductoForm = this.createProductoForm()
   coloresDisponibles: Color[] = []
   tallasDisponibles: Talla[] = [];
   tallasSeleccionables: Talla[] = [];
@@ -24,6 +24,7 @@ export class AgregarProductoComponent implements OnInit {
   selectedHombre:boolean = true;
   troncoSuperior:boolean = true;
   fotosSeleccionadas: File[]=[];
+  public imagenPrevisualizada: Array<string | ArrayBuffer | null> = [];
 
   tallasSeleccionadas: Talla[] = [];
 
@@ -39,7 +40,6 @@ export class AgregarProductoComponent implements OnInit {
     private toastService:ToastrService,
     private categoriaControllers: CategoriaControllersService
   ) {
-    this.agregarProductoForm = this.createProductoForm()
   }
 
   ngOnInit(): void {
@@ -123,7 +123,7 @@ export class AgregarProductoComponent implements OnInit {
     return new FormGroup({
       nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
       descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      precio: new FormControl<number>(100, {nonNullable: true, validators: [Validators.required]}),
+      precio: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.pattern('[0-9]+$')]}),
 
       sexo: new FormControl<string>('0', {nonNullable: true, validators: [Validators.required]}),
       tipoRopa: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
@@ -133,7 +133,6 @@ export class AgregarProductoComponent implements OnInit {
   }
 
   registrarNuevoProducto() {
-    this.loading = true;
     this.agregarProductoForm.markAllAsTouched();
 
     console.log(this.agregarProductoForm.controls.nombre.value);
@@ -191,12 +190,14 @@ export class AgregarProductoComponent implements OnInit {
       const nuevoProducto: Producto = {
         nombre: this.agregarProductoForm.controls.nombre.value,
         descripcion: this.agregarProductoForm.controls.descripcion.value,
-        precio: this.agregarProductoForm.controls.precio.value,
+        precio: parseInt(this.agregarProductoForm.controls.precio.value),
         detalle:this.detallesSeleccionados,
         categoria:tipo,
         hombre: true ? this.agregarProductoForm.controls.sexo.value =='0':false,
 
       }
+
+      this.loading = true
       this.productoAdminService.agregarProducto(nuevoProducto).subscribe(resp=>{
 
         const nuevo:Producto = resp.producto;
@@ -204,11 +205,14 @@ export class AgregarProductoComponent implements OnInit {
         const id_producto = nuevo.id;
         const color_producto = nuevo.detalle![0].color?.color!;
         this.productoAdminService.subirFotos(this.fotosSeleccionadas,id_producto!,color_producto).subscribe(resp=>{
-
+          this.loading = false
+        }, error => {
+          this.loading = false
         })
         this.dialogRef.close(true);
 
-        this.loading = false;
+      }, error => {
+        this.loading = false
       })
 
     }else{
@@ -220,7 +224,27 @@ export class AgregarProductoComponent implements OnInit {
 
   seleccionarFoto(event:any){
     this.fotosSeleccionadas = event.target.files;
-    console.log(this.fotosSeleccionadas)
+    this.imagenPrevisualizada=[];
+/*     event.target.files.forEach((r:any)=>{
+      let lector = new FileReader();
+
+      lector.onload = () => {
+        this.imagenPrevisualizada.push(lector.result as string);
+      };
+      lector.readAsDataURL(r);
+    }) */
+
+    if (this.fotosSeleccionadas) {
+      for (let i = 0; i < this.fotosSeleccionadas.length; i++) {
+        const file = this.fotosSeleccionadas[i];
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagenPrevisualizada.push(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
   }
 
   cancelar() {

@@ -1,32 +1,29 @@
 
-  <div  class="mx-3 px-2 border-b-2 border-black text-center">
+<div  class="mx-3 px-2 border-b-2 border-black text-center">
     <p class="font-semibold text-black text-center">Agregar producto</p>
 
   </div>
   <mat-dialog-content>
     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-      <div class="flex gap-4">
+      <div class="grid grid-cols-2">
       <!-- <div> -->
 
 
-        <div class="flex items-center flex-col w-1/2">
+        <div class="flex items-start flex-col">
           <form  [formGroup]="agregarProductoForm" enctype="multipart/form-data">
           <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
-            <input type="text" formControlName="nombre" placeholder="Nombre"
+            <input type="text" formControlName="nombre" placeholder="Nombre" 
+                  
                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
             <span
               class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-              * Nombre
+              Nombre
             </span>
           </label>
-            <div *ngIf="agregarProductoForm.controls.nombre.hasError('required') && agregarProductoForm.controls.nombre.touched"
-                 class="mt-1 text-red-600 text-bold text-xs">
-              <p>El nombre es requerido</p>
-            </div>
           <label for="Description" class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-6 mt-2 ">
               <textarea id="Description" placeholder="Descripcion"
-
+                  
                         class="mt-3 peer w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                         matInput
                         cdkTextareaAutosize
@@ -37,28 +34,16 @@
               ></textarea>
 
             <span class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-5 peer-focus:text-xs">
-                * Descripción
+                Descripción
               </span>
           </label>
-            <div *ngIf="agregarProductoForm.controls.descripcion.hasError('required') && agregarProductoForm.controls.descripcion.touched"
-                 class="mt-1 text-red-600 text-bold text-xs">
-              <p>La descripción es requerida</p>
-            </div>
           <label  class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
-            <input type="text" formControlName="precio" placeholder="Precio" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
+            <input type="number" formControlName="precio" placeholder="Precio" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
             <span class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
-              * Precio
+              Precio
             </span>
           </label>
-            <div *ngIf="agregarProductoForm.controls.precio.hasError('pattern') && agregarProductoForm.controls.precio.touched"
-                 class="mt-1 text-red-600 text-bold text-xs">
-              <p>Por favor, solo ingresa números</p>
-            </div>
-            <div *ngIf="agregarProductoForm.controls.precio.hasError('required') && agregarProductoForm.controls.precio.touched"
-                 class="mt-1 text-red-600 text-bold text-xs">
-              <p>El precio es requerido</p>
-            </div>
     <!--       <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
             <input type="number" formControlName="stock" placeholder="Stock"
                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
@@ -69,44 +54,13 @@
             </span>
           </label> -->
 
-          <div class="grid grid-cols-3 text-sm w-full mt-3 gap-3">
-            <div class="text-xs text-gray-700">
-              * Selecciona el catálago
-            </div>
-            <div class="col-span-2 flex flex-col gap-3">
-              <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
-                (change)="cambiarCategoria($event)" formControlName="sexo">
-                <option selected value="0" class="font-sm" >Hombre</option>
-                <option value="1" class="font-sm">Mujer</option>
-              </select>
-              <div *ngIf="agregarProductoForm.controls.sexo.hasError('required') && agregarProductoForm.controls.sexo.touched"
-                   class="mt-1 text-red-600 text-bold text-xs">
-                <p>El sexo es requerido</p>
-              </div>
-              <select (change)="cambiarTalla($event)" formControlName="tipoRopa"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
-                >
-                <option disabled hidden selected value="">
-                  Seleccione una opción
-                </option>
-                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm"
-                  [value]="tipo.tipo"
-                  >
-                  <span >{{tipo.tipo}}</span>
-                </option>
-              </select>
-              <div *ngIf="agregarProductoForm.controls.tipoRopa.hasError('required') && agregarProductoForm.controls.tipoRopa.touched"
-                   class="mt-1 text-red-600 text-bold text-xs">
-                <p>El tipo de ropa es requerido</p>
-              </div>
-            </div>
-          </div>
-
+        
+          
 
           <div class="mt-3 w-full pt-3">
             <p class="font-semibold text-black text-center">Variante</p>
             <fieldset>
-              <legend class="mb-1 text-sm font-medium">* Color</legend>
+              <legend class="mb-1 text-sm font-medium">Color</legend>
 
               <div class="flex flex-wrap gap-1">
                 <div class="flex flex-wrap w-full justify-around gap-1 [&:hover_label]:opacity-75">
@@ -118,10 +72,6 @@
                            class="block h-6 w-6 cursor-pointer rounded-full bg-[{{color.hexadecimal}}] transition hover:!opacity-100">
                       <span class="sr-only"> {{color.color}} </span>
                     </label>
-                  </div>
-                  <div *ngIf="agregarProductoForm.controls.color.hasError('required') && agregarProductoForm.controls.color.touched"
-                       class="mt-1 text-red-600 text-bold text-xs">
-                    <p>El color es requerido</p>
                   </div>
                 </div>
               </div>
@@ -138,12 +88,12 @@
                     class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                                                 {{talla.talla}}
                                             </span>
-
-
+                                            
+                                            
                 </label>
 
 
-
+             
                 <div>
                   <input type="button" id="ColorSb" class="sr-only" />
 
@@ -153,58 +103,35 @@
                 </div>
               </div>
             </fieldset>
-            <div class="flex mt-4 flex-col gap-3 w-full">
+            <div>
               <label for="inputGroupFile04" class="custom-file-upload">
-                * Selecciona imagen
-              </label>
-              <input (change)="seleccionarFoto($event)" type="file"
-                     multiple
-                     formControlName="foto" pInputText id="file-upload"
-                     id="inputGroupFile04"
-                     aria-describedby="inputGroupFileAddon04"
-                     class="file-input w-full max-w-xs file-input-ghost file-input-sm "
-              >
-              <div *ngIf="agregarProductoForm.controls.foto.hasError('required') && agregarProductoForm.controls.foto.touched"
-                   class="mt-1 text-red-600 text-bold text-xs">
-                <p>La imagen es requerida</p>
-              </div>
-
+                <input (change)="seleccionarFoto($event)" type="file" 
+                    multiple
+                    formControlName="foto" pInputText id="file-upload"
+                    id="inputGroupFile04"
+                    aria-describedby="inputGroupFileAddon04">
+                Selecciona imagen
+            </label>
             </div>
           </div>
           </form>
         </div>
-        <div class="flex flex-col p-3 w-1/2">
-          <div>
-            <div *ngIf="imagenPrevisualizada.length == 0" class="text-center">
-              Aquí se mostraran las imágenes de tu producto
-            </div>
-            <div *ngIf="imagenPrevisualizada.length !== 0" class="text-center">
-              Tus imágenes:
-            </div>
-            <div class="mt-3 grid grid-cols-4 gap-3 justify-center">
-              <div *ngFor="let imagen of imagenPrevisualizada">
-                  <img [src]="imagen" alt="Previsualización de la imagen" class="w-[100px] h-[100px]">
-              </div>
-            </div>
-          </div>
-          <span class="mt-4 text-center">
-            En esta sección podrás editar el stock para cada combinación talla-color que hayas seleccionado
-          </span>
-          <div *ngIf="colorSeleccionado" class="flex mt-4 flex-col gap-3 text-center flex justify-center items-center">
-            Color seleccionado:
+        <div class="flex items-start flex-col p-3">
+          En esta sección podrás editar el stock para cada combinación talla-color que hayas seleccionado
+          <div *ngIf="colorSeleccionado">
+            Color seleccionado: 
             <input type="checkbox" id="ColorSgSelected" class="sr-only" />
 
             <label for="ColorSg"
-
+                 
                    class="p-3 mt-3 block h-6 w-6 cursor-pointer rounded-full bg-[{{colorSeleccionado.hexadecimal}}] transition hover:!opacity-100">
               <span class="sr-only"> {{colorSeleccionado.color}} </span>
             </label>
-            <div class="grid grid-cols-2">
-              <div class="flex flex-wrap gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
+            <div class="flex flex-wrap justify-around gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
                 <div class="flex">
                   <label  class="cursor-pointer p-3 mt-2">
                     <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
-
+  
                     <span
                       class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                                                   {{talla.talla}}
@@ -213,17 +140,17 @@
                   <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
                     <input type="number" min="0"  placeholder="Stock " [(ngModel)]="stockSeleccionados[i]"
                            class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
-
+        
                     <span
                       class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                       Stock para talla {{talla.talla}}
                     </span>
                   </label>
                 </div>
+       
 
+               
               </div>
-
-            </div>
 
 
           </div>
@@ -241,14 +168,13 @@
 <!-- Fin modal -->
   <mat-dialog-actions align="center">
     <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-            [disabled]="loading"
             (click)="registrarNuevoProducto()"
-
+           
     >
       <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
       <span class="relative text-sm font-medium text-white transition-colors  text-center">
-          Guardar Cambios
+          Agregar cambios
         </span>
     </button>
     <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2"

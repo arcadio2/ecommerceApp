@@ -489,6 +489,7 @@
         <div class="flex items-center justify-end gap-8 w-full bg-white">
           <button class="group relative inline-block overflow-hidden border bg-white border-black px-8 py-3 focus:outline-none focus:ring mx-2"
                   [disabled]="loading"
+                  (click)="agregarNuevoSub(producto)"
           >
             <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
             <span class="relative text-sm text-black transition-colors ">
