@@ -5,14 +5,14 @@
   </div>
   <mat-dialog-content>
     <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-      <div class="grid grid-cols-2">
+      <div class="flex gap-4">
       <!-- <div> -->
 
 
-        <div class="flex items-start flex-col">
+        <div class="flex items-center flex-col w-1/2">
           <form  [formGroup]="agregarProductoForm" enctype="multipart/form-data">
           <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 ">
-            <input type="text" formControlName="nombre" placeholder="Nombre" 
+            <input type="text" formControlName="nombre" placeholder="Nombre"
                    class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
 
             <span
@@ -22,7 +22,7 @@
           </label>
           <label for="Description" class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-6 mt-2 ">
               <textarea id="Description" placeholder="Descripcion"
-                  
+
                         class="mt-3 peer w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
                         matInput
                         cdkTextareaAutosize
@@ -53,7 +53,7 @@
             </span>
           </label> -->
 
-          <div class="grid grid-cols-3 text-sm w-full mt-3">
+          <div class="grid grid-cols-3 text-sm w-full mt-3 gap-3">
             <div class="text-xs text-gray-700">
               Selecciona el catálago
             </div>
@@ -67,7 +67,7 @@
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-3"
                 >
 
-                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm" 
+                <option *ngFor="let tipo of categoriasSeleccionables" class="font-sm"
                   [value]="tipo.tipo"
                   >
                   <span >{{tipo.tipo}}</span>
@@ -75,7 +75,7 @@
               </select>
             </div>
           </div>
-          
+
 
           <div class="mt-3 w-full pt-3">
             <p class="font-semibold text-black text-center">Variante</p>
@@ -108,12 +108,12 @@
                     class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                                                 {{talla.talla}}
                                             </span>
-                                            
-                                            
+
+
                 </label>
 
 
-             
+
                 <div>
                   <input type="button" id="ColorSb" class="sr-only" />
 
@@ -123,35 +123,40 @@
                 </div>
               </div>
             </fieldset>
-            <div>
+            <div class="flex mt-4 flex-col gap-3 w-full">
               <label for="inputGroupFile04" class="custom-file-upload">
-                <input (change)="seleccionarFoto($event)" type="file" 
-                    multiple
-                    formControlName="foto" pInputText id="file-upload"
-                    id="inputGroupFile04"
-                    aria-describedby="inputGroupFileAddon04">
                 Selecciona imagen
-            </label>
+              </label>
+              <input (change)="seleccionarFoto($event)" type="file"
+                     multiple
+                     formControlName="foto" pInputText id="file-upload"
+                     id="inputGroupFile04"
+                     aria-describedby="inputGroupFileAddon04"
+                     class="file-input w-full max-w-xs file-input-ghost file-input-sm "
+              >
+
             </div>
           </div>
           </form>
         </div>
-        <div class="flex items-start flex-col p-3">
-          En esta sección podrás editar el stock para cada combinación talla-color que hayas seleccionado
-          <div *ngIf="colorSeleccionado">
-            Color seleccionado: 
+        <div class="flex flex-col p-3 w-1/2">
+          <span class="text-center">
+            En esta sección podrás editar el stock para cada combinación talla-color que hayas seleccionado
+          </span>
+          <div *ngIf="colorSeleccionado" class="flex mt-4 flex-col gap-3">
+            Color seleccionado:
             <input type="checkbox" id="ColorSgSelected" class="sr-only" />
 
             <label for="ColorSg"
-                 
+
                    class="p-3 mt-3 block h-6 w-6 cursor-pointer rounded-full bg-[{{colorSeleccionado.hexadecimal}}] transition hover:!opacity-100">
               <span class="sr-only"> {{colorSeleccionado.color}} </span>
             </label>
-            <div class="flex flex-wrap justify-around gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
+            <div class="flex flex-wrap gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
                 <div class="flex">
                   <label  class="cursor-pointer p-3 mt-2">
                     <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
-  
+
                     <span
                       class="group inline-flex h-8 w-8 items-center justify-center border text-xs font-medium peer-checked:bg-black peer-checked:text-white">
                                                   {{talla.talla}}
@@ -160,7 +165,7 @@
                   <label class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
                     <input type="number" min="0"  placeholder="Stock " [(ngModel)]="stockSeleccionados[i]"
                            class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />
-        
+
                     <span
                       class="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
                       Stock para talla {{talla.talla}}
@@ -189,7 +194,7 @@
   <mat-dialog-actions align="center">
     <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
             (click)="registrarNuevoProducto()"
-           
+
     >
       <span class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 
