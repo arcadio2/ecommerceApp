@@ -143,12 +143,12 @@ export class AgregarProductoComponent implements OnInit {
     const desc_producto = this.agregarProductoForm.controls.descripcion.value;
 
     if(!nombre_producto || nombre_producto.length>30  || nombre_producto.length<5){
-      this.toastService.error("Debes escribir un nombre y debe ser menor a 30 caracteres y mayor a 5");
+      this.toastService.error("Debes escribir un nombre menor a 30 caracteres y mayor a 5");
       return;
     }
 
     if(!desc_producto || desc_producto.length>300 || desc_producto.length<20){
-      this.toastService.error("Debes escribir un nombre y debe ser menor a 300 caracteres y mayor a 20");
+      this.toastService.error("Debes escribir una descripción menor a 300 caracteres y mayor a 20");
       return;
     }
 

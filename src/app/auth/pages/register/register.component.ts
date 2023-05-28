@@ -1,6 +1,6 @@
 import { Component, OnInit,Output,EventEmitter } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -13,9 +13,16 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class RegisterComponent implements OnInit {
   usuario:User = new User();
-  registerForm!: FormGroup;
   errores:any={};
   @Output() renderizar = new EventEmitter();
+
+  registerForm = new FormGroup({
+    nombre: new FormControl<string>('',[Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z\\sáéíóúÁÉÍÓÚüÜñÑ]+$')]),
+    apellido:new FormControl<string>('',[Validators.required, Validators.pattern('^[a-zA-Z\\sáéíóúÁÉÍÓÚüÜñÑ]+$')]),
+    username: new FormControl<string>('',[Validators.required]),
+    email: new FormControl<string>('',[Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$')]),
+    password: new FormControl<string>('',[Validators.required, Validators.minLength(8)])
+  })
 
   constructor(private fromBuilder:FormBuilder,
               private authService:AuthService,
@@ -23,29 +30,21 @@ export class RegisterComponent implements OnInit {
               private toast:ToastrService,) { }
 
   ngOnInit(): void {
-    this.registerForm = this.fromBuilder.group({
-      nombre:['',[Validators.required]],
-      apellido:['',[Validators.required]],
-      username:['',[Validators.required]],
-      email:['',[Validators.required, Validators.email]],
-      password:['',[Validators.required]]
-    })
   }
 
   register(){
 
     this.registerForm.markAllAsTouched();
 
-    //if(this.registerForm.valid){
-      this.usuario.username = this.registerForm.get('username')?.value;
-      this.usuario.nombre = this.registerForm.get('nombre')?.value;
-      this.usuario.apellido = this.registerForm.get('apellido')?.value;
-      this.usuario.email = this.registerForm.get('email')?.value;
-      this.usuario.password = this.registerForm.get('password')?.value;
+    if(this.registerForm.valid){
+      this.usuario.username = this.registerForm.controls.username.value!;
+      this.usuario.nombre = this.registerForm.controls.nombre.value!;
+      this.usuario.apellido = this.registerForm.controls.apellido.value!;
+      this.usuario.email = this.registerForm.controls.email.value!;
+      this.usuario.password = this.registerForm.controls.password.value!;
+
       this.authService.registerUser(this.usuario).subscribe(resp=>{
-
         this.toast.success("Te haz registrado con éxito. Por favor, incia seisión.")
-
         this.router.navigateByUrl('/auth');
      /*    this.authService.login(this.usuario).subscribe(res =>{
           this.authService.guardarUsuario(res.access_token);
@@ -76,7 +75,7 @@ export class RegisterComponent implements OnInit {
           this.toast.error(err.error.mensaje+". Intenta con otro");
         }
       });
-    //}
+    }
 
   }
 }
