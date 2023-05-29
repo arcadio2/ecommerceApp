@@ -74,7 +74,7 @@
         </div>
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="email">
-            * Correo:
+            * Email:
           </label>
           <input formControlName="email" name="email"
                  class="border-b border-black w-full text-black-700
@@ -86,7 +86,7 @@
           </div>
           <div *ngIf="registerForm.controls.email.hasError('pattern') && registerForm.controls.email.touched"
                class="mt-1 text-red-600 text-bold text-xs">
-            <p>EL formato del email es incorrecto</p>
+            <p>El formato del email es incorrecto</p>
           </div>
           <div *ngIf="errores?.email" class="mt-1 text-red-600 text-bold text-xs">
             {{errores.email}}
