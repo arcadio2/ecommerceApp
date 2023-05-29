@@ -43,6 +43,10 @@
                class="mt-1 text-red-600 text-bold text-xs">
             <p>Por favor, escriba solo letras</p>
           </div>
+          <div *ngIf="registerForm.controls.apellido.hasError('minlength') && registerForm.controls.apellido.touched"
+               class="mt-1 text-red-600 text-bold text-xs">
+            <p>Su nombre debe contener al menos 3 caracteres</p>
+          </div>
           <!--<div *ngIf="errores?.apellido" class="mt-1 text-red-600 text-bold text-xs">
             {{errores.apellido}}
           </div>-->
@@ -60,9 +64,13 @@
                class="mt-1 text-red-600 text-bold text-xs">
             <p>El nombre de usuario es requerido</p>
           </div>
-          <div *ngIf="errores?.username" class="mt-1 text-red-600 text-bold text-xs">
-            {{errores.username}}
+          <div *ngIf="registerForm.controls.username.hasError('minlength') && registerForm.controls.username.touched"
+               class="mt-1 text-red-600 text-bold text-xs">
+            <p>Su nombre debe contener al menos 3 caracteres</p>
           </div>
+          <!--<div *ngIf="errores?.username" class="mt-1 text-red-600 text-bold text-xs">
+            {{errores.username}}
+          </div>-->
         </div>
         <div class="mb-6">
           <label class="block text-black-700 font-bold mb-2" for="email">
