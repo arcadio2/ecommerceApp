@@ -6,9 +6,9 @@ import {ProductosService} from "../../../../../services/productos.service";
 import {DetalleProducto, Producto} from "../../../../../models/producto.model";
 import {environment} from "../../../../../../environments/environment";
 import {EditarInformacionGeneralComponent} from "../editar-informacion-general/editar-informacion-general.component";
-import { ProductosAdminService } from 'src/app/admin/services/productos-admin.service';
-import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
-import { AgregarDetalleComponent } from '../agregar-detalle/agregar-detalle.component';
+import {ProductosAdminService} from 'src/app/admin/services/productos-admin.service';
+import {DialogComponentComponent} from 'src/app/shared/components/dialog-component/dialog-component.component';
+import {AgregarDetalleComponent} from '../agregar-detalle/agregar-detalle.component';
 
 @Component({
   selector: 'app-gestion',
@@ -77,14 +77,12 @@ export class GestionComponent implements OnInit {
     if((stock!) >1){
       subProducto.stock!-=1;
       this.productoAdminService.editDetalleProducto(subProducto).subscribe(resp=>{
-
       })
     }
   }
   aumentar(subProducto:DetalleProducto){
     subProducto.stock!+=1;
     this.productoAdminService.editDetalleProducto(subProducto).subscribe(resp=>{
-
     })
   }
 
@@ -118,10 +116,14 @@ export class GestionComponent implements OnInit {
   }
 
   eliminarProducto(producto:Producto){
+    this.loading = true
     this.productoAdminService.eliminarProducto(producto.nombre!).subscribe(resp=>{
       const indice_elemento =this.productosAgregados.indexOf(producto);
       this.productosAgregados.splice(indice_elemento, 1);
-      this.toastService.info("Se ha eliminado el producto")
+      this.toastService.success("Se ha eliminado el producto")
+      this.loading = false
+    }, _ => {
+      this.loading = false
     })
   }
 
@@ -144,8 +146,11 @@ export class GestionComponent implements OnInit {
   }
 
   eliminarSub(detalle:DetalleProducto){
+    this.loading = true
     this.productoAdminService.eliminarDetalle(detalle.id!).subscribe(resp=>{
       this.toastService.info("Se ha eliminado el sub producto")
+      this.loadData()
+      this.loading = false
     })
   }
 

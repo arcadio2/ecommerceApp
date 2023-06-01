@@ -460,14 +460,16 @@
                     {{subProducto.stock}}
                   </div>
                   <div class="text-gray-600 border border-black rounded-md grid grid-cols-2 items-center place-content-center">
-                    <div class="border-r px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-l-md text-2xl"
+                    <button class="border-r px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-l-md text-2xl"
+                         [disabled]="loading"
                          (click)="aumentar(subProducto)">
                       +
-                    </div>
-                    <div class="px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-r-md text-2xl"
+                    </button>
+                    <button class="px-4 py-1 cursor-pointer hover:bg-gray-100 rounded-r-md text-2xl"
+                            [disabled]="loading"
                          (click)="disminuir(subProducto)">
                       -
-                    </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -504,6 +506,7 @@
 </div>
 <div class="mt-10 flex items-center justify-end gap-8 end-full sticky bottom-0 bg-white p-3">
   <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+          [disabled]="loading"
           (click)="agregarNuevoProducto()"
   >
     <span

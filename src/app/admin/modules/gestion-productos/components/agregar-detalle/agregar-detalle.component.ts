@@ -23,15 +23,17 @@ export class AgregarDetalleComponent implements OnInit {
   categoriasSeleccionables: Categoria[] =[]
   catalagoHombre = [];
   selectedHombre:boolean = true;
-  troncoSuperior:boolean = true; 
+  troncoSuperior:boolean = true;
   fotosSeleccionadas: File[]=[];
 
   tallasSeleccionadas: Talla[] = [];
 
-  detallesSeleccionados: DetalleDto[] = []; 
-  stockSeleccionados:number[] = []; 
-  
+  detallesSeleccionados: DetalleDto[] = [];
+  stockSeleccionados:number[] = [];
+
   colorSeleccionado!:Color;
+
+  public imagenPrevisualizada: Array<string | ArrayBuffer | null> = [];
 
   constructor(
       private dialogRef: MatDialogRef<AgregarDetalleComponent>,
@@ -49,8 +51,8 @@ export class AgregarDetalleComponent implements OnInit {
       this.coloresDisponibles = resp.colores
     })
     this.categoriaControllers.getTallas().subscribe((resp:any)=>{
-      this.tallasDisponibles = resp.tallas; 
-      this.tallasSeleccionables = this.tallasDisponibles.filter(t=>t.tronco_superior==true); 
+      this.tallasDisponibles = resp.tallas;
+      this.tallasSeleccionables = this.tallasDisponibles.filter(t=>t.tronco_superior==true);
     })
 
     this.categoriaControllers.getCategoriasRopa().subscribe((resp: any)=>{
@@ -79,10 +81,10 @@ export class AgregarDetalleComponent implements OnInit {
   }
   cambiarTalla(event:any){
     this.tallasSeleccionadas = [];
-    
+
     this.categoriasSeleccionables.forEach(r=>{
       if(r.tipo==event.target.value){
-        this.troncoSuperior = r.tronco_superior!;  
+        this.troncoSuperior = r.tronco_superior!;
       }
     })
 
@@ -96,7 +98,7 @@ export class AgregarDetalleComponent implements OnInit {
   }
 
   cambiarColor(color:Color){
-    this.colorSeleccionado = color; 
+    this.colorSeleccionado = color;
   }
   anadirTalla(talla:Talla){
 
@@ -107,15 +109,15 @@ export class AgregarDetalleComponent implements OnInit {
         this.tallasSeleccionadas.splice(indice_elemento, 1);
         this.stockSeleccionados.splice(indice_elemento, 1);
       }
-      
+
     }else{
 
       this.tallasSeleccionadas.push(talla);
-      this.stockSeleccionados.push(0); 
-      
+      this.stockSeleccionados.push(0);
+
 
     }
-    
+
 
   }
 
@@ -127,8 +129,8 @@ export class AgregarDetalleComponent implements OnInit {
       descripcion: new FormControl<string>({value:this.producto.descripcion!,disabled:true}, {nonNullable: true, validators: [Validators.required]}),
       precio: new FormControl<number>({value:this.producto.precio!,disabled:true}, {nonNullable: true, validators: [Validators.required]}),
 
-      
-      
+
+
       color: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
       foto: new FormControl<any>('', {nonNullable: true, validators: [Validators.required]})
     })
@@ -139,32 +141,32 @@ export class AgregarDetalleComponent implements OnInit {
     this.agregarProductoForm.markAllAsTouched();
 
     if(!this.colorSeleccionado){
-      this.toastService.error("Debes seleccionar un color"); 
+      this.toastService.error("Debes seleccionar un color");
       return
     }
     if(this.tallasSeleccionadas.length==0){
-      this.toastService.error("Debes seleccionar tallas a agregar"); 
+      this.toastService.error("Debes seleccionar tallas a agregar");
       return
     }
     if(this.fotosSeleccionadas.length==0){
-      this.toastService.error("Debes seleccionar al menos 1 foto"); 
+      this.toastService.error("Debes seleccionar al menos 1 foto");
       return
     }
     if (!this.agregarProductoForm.errors) {
 
-   
+
       this.tallasSeleccionadas.forEach((t,index) =>{
-        
+
         this.detallesSeleccionados.push({
           color:this.colorSeleccionado,
           talla:t,
           stock:this.stockSeleccionados[index],
           producto:this.producto
-          
+
         })
-      }); 
+      });
       let tipo!:Categoria;
-   
+
      /*  const nuevoProducto: Producto = {
         nombre: this.agregarProductoForm.controls.nombre.value,
         descripcion: this.agregarProductoForm.controls.descripcion.value,
@@ -172,35 +174,57 @@ export class AgregarDetalleComponent implements OnInit {
         detalle:this.detallesSeleccionados,
         categoria:tipo,
         hombre: true ? this.agregarProductoForm.controls.sexo.value =='0':false,
-   
+
       } */
-      const detalle:DetalleDto = this.detallesSeleccionados as DetalleDto; 
-      //detalle.producto = this.producto; 
+      const detalle:DetalleDto = this.detallesSeleccionados as DetalleDto;
+      //detalle.producto = this.producto;
       //console.log("El que se envia",detalle)
 
       this.productoAdminService.agregarDetalle(detalle).subscribe(resp=>{
-        
-        const nuevo:DetalleProducto = resp.subproducto; 
-  
-        const color_producto = nuevo.color?.color!; 
-        this.productoAdminService.subirFotos(this.fotosSeleccionadas,this.producto.id!,color_producto).subscribe(resp=>{
 
+        const nuevo:DetalleProducto = resp.subproducto;
+
+        const color_producto = nuevo.color?.color!;
+        this.productoAdminService.subirFotos(this.fotosSeleccionadas,this.producto.id!,color_producto).subscribe(resp=>{
+        this.loading = false
         })
         this.dialogRef.close(true);
-
-        this.loading = false;  
+        this.loading = false;
+      }, _ => {
+        this.loading = false
       })
-  
+
     }else{
       console.log("errores ",this.agregarProductoForm.errors)
-      this.toastService.error("Los datos son inválidos"); 
+      this.dialogRef.close();
+      this.toastService.error("Los datos son inválidos");
     }
-    
+
   }
 
   seleccionarFoto(event:any){
-    this.fotosSeleccionadas = event.target.files; 
-    console.log(this.fotosSeleccionadas)
+    this.fotosSeleccionadas = event.target.files;
+    this.imagenPrevisualizada=[];
+    /*     event.target.files.forEach((r:any)=>{
+          let lector = new FileReader();
+
+          lector.onload = () => {
+            this.imagenPrevisualizada.push(lector.result as string);
+          };
+          lector.readAsDataURL(r);
+        }) */
+
+    if (this.fotosSeleccionadas) {
+      for (let i = 0; i < this.fotosSeleccionadas.length; i++) {
+        const file = this.fotosSeleccionadas[i];
+        const reader = new FileReader();
+        reader.onload = () => {
+          this.imagenPrevisualizada.push(reader.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
   }
 
   cancelar() {
@@ -210,6 +234,8 @@ export class AgregarDetalleComponent implements OnInit {
 
     this.loading = false;
   }
+
+
 
 
 }
