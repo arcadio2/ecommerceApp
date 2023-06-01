@@ -140,6 +140,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
 
   irConfirmarPago(compras: Compra[], idCompraPayment: string) {
     this.loading = true
+    console.log(compras)
     this.dialog.open(ConfirmarPagoComponent, {
       data: {compras, idCompraPayment}
     }).afterClosed().subscribe((res) => {

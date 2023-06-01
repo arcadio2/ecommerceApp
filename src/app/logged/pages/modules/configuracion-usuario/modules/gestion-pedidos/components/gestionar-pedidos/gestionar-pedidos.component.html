@@ -38,21 +38,21 @@
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-          <div class="example-element-detail"
+          <div class="example-element-detail flex gap-4"
                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div class="w-full flex sm:justify-between flex-col sm:flex-row p-4">
+            <div class="col-span-2 place-self-center">
+              <div class="w-20 rounded">
+                <img alt=" " [src]="url_backend+'api/imagenes/productos/uploads/img/'+element.detalle_producto.id_producto +'/'+element.detalle_producto!.color?.color +'/1.jpg' ||
+                              'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'" />
+              </div>
+            </div>
+            <div class="w-full flex flex-col sm:grid sm:grid-cols-2 gap-4 p-4">
               <!--<div>
                 <img alt="Les Paul" class="w-[500px]"
                      [src]="url_backend+'api/imagenes/productos/uploads/img/'+element.detalle_producto.id +'/'+element.detalle_producto!.color?.color +'/1.jpg' ||
                                 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'"
                 />
               </div>-->
-              <div class="avatar">
-                <div class="w-12 rounded">
-                  <img alt=" " [src]="url_backend+'api/imagenes/productos/uploads/img/'+element.detalle_producto.id_producto +'/'+element.detalle_producto!.color?.color +'/1.jpg' ||
-                              'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'" />
-                </div>
-              </div>
               <div>
                 <span class="font-semibold ">Detalles del pedido:</span>
                 <div class="mt-2 flex flex-col gap-1  text-sm capitalize">
