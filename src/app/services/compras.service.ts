@@ -10,7 +10,7 @@ import {Compra} from "../models/compras.model";
   providedIn: 'root'
 })
 export class ComprasService {
-  token = this.authService.token;
+
   private productos_:DetalleDto []=[];
   private bolsa_:Bolsa [] = []
   private url_base:string = environment.urlBase+'api/compras/';
@@ -21,9 +21,10 @@ export class ComprasService {
 
 
   listComprasByUsuario(){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.get<any>(this.url_base+'get',{headers:headers});
@@ -31,10 +32,10 @@ export class ComprasService {
   }
   
   listComprasByUsuarioAndProductExist(producto:Producto){
-    console.log("XJSKBKJSABKJSCA",producto.id)
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.get<any>(this.url_base+'get/'+producto.id,{headers:headers});
@@ -42,9 +43,10 @@ export class ComprasService {
   }
 
   crearListaCompras(compras: Compra[]){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.post<any>(this.url_base+'save', compras, {headers:headers});
@@ -52,18 +54,20 @@ export class ComprasService {
   }
 
   listAllCompras(){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
 
     return this.http.get<any>(this.url_base+'get/all',{headers:headers});
   }
 
   cambiarEstadoPedido(compra:Compra){
+    const token = this.authService.token;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${this.token}`
+      'Authorization': `Bearer ${token}`
     })
     return this.http.put<any>(this.url_base+'estatus',compra,{headers:headers});
   }

@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Cambiar estado</h2>
+<mat-dialog-content>
+  {{ data }}
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+
+    <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2 "
+        (click)="cancel()" mat-raised-button >
+        <span
+            class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
+
+        <span class="relative text-sm font-medium text-black transition-colors">
+            No
+        </span>
+    </button>
+ 
+
+  <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
+    mat-raised-button (click)="confirm()">
+    <span
+        class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
+
+    <span class="relative text-sm font-medium text-white transition-colors " >
+        Sí
+    </span>
+</button>
+  
+</mat-dialog-actions>

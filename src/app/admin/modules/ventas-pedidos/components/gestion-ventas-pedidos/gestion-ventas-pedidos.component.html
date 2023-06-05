@@ -21,6 +21,14 @@
           </div>
         </td >
       </ng-container>
+      <ng-container matColumnDef="username" >
+        <th mat-header-cell class="border-b" *matHeaderCellDef>Usuario</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="capitalize">
+            {{element.usuario.username}}
+          </div>
+        </td >
+      </ng-container>
       <ng-container matColumnDef="active" >
         <th mat-header-cell class="border-b" *matHeaderCellDef>Estado del pedido</th>
         <td mat-cell *matCellDef="let element">

@@ -113,7 +113,7 @@ export class AgregarDetalleComponent implements OnInit {
     }else{
 
       this.tallasSeleccionadas.push(talla);
-      this.stockSeleccionados.push(0);
+      this.stockSeleccionados.push(1);
 
 
     }
@@ -137,7 +137,7 @@ export class AgregarDetalleComponent implements OnInit {
   }
 
   registrarNuevoProducto() {
-    this.loading = true;
+    
     this.agregarProductoForm.markAllAsTouched();
 
     if(!this.colorSeleccionado){
@@ -177,11 +177,23 @@ export class AgregarDetalleComponent implements OnInit {
 
       } */
       const detalle:DetalleDto = this.detallesSeleccionados as DetalleDto;
+      let ceros:boolean = true;
+      this.detallesSeleccionados.forEach(resp=>{
+        if( (resp.stock!) <= 0){
+          ceros = false; 
+        }
+      }); 
+      if(!ceros){
+        this.toastService.error("Debes agregar stock para cada talla");
+       this.loading=false; 
+       this.detallesSeleccionados = []; 
+        return
+      }
       //detalle.producto = this.producto;
       //console.log("El que se envia",detalle)
 
       this.productoAdminService.agregarDetalle(detalle).subscribe(resp=>{
-
+        this.loading = true;
         const nuevo:DetalleProducto = resp.subproducto;
 
         const color_producto = nuevo.color?.color!;
@@ -198,6 +210,7 @@ export class AgregarDetalleComponent implements OnInit {
       console.log("errores ",this.agregarProductoForm.errors)
       this.dialogRef.close();
       this.toastService.error("Los datos son inválidos");
+      this.loading = false
     }
 
   }

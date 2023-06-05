@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 export class ConfirmarPagoComponent implements OnInit {
 
   idCompra = this.data.idCompraPayment
+  loading = false
 
   constructor(
     public dialogRef: MatDialogRef<ConfirmarPagoComponent>,
@@ -36,19 +37,24 @@ export class ConfirmarPagoComponent implements OnInit {
         console.log(err)
       }
     })*/
-
+    this.loading = true
     this.comprasService.crearListaCompras(this.data.compras).subscribe((resp:any)=>{
+      this.loading = false
       console.log("se guardo la lista compras", resp.compras)
     }, error => {
+      this.loading = false
       console.log("No se guardo la lista")
     })
 
+    this.loading = true
     this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
+        this.loading = false
         console.log("Pago confirmado")
         this.dialogRef.close(true)
         this.router.navigate(['user/configuracion-usuario/gestion-pedidos'])
       }, error: err => {
+        this.loading = false
         console.log(err)
         this.dialogRef.close(false)
 
@@ -64,11 +70,14 @@ export class ConfirmarPagoComponent implements OnInit {
         console.log(err)
       }
     })*/
+    this.loading = true
     this.paymentService.confirmar(this.idCompra).subscribe({
       next: data =>{
+        this.loading = false
         console.log("Pago cancelado")
         this.dialogRef.close(false)
       }, error: err => {
+        this.loading = false
         console.log(err)
         this.dialogRef.close(false)
       }

@@ -109,7 +109,7 @@ export class AgregarProductoComponent implements OnInit {
     }else{
 
       this.tallasSeleccionadas.push(talla);
-      this.stockSeleccionados.push(0);
+      this.stockSeleccionados.push(1);
 
 
     }
@@ -160,10 +160,16 @@ export class AgregarProductoComponent implements OnInit {
       this.toastService.error("Debes seleccionar tallas a agregar");
       return
     }
+
+
     if(this.fotosSeleccionadas.length==0){
       this.toastService.error("Debes seleccionar al menos 1 foto");
       return
     }
+  
+    
+    
+
     if (!this.agregarProductoForm.errors) {
 
 
@@ -177,6 +183,17 @@ export class AgregarProductoComponent implements OnInit {
 
         })
       });
+      let ceros:boolean = true;
+      this.detallesSeleccionados.forEach(resp=>{
+        if( (resp.stock!) <= 0){
+          ceros = false; 
+        }
+      }); 
+      if(!ceros){
+        this.toastService.error("Debes agregar stock para cada talla");
+        this.detallesSeleccionados=[]; 
+        return
+      }
       let tipo!:Categoria;
       this.categoriasDisponibles.forEach(c=>{
         if( c.tipo==this.agregarProductoForm.controls.tipoRopa.value){

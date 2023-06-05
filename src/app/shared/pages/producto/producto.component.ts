@@ -87,7 +87,7 @@ export class ProductoComponent implements OnInit,OnChanges {
       this.inBolsa = false;
 
       this.buscarProducto();
-      this.tallas_disponibles = [];
+      
       this.cantidad=1;
 
     });
@@ -196,7 +196,7 @@ export class ProductoComponent implements OnInit,OnChanges {
         // Devolvemos el acumulador en cada iteración
         return acumulador;
       }, []);
-
+      this.tallas_disponibles = [];
       this.producto.detalle!.forEach(resp=>{
         if(resp.color?.color==this.colorProducto){
           this.tallas_disponibles.push(resp.talla!) ;

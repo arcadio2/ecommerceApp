@@ -139,7 +139,6 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   }
 
   irConfirmarPago(compras: Compra[], idCompraPayment: string) {
-    this.loading = true
     console.log(compras)
     this.dialog.open(ConfirmarPagoComponent, {
       data: {compras, idCompraPayment}
@@ -207,7 +206,6 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
 
       const name = this.facturacionForm.controls.nombreTitular.value;
       this.loading = true
-
       this.stripeService.createToken(this.card!.element, {name}).subscribe((result) => {
         if (result.token) {
 
@@ -237,7 +235,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
             currency: 'MXN',
             descripcion: descripcion
           };
-
+          this.loading = true
           this.paymentService.pagar(paymentIntentDto).subscribe({
             next: (data: any) => {
               this.irConfirmarPago(this.compras!, data.id)
@@ -251,7 +249,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         } else if (result.error) {
           // Error creating the token
           this.error = result.error.message;
-          this.loading = false
+          
         }
       }, _ =>{
         this.loading = false

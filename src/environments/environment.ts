@@ -7,7 +7,8 @@ export const environment = {
   //urlBase:'https://shine-ecommerce-app.herokuapp.com/',
   //urlBase:"http://172.100.82.37:8080/",
   urlBase:'http://localhost:8080/',
-    urlPython:'http://localhost:5000/',
+  //urlBase:'http://192.168.1.66:8080/',
+  urlPython:'http://localhost:5000/',
   //urlBase:'https://shine-ecommerce-app.herokuapp.com/',
 
   direcciones_api:'https://api.tau.com.mx/dipomex/v1/',

@@ -27,6 +27,7 @@ import {NgxStripeModule} from "ngx-stripe";
 import {environment} from "../environments/environment";
 import {MatChipsModule} from "@angular/material/chips";
 import { EstrellasComponent } from './shared/components/estrellas/estrellas.component';
+import { ConfirmacionComponent } from './shared/components/confirmacion/confirmacion.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EstrellasComponent } from './shared/components/estrellas/estrellas.comp
     ButtonComponent,
     VisualizarComentariosComponent,
     CrearComentarioComponent,
-    EstrellasComponent
+    EstrellasComponent,
+    ConfirmacionComponent
   ],
     imports: [
         BrowserModule,

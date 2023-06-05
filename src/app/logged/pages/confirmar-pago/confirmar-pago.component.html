@@ -6,7 +6,8 @@
 <mat-dialog-actions align="end">
 
   <button class="group relative inline-block overflow-hidden border border-black px-8 py-3 focus:outline-none focus:ring mx-2 "
-          (click)="cancelarCompra()" mat-raised-button >
+          (click)="cancelarCompra()" mat-raised-button 
+          [disabled]="loading">
       <span
         class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-black transition-all group-hover:w-full group-active:bg-white"></span>
 
@@ -17,7 +18,9 @@
 
 
   <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
-          mat-raised-button (click)="confirmarCompra()">
+          mat-raised-button (click)="confirmarCompra()"
+          [disabled]="loading"
+          >
         <span
           class="absolute inset-y-[97%] left-0 bottom-0 w-[2px] bg-white transition-all group-hover:w-full group-active:bg-white"></span>
 

@@ -24,6 +24,9 @@ export class ProductosService {
   getAllProductos(){
     return this.http.get<any>(environment.urlBase+'api/productos')
   }
+  getNovedades(){
+    return this.http.get<any>(environment.urlBase+'api/productos/novedades')
+  }
 
   addValoracion(xd:any){
     const token = this.authService.token;
@@ -119,6 +122,8 @@ export class ProductosService {
     }
  
   }
+
+
 
   getCategoriaBySexo(sexo:string){
     return this.http.get<any>(this.url_base+'categoria/'+sexo);

@@ -6,6 +6,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { ConfirmacionComponent } from 'src/app/shared/components/confirmacion/confirmacion.component';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class GestionVentasPedidosComponent implements OnInit {
   labelsColumns: string[] = ['ID', 'Precio', 'Fecha de compra'];
   columnasZip: [string, string][] = this.columnsToDisplay.map((value, index) => [value, this.labelsColumns[index]]);
   nombreProductoIndex = 1; // Índice en el que deseas insertar el nombre del producto
+  nombreUsuarioIndex = 2
   columnsToDisplayWithExpand = [...this.columnsToDisplay];
 
   expandedElement?:  | null;
@@ -40,6 +42,7 @@ export class GestionVentasPedidosComponent implements OnInit {
     private tosast:ToastrService,
   ) {
     this.columnsToDisplayWithExpand.splice(this.nombreProductoIndex, 0, 'nombre_producto');
+    this.columnsToDisplayWithExpand.splice(this.nombreUsuarioIndex, 0, 'username');
     this.columnsToDisplayWithExpand.push('active');
     this.columnsToDisplayWithExpand.push('acciones');
     this.columnsToDisplayWithExpand.push('expand');
@@ -63,9 +66,9 @@ export class GestionVentasPedidosComponent implements OnInit {
   confirmarPedidoEntregado(element: Compra){
     this.loading = true
 
-    const dialogRef = this.dialog.open(DialogComponentComponent, {
+    const dialogRef = this.dialog.open(ConfirmacionComponent, {
       width: '30%',
-      data: '¿Está seguro que desea cambiar el status'
+      data: '¿Está seguro que desea cambiar el estado del pedido?'
     });
 
     dialogRef.afterClosed().subscribe(result => {
