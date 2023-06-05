@@ -105,6 +105,7 @@ export class VisualizarComentariosComponent implements OnInit {
     if(this.auth.isAuthenticated()){
       this.compraService.listComprasByUsuarioAndProductExist(this.data.producto).pipe(
           tap(resp=>{
+            this.compras=true; 
             //this.compras = resp.compras; 
           })
       ).subscribe()
