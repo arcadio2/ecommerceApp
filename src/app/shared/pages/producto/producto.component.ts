@@ -186,9 +186,9 @@ export class ProductoComponent implements OnInit,OnChanges {
 
       this.detalle_colores_disponibles = this.producto?.detalle!.reduce((acumulador: DetalleProducto[], detalle: DetalleProducto) => {
 
-        if (detalle.color) {
+        if (detalle.color && detalle.stock! >0) {
 
-          if (!acumulador.some(det => det.color?.color === detalle.color?.color)) {
+          if (!acumulador.some(det => det.color?.color === detalle.color?.color )) {
 
             acumulador.push(detalle);
           }
@@ -256,7 +256,7 @@ export class ProductoComponent implements OnInit,OnChanges {
     let color:string | undefined = this.colorProducto;
 
     this.producto?.detalle!.forEach(resp=>{
-      if(resp.talla?.talla==talla){
+      if(resp.talla?.talla==talla && resp.color?.color == color){
         color = resp.color?.color;
 
       }

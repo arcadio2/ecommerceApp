@@ -9,6 +9,9 @@ import { User } from 'src/app/models/user.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { IaService } from 'src/app/services/ia.service';
+import { ComprasService } from 'src/app/services/compras.service';
+import { tap } from 'rxjs';
+import { Compra } from 'src/app/models/compras.model';
 
 @Component({
   selector: 'app-visualizar-comentarios',
@@ -25,11 +28,13 @@ export class VisualizarComentariosComponent implements OnInit {
   tiene_comentario:boolean=false;
   comentario!:Comentario;
   usuario!:User;
+  compras:boolean=false; 
   palabrasClave: any
 
   constructor(
     private dialogRefVisualizar: MatDialogRef<VisualizarComentariosComponent>,
     private dialog: MatDialog,
+    private compraService:ComprasService,
     private auth:AuthService,
     private toastService:ToastrService,
     private usuarioService: UsuarioService,
@@ -44,6 +49,7 @@ export class VisualizarComentariosComponent implements OnInit {
   }
 
   loadData(): void {
+    this.tieneCompras();
     this.cantidad_estrellas = Math.ceil(this.data.producto.valoracion_total!) || 0;
 
     for (let i = 0; i < this.cantidad_estrellas; i++) {
@@ -93,6 +99,16 @@ export class VisualizarComentariosComponent implements OnInit {
         this.dialogRefVisualizar.close(true)
       }
     });
+  }
+
+  tieneCompras(){
+    if(this.auth.isAuthenticated()){
+      this.compraService.listComprasByUsuarioAndProductExist(this.data.producto).pipe(
+          tap(resp=>{
+            //this.compras = resp.compras; 
+          })
+      ).subscribe()
+    }
   }
 
 }

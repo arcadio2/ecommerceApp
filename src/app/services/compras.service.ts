@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/services/auth.service';
 import { Router } from '@angular/router';
-import {Bolsa, ComentarioProducto, DetalleDto, DetalleProducto} from '../models/producto.model';
+import {Bolsa, ComentarioProducto, DetalleDto, DetalleProducto, Producto} from '../models/producto.model';
 import {Compra} from "../models/compras.model";
 
 @Injectable({
@@ -29,6 +29,17 @@ export class ComprasService {
     return this.http.get<any>(this.url_base+'get',{headers:headers});
 
   }
+  
+  listComprasByUsuarioAndProductExist(producto:Producto){
+    console.log("XJSKBKJSABKJSCA",producto.id)
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+
+    return this.http.get<any>(this.url_base+'get/'+producto.id,{headers:headers});
+
+  }
 
   crearListaCompras(compras: Compra[]){
     const headers = new HttpHeaders({
@@ -47,6 +58,14 @@ export class ComprasService {
     })
 
     return this.http.get<any>(this.url_base+'get/all',{headers:headers});
+  }
+
+  cambiarEstadoPedido(compra:Compra){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.token}`
+    })
+    return this.http.put<any>(this.url_base+'estatus',compra,{headers:headers});
   }
 
 

@@ -3,6 +3,9 @@ import {Compra} from "../../../../../models/compras.model";
 import {ComprasService} from "../../../../../services/compras.service";
 import {environment} from "../../../../../../environments/environment";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import { DialogComponentComponent } from 'src/app/shared/components/dialog-component/dialog-component.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -32,7 +35,9 @@ export class GestionVentasPedidosComponent implements OnInit {
 
   url_backend = environment.urlBase;
   constructor(
-    private comprasService: ComprasService
+    private comprasService: ComprasService,
+    public dialog: MatDialog,
+    private tosast:ToastrService,
   ) {
     this.columnsToDisplayWithExpand.splice(this.nombreProductoIndex, 0, 'nombre_producto');
     this.columnsToDisplayWithExpand.push('active');
@@ -41,6 +46,10 @@ export class GestionVentasPedidosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+  loadData(){
     this.loading = true
     this.comprasService.listAllCompras().subscribe((resp)=>{
       this.dataSourcePedidos = resp.compras
@@ -52,7 +61,27 @@ export class GestionVentasPedidosComponent implements OnInit {
   protected readonly environment = environment;
 
   confirmarPedidoEntregado(element: Compra){
+    this.loading = true
 
+    const dialogRef = this.dialog.open(DialogComponentComponent, {
+      width: '30%',
+      data: '¿Está seguro que desea cambiar el status'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.loading = false
+      if (result === 'yes') {
+       this.cambiarStatus(element);
+      } else {
+
+      }
+    });
+  }
+  cambiarStatus(compra:Compra){
+    this.comprasService.cambiarEstadoPedido(compra).subscribe(resp=>{
+      this.tosast.success(resp.mensaje); 
+      this.loadData(); 
+    });
   }
 
 }

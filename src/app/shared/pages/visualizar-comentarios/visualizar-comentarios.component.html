@@ -51,7 +51,7 @@
             </mat-chip-list> -->
             
           </div>
-          <div class="mt-5 flex justify-center" *ngIf="usuario?.nombre">
+          <div class="mt-5 flex justify-center" *ngIf="usuario?.nombre && compras">
             <button class="group relative inline-block overflow-hidden border bg-black border-black px-8 py-3 focus:outline-none focus:ring mx-2"
                     (click)="irCrearComentario()"
             >
