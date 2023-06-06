@@ -339,12 +339,12 @@
         <mat-panel-description class="">
           <div class="font-['Be_Vietnam_Pro'] text-black flex justify-between items-center w-full">
             <div class="capitalize font-bold font-base">
-              {{producto.nombre}}
+              {{producto.nombre | titlecase }}
             </div>
 
-            <div class="">
+            <!--<div class="">
               {{producto.precio | currency}}
-            </div>
+            </div>-->
             <div class="flex gap-3">
               <button [disabled]="loading" mat-icon-button
                       (click)="irEditarInformacionGeneral(producto)"
@@ -424,7 +424,7 @@
           <mat-card-header>
             <mat-card-title class="capitalize">
               <div class="font-['Be_Vietnam_Pro']">
-                {{subProducto.nombre_producto}}
+                {{subProducto.nombre_producto | titlecase}}
               </div>
             </mat-card-title>
 

@@ -22,10 +22,10 @@
 
             <ul class="grid grid-cols-1 gap-4 mt-8 lg:grid-cols-3">
                 <li>
-                    <a 
+                    <a
                     [routerLink]="['/producto',productos[0].id,productos[0].detalle![0]!.color?.color, productos[0].detalle![0]!.talla?.talla]"
                     class="relative block group cursor-pointer ">
-                        <img 
+                        <img
                         [src]="url_backend+'api/imagenes/productos/uploads/img/'+productos[0].id +'/'+ productos[0].detalle![0]!.color?.color!+'/'+'1.jpg'"
                         src="https://images.unsplash.com/photo-1618898909019-010e4e234c55?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
                             alt=""
@@ -34,7 +34,7 @@
 
                     </a>
                     <div class="relative inset-0 flex flex-col items-center justify-end p-6">
-                        <h3 class="text-xl font-normal capitalize" *ngIf="productos[0]">{{productos[0].nombre}}</h3>
+                        <h3 class="text-xl font-normal capitalize" *ngIf="productos[0]">{{productos[0].nombre | titlecase}}</h3>
 
                         <span
                         [routerLink]="['/producto',productos[0].id,productos[0].detalle![0]!.color?.color, productos[0].detalle![0]!.talla?.talla]"
@@ -55,12 +55,12 @@
 
                     </a>
                     <div class="relative inset-0 flex flex-col items-center justify-end p-6">
-                        <h3 class="text-xl font-medium capitalize">{{productos[1].nombre}}</h3>
+                        <h3 class="text-xl font-medium capitalize">{{productos[1].nombre | titlecase}}</h3>
 
                         <span
                             [routerLink]="['/producto',productos[1].id,productos[1].detalle![0]!.color?.color, productos[1].detalle![0]!.talla?.talla]"
                             class="mt-0.5 inline-block underline-offset-4 underline py-1 text-md font-semibold tracking-wide text-semibold cursor-pointer">
-                            Ver 
+                            Ver
                         </span>
                     </div>
                 </li>
@@ -75,7 +75,7 @@
 
                     </a>
                     <div class="relative inset-0 flex flex-col items-center justify-end p-6">
-                        <h3 class="text-xl font-medium capitalize">{{productos[2].nombre}}</h3>
+                        <h3 class="text-xl font-medium capitalize">{{productos[2].nombre | titlecase}}</h3>
 
                         <span
                         [routerLink]="['/producto',productos[2].id,productos[2].detalle![0]!.color?.color, productos[2].detalle![0]!.talla?.talla]"
