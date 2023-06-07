@@ -376,7 +376,7 @@
           </div>
 
           <!--Descripcion general-->
-          <div class="col-span-4 grid grid-cols-2 gap-3">
+          <div class="col-span-4 grid grid-cols-3 gap-3">
             <div class="flex flex-col gap-3">
               <div class="">
                 <span class="font-semibold">Catálago:</span>
@@ -393,6 +393,7 @@
                 </div>
               </div>
             </div>
+
             <div class="flex flex-col gap-3">
               <div class="">
                 <span class="font-semibold">Descripción:</span>
@@ -401,12 +402,22 @@
                 </div>
               </div>
               <div class="">
+                <span class="font-semibold">Precio:</span>
+                <div>
+                  {{producto.precio | currency}}
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <div class="">
                 <span class="font-semibold">Id:</span>
                 <div>
                   {{producto.id}}
                 </div>
               </div>
             </div>
+
 
            <!-- <button [disabled]="loading" mat-icon-button class="cursor-pointer"
             >
