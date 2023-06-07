@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="relative bg-white pt-3 cursor-pointer" [routerLink]="['/producto',producto.id,producto.detalle![0].color?.color,producto.detalle![0].talla?.talla]">
                                             <div class="text-md text-black font-semibold capitalize">
-                                                {{producto.nombre }}
+                                                {{producto.nombre | titlecase}}
                                             </div>
 
                                             <p class="">

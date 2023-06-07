@@ -225,7 +225,7 @@
               </div>
             </ng-template>
             <div class="flex justify-between items-center mt-3" *ngFor="let elemento of bolsa; let i =index">
-              <div class="text-base font-semibold capitalize">{{productos[i].producto?.nombre}}:</div>
+              <div class="text-base font-semibold capitalize">{{productos[i].producto?.nombre | titlecase}}:</div>
               <div class="text-sm">{{productos[i].producto?.descripcion}}</div>
               <div class="text-sm">${{cantidadProductos(productos[i].producto?.precio!,elemento.cantidad!)| number:'1.2-2' }}</div>
               <div class="text-sm">({{elemento.cantidad}})</div>
@@ -249,7 +249,7 @@
         <div class="text-sm font-bold mt-4 mb-2">Productos</div>
 
         <div class="flex justify-between items-center mb-2" *ngFor="let elemento of bolsa; let i =index">
-          <div class="text-sm">{{productos[i].producto?.nombre}} ({{elemento.cantidad}}):</div>
+          <div class="text-sm">{{productos[i].producto?.nombre | titlecase}} ({{elemento.cantidad}}):</div>
           <div class="text-sm">${{cantidadProductos(productos[i].producto?.precio!,elemento.cantidad!)| number:'1.2-2' }}</div>
         </div>
 

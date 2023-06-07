@@ -47,7 +47,7 @@
               <div class="font-bold text-base capitalize cursor-pointer"
 
               [routerLink]="['/producto',elemento.ropa?.id,elemento.ropa?.color,elemento.ropa?.talla]">
-                {{elemento?.ropa?.nombre}}
+                {{elemento?.ropa?.nombre | titlecase}}
 
               </div>
               <div class="">
