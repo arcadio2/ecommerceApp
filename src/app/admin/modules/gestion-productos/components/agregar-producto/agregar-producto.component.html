@@ -24,6 +24,14 @@
                  class="mt-1 text-red-600 text-bold text-xs">
               <p>El nombre es requerido</p>
             </div>
+            <div *ngIf="agregarProductoForm.controls.nombre.hasError('minlength') && agregarProductoForm.controls.nombre.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>La minima cantidad de caracteres es 10</p>
+            </div>
+            <div *ngIf="agregarProductoForm.controls.nombre.hasError('maxlength') && agregarProductoForm.controls.nombre.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>La maxima cantidad de caracteres es 200</p>
+            </div>
           <label for="Description" class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-6 mt-2 ">
               <textarea id="Description" placeholder="Descripcion"
 
@@ -43,6 +51,14 @@
             <div *ngIf="agregarProductoForm.controls.descripcion.hasError('required') && agregarProductoForm.controls.descripcion.touched"
                  class="mt-1 text-red-600 text-bold text-xs">
               <p>La descripción es requerida</p>
+            </div>
+            <div *ngIf="agregarProductoForm.controls.descripcion.hasError('minlength') && agregarProductoForm.controls.descripcion.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>La minima cantidad de caracteres es 10</p>
+            </div>
+            <div *ngIf="agregarProductoForm.controls.descripcion.hasError('maxlength') && agregarProductoForm.controls.descripcion.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>La maxima cantidad de caracteres es 1000</p>
             </div>
           <label  class="relative block w-full overflow-hidden border-b border-black bg-transparent pt-3 mt-3 ">
             <input type="text" formControlName="precio" placeholder="Precio" class="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm" />

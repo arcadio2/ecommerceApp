@@ -121,8 +121,8 @@ export class AgregarProductoComponent implements OnInit {
   createProductoForm(){
    /*  stock: new FormControl<number>(-1, {nonNullable: true, validators: [Validators.required]}), */
     return new FormGroup({
-      nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
-      descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
+      nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.minLength(10), Validators.maxLength(200)]}),
+      descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]}),
       precio: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.pattern('[0-9]+$')]}),
 
       sexo: new FormControl<string>('0', {nonNullable: true, validators: [Validators.required]}),
@@ -142,13 +142,13 @@ export class AgregarProductoComponent implements OnInit {
     const nombre_producto = this.agregarProductoForm.controls.nombre.value;
     const desc_producto = this.agregarProductoForm.controls.descripcion.value;
 
-    if(!nombre_producto || nombre_producto.length>30  || nombre_producto.length<5){
-      this.toastService.error("Debes escribir un nombre menor a 30 caracteres y mayor a 5");
+    if(!nombre_producto || nombre_producto.length>200  || nombre_producto.length<10){
+      this.toastService.error("Debes escribir un nombre menor a 200 caracteres y mayor a 10");
       return;
     }
 
-    if(!desc_producto || desc_producto.length>300 || desc_producto.length<20){
-      this.toastService.error("Debes escribir una descripción menor a 300 caracteres y mayor a 20");
+    if(!desc_producto || desc_producto.length>1000 || desc_producto.length<10){
+      this.toastService.error("Debes escribir una descripción menor a 1000 caracteres y mayor a 10");
       return;
     }
 
