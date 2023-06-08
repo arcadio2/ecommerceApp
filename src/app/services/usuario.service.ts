@@ -74,6 +74,17 @@ export class UsuarioService {
       return this.http.get(this.url_base+'user/profile/'+username,{headers:headers})
     }
 
+    activarUsuario(token:string){
+      /* const token = this.authService.token;
+  
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }) */
+  
+      return this.http.post(this.url_base+'user/confirm',token)
+    }
+
     getUserByUsername(username:string){
       const token = this.authService.token;
   

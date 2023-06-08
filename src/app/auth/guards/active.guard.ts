@@ -13,15 +13,18 @@ export class ActiveGuard implements CanActivate, CanLoad {
 
 
   canActivate(): Observable<boolean>  | boolean {
-    if(this.authService.isActive()){
-      this.router.navigateByUrl('/'); 
+
+    if(!this.authService.isActive()){
+      this.router.navigateByUrl('/user/confirm'); 
+      this.toast.error("Por favor, confirma tu correo electronico")
       return false; 
     }
     return true; 
   }
   canLoad(): Observable<boolean > | boolean  {
-    if(this.authService.isActive()){
-      this.router.navigateByUrl('/'); 
+    if(!this.authService.isActive()){
+      this.router.navigateByUrl('/user/confirm'); 
+      this.toast.error("Por favor, confirma tu correo electronico")
       return false; 
     }
     return true; 

@@ -8,12 +8,14 @@ export class User {
     id!:number;
     username!:    string;
     enabled!:     boolean;
+    active!:      boolean;
     bolsa?:       Bolsa[];
     compras?:     any[]; //TODO
     nombre!:      string;
     apellido!:    string;
     email!:       string;
-    password!:    string
+    password!:    string;
+    token!:       string;
    /*  roles!:Role[] */
     roles!:       string[];
 }

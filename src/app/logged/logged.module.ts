@@ -17,6 +17,7 @@ import {MatInputModule} from "@angular/material/input";
 import { ConfirmarPagoComponent } from './pages/confirmar-pago/confirmar-pago.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {NgxStripeModule} from "ngx-stripe";
+import { ConfirmComponent } from './pages/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import {NgxStripeModule} from "ngx-stripe";
     ElementoCarritoComponent,
     ConfirmarCompraComponent,
     ConfirmarPagoComponent,
+    ConfirmComponent,
   ],
   exports: [
   ],

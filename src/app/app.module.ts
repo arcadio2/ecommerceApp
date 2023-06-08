@@ -28,6 +28,7 @@ import {environment} from "../environments/environment";
 import {MatChipsModule} from "@angular/material/chips";
 import { EstrellasComponent } from './shared/components/estrellas/estrellas.component';
 import { ConfirmacionComponent } from './shared/components/confirmacion/confirmacion.component';
+import { ConfirmComponent } from './shared/pages/confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ConfirmacionComponent } from './shared/components/confirmacion/confirma
     VisualizarComentariosComponent,
     CrearComentarioComponent,
     EstrellasComponent,
-    ConfirmacionComponent
+    ConfirmacionComponent,
+    ConfirmComponent
   ],
     imports: [
         BrowserModule,

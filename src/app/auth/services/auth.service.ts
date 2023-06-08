@@ -44,6 +44,10 @@ export class AuthService {
     return new User();
   }
 
+  public set usuario(user:User) {
+    this._usuario = user;
+  }
+
 /*   public get isAuth(){
     this._isAuth = this.isAuthenticated();
     return this._isAuth; 
@@ -118,6 +122,7 @@ export class AuthService {
     this._usuario.apellido = payload.apellido;
     this._usuario.email = payload.email;
     this._usuario.username = payload.user_name;
+    this._usuario.active = payload.active;
     this._usuario.roles = payload.authorities;
     
 
@@ -180,11 +185,12 @@ export class AuthService {
     }
     let ban = false; 
     user.roles.forEach(rol=>{
-      if(rol == "ROLE_USER" && this.usuario.enabled){
+ 
+      if(rol == "ROLE_USER" && this.usuario.active==true){
         ban = true; 
       }
     })
-
+    console.log("La bandera es ",ban)
     return ban;
   }
 

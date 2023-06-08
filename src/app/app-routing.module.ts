@@ -7,6 +7,7 @@ import { ProductoComponent } from './shared/pages/producto/producto.component';
 import { ListadoProductosComponent } from './shared/pages/listado-productos/listado-productos.component';
 import { AdminGuard } from './admin/guards/admin.guard';
 import { NoAdminGuard } from './admin/guards/no-admin.guard';
+import { ConfirmComponent } from './shared/pages/confirm/confirm.component';
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path:'listado',
     component:ListadoProductosComponent
+  },
+  {
+    path:'confirm',
+    component:ConfirmComponent
   },
   {
     path:'auth',
