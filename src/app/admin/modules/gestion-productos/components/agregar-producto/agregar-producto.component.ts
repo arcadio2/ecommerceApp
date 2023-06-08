@@ -123,7 +123,7 @@ export class AgregarProductoComponent implements OnInit {
     return new FormGroup({
       nombre: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.minLength(10), Validators.maxLength(200)]}),
       descripcion: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]}),
-      precio: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.pattern('[0-9]+$')]}),
+      precio: new FormControl<string>('', {nonNullable: true, validators: [Validators.required, Validators.pattern('[0-9]+(\.[0-9]+)?')]}),
 
       sexo: new FormControl<string>('0', {nonNullable: true, validators: [Validators.required]}),
       tipoRopa: new FormControl<string>('', {nonNullable: true, validators: [Validators.required]}),
@@ -166,9 +166,9 @@ export class AgregarProductoComponent implements OnInit {
       this.toastService.error("Debes seleccionar al menos 1 foto");
       return
     }
-  
-    
-    
+
+
+
 
     if (!this.agregarProductoForm.errors) {
 
@@ -186,12 +186,12 @@ export class AgregarProductoComponent implements OnInit {
       let ceros:boolean = true;
       this.detallesSeleccionados.forEach(resp=>{
         if( (resp.stock!) <= 0){
-          ceros = false; 
+          ceros = false;
         }
-      }); 
+      });
       if(!ceros){
         this.toastService.error("Debes agregar stock para cada talla");
-        this.detallesSeleccionados=[]; 
+        this.detallesSeleccionados=[];
         return
       }
       let tipo!:Categoria;

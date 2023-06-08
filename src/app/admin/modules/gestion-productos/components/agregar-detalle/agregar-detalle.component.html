@@ -1,6 +1,6 @@
 
 <div  class="mx-3 px-2 border-b-2 border-black text-center">
-  <p class="font-semibold text-black text-center">Agregar producto</p>
+  <p class="font-semibold text-black text-center">Añadir subproducto</p>
 
 </div>
 <mat-dialog-content>
@@ -200,7 +200,7 @@
             <span class="sr-only"> {{colorSeleccionado.color}} </span>
           </label>
           <div class="grid grid-cols-2">
-            <div class="flex flex-wrap gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
+            <div class="flex flex-wrap flex-col gap-1"  *ngFor="let talla of tallasSeleccionadas; let i=index">
               <div class="flex">
                 <label  class="cursor-pointer p-3 mt-2">
                   <input type="checkbox" name="size"  class="peer sr-only"  checked disabled/>
@@ -219,10 +219,10 @@
                       Stock para talla {{talla.talla}}
                     </span>
                 </label>
-                <div *ngIf="stockSeleccionados[i]<=0"
-                        class="mt-1 text-red-600 text-bold text-xs">
-                    <p>El Stock debe ser mayor a 0</p>
-                </div>
+              </div>
+              <div *ngIf="stockSeleccionados[i]<=0"
+                   class="mt-1 text-red-600 text-bold text-xs">
+                <p>El Stock debe ser mayor a 0</p>
               </div>
 
             </div>
