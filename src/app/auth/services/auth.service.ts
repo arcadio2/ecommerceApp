@@ -172,6 +172,21 @@ export class AuthService {
     return ban;
   }
 
+  isActive():boolean{
+    let user = this.usuario;
+   
+    if(!this.isAuthenticated()){
+      return false; 
+    }
+    let ban = false; 
+    user.roles.forEach(rol=>{
+      if(rol == "ROLE_USER" && this.usuario.enabled){
+        ban = true; 
+      }
+    })
+
+    return ban;
+  }
 
   registerUser(usuario:User){
     return this.http.post<any>(this.url_base+'user/create',usuario)
