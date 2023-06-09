@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   usuario:User = new User();
   errores:any={};
   @Output() renderizar = new EventEmitter();
+  loading = false
 
   registerForm = new FormGroup({
     nombre: new FormControl<string>('',[Validators.required, Validators.minLength(3), Validators.pattern('^[a-zA-Z\\sáéíóúÁÉÍÓÚüÜñÑ]+$')]),
@@ -42,10 +43,11 @@ export class RegisterComponent implements OnInit {
       this.usuario.apellido = this.registerForm.controls.apellido.value!;
       this.usuario.email = this.registerForm.controls.email.value!;
       this.usuario.password = this.registerForm.controls.password.value!;
-
+      this.loading = true
       this.authService.registerUser(this.usuario).subscribe(resp=>{
-        this.toast.success("Te haz registrado con éxito. Por favor, incia seisión. Revisa tu correo para confirmar la cuenta")
+        this.toast.success("Te haz registrado con éxito.\nPor favor, revisa tu correo para confirmar tu cuenta e inicia sesión")
         this.router.navigateByUrl('/auth');
+        this.loading = false
      /*    this.authService.login(this.usuario).subscribe(res =>{
           this.authService.guardarUsuario(res.access_token);
           this.authService.guardarToken(res.access_token);
@@ -62,6 +64,7 @@ export class RegisterComponent implements OnInit {
           }
         }) */
       }, err=>{
+        this.loading =false
         console.log("error",err)
         if(err.status==400){
           this.toast.error(err.error.mensaje);

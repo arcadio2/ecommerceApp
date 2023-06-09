@@ -1,6 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProductosCompra} from "../../../models/producto.model";
 import {PaymentService} from "../../../services/payment.service";
 import {Compra} from "../../../models/compras.model";
 import {ComprasService} from "../../../services/compras.service";
@@ -19,66 +18,44 @@ export class ConfirmarPagoComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<ConfirmarPagoComponent>,
     /*@Inject(MAT_DIALOG_DATA) public productosCompra: ProductosCompra,*/
-    @Inject(MAT_DIALOG_DATA) public data: {compras: Compra[], idCompraPayment: string},
+    @Inject(MAT_DIALOG_DATA) public data: { compras: Compra[], idCompraPayment: string },
     private paymentService: PaymentService,
     private comprasService: ComprasService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
 
   }
 
   confirmarCompra() {
-    /*this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
-      next: data =>{
-        console.log("Pago confirmado")
-      }, error: err => {
-        console.log(err)
-      }
-    })*/
     this.loading = true
-    this.comprasService.crearListaCompras(this.data.compras).subscribe((resp:any)=>{
-      this.loading = false
-      console.log("se guardo la lista compras", resp.compras)
-    }, error => {
-      this.loading = false
-      console.log("No se guardo la lista")
-    })
+    this.paymentService.confirmar(this.idCompra).subscribe((resp) => {
 
-    this.loading = true
-    this.paymentService.confirmar(this.idCompra).subscribe({
-      next: data =>{
+      this.comprasService.crearListaCompras(this.data.compras).subscribe((resp: any) => {
         this.loading = false
-        console.log("Pago confirmado")
         this.dialogRef.close(true)
         this.router.navigate(['user/configuracion-usuario/gestion-pedidos'])
-      }, error: err => {
+      }, error => {
         this.loading = false
-        console.log(err)
         this.dialogRef.close(false)
+      })
 
-      }
+    }, _ => {
+      this.loading = false
+      this.dialogRef.close(false)
     })
   }
 
   cancelarCompra() {
-    /*this.paymentService.confirmar(this.productosCompra.idCompra.toString()).subscribe({
-      next: data =>{
-        console.log("Pago cancelado")
-      }, error: err => {
-        console.log(err)
-      }
-    })*/
     this.loading = true
     this.paymentService.confirmar(this.idCompra).subscribe({
-      next: data =>{
+      next: data => {
         this.loading = false
-        console.log("Pago cancelado")
         this.dialogRef.close(false)
       }, error: err => {
         this.loading = false
-        console.log(err)
         this.dialogRef.close(false)
       }
     })

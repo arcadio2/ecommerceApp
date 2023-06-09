@@ -207,7 +207,7 @@ export class AgregarProductoComponent implements OnInit {
       const nuevoProducto: Producto = {
         nombre: this.agregarProductoForm.controls.nombre.value,
         descripcion: this.agregarProductoForm.controls.descripcion.value,
-        precio: parseInt(this.agregarProductoForm.controls.precio.value),
+        precio: parseFloat(this.agregarProductoForm.controls.precio.value),
         detalle:this.detallesSeleccionados,
         categoria:tipo,
         hombre: true ? this.agregarProductoForm.controls.sexo.value =='0':false,

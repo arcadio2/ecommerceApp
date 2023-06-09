@@ -85,7 +85,7 @@
             </div>
 
             <div class="flex justify-center items-center font-bold text-2xl">
-              ${{ calcularCostoProducto(elemento?.ropa?.costo!,elemento?.cantidad!) }}.00
+              {{ calcularCostoProducto(elemento?.ropa?.costo!,elemento?.cantidad!) | currency}}
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
             TOTAL:
           </div>
           <div class="text-2xl font-extrabold">
-            ${{obtenerCostoTotal()}}
+            {{obtenerCostoTotal() | currency}}
           </div>
         </div>
 

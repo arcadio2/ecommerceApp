@@ -30,12 +30,13 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this.loading = true
+
     this.loginForm.markAllAsTouched();
     if(this.loginForm.valid){
       this.usuario.username = this.loginForm.get('username')?.value;
       this.usuario.password = this.loginForm.get('password')?.value;
 
+      this.loading = true
       this.authService.login(this.usuario).subscribe(res =>{
         this.authService.guardarToken(res.access_token);
         this.authService.guardarUsuario(res.access_token);
@@ -43,7 +44,9 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/user/configuracion-usuario');
         this.toast.success("Has iniciado sesión con éxito");
         this.authService._isAuth.next(true);
+        this.loading = false
       },err=>{
+        this.loading = false
         if(err.status==400){
 
           this.toast.error("Credenciales inválidas");
@@ -51,7 +54,6 @@ export class LoginComponent implements OnInit {
       });
     }else
       this.toast.error("Ingrese correctamente su información");
-    this.loading = false
   }
 
   irRestablecerContrasenia (){

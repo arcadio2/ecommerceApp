@@ -19,10 +19,23 @@
         <!-- Fin grid de imagenes -->
 
         <!-- Inicio detalle del producto -->
-        <div class="sticky top-16 col-span-5 px-6 items-center ">
-          <div class="flex flex-col justify-center min-h-screen">
+        <div class="sticky top-16 col-span-5 px-6 items-center">
+          <div class="flex flex-col justify-center  mt-16">
             <div class="text-xl font-bold sm:text-2xl w-11/12 capitalize">
               {{producto?.nombre! | titlecase}}
+            </div>
+            <div class="mt-4">
+              <div class="max-w-none text-sm">
+                <p>
+                  {{producto?.descripcion}}
+                </p>
+              </div>
+
+              <!--<a
+                class="relative text-md text-black before:absolute before:-bottom-0.5 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
+                href="#">
+                Leer mas
+              </a>-->
             </div>
 
             <div class="mt-8 flex justify-between items-center py-3">
@@ -64,19 +77,6 @@
             </div>
 
 
-            <div class="mt-4">
-              <div class="line-clamp-2 max-w-none">
-                <p>
-                  {{producto?.descripcion}}
-                </p>
-              </div>
-
-              <!--<a
-                class="relative text-md text-black before:absolute before:-bottom-0.5 before:h-px before:w-full before:origin-right before:scale-x-100 before:bg-black before:transition hover:before:scale-0 before:duration-300 ease-out mt-8"
-                href="#">
-                Leer mas
-              </a>-->
-            </div>
 
             <form class="mt-8">
               <fieldset>

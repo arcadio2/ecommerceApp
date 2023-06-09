@@ -1,88 +1,46 @@
-<!-- <div class="flex items-center justify-between border-b border-gray-300 py-4">
-    <div class="flex items-center">
-      <img class="h-12 w-12 object-contain mr-4" src="https://via.placeholder.com/150" alt="Product Image">
-      <div>
-        <h2 class="text-lg font-medium">Product Name</h2>
-        <p class="text-gray-500 text-sm">Product Description</p>
-      </div>
-    </div>
-    <div class="flex items-center">
-      <span class="text-gray-500 text-sm mr-2">Price:</span>
-      <span class="font-medium">$100</span>
-    </div>
-  </div> -->
- <!-- <span class="text-gray-400 text-sm line-through">{{ (producto.precio * 1.2) | currency }}</span>
-          <span class="text-gray-400 text-sm ml-1">(20% OFF)</span> -->
-<!--   <div class="flex items-center justify-between bg-white border border-black rounded-lg py-4 px-6">
-    <div class="flex items-center">
-      <div class="relative h-16 w-16">
-        <img class="h-full w-full object-contain rounded-md shadow-md" src="https://via.placeholder.com/150" alt="Product Image">
-      </div>
-      <div class="ml-4">
-        <h2 class="text-lg font-medium text-black">{{producto.nombre}}</h2>
-        <p class="text-gray-500 text-sm">desc</p>
-        <div class="flex items-center mt-2">
-          <span class="text-black text-lg font-medium mr-1">{{ producto.precio | currency }}</span>
-
-        </div>
-        <ul class="mt-2 text-gray-500 text-sm">
-          <li v-for="(detalle, index) in producto.detalle" :key="index" class="flex items-center">
-            <span class="mr-1">Colores disponibles</span>
-            <span v-if="detalle.color" *ngFor="let d of producto.detalle"
-               class="inline-flex items-center justify-center h-4 w-4 rounded-full bg-gray-300" :style="'background-color: ' + detalle.color"></span>
-            <span class="mr-1">Tallas disponibles</span>
-            <span v-if="detalle.talla" class="ml-1" *ngFor="let d of producto.detalle">{{d.talla?.talla}}</span>
-            <span class="mx-1">-</span>
-            <span>10 en stock</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div class="flex items-center">
-      <button class="bg-black text-white border border-black py-2 px-4 rounded-md shadow-md hover:bg-white hover:text-black hover:border hover:border-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50 transition duration-300">Comprar</button>
-    </div>
-  </div> -->
-
-
-                             <a [routerLink]="['/producto',producto.id,producto.detalle![0].color?.color,producto.detalle![0].talla?.talla]" class="group block overflow-hidden">
-                                    <img
-                                    class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px] z-10"
-                                    [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto.id +'/'+color +'/1.jpg' ||
+<a [routerLink]="['/producto',producto.id,producto.detalle![0].color?.color,producto.detalle![0].talla?.talla]"
+   class="group block overflow-hidden">
+  <img
+    class="h-[350px] w-full object-cover transition duration-500 group-hover:scale-105 sm:h-[450px] z-10"
+    [src]="url_backend+'api/imagenes/productos/uploads/img/'+producto.id +'/'+color +'/1.jpg' ||
                                      'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1770&amp;q=80'"
-                                    >
-                                    <!--src="" alt="" -->
-                                    </a><div class="mt-1.5"><a  class="group block overflow-hidden">
-                                        <div class="mt-1.5 flex gap-1">
-                                            <form>
-                                                <fieldset>
-                                                    <legend class="sr-only">Color</legend>
-                                                </fieldset>
+  >
+  <!--src="" alt="" -->
+</a>
+<div class="mt-1.5"><a class="group block overflow-hidden">
+  <div class="mt-1.5 flex gap-1">
+    <form>
+      <fieldset>
+        <legend class="sr-only">Color</legend>
+      </fieldset>
 
-                                                <div class="flex flex-wrap justify-center gap-1 [&amp;:hover_label]:opacity-75">
-                                                    <div *ngFor="let color of detalles_guardados; let i=index" [routerLink]="['/producto',producto.id,color.color?.color,color.talla?.talla]">
-                                                      <input type="checkbox" id="ColorSg+{{i}}" class="sr-only" >
+      <div class="flex flex-wrap justify-center gap-1 [&amp;:hover_label]:opacity-75">
+        <div *ngFor="let color of detalles_guardados; let i=index"
+             [routerLink]="['/producto',producto.id,color.color?.color,color.talla?.talla]">
+          <input type="checkbox" id="ColorSg+{{i}}" class="sr-only">
 
-                                                      <label for="ColorSg" class="block h-4 w-4 cursor-pointer rounded-full bg-[{{color.color?.hexadecimal}}] transition hover:!opacity-100">
-                                                          <span class="sr-only"> {{color.color?.color}} </span>
-                                                      </label>
-                                                    </div>
+          <label for="ColorSg"
+                 class="block h-4 w-4 cursor-pointer rounded-full bg-[{{color.color?.hexadecimal}}] transition hover:!opacity-100">
+            <span class="sr-only"> {{color.color?.color}} </span>
+          </label>
+        </div>
 
 
+      </div>
+    </form>
+  </div>
+  <div class="relative bg-white pt-3 cursor-pointer"
+       [routerLink]="['/producto',producto.id,producto.detalle![0].color?.color,producto.detalle![0].talla?.talla]">
+    <div class="text-md text-black font-semibold capitalize">
+      {{producto.nombre | titlecase}}
+    </div>
 
-                                                </div>
-                                            </form>
-                                        </div>
-                                        <div class="relative bg-white pt-3 cursor-pointer" [routerLink]="['/producto',producto.id,producto.detalle![0].color?.color,producto.detalle![0].talla?.talla]">
-                                            <div class="text-md text-black font-semibold capitalize">
-                                                {{producto.nombre | titlecase}}
-                                            </div>
+    <p class="">
+      <span class="sr-only"> Precio regular </span>
 
-                                            <p class="">
-                                                <span class="sr-only"> Precio regular </span>
-
-                                                <span class="tracking-wider text-black font-normal text-md"> ${{producto.precio}}
+      <span class="tracking-wider text-black font-normal text-md"> ${{producto.precio}}
                                                 </span>
-                                            </p>
-                                        </div>
-                                </a>
-                            </div>
+    </p>
+  </div>
+</a>
+</div>
