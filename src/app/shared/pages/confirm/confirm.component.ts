@@ -32,6 +32,10 @@ export class ConfirmComponent implements OnInit {
           this.auth.usuario=user_x; 
         }
         this.router.navigateByUrl('/home'); 
+      },err=>{
+        if(err.status=404){
+          this.router.navigateByUrl('/home'); 
+        }
       });
       //this.loadData(); 
     });

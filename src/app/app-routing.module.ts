@@ -8,6 +8,7 @@ import { ListadoProductosComponent } from './shared/pages/listado-productos/list
 import { AdminGuard } from './admin/guards/admin.guard';
 import { NoAdminGuard } from './admin/guards/no-admin.guard';
 import { ConfirmComponent } from './shared/pages/confirm/confirm.component';
+import { NoactiveGuard } from './auth/guards/noactive.guard';
 
 const routes: Routes = [
   {
@@ -28,7 +29,9 @@ const routes: Routes = [
   },
   {
     path:'confirm',
-    component:ConfirmComponent
+    component:ConfirmComponent,
+    canActivate:[NoactiveGuard],
+    canLoad:[NoactiveGuard]
   },
   {
     path:'auth',

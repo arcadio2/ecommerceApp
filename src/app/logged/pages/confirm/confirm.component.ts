@@ -30,6 +30,8 @@ export class ConfirmComponent implements OnInit {
         user_x.active=true; 
         this.auth.usuario=user_x; 
         this.router.navigateByUrl('/home'); 
+      },err=>{
+        
       });
       //this.loadData(); 
     });

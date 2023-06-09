@@ -5,6 +5,7 @@ import {CarritoComprasComponent} from "./pages/carrito-compras/carrito-compras.c
 import {ConfirmarCompraComponent} from "./pages/confirmar-compra/confirmar-compra.component";
 import { ConfirmComponent } from './pages/confirm/confirm.component';
 import { ActiveGuard } from '../auth/guards/active.guard';
+import { NoactiveGuard } from '../auth/guards/noactive.guard';
 
 
 const routes: Routes = [
@@ -33,8 +34,8 @@ const routes: Routes = [
       {
         path:'confirm',
         component:ConfirmComponent,
-        canActivate:[],
-        canLoad:[]
+        canActivate:[NoactiveGuard],
+        canLoad:[NoactiveGuard]
       },
       {
         path:'**',

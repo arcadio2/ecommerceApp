@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit {
       this.usuario.password = this.registerForm.controls.password.value!;
 
       this.authService.registerUser(this.usuario).subscribe(resp=>{
-        this.toast.success("Te haz registrado con éxito. Por favor, incia seisión.")
+        this.toast.success("Te haz registrado con éxito. Por favor, incia seisión. Revisa tu correo para confirmar la cuenta")
         this.router.navigateByUrl('/auth');
      /*    this.authService.login(this.usuario).subscribe(res =>{
           this.authService.guardarUsuario(res.access_token);
