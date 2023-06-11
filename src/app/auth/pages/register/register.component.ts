@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm.markAllAsTouched();
 
     if(this.registerForm.valid){
+      this.registerForm.disabled
       this.usuario.username = this.registerForm.controls.username.value!;
       this.usuario.nombre = this.registerForm.controls.nombre.value!;
       this.usuario.apellido = this.registerForm.controls.apellido.value!;
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit {
         this.toast.success("Te haz registrado con éxito.\nPor favor, revisa tu correo para confirmar tu cuenta e inicia sesión")
         this.router.navigateByUrl('/auth');
         this.loading = false
+        this.registerForm.enabled
      /*    this.authService.login(this.usuario).subscribe(res =>{
           this.authService.guardarUsuario(res.access_token);
           this.authService.guardarToken(res.access_token);
@@ -64,6 +66,7 @@ export class RegisterComponent implements OnInit {
           }
         }) */
       }, err=>{
+        this.registerForm.enabled
         this.loading =false
         console.log("error",err)
         if(err.status==400){

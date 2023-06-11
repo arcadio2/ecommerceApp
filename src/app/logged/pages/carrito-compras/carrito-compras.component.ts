@@ -141,7 +141,7 @@ export class CarritoComprasComponent implements OnInit {
 
     if(this.bolsa[idxElemento]?.id){
       this.productoService.deleteElementoCarrito(this.bolsa[idxElemento]?.id!).subscribe((resp:any)=>{
-        this.toastService.info(resp.mensaje);
+        this.toastService.success(resp.mensaje);
       },(err:any)=>{
         if(err.status==404){
 

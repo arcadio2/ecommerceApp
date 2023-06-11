@@ -1,4 +1,6 @@
-
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #000000;
+}
 
 /* Estilos para el contenedor */
 .container {

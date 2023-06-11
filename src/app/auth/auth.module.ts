@@ -8,6 +8,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LogoutComponent } from './pages/logout/logout.component';
 import { ReestablecerContraseniaComponent } from './pages/reestablecer-contrasenia/reestablecer-contrasenia.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -19,10 +20,11 @@ import { ReestablecerContraseniaComponent } from './pages/reestablecer-contrasen
     ReestablecerContraseniaComponent,
 
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        ReactiveFormsModule,
+        MatProgressSpinnerModule
+    ]
 })
 export class AuthModule { }

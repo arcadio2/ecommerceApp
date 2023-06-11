@@ -1,4 +1,7 @@
 <div class=" flex justify-center"> <!--items-center h-screen-->
+  <div *ngIf="loading" class="absolute z-30 top-1/2 ">
+    <mat-spinner></mat-spinner>
+  </div>
   <div class="flex flex-col justify-center w-[500px] mt-8 pb-8">
     <div class="bg-white border-2 border-black p-8 rounded-md">
       <div class="text-3xl font-bold mb-8 text-center">Registrarse</div>
