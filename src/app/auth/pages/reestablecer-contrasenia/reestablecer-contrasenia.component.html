@@ -1,4 +1,7 @@
-<div class=" flex items-center justify-center bg-white"> <!--items-center h-screen-->
+<div class=" flex items-center justify-center bg-white">
+  <div *ngIf="loading" class="absolute z-30 top-1/2 ">
+    <mat-spinner></mat-spinner>
+  </div><!--items-center h-screen-->
   <div class="flex-col justify-center w-[500px] mt-8">
     <div class="flex justify-center bg-white border-2 border-black w-full p-8 ">
       <div class="w-[95%] flex-col justify-center ">
@@ -21,6 +24,14 @@
             <input name="email" formControlName="email"
                    class="border-b border-black w-full text-black-700
               leading-tight focus:outline-none focus:border-black-500 p-1" id="email" type="text">
+            <div *ngIf="contraForm.controls.email.hasError('required') && contraForm.controls.email.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>El email es requerido</p>
+            </div>
+            <div *ngIf="contraForm.controls.email.hasError('pattern') && contraForm.controls.email.touched"
+                 class="mt-1 text-red-600 text-bold text-xs">
+              <p>El formato del email es incorrecto</p>
+            </div>
           </div>
           <div class="flex flex-col items-center justify-center mt-14 w-full gap-3">
             <button (click)="restablecer()"
@@ -30,7 +41,9 @@
               focus:ring
               focus:ring-gray-300
               hover: border-black
-              w-full p-3" type="button">
+              w-full p-3" type="button"
+                    [disabled]="loading"
+            >
               Enviar
             </button>
             <button
@@ -41,6 +54,7 @@
               border-black
               w-full p-3" type="submit"
               routerLink="auth/login"
+              [disabled]="loading"
             >
               Cancelar
             </button>

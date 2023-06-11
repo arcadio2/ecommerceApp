@@ -4,3 +4,7 @@ input {
   padding: 0.5rem 0.25rem;
   margin-bottom: 1rem;
 }
+
+:host ::ng-deep .mat-progress-spinner circle, .mat-spinner circle {
+  stroke: #000000;
+}
