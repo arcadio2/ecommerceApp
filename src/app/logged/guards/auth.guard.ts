@@ -16,37 +16,37 @@ export class AuthGuard implements CanActivate, CanLoad {
 
   canActivate(): Observable<boolean > | boolean  {
     if(this.authService.isAuthenticated()){
-      
+
     if (this.isTokenExpirado()) {
         this.authService.logout();
-        this.router.navigateByUrl('/auth'); 
+        this.router.navigateByUrl('/auth');
         return false;
       }
       return true;
     }
      /* this.toast.info('Debes iniciar sesión');  */
-    this.toast.info('Debes iniciar sesión', ' Error', {
+    this.toast.warning('Debes iniciar sesión', ' Error', {
       timeOut: 2000,
     });
-    this.router.navigateByUrl('/auth'); 
+    this.router.navigateByUrl('/auth');
     return false;
   }
   canLoad(): Observable<boolean >| boolean {
 
     if(this.authService.isAuthenticated()){
-      
+
       if (this.isTokenExpirado()) {
           this.authService.logout();
-          this.router.navigateByUrl('/auth'); 
+          this.router.navigateByUrl('/auth');
           return false;
         }
         return true;
       }
        /* this.toast.info('Debes iniciar sesión');  */
-      this.toast.info('Debes iniciar sesión', ' Error', {
+      this.toast.warning('Debes iniciar sesión', ' Error', {
         timeOut: 2000,
       });
-      this.router.navigateByUrl('/auth'); 
+      this.router.navigateByUrl('/auth');
       return false;
   }
 
