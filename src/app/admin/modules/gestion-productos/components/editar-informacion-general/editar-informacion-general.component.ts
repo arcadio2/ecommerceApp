@@ -45,6 +45,7 @@ export class EditarInformacionGeneralComponent implements OnInit {
         precio: this.editarInfoGeneralForm.controls.precio.value,
 
       }
+      console.log(nuevoProducto)
       this.productoAdminService.editProducto(nuevoProducto).subscribe(resp=>{
         console.log(resp)
       })
