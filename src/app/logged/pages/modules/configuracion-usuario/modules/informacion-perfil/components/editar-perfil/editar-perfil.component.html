@@ -18,13 +18,13 @@
                 leading-tight focus:outline-none focus:border-black-500 p-1" id="nombre" type="text"
                      [disabled]="loading"
               >
-              <div  *ngIf="perfilForm.controls['nombre'].invalid && perfilForm.controls['nombre'].touched"
+              <div  *ngIf="perfilForm.controls['nombre'].hasError('required') && perfilForm.controls['nombre'].touched"
                     class="mt-1 text-red-600 text-bold text-xs">
                 <p>El nombre es requerido</p>
               </div>
               <div  *ngIf="perfilForm.controls['nombre'].hasError('pattern') && perfilForm.controls['nombre'].touched"
                     class="mt-1 text-red-600 text-bold text-xs">
-                <p>Por favor, revise su nombre</p>
+                <p>Por favor, escriba solo letras</p>
               </div>
               <div *ngIf="errores?.nombre" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.nombre}}
@@ -41,13 +41,13 @@
                      [disabled]="loading"
 
               >
-              <div  *ngIf="perfilForm.controls['apellido'].invalid && perfilForm.controls['apellido'].touched"
+              <div  *ngIf="perfilForm.controls['apellido'].hasError('required') && perfilForm.controls['apellido'].touched"
                     class="mt-1 text-red-600 text-bold text-xs">
                 <p>El apellido es requerido</p>
               </div>
               <div  *ngIf="perfilForm.controls['apellido'].hasError('pattern') && perfilForm.controls['apellido'].touched"
                     class="mt-1 text-red-600 text-bold text-xs">
-                <p>Por favor, revise su apellido</p>
+                <p>Por favor, escriba solo letras</p>
               </div>
               <div *ngIf="errores?.apellido" class="mt-1 text-red-600 text-bold text-xs">
                 {{errores.apellido}}
