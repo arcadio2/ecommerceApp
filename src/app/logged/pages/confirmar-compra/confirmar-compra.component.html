@@ -2,7 +2,6 @@
   <div class="text-3xl font-bold mb-4">Confirmar compra</div>
 </div>
 
-
 <div class="grid grid-cols-7 ">
 
   <div class="col-span-5 flex justify-center ">
@@ -307,6 +306,11 @@
                     Regresar al menú principal
                   </span>
       </button>
+
+      <div *ngIf="isErrorFacturacion"
+           class="mt-1 text-red-600 text-bold text-xs">
+        <p>Hay un error con tus datos de facturación</p>
+      </div>
     </div>
     <div class="mt-4" *ngIf="loading">
       <mat-spinner></mat-spinner>

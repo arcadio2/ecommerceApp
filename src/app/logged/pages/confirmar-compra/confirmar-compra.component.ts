@@ -189,9 +189,10 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
           this.isErrorFacturacion = true
           this.errorFacturacion = result.error.message ?? ''
           this.toastService.error(result.error.message )
+        }else {
+          this.isErrorFacturacion = false
         }
         this.loading = false
-        this.isErrorFacturacion = false
       }, _ => {
         this.loading = true
       })
@@ -202,7 +203,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
   comprar(): void {
     this.direccionForm.markAllAsTouched()
     this.facturacionForm.markAllAsTouched()
-    if (this.direccionForm.valid && this.facturacionForm.valid) {
+    if (this.direccionForm.valid && this.facturacionForm.valid && !this.isErrorFacturacion) {
 
       const name = this.facturacionForm.controls.nombreTitular.value;
       this.loading = true
