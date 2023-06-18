@@ -240,12 +240,12 @@
                 Resumen de productos
               </div>
             </ng-template>
-            <div class="flex justify-between items-center mt-3" *ngFor="let elemento of bolsa; let i =index">
+            <div class="grid grid-cols-4 items-center mt-3" *ngFor="let elemento of bolsa; let i =index">
               <div class="text-base font-semibold capitalize">{{productos[i].producto?.nombre | titlecase}}:</div>
               <div class="text-sm">{{productos[i].producto?.descripcion}}</div>
-              <div class="text-sm">
+              <div class="text-sm  text-right">
                 ${{cantidadProductos(productos[i].producto?.precio!, elemento.cantidad!)| number:'1.2-2' }}</div>
-              <div class="text-sm">({{elemento.cantidad}})</div>
+              <div class="text-sm text-center">({{elemento.cantidad}})</div>
             </div>
             <div class="text-center mt-6 text-lg">Por favor, <span class="underline underline-offset-2 font-semibold">revisa tu información antes de continuar</span>
             </div>

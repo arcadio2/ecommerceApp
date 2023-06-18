@@ -239,7 +239,6 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
           this.paymentService.pagar(paymentIntentDto).subscribe({
             next: (data: any) => {
               this.irConfirmarPago(this.compras!, data.id)
-              this.loading = false
             }, error: err => {
               this.loading = false
             }
@@ -249,7 +248,7 @@ export class ConfirmarCompraComponent implements OnInit, AfterViewInit {
         } else if (result.error) {
           // Error creating the token
           this.error = result.error.message;
-          
+
         }
       }, _ =>{
         this.loading = false
